@@ -1,4 +1,4 @@
-# The website of blogplatforms.app
+# [The website of blogplatforms.app](https://blogplatforms.app)
 
 Welcome to the GitHub repository for BlogPlatforms.app, your go-to resource for exploring and comparing various blogging platforms available on the internet.
 This project is designed as [an interactive tool that allows users to filter blog platforms based on specific features and target audiences](https://blogplatforms.app).
