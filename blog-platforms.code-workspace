@@ -1,0 +1,11 @@
+{
+	"folders": [
+		{
+			"path": "."
+		}
+	],
+	"settings": {
+		"workbench.tree.indent": 4,
+		"editor.tabSize": 2
+	}
+}
