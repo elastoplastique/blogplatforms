@@ -1,6 +1,6 @@
 import type { BodyItem, BodyItemUnion } from './rich-content';
 
-export type MedıaItemType = 'image' | "video";
+export type MedıaItemType = 'image' | 'video';
 export interface Media {
   description: string;
   slug: string;

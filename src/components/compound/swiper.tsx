@@ -1,23 +1,23 @@
 // @ts-nocheck
 /* eslint-disable @next/next/no-img-element */
-import React from "react";
-import { Swiper as SwiperJS, SwiperSlide } from "swiper/react";
-import { A11y, Autoplay, Keyboard, Pagination, Parallax } from "swiper/modules";
-import { slugify } from "@/lib/utils/slugify";
+import React from 'react';
+import { Swiper as SwiperJS, SwiperSlide } from 'swiper/react';
+import { A11y, Autoplay, Keyboard, Pagination, Parallax } from 'swiper/modules';
+import { slugify } from '@/lib/utils/slugify';
 
 export type SwiperMedia = {
-  type: "IMAGE" | "VIDEO";
+  type: 'IMAGE' | 'VIDEO';
   url: string;
   alt?: string;
   title?: string;
   description?: string;
   link?: string;
   linkText?: string;
-}
+};
 
 export type Props = {
   media: SwiperMedia[];
-}
+};
 
 export function Swiper(props: Props): JSX.Element {
   const swiperParameters = {
@@ -36,28 +36,28 @@ export function Swiper(props: Props): JSX.Element {
   return (
     <SwiperJS {...swiperParameters}>
       {props.media.map((item: SwiperMedia, index: number) => (
-
         <SwiperSlide key={`${slugify(item.title)}-${index}`}>
-          {item.type === "image" ?
+          {item.type === 'image' ? (
             <img
-              alt={item.alt || item.title || item.description || "Slide Image"}
+              alt={item.alt || item.title || item.description || 'Slide Image'}
               className="swiper-slide-image"
               data-swiper-parallax="10%"
               src={item.src}
-            /> : <video
+            />
+          ) : (
+            <video
               id={item.src}
               className="video-js"
-              preload={"none"}
-              width={"100%"}
+              preload={'none'}
+              width={'100%'}
               controls={true}
-              height={"auto"}
-              poster={item.settings.posters.length > 0 ? item.settings.posters[0].url : ""}
+              height={'auto'}
+              poster={item.settings.posters.length > 0 ? item.settings.posters[0].url : ''}
               autoPlay={false}
             >
               <source src={item.src} type={`video/m3u8`} />
             </video>
-
-          }
+          )}
 
           <div className="swiper-slide-content">
             <div className="swiper-slide-title" data-swiper-parallax="-100">
@@ -68,12 +68,15 @@ export function Swiper(props: Props): JSX.Element {
               {item.description}
             </div>
             <div>
-              {item.linkText && item.link && (<a rel="nofollow noopener" href={item.link}>{item.linkText}</a>)}
+              {item.linkText && item.link && (
+                <a rel="nofollow noopener" href={item.link}>
+                  {item.linkText}
+                </a>
+              )}
             </div>
           </div>
         </SwiperSlide>
       ))}
-
     </SwiperJS>
   );
 }

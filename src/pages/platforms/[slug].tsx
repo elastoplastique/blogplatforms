@@ -25,7 +25,7 @@ import {
 } from '@/lib/wix/cms';
 import { RichContent } from '@/lib/wix/cms/components/rich-content';
 import { removeTrailing } from '@/lib/utils/remove-trailing-slash';
-import { PlatformMedia } from "@/components/custom/platform-media";
+import { PlatformMedia } from '@/components/custom/platform-media';
 
 type Props = {
   platform: PlatformNode;

@@ -7,7 +7,13 @@ type Props = {
   platformResourceLinks: Wix.LinkPreview[];
 };
 
-export const PlatformResources = ({ body, platformTitle }: { platformTitle: string, body: { nodes: Wix.BodyItemUnion[]; metadata: Wix.BodyMetadata } }) => {
+export const PlatformResources = ({
+  body,
+  platformTitle,
+}: {
+  platformTitle: string;
+  body: { nodes: Wix.BodyItemUnion[]; metadata: Wix.BodyMetadata };
+}) => {
   return (
     <Section>
       <Heading as="h2" size="6" className="font-medium capitalize">

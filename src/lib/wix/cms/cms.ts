@@ -156,21 +156,20 @@ export async function getPlatform(slug: string): Promise<PlatformNode> {
     });
   }
 
-
   let videos = platform.media?.filter((mediaItem: Wix.Media) => mediaItem.type === 'video') || [];
-    for await (const v of videos) {
-      const videoResponse = await wixClient.files.generateVideoStreamingUrl(v.slug, {"format": "MP4" as Wix.StreamFormat})
-      // console.log('VIDEO RESPONSE', videoResponse)
-      if (videoResponse?.downloadUrl && videoResponse?.downloadUrl.url) {
-        v.src = videoResponse.downloadUrl.url
-        v.assetKey = videoResponse.downloadUrl.assetKey
-      }
+  for await (const v of videos) {
+    const videoResponse = await wixClient.files.generateVideoStreamingUrl(v.slug);
+    // console.log('VIDEO RESPONSE', videoResponse)
+    if (videoResponse?.downloadUrl && videoResponse?.downloadUrl.url) {
+      v.src = videoResponse.downloadUrl.url;
+      v.assetKey = videoResponse.downloadUrl.assetKey;
     }
-    platform.media = [...images, ...videos]
+  }
+  platform.media = [...images, ...videos];
 
-    // media = media
-    //   ?.filter((mediaItem: Wix.Media) => mediaItem.type === 'image')
-    //   .map((mediaItem: Wix.Media) => ({ ...mediaItem, src: createWixStaticUrl(mediaItem.src) }));
+  // media = media
+  //   ?.filter((mediaItem: Wix.Media) => mediaItem.type === 'image')
+  //   .map((mediaItem: Wix.Media) => ({ ...mediaItem, src: createWixStaticUrl(mediaItem.src) }));
 
   // platform.logo = generateFileUrl(platform.logo!)
   // console.log("PLATFORM", platform)
