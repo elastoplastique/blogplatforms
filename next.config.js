@@ -2,6 +2,13 @@
 
 const withMDX = require('@next/mdx')({
   extension: /\.mdx$/,
+  experimental: {
+    // This is experimental but can
+    // be enabled to allow parallel threads
+    // with nextjs automatic static generation
+    workerThreads: false,
+    cpus: 1,
+  },
   options: {
     // If you use remark-gfm, you'll need to use next.config.mjs
     // as the package is ESM only
@@ -11,12 +18,27 @@ const withMDX = require('@next/mdx')({
     // If you use `MDXProvider`, uncomment the following line.
     // providerImportSource: "@mdx-js/react",
   },
-});
+  images: {
+    deviceSizes: [640, 750, 828, 1080, 1200, 1920, 2048, 3840],
+    imageSizes: [16, 32, 48, 64, 96, 128, 256, 384],
 
+    domains: ['wix.blogplatforms.app', 'blogplatforms.app', 'assets-global.website-files.com', 'static.wixtatic.com'],
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 'assets-global.website-files.com',
+      },
+      {
+        protocol: 'https',
+        hostname: 'static.wixstatic.com',
+      },
+    ],
+  },
+});
 
 const nextConfig = {
   pageExtensions: ['ts', 'tsx', 'js', 'jsx', 'md', 'mdx', 'json'],
   reactStrictMode: true,
-}
+};
 
 module.exports = withMDX(nextConfig);

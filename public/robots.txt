@@ -1,0 +1,9 @@
+# *
+User-agent: *
+Allow: /
+
+# Host
+Host: https://blogplatforms.app
+
+# Sitemaps
+Sitemap: https://blogplatforms.app/sitemap.xml

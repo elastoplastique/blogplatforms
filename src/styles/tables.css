@@ -1,0 +1,19 @@
+div.table {
+  border: 1px solid var(--subtle-border);
+  border-radius: var(--radius);
+  overflow: hidden;
+  padding: 8px;
+}
+
+.table table thead {
+  text-align: left;
+  height: 28px;
+  border-bottom: 1px solid var(--subtle-border);
+}
+
+.table table tbody tr td {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  height: 26px;
+  font-weight: 400;
+}
