@@ -125,7 +125,7 @@ export default function PlatformPage({ platform, platformFeatures, platformCompa
             )}
 
             {/* FEATURES */}
-            {features.length > 0 && <PlatformFeatures platformName={platform.title} platformFeatures={features} />}
+            {platformFeatures.length > 0 && <PlatformFeatures platformName={platform.title} platformFeatures={platformFeatures} />}
 
             {/* PROS CONS */}
             <ProsCons platform={platform} id={`${platform.slug}-platform-pros-cons`} />

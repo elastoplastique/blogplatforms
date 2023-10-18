@@ -237,9 +237,9 @@ export async function getPlatformFeatures(platformId?: string): Promise<Platform
       includeReferencedItems: ['feature', 'platform'],
     },
   });
-  // for await (const pf of platformFeatures) {
-  //     pf.featureData = await getFeature(pf.feature);
-  //   }
+  for await (const pf of platformFeatures) {
+      pf.featureData = await getFeature(pf.feature);
+    }
   return platformFeatures;
 }
 
