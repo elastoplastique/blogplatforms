@@ -1,0 +1,41 @@
+:root {
+  --fontSize-s: 16px;
+  --fontSize-m: 20px;
+  --fontSize-l: 25px;
+  --fontSize-xl: 31.25px;
+  --fontSize-2xl: 39.06px;
+  --fontSize-3xl: 48.83px;
+}
+
+@font-face {
+  font-family: 'GeneralSans';
+  src: url('../../public/assets/fonts/GeneralSans-Variable.woff2') format('woff2'),
+    url('../../public/assets/fonts/GeneralSans-Variable.woff') format('woff'),
+    url('../../public/assets/fonts/GeneralSans-Variable.ttf') format('truetype');
+  font-weight: 200 700;
+  font-display: swap;
+  font-style: normal;
+}
+
+.serif {
+  font-family: EB Garamond, serif !important;
+  font-style: italic !important;
+}
+
+p {
+  line-height: 1.7 !important;
+  word-spacing: 0.25em;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: 'GeneralSans', -apple-system, BlinkMacSystemFont, 'Segoe UI (Custom)', Roboto, 'Helvetica Neue', 'Open Sans (Custom)', system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', sans-serif !important;
+  font-weight: 500;
+  line-height: 1.6;
+  margin: 0;
+  padding: 0;
+}

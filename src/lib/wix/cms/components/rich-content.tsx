@@ -1,0 +1,318 @@
+/* eslint-disable react/display-name */
+/* eslint-disable @next/next/no-img-element */
+import { useState, useEffect, memo } from 'react';
+import type { ReactNode } from 'react';
+import { AspectRatio, Link, Heading, Text, Flex, Card, Inset, Strong, Em, Separator } from '@/components/ui';
+import {
+  Heading as HeadingI,
+  Paragraph as ParagraphI,
+  Text as TextI,
+  Blockquote as BlockquoteI,
+  CodeBlock as CodeBlockI,
+  Video as VideoI,
+  Image as ImageI,
+  File as FileI,
+  LinkPreview as LinkPreviewI,
+  Embed as EmbedI,
+  BodyItem,
+  Decoration,
+  DecorationType,
+  BodyItemUnion,
+  BodyItemType,
+  TextDecorationUnion,
+  LinkDecoration,
+  ColorDecoration,
+  BoldDecoration,
+  ItalicDecoration,
+  BulletedList,
+  OrderedList,
+  ListItem,
+} from '@/types/wix/rich-content';
+import { IMAGE_WIDTH, IMAGE_HEIGHT, THUMBNAIL_FACTOR } from '@/constants/image';
+import { media } from '@wix/sdk';
+import { ReactElement } from 'react';
+import { createWixStaticUrl, createWixStaticVideoUrl } from '@/lib/wix/utils/create-url';
+
+const THUMB_HEIGHT = IMAGE_HEIGHT * THUMBNAIL_FACTOR;
+const THUMB_WIDTH = IMAGE_WIDTH * THUMBNAIL_FACTOR;
+
+export const RichContent = memo(
+  ({ body }: { body: { nodes: Wix.BodyItemUnion[]; metadata: Wix.BodyMetadata } }) => {
+    return (
+      <Flex width="100%" direction="column" id="rich-content">
+        {body.nodes.map((node: BodyItemUnion) => (
+          <WixNode node={node} key={node._id} />
+        ))}
+      </Flex>
+    );
+  },
+  (prevProps, nextProps) => prevProps.body.metadata._id === nextProps.body.metadata._id
+);
+
+function WixHeading({ node }: { node: Wix.Heading }) {
+  function getLevel(node: HeadingI) {
+    switch (node.headingData!.level) {
+      case 1:
+        return 'h1';
+      case 2:
+        return 'h2';
+      case 3:
+        return 'h3';
+      case 4:
+        return 'h4';
+      case 5:
+        return 'h5';
+      case 6:
+        return 'h6';
+      default:
+        return 'h2';
+    }
+  }
+
+  return (
+    <Heading id={node._id} as={getLevel(node)} className="cms-rich-content cms-img">
+      <>
+        {(node.nodes as BodyItemUnion[]).map((innerNode) => (
+          <WixNode node={innerNode} key={innerNode._id} />
+        ))}
+      </>
+    </Heading>
+  );
+}
+
+function WixParagraph({ node }: { node: Wix.Paragraph }) {
+  return (
+    <Text as="p" size="4" my="2" id={node._id} className="cms-rich-content cms-p">
+      <>
+        {(node.nodes as BodyItemUnion[]).map((innerNode: BodyItemUnion, ix: number) => (
+          <WixNode node={innerNode} key={`${ix}-${innerNode._id}`} />
+        ))}
+      </>
+    </Text>
+  );
+}
+
+function WixTextDecorated({ node }: { node: Wix.Text }) {
+  // const getBoldDecoration = node.textData.decorations.find((decoration: Decoration<DecorationType>) => decoration.type === "BOLD")
+  // const getColorDecoration = node.textData.decorations.find((decoration: Decoration<DecorationType>) => decoration.type === "COLOR")
+  // const getItalicDecoration = node.textData.decorations.find((decoration: Decoration<DecorationType>) => decoration.type === "ITALIC")
+  // const getLinkDecoration = node.textData.decorations.find((decoration: Decoration<DecorationType>) => decoration.type === "LINK")
+
+  const LinkDecoration = ({ decoration, children }: { decoration: LinkDecoration; children: ReactNode | string }) => (
+    <Link
+      href={decoration.linkData.link.url}
+      style={{ color: 'inherit' }}
+      className="cms-rich-content cms-link"
+      target={decoration.linkData.link.target}
+      rel={`${decoration.linkData.link.rel?.nofollow ? 'nofollow' : ''} ${decoration.linkData.link.rel?.noreferrer ? 'noreferrer' : ''}`}
+    >
+      {children}
+    </Link>
+  );
+  const BoldDecoration = ({ decoration, children }: { decoration: BoldDecoration; children: ReactNode | string }) => (
+    <Strong className="cms-rich-content cms-strong">{children}</Strong>
+  );
+  const ItalicDecoration = ({ decoration, children }: { decoration: ItalicDecoration; children: ReactNode | string }) => (
+    <Em className="cms-rich-content cms-em">{children}</Em>
+  );
+  const ColorDecoration = ({ decoration, children }: { decoration: ColorDecoration; children: ReactNode | string }) => (
+    <mark className="cms-rich-content cms-mark" style={{ ...decoration.colorData }}>
+      {children}
+    </mark>
+  );
+
+  const SingleDecoration = ({ decoration, children }: { decoration: TextDecorationUnion; children: ReactNode }) => {
+    switch (decoration.type) {
+      case 'BOLD':
+        return <BoldDecoration decoration={decoration}>{children}</BoldDecoration>;
+      case 'COLOR':
+        return <ColorDecoration decoration={decoration}>{children}</ColorDecoration>;
+      case 'ITALIC':
+        return <ItalicDecoration decoration={decoration}>{children}</ItalicDecoration>;
+      case 'LINK':
+        return <LinkDecoration decoration={decoration}>{children}</LinkDecoration>;
+      default:
+        return children;
+    }
+  };
+  // This component iterates over decorations put them the next decoration as children
+  // If the decoration is the last one, it puts the text as children
+  const Decorations = ({ text, decorations }: { text: string; decorations: TextDecorationUnion[] }) => {
+    if (decorations.length === 0) {
+      return <>{text}</>;
+    } else {
+      return (
+        <SingleDecoration decoration={decorations[0]}>
+          <Decorations text={text} decorations={decorations.slice(1)} />
+        </SingleDecoration>
+      );
+    }
+  };
+  return <>{Decorations({ text: node.textData.text, decorations: node.textData.decorations })}</>;
+}
+
+function WixText({ node }: { node: Wix.Text }) {
+  function getText(node: TextI) {
+    let text = node.textData.text;
+    node.nodes.forEach((innerNode: any) => {
+      text += innerNode.textData.text;
+    });
+    return text;
+  }
+  return <>{getText(node)}</>;
+}
+
+function WixLinkPreview({ node }: { node: Wix.LinkPreview }) {
+  return (
+    <Card size="2" style={{ maxWidth: '100%', maxHeight: THUMB_HEIGHT }} className="cms-rich-content cms-link-preview link-preview-card">
+      <Flex direction="row">
+        <Inset side="left" style={{ width: THUMB_WIDTH, maxHeight: THUMB_HEIGHT, marginRight: 16 }}>
+          <img
+            src={node.linkPreviewData.thumbnailUrl}
+            alt="Bold typography"
+            width={THUMB_WIDTH}
+            height={THUMB_HEIGHT}
+            style={{
+              display: 'block',
+              objectFit: 'cover',
+              width: THUMB_WIDTH,
+              height: THUMB_HEIGHT,
+              backgroundColor: 'var(--gray-5)',
+            }}
+          />
+        </Inset>
+        <Flex direction="column" p="4" className="!p-4">
+          <Text as="p" size="4">
+            <Strong>{node.linkPreviewData.title}</Strong>
+          </Text>
+          <Text as="p" size="3">
+            {node.linkPreviewData.description}
+          </Text>
+        </Flex>
+      </Flex>
+      <a href={node.linkPreviewData.link.url} className="cover-box" target="_blank" rel="noopener nofollow"></a>
+    </Card>
+  );
+}
+
+function WixListItem({ node }: { node: Wix.ListItem }) {
+  return (
+    <li className="cms-rich-content cms-li">
+      {(node.nodes as BodyItemUnion[]).map((innerNode) => (
+        <WixNode node={innerNode} key={innerNode._id} />
+      ))}
+    </li>
+  );
+}
+
+function WixOrderedList({ node }: { node: Wix.OrderedList }) {
+  return (
+    <ol className="cms-rich-content cms-ol">
+      {(node.nodes as ListItem[]).map((innerNode: ListItem) => (
+        <WixNode node={innerNode} key={innerNode._id} />
+      ))}
+    </ol>
+  );
+}
+
+function WixBulletedList({ node }: { node: Wix.BulletedList }) {
+  return (
+    <ul className="cms-rich-content cms-ul">
+      {(node.nodes as ListItem[]).map((innerNode: ListItem) => (
+        <WixNode node={innerNode} key={innerNode._id} />
+      ))}
+    </ul>
+  );
+}
+
+function WixImage({ node }: { node: Wix.Image }) {
+  return (
+    <AspectRatio ratio={node.imageData.image.width / node.imageData.image.height} className="cms-rich-content cms-img">
+      {node.imageData.image.src._id && (
+        <img loading="lazy" src={createWixStaticUrl(node.imageData.image.src._id)} alt={''} className="absolute top-0 left-0" />
+      )}
+    </AspectRatio>
+  );
+}
+
+function WixVideo({ node }: { node: Wix.Video }) {
+  return (
+    <AspectRatio ratio={16 / 9} className="cms-rich-content cms-video relative">
+      {node.videoData.video.src._id && (
+        <video
+          controls
+          width="100%"
+          src={createWixStaticVideoUrl(node.videoData.video.src._id)}
+          poster={createWixStaticUrl(node.videoData.thumbnail.src._id)}
+          className="absolute top-0 left-0 bottom-0 right-0 max-h-full"
+        />
+      )}
+    </AspectRatio>
+  );
+}
+
+function WixDivider({ node }: { node: Wix.Divider }) {
+  return <hr className="cms-rich-content cms-hr" />;
+}
+function WixNode({ node }: { node: BodyItemUnion }) {
+  if (node.type === 'HEADING') {
+    return <WixHeading node={node} />;
+  }
+  if (node.type === 'PARAGRAPH') {
+    return <WixParagraph node={node} />;
+  }
+  if (node.type === 'TEXT') {
+    if (node.textData.decorations.length > 0) {
+      return <WixTextDecorated node={node} />;
+    } else {
+      return <WixText node={node} />;
+    }
+  }
+  if (node.type === 'LINK_PREVIEW') {
+    return <WixLinkPreview node={node} />;
+  }
+  if (node.type === 'ORDERED_LIST') {
+    return <WixOrderedList node={node} />;
+  }
+  if (node.type === 'BULLETED_LIST') {
+    return <WixBulletedList node={node} />;
+  }
+  if (node.type === 'LIST_ITEM') {
+    return <WixListItem node={node} />;
+  }
+  if (node.type === 'IMAGE') {
+    return <WixImage node={node} />;
+  }
+  if (node.type === 'VIDEO') {
+    return <WixVideo node={node} />;
+  }
+  if (node.type === 'DIVIDER') {
+    return <WixDivider node={node} />;
+  } else {
+    return <></>;
+  }
+}
+
+// function WixTextDecoration({ text, decorations }: { text: string, decorations: Decoration<DecorationType>[] }) {
+//   if (node.textData === "HEADING") {
+//     return <WixHeading node={node} />
+//   }
+//   if (node.textData === "PARAGRAPH") {
+//     return <WixParagraph node={node} />
+//   }
+//   if (node.textData === "TEXT") {
+//     return <WixText node={node} />
+//   }
+//   if (node.textData === "LINK_PREVIEW") {
+//     return <WixLinkPreview node={node} />
+//   }
+//   else {
+//     return (
+//       <>
+//         {decorations.map((decoration: Decoration<DecorationType>) => (
+
+//       ))}
+//       </>
+//     )
+//   }
+// }

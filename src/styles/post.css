@@ -1,0 +1,26 @@
+article#post h2 {margin-top:96px; margin-bottom:16px; font-size: 48px; letter-spacing: -0.03em; }
+article#post h3 {margin-top:48px; margin-bottom:16px; font-size: 40px; letter-spacing: -0.03em; }
+article#post h4 {margin-top:32px; margin-bottom:16px; font-size: 28px; letter-spacing: -0.03em; }
+article#post  p {margin-top: 8px; margin-bottom:16px; font-size: 20px; letter-spacing: -0.03em; }
+
+/* article#post  a { text-decoration: underline }
+
+article#post  p > a {
+
+    font-weight: bold;
+    cursor:pointer;
+  	color: #222222;
+    text-decoration: underline;
+    background-image: linear-gradient( transparent 0%, transparent calc(50% - 9px), #5B4BDD calc(50% - 4px), rgba(91, 75, 221, 0.60) 100% ) !important;
+    transition: background-position 320ms ease-in-out, padding 220ms ease-in-out !important;
+    background-size: 100% 200% !important;
+    padding: 0 4px;
+    background-position: 0 0;
+    word-break: break-word;
+    border-bottom: 1px solid transparent !important;
+}
+article#post p > a:hover {
+    background-image: linear-gradient( transparent 0%, transparent calc(50% - 4px), rgba(91, 75, 221, 0.60) calc(50% - 4px), rgba(91, 75, 221, 0.8) 100% ) !important;
+    background-position: 0 100%;
+  	border-radius:4px;
+} */
