@@ -53,7 +53,7 @@ RICH CONTENT
   padding: 0;
 }
 
-.cms-rich-content div::not(.cms-link-preview)  a {
+.cms-rich-content a.cms-link {
   background-color: transparent;
   border-bottom: 3px solid #37fe90;
   box-sizing: inherit;
@@ -66,7 +66,7 @@ RICH CONTENT
   transition: all 0.3s ease;
 }
 
-.cms-rich-content div::not(.cms-link-preview) a:hover {
+.cms-rich-content a.cms-link:hover {
   background-color: #37fe90;
   color: black !important;
   outline-width: 0px;
