@@ -220,3 +220,12 @@ button.remove-selection:hover svg {
     bottom:0;
     transition: all 0.2s ease;
 }
+
+.post-card {
+    transition: all 0.2s ease;
+    transform: translate(0, 0, 0);
+}
+
+.post-card:hover .cover-box {
+    transform: translate(0, -8px) !important;
+}

@@ -2,18 +2,23 @@ import { Text, Card, Flex, Heading } from '@/components/ui';
 import { InfoTooltip } from '@/components/compound/info-tooltip';
 import { StoryIcon } from '@/components/icons/bold-icons';
 import { FEATURE_ICONS, FEATURE_COLORS } from '@/constants/features';
+import Link from 'next/link';
 
 type Props = {
-  platformFeature: PlatformFeatureNode;
+  platformFeature?: PlatformFeatureNode;
   icon?: React.ReactNode;
+  title?: string;
+  description?: string;
+  link?: string;
+  rest?: any;
 };
 
-export const HorizontalFeatureCard = ({ platformFeature, icon, ...rest }: Props) => {
-  const FeatureIcon = FEATURE_ICONS[platformFeature.featureData.title as keyof typeof FEATURE_ICONS] || StoryIcon;
-  const featureColor = FEATURE_COLORS[platformFeature.featureData.title as keyof typeof FEATURE_COLORS] || 'teal';
+export const HorizontalFeatureCard = ({ title, description, link, icon, ...rest }: Props) => {
+  const FeatureIcon = FEATURE_ICONS[title as keyof typeof FEATURE_ICONS] || icon || StoryIcon;
+  const featureColor = FEATURE_COLORS[title as keyof typeof FEATURE_COLORS] || 'teal';
   // 329 100 96
   return (
-    <Card style={{ backgroundColor: `var(--${featureColor}-a1)` }} {...rest}>
+    <Card variant="surface" m={'3'} style={{ backgroundColor: `var(--${featureColor}-a2)` }} {...rest}>
       <Flex direction="column" className="flex w-full rounded-xl" p="2">
         <Flex justify="center" align="center" p="1" className=" w-12 h-12 mb-4" style={{ borderRadius: '100%' }}>
           <FeatureIcon color={`var(--${featureColor}-9)`} width={32} height={32} />
@@ -21,13 +26,19 @@ export const HorizontalFeatureCard = ({ platformFeature, icon, ...rest }: Props)
 
         <Flex direction="row" className="w-full flex flex-row items-start mb-2">
           <Heading as="h3" size="5" mr="4" weight="bold" className="text-white">
-            {platformFeature.featureData.title}
+            {link ? <Link href={link}>{title}</Link> : title}
           </Heading>
-          <InfoTooltip size={20} text={platformFeature.featureData.description || ''} color={`var(--${featureColor}-12)`} />
+          {description && <InfoTooltip size={20} text={description || ''} color={`var(--${featureColor}-12)`} />}
         </Flex>
-
-        <Text className="text-white" size="3" dangerouslySetInnerHTML={{ __html: platformFeature?.note }} />
-
+        <Flex className="min-h-[80px]">
+          {description && link ? (
+            <Link href={link}>
+              <Text className="text-white" size="3" dangerouslySetInnerHTML={{ __html: description }} />
+            </Link>
+          ) : (
+            <Text className="text-white" size="3" dangerouslySetInnerHTML={{ __html: description! }} />
+          )}
+        </Flex>
         {/* <p className="ml-5 text-sm font-normal leading-4 tracking-wide text-gray-600">{platformFeature.feature.description}</p> */}
       </Flex>
     </Card>

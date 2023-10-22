@@ -1,3 +1,5 @@
+import Link from 'next/link';
+
 const pages = [
   { name: 'Projects', href: '#', current: false },
   { name: 'Project Nero', href: '#', current: true },
@@ -7,6 +9,7 @@ export type BreadcrumbLink = {
   name: string;
   href: string;
   current: boolean;
+  title?: string;
 };
 
 export type Props = {
@@ -19,9 +22,9 @@ export function Breadcrumb(props: Props) {
       <ol className="flex items-center space-x-4">
         <li>
           <div>
-            <a href="https://blogplatforms.app" className="!text-gray-400 hover:text-gray-500 border-b-1">
+            <Link href="https://blogplatforms.app" className="!text-gray-400 hover:text-gray-500 border-b-1" title="Best Blog Platforms">
               Blog Platforms
-            </a>
+            </Link>
           </div>
         </li>
         {props.links.map((page) => (
@@ -36,9 +39,14 @@ export function Breadcrumb(props: Props) {
               >
                 <path d="M5.555 17.776l8-16 .894.448-8 16-.894-.448z" />
               </svg>
-              <a href={page.href} className="ml-4 !text-gray-400 hover:text-gray-500" aria-current={page.current ? 'page' : undefined}>
+              <Link
+                href={page.href}
+                className={page.current ? 'ml-4 !text-gray-400 hover:text-gray-500' : 'ml-4 !text-gray-400 hover:text-gray-500 border-b-1'}
+                aria-current={page.current ? 'page' : undefined}
+                title={page.title || page.name}
+              >
                 {page.name}
-              </a>
+              </Link>
             </div>
           </li>
         ))}

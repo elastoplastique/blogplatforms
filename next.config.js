@@ -1,6 +1,7 @@
 /** @type {import('next').NextConfig} */
 
 const withMDX = require('@next/mdx')({
+  staticPageGenerationTimeout: 300,
   extension: /\.mdx$/,
   experimental: {
     // This is experimental but can

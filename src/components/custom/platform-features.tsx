@@ -26,7 +26,7 @@ export const PlatformFeatures = ({ platformName, platformFeatures }: { platformN
       <Separator />
       <Grid width="100%" columns="2" gap="1">
         {orderedPlatformFeatures.map((pf: PlatformFeatureNode, index) => (
-          <HorizontalFeatureCard platformFeature={pf} key={`pf-${pf.featureData.slug}-${index}`} />
+          <HorizontalFeatureCard title={pf.title} description={pf.feature.description} key={`pf-${pf.featureData.slug}-${index}`} />
           // <Badge key={`pf-${pf.feature.slug}-${index}`} size="2" className="m-2 !min-h-[60px] flex space-between !items-center">
           //   <Flex direction="column" align="center" className="mr-1">
           //     {pf?.feature?.title}

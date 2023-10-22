@@ -7,6 +7,7 @@ type PageLayoutProps = {
   children: React.ReactNode;
   metaTitle?: string;
   metaDescription?: string;
+  image?: string;
   canonical?: string;
 };
 
@@ -15,8 +16,24 @@ export function PageLayout({ children, ...props }: PageLayoutProps) {
     <>
       <Head>
         <title>{props?.metaTitle || META.TITLE}</title>
+        <meta name="title" content={props.metaTitle} />
         <meta name="description" content={props?.metaDescription || META.DESCRIPTION} />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+        {/* <!-- Open Graph / Facebook --> */}
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content={props.canonical || META.CANONICAL} />
+        <meta property="og:title" content={props.metaTitle} />
+        <meta property="og:description" content={props.metaDescription} />
+        {props.image && <meta property="og:image" content={props.image} />}
+
+        {/* <!-- Twitter --> */}
+        <meta property="twitter:card" content="summary_large_image" />
+        <meta property="twitter:url" content={props.canonical || META.CANONICAL} />
+        <meta property="twitter:title" content={props.metaTitle} />
+        <meta property="twitter:description" content={props.metaDescription} />
+        {props.image && <meta property="twitter:image" content={props.image} />}
+
         <link rel="canonical" href={props.canonical || META.CANONICAL} />
         <Favicons />
       </Head>

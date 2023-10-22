@@ -20,7 +20,7 @@ import { createWixStaticUrl } from '@/lib/wix/utils/create-url';
 // CONSTANTS
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-const COLLECTIONS = {
+export const COLLECTIONS = {
   PLATFORMS: 'platforms',
   FEATURES: 'features',
   COMPARATIVE_FEATURES: 'comparativeFeatures',
@@ -30,6 +30,8 @@ const COLLECTIONS = {
   // JOIN COLLECTIONS
   PLATFORMS_FEATURES: 'platformFeatures',
   PLATFORMS_COMPARATIVE_FEATURES: 'platformComparativeFeatures',
+  POSTS: 'Posts',
+  TAGS: 'Tags',
 };
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -45,13 +47,13 @@ type GetDataItemParams = {
 };
 type QueryDataItemsOptions = {
   dataCollectionId: DataCollectionId;
-  eq: [key: string, value: any];
+  eq: [key: string, value: any] | string[];
+  includeReferencedItems?: string[];
   options?: {
     limit?: number;
     offset?: number;
     query?: string;
     sort?: string;
-    includeReferencedItems?: string[];
   };
 };
 type QueryReferencedDataItemsOptions = {
@@ -104,7 +106,10 @@ export async function getItems(dataCollectionId: DataCollectionId, references: s
 
 export async function queryItems(options: QueryDataItemsOptions): Promise<DataItemsQueryResult['items']> {
   const dataItemsList = await wixClient.items
-    .queryDataItems({ dataCollectionId: options.dataCollectionId })
+    .queryDataItems({
+      dataCollectionId: options.dataCollectionId,
+      ...(options?.includeReferencedItems && { includeReferencedItems: options?.includeReferencedItems }),
+    })
     .eq(options.eq[0], options.eq[1])
     .find();
   return (
@@ -183,9 +188,9 @@ export async function getPlatform(slug: string): Promise<PlatformNode> {
 export async function getFeatures(): Promise<FeatureNode[]> {
   return await getItems(COLLECTIONS.FEATURES);
 }
-export async function getFeature(featureId: string): Promise<FeatureNode> {
+export async function getFeature(slug: string): Promise<FeatureNode> {
   const features = await getFeatures();
-  return features.find((feature) => feature._id === featureId) || ({} as FeatureNode);
+  return features.find((feature) => feature.slug === slug) || ({} as FeatureNode);
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -211,17 +216,6 @@ export async function getPlatformAccounts(slug: string): Promise<AccountsNode> {
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////
-// PLATFORM TYPES DATA
-///////////////////////////////////////////////////////////////////////////////////////////////////////////////
-export async function getPlatformTypes(): Promise<PlatformTypeNode[]> {
-  return await getItems(COLLECTIONS.PLATFORM_TYPES);
-}
-export async function getPlatformType(slug: string): Promise<PlatformTypeNode> {
-  const platformTypes = await getPlatformTypes();
-  return platformTypes.find((platformType) => platformType.slug === slug) || ({} as PlatformTypeNode);
-}
-
-///////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // PLATFORMS FFEATURES DATA
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////
 export async function getPlatformsFeatures(): Promise<PlatformFeatureNode[]> {
@@ -233,13 +227,11 @@ export async function getPlatformFeatures(platformId?: string): Promise<Platform
   const platformFeatures = await queryItems({
     dataCollectionId: COLLECTIONS.PLATFORMS_FEATURES,
     eq: ['platform', platformId],
-    options: {
-      includeReferencedItems: ['feature', 'platform'],
-    },
+    includeReferencedItems: ['feature', 'platform'],
   });
   for await (const pf of platformFeatures) {
-      pf.featureData = await getFeature(pf.feature);
-    }
+    pf.featureData = await getFeature(pf.feature);
+  }
   return platformFeatures;
 }
 
@@ -253,7 +245,7 @@ export async function getPlatformFeature({
 }): Promise<PlatformFeatureNode> {
   const platformsFeatures = await getPlatformsFeatures();
   const platformFeatures = platformsFeatures.find((platformFeature) => {
-    if (platformFeature.platform === platformId && platformFeature.feature === featureId) return true;
+    if (platformFeature.platform._id === platformId && platformFeature.feature._id === featureId) return true;
     return false;
   });
   return platformFeatures || ({} as PlatformFeatureNode);
@@ -262,7 +254,7 @@ export async function getPlatformFeature({
 // PLATFORMS COMPARATIVE FFEATURES DATA
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////
 export async function getPlatformsComparativeFeatures(): Promise<PlatformComparativeFeatureNode[]> {
-  return await getItems(COLLECTIONS.PLATFORMS_COMPARATIVE_FEATURES);
+  return await getItems(COLLECTIONS.PLATFORMS_COMPARATIVE_FEATURES, ['feature', 'platform']);
 }
 
 // SPECIFIC PLATFORM COMPARATIVE FEATURE FOR A GIVEN PLATFORM AND A GIVEN  COMPARATIVE FEATURE
@@ -275,7 +267,7 @@ export async function getPlatformComparativeFeature({
 }): Promise<PlatformComparativeFeatureNode> {
   const platformsFeatures = await getPlatformsComparativeFeatures();
   const platformFeatures = platformsFeatures.find((platformFeature) => {
-    if (platformFeature.platform === platformId && platformFeature.feature === featureId) return true;
+    if (platformFeature.platform._id === platformId && platformFeature.feature._id === featureId) return true;
     return false;
   });
   return platformFeatures || ({} as PlatformComparativeFeatureNode);
@@ -285,15 +277,42 @@ export async function getPlatformComparativeFeature({
 export async function getPlatformComparativeFeatures(platformId?: string): Promise<PlatformComparativeFeatureNode[]> {
   const platformsComparativeFeatures = await getPlatformsComparativeFeatures();
   let platformComparativeFeatures = platformsComparativeFeatures.filter((platformFeature) => {
-    if (platformId && platformFeature.platform === platformId) return true;
+    if (platformId && platformFeature.platform._id === platformId) return true;
     return false;
   });
   platformComparativeFeatures.forEach(async (platformComparativeFeature) => {
-    platformComparativeFeature.featureData = await getComparativeFeature(platformComparativeFeature.feature);
+    platformComparativeFeature.featureData = await getComparativeFeature(platformComparativeFeature.feature._id);
   });
   return platformComparativeFeatures;
 }
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////
+// PLATFORM TYPES DATA
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////
+export async function getPlatformTypes(): Promise<PlatformTypeNode[]> {
+  return await getItems(COLLECTIONS.PLATFORM_TYPES);
+}
+export async function getPlatformType(slug: string): Promise<PlatformTypeNode> {
+  const platformTypes = await getPlatformTypes();
+  return platformTypes.find((platformType) => platformType.slug === slug) || ({} as PlatformTypeNode);
+}
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////
+// POSTS DATA
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////
+export async function getPosts(): Promise<PlatformTypeNode[]> {
+  return await getItems(COLLECTIONS.POSTS);
+}
+export async function getPost(slug: string): Promise<Wix.PostNode> {
+  const posts = await getPosts();
+  return posts.find((post) => post.slug === slug) || ({} as Wix.PostNode);
+}
 
+export async function getTags(): Promise<Wix.TagNode[]> {
+  return await getItems(COLLECTIONS.TAGS);
+}
+export async function getTag(slug: string): Promise<Wix.TagNode> {
+  const tags = await getTags();
+  return tags.find((tag) => tag.slug === slug) || ({} as Wix.TagNode);
+}
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // FILES
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -341,6 +360,16 @@ export async function getAudiences(): Promise<string[]> {
 export async function getPlatformSlugs(): Promise<string[]> {
   const platforms = await getPlatforms();
   return platforms.map((platform) => platform.slug);
+}
+
+export async function getFeatureSlugs(): Promise<string[]> {
+  const features = await getFeatures();
+  return features.map((feature) => feature.slug);
+}
+
+export async function getPostSlugs(): Promise<string[]> {
+  const posts = await getPosts();
+  return posts.map((post) => post.slug);
 }
 
 export function generateFileUrl(fileId: string): string {

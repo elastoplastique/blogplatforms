@@ -52,9 +52,10 @@ export default function PlatformPage({ platform, platformFeatures, platformCompa
 
   return (
     <PageLayout
-      metaTitle={`Best Blogging Site: ${platform.title} | BlogPlatforms.app`}
+      metaTitle={`Best Blogging Platforms: ${platform.title} | BlogPlatforms.app`}
       metaDescription={platform.description}
       canonical={`${removeTrailing(META.CANONICAL)}/${ROUTES.PLATFORMS_DIRECTORY.path}/${removeTrailing(platform.slug)}`}
+      image={platform.cover}
     >
       <Container size="3" className="w-full">
         <Card id="page-card" className="w-full h-full relative flex flex-col justify-start min-w-full" mt={'2'} size="5" variant="surface">

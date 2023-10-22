@@ -18,6 +18,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { META } from '@/constants/meta';
 import { DEFAULT_PLATFORMS_LOADING_PARAMS } from '@/constants/settings';
 import { getPlatforms, getFeatures, getAudiences } from '@/lib/wix/cms/cms';
+import { slugify } from '@/lib/utils/slugify';
 
 type Props = {
   platforms: PlatformNode[];
@@ -34,7 +35,8 @@ export default function HomePage(props: Props) {
   // Filter Store
   const setPlatforms = useFilters((state) => state.setPlatforms);
   const setFeatures = useFilters((state) => state.setFeatures);
-
+  const { feature } = useFilters((state) => state.selecteds);
+  console.log('home page selecteds', feature);
   const filteredPlatforms = useFilters((state) => state.filteredPlatforms);
   const options = useFilters((state) => state.options);
   const addOptionSet = useFilters((state) => state.addOptionSet);
@@ -54,7 +56,7 @@ export default function HomePage(props: Props) {
     setFeatures(features);
 
     // Add Audience Selection
-    addOptionSet(FILTER_AUDIENCE_LABEL, AUDIENCES, (p: PlatformNode, selected: string) => p?.audience!.includes(selected));
+    // addOptionSet(FILTER_AUDIENCE_LABEL, AUDIENCES, (p: PlatformNode, selected: string) => p?.audience!.includes(selected));
     addOptionSet(FILTER_FEATURE_LABEL, featureNames, (p: PlatformNode, selected: string) =>
       p.features.map((f: FeatureNode) => f?.featureData?.title)!.includes(selected)
     );
@@ -63,6 +65,16 @@ export default function HomePage(props: Props) {
   // const routeHandler = (slug: string) => {
   //   router.push(`${slug || "/"}`, undefined, { shallow: true })
   // }
+
+  function getFeatureSlug(feature: string) {
+    return features.find((f: FeatureNode) => f.title === feature)?.slug;
+  }
+  useEffect(() => {
+    if (feature) {
+      const featureSlug = getFeatureSlug(feature);
+      if (featureSlug) router.push(`/features/${featureSlug}`);
+    }
+  }, [feature]);
   return (
     <PageLayout metaTitle={META.HOME.TITLE} metaDescription={META.HOME.DESCRIPTION} canonical={META.CANONICAL}>
       <Container size="3">

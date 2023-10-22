@@ -98,8 +98,8 @@ export interface PlatformFeatureNode {
   _id: string;
   slug: string;
   title: string;
-  platform: PlatformNode['_id'];
-  feature: FeatureNode['_id'];
+  platform: PlatformNode;
+  feature: FeatureNode;
   featureData: FeatureNode;
   note?: string;
 }
@@ -120,7 +120,7 @@ export interface ComparativeFeature extends DataItem {
 }
 export interface PlatformComparativeFeatureNode extends PlatformFeatureNode {
   rating: Rating;
-  feature: ComparativeFeatureNode['_id'];
+  // feature: ComparativeFeatureNode['_id'];
   featureData: ComparativeFeatureNode;
 }
 export interface PlatformComparativeFeature extends DataItem {
@@ -150,6 +150,29 @@ export interface AccountsNode {
   x?: string;
   youtube?: string;
 }
+
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////
+// POSTS & TAGS
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////
+export interface PostNode {
+  _id: string;
+  slug: string;
+  canonical?: string;
+  published?: boolean;
+  order?: number;
+  title: string;
+  description?: string;
+  cover?: string;
+  body?: { nodes: BodyItemUnion[] };
+}
+export interface TagNode {
+  _id: string;
+  slug: string;
+  title: string;
+  note?: string;
+  posts?: PostNode[];
+}
+
 export interface Accounts extends DataItem {
   data: AccountsNode;
 }
