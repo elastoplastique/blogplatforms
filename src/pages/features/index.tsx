@@ -12,7 +12,6 @@ type Props = {
 };
 
 export default function BlogPlatforms(props: Props) {
-  console.log('feature page props', props.features);
   return (
     <PageLayout metaTitle={`Best Blogging Site | BlogPlatforms.app`} canonical={'https://blogplatforms.app/features'}>
       <Container size="3">

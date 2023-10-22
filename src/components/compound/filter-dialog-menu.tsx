@@ -23,7 +23,7 @@ export const FilterDialogMenu = () => {
 
   return (
     <Card id="filter-menu-card" className="!w-full min-h-[60px] !mb-8" variant="surface">
-      <Grid width="100%" columns="2">
+      <Grid width="100%" columns="1">
         {filterOptionKeys.map((o: string) => (
           <OptionSelect
             option={o}

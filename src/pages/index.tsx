@@ -23,7 +23,7 @@ import { slugify } from '@/lib/utils/slugify';
 type Props = {
   platforms: PlatformNode[];
   features: FeatureNode[];
-  audiences: string[];
+  // audiences: string[];
 };
 
 export default function HomePage(props: Props) {
@@ -36,7 +36,7 @@ export default function HomePage(props: Props) {
   const setPlatforms = useFilters((state) => state.setPlatforms);
   const setFeatures = useFilters((state) => state.setFeatures);
   const { feature } = useFilters((state) => state.selecteds);
-  console.log('home page selecteds', feature);
+  // console.log('home page selecteds', feature);
   const filteredPlatforms = useFilters((state) => state.filteredPlatforms);
   const options = useFilters((state) => state.options);
   const addOptionSet = useFilters((state) => state.addOptionSet);
@@ -142,12 +142,12 @@ export default function HomePage(props: Props) {
 export async function getStaticProps() {
   const platforms = await getPlatforms();
   const features = await getFeatures();
-  const audiences = await getAudiences();
+  // const audiences = await getAudiences();
   return {
     props: {
       platforms: platforms.sort((a: PlatformNode, b: PlatformNode) => a.order - b.order),
       features,
-      audiences,
+      // audiences,
     },
   };
 }
