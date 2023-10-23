@@ -17,7 +17,7 @@ type Props = {
 export const PostCard = ({ title, description, href, image, ...rest }: Props) => {
   // 329 100 96
   return (
-    <Card variant="surface" m={'3'} style={{ backgroundColor: `var(--iris-a2)`, width: '100%', margin: 8 }} {...rest} className="post-card">
+    <Card variant="surface" m={'3'} style={{ backgroundColor: `var(--iris-a2)`, width: '100%', margin: 0 }} {...rest} className="post-card">
       {/* @ts-ignore */}
       <Inset clip="padding-box" side="top" pb="current">
         <Link href={href} title={title}>
@@ -34,13 +34,13 @@ export const PostCard = ({ title, description, href, image, ...rest }: Props) =>
           />
         </Link>
       </Inset>
-      <Flex p="2" direction="column">
+      <Flex p="2" direction="column" className="min-h-[100px] post-card-body">
         <Heading as="h3" size="3">
           <Link href={href}>
             <Strong>{title}</Strong>
           </Link>
         </Heading>
-        <Text as="p" size="2">
+        <Text as="p" size="2" >
           {description}
         </Text>
       </Flex>

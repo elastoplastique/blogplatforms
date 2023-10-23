@@ -52,7 +52,7 @@ export default function PlatformPage({ post }: Props) {
 
           <motion.div className="relative min-w-full rounded-3xl flex flex-col justify-center items-center min-h-32 my-8">
             <Heading as="h1" size="6" className="tracking-tight text-center !font-semi-bold !mx-8 text-inherit pt-2">
-              <span className="!text-8xl block !tracking-tighter">{post.title}</span>
+              <span className="text-4xl sm:text-6xl block !tracking-tighter">{post.title}</span>
             </Heading>
           </motion.div>
 

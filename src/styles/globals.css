@@ -57,8 +57,9 @@ footer * {
     border-radius: 16px;
     border: 1px solid rgba(255, 255, 255, 0.06125);
 }
+
 .intense-shadow {
-	box-shadow: rgba(0, 0, 0, 0.004) 0px 0.783403px 0.783403px 0px, rgba(0, 0, 0, 0.01) 0px 1.921069px 1.921069px 0px, rgba(0, 0, 0, 0.024) 0px 3.634294px 3.634294px 0px, rgba(0, 0, 0, 0.04) 0px 6.354858px 6.354858px 0px, rgba(0, 0, 0, 0.07) 0px 11.047367px 11.047367px 0px, rgba(0, 0, 0, 0.125) 0px 20.249729px 20.249729px 0px, rgba(0, 0, 0, 0.25) 0px 40px 40px 0px;
+    box-shadow: rgba(0, 0, 0, 0.004) 0px 0.783403px 0.783403px 0px, rgba(0, 0, 0, 0.01) 0px 1.921069px 1.921069px 0px, rgba(0, 0, 0, 0.024) 0px 3.634294px 3.634294px 0px, rgba(0, 0, 0, 0.04) 0px 6.354858px 6.354858px 0px, rgba(0, 0, 0, 0.07) 0px 11.047367px 11.047367px 0px, rgba(0, 0, 0, 0.125) 0px 20.249729px 20.249729px 0px, rgba(0, 0, 0, 0.25) 0px 40px 40px 0px;
 }
 
 #main-navigation-wrapper {
@@ -66,6 +67,7 @@ footer * {
     -webkit-backdrop-filter: blur(16px);
     border-bottom: 1px solid var(--subtle-border) !important;
 }
+
 #main-navigation-wrapper.dark::before {
     -webkit-mask: linear-gradient(black 60px, transparent);
     backdrop-filter: blur(16px);
@@ -74,10 +76,10 @@ footer * {
     transform: translate3d(0px, 0px, 0px);
 }
 
-#main-navigation-wrapper > nav {
+#main-navigation-wrapper>nav {
     width: 100% !important;
     position: fixed;
-    display:flex;
+    display: flex;
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
@@ -124,10 +126,12 @@ a.link-icon-link {
     transition: all 500ms ease;
     border: 1px solid var(--slate-6);
 }
+
 .list-card:hover a.link-icon-link {
     background-color: #533BD6;
 }
-.list-card:hover svg  {
+
+.list-card:hover svg {
     color: white;
 }
 
@@ -210,24 +214,41 @@ button.remove-selection svg {
 button.remove-selection:hover svg {
     opacity: 1 !important;
 }
+
 .cover-box {
     position: absolute;
     width: 100%;
     height: 100%;
-    top:0;
-    left:0;
-    right:0;
-    bottom:0;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
     transition: all 0.2s ease;
 }
 
 .post-card {
     transition: all 0.2s ease;
+    background: var(--card-blur-bg) !important;
     transform: translate(0, 0, 0);
 }
 
 .post-card:hover .cover-box {
     transform: translate(0, -8px) !important;
+}
+
+.post-card img {
+    transition: all 0.8s ease;
+}
+
+.post-card:hover img {
+    transform: scale(1.2) !important;
+}
+
+.post-card .post-card-body {
+    transition: all 0.8s ease;
+}
+.post-card:hover .post-card-body {
+    transform: translateY(8px) !important;
 }
 
 

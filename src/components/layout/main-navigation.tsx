@@ -20,7 +20,7 @@ export function MainNavigation() {
     <nav id="main-navigation" className="h-16  px-4 sm:px-20 w-full">
       <Link href="/">
         <Flex direction="row" align="end">
-          <Heading as="h1" className="tracking-tightest">
+          <Heading as="h1" size="5" className="!text-lg sm:!text-2xl tracking-tightest">
             {WEBSITE_NAME}
           </Heading>
         </Flex>

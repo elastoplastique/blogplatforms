@@ -63,7 +63,7 @@ export default function PlatformPage({ feature, platforms }: Props) {
 
           <motion.div className="relative min-w-full rounded-3xl flex flex-col justify-center items-center min-h-32 my-8">
             <Heading as="h1" size="4" className="tracking-tight text-center !font-semi-bold !mx-8 text-inherit pt-2">
-              <span className="!text-6xl block !tracking-tighter uppercase">{feature.title}</span>
+              <span className="text-4xl sm:text-6xl  block !tracking-tighter uppercase">{feature.title}</span>
             </Heading>
             <Heading as="h2" size="8" className="tracking-tight text-center !font-regular !mx-8 text-inherit pt-8 serif my-6">
               The blog platforms that support {feature.title} feature.
