@@ -52,7 +52,7 @@ export default function PlatformPage({ platform, platformFeatures, platformCompa
 
   return (
     <PageLayout
-      metaTitle={`Best Blogging Platforms: ${platform.title} | BlogPlatforms.app`}
+      metaTitle={`${platform.title} | BlogPlatforms.app`}
       metaDescription={platform.description}
       canonical={`${removeTrailing(META.CANONICAL)}/${ROUTES.PLATFORMS_DIRECTORY.path}/${removeTrailing(platform.slug)}`}
       image={platform.cover}

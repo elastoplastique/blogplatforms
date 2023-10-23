@@ -91,7 +91,7 @@ export interface FeatureNode {
   title: string;
   slug: string;
   description?: string;
-  body?: string;
+  body?: { nodes: BodyItemUnion[] };
   category?: string[];
 }
 export interface PlatformFeatureNode {

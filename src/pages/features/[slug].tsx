@@ -63,21 +63,24 @@ export default function PlatformPage({ feature, platforms }: Props) {
 
           <motion.div className="relative min-w-full rounded-3xl flex flex-col justify-center items-center min-h-32 my-8">
             <Heading as="h1" size="4" className="tracking-tight text-center !font-semi-bold !mx-8 text-inherit pt-2">
-              <span className="!text-8xl block !tracking-tighter uppercase">{feature.title}</span>
+              <span className="!text-6xl block !tracking-tighter uppercase">{feature.title}</span>
             </Heading>
-            <Heading as="h2" size="2" className="tracking-tight text-center !font-semi-bold !mx-8 text-inherit pt-2">
-              Best Blog Platforms which has {feature.title} feature
+            <Heading as="h2" size="8" className="tracking-tight text-center !font-regular !mx-8 text-inherit pt-8 serif my-6">
+              The blog platforms that support {feature.title} feature.
             </Heading>
-            <Link href="/" className="my-4">
+            <Link href="/" className="my-8">
               <Button variant="outline">Back to Home</Button>
             </Link>
           </motion.div>
 
           {/* DESCRIPTION  */}
           <Flex direction="column" justify="start" align="stretch">
-            <Text as="p" align="center" weight="medium" size="5">
+            {feature.body 
+            ? <RichContent body={feature.body} />
+            
+            : <Text as="p" align="center" weight="medium" size="5">
               {feature.description}
-            </Text>
+            </Text>}
           </Flex>
           <Separator className="my-8" size="4" />
 

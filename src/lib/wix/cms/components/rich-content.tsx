@@ -103,7 +103,7 @@ function WixTextDecorated({ node }: { node: Wix.Text }) {
       href={decoration.linkData.link.url}
       style={{ color: 'inherit' }}
       className="cms-rich-content cms-link"
-      target={decoration.linkData.link.target}
+      target={decoration.linkData.link.target?.toLowerCase() === '_blank' || decoration.linkData.link.target?.toLowerCase() === 'blank' ? '_blank' : undefined}
       rel={`${decoration.linkData.link.rel?.nofollow ? 'nofollow' : ''} ${decoration.linkData.link.rel?.noreferrer ? 'noreferrer' : ''}`}
     >
       {children}

@@ -229,3 +229,9 @@ button.remove-selection:hover svg {
 .post-card:hover .cover-box {
     transform: translate(0, -8px) !important;
 }
+
+
+.horizontal-feature-card {
+    background: var(--card-blur-bg) !important;
+    backdrop-filter: blur(32px) saturate(40%);
+}
