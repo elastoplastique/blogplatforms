@@ -17,7 +17,7 @@ type Props = {
 export const PostCard = ({ title, description, href, image, ...rest }: Props) => {
   // 329 100 96
   return (
-    <Card variant="surface" m={'3'} style={{ backgroundColor: `var(--iris-a2)`, width: '100%' }} {...rest} className="post-card">
+    <Card variant="surface" m={'3'} style={{ backgroundColor: `var(--iris-a2)`, width: '100%', margin: 8 }} {...rest} className="post-card">
       {/* @ts-ignore */}
       <Inset clip="padding-box" side="top" pb="current">
         <Link href={href} title={title}>
