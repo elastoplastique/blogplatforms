@@ -4,20 +4,61 @@ LINK PREVIEW
 # ◀ ═ ═ ═ ═ ═ ═ ═ ═ ═ ═ ═ ═ ═ ═ ═ ═ ═ ═ ═ ═ ═ ═ ═ ═ ═ ═ ═ ═ ═ ═ ═ ═ ═ ═ ═
 */
 .link-preview-card {
+  padding: 8px !important;
   transition: background-color 0.2s ease;
   background-color: var(--slate-a2) !important;
+  border-radius: 16px;
 }
+
+@media screen and (max-width: 640px) {
+  .link-preview-card .link-preview-content {
+    margin-top: 16px;
+    padding: 8px;
+  }
+}
+
+@media screen and (min-width: 640px) {
+  .link-preview-card {
+    max-height: var(--thumbnail-height) !important;
+  }
+  .link-preview-card .link-preview-thumb {
+    max-width: 240px;
+    margin-right: 16px;
+  }
+
+  .link-preview-card .link-preview-content {
+    height: 100%;
+    padding-top: 16px;
+  }
+}
+
+
 
 .link-preview-card:hover {
   background-color: var(--slate-a4) !important;
 }
 
+.link-preview-card .aspect-ratio-box {
+  border-radius: 8px;
+  overflow: hidden;
+}
 
 /*
 # ═ ═ ═ ═ ═ ═ ═ ═ ═ ═ ═ ═ ═ ═ ═ ═ ═ ═ ═ ═ ═ ═ ═ ═ ═ ═ ═ ═ ═ ═ ═ ═ ═ ═ ═ ▶
 RICH CONTENT
 # ◀ ═ ═ ═ ═ ═ ═ ═ ═ ═ ═ ═ ═ ═ ═ ═ ═ ═ ═ ═ ═ ═ ═ ═ ═ ═ ═ ═ ═ ═ ═ ═ ═ ═ ═ ═
 */
+/* On screens that are 600px or less, set the background color to olive */
+@media screen and (max-width: var(--screen-sm)) {
+
+  #rich-content li,
+  #rich-content p,
+  #rich-content span,
+  #rich-content div {
+    font-size: var(--fontSize-xs) !important;
+  }
+}
+
 #rich-content ul li {
   list-style-type: disc;
 }

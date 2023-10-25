@@ -17,12 +17,13 @@ import decoreative from '/public/assets/decorative/blurry2.svg';
 import { motion, AnimatePresence } from 'framer-motion';
 import { META } from '@/constants/meta';
 import { DEFAULT_PLATFORMS_LOADING_PARAMS } from '@/constants/settings';
-import { getPlatforms, getFeatures, getAudiences } from '@/lib/wix/cms/cms';
+import { getPlatforms, getFeatures, getAudiences, getPlatformsFeatures } from '@/lib/wix/cms/cms';
 import { slugify } from '@/lib/utils/slugify';
 
 type Props = {
   platforms: PlatformNode[];
   features: FeatureNode[];
+  platformFeatures: PlatformFeatureNode[];
   // audiences: string[];
 };
 
@@ -35,11 +36,12 @@ export default function HomePage(props: Props) {
   // Filter Store
   const setPlatforms = useFilters((state) => state.setPlatforms);
   const setFeatures = useFilters((state) => state.setFeatures);
+  const addOptionSet = useFilters((state) => state.addOptionSet);
+
   const { feature } = useFilters((state) => state.selecteds);
-  // console.log('home page selecteds', feature);
+  // // console.log('home page selecteds', feature);
   const filteredPlatforms = useFilters((state) => state.filteredPlatforms);
   const options = useFilters((state) => state.options);
-  const addOptionSet = useFilters((state) => state.addOptionSet);
 
   // Memoized platforms list
   const platforms = useMemo(
@@ -53,13 +55,15 @@ export default function HomePage(props: Props) {
 
   useEffect(() => {
     setPlatforms(props.platforms);
-    setFeatures(features);
+    setFeatures(props.features);
 
     // Add Audience Selection
     // addOptionSet(FILTER_AUDIENCE_LABEL, AUDIENCES, (p: PlatformNode, selected: string) => p?.audience!.includes(selected));
-    addOptionSet(FILTER_FEATURE_LABEL, featureNames, (p: PlatformNode, selected: string) =>
-      p.features.map((f: FeatureNode) => f?.featureData?.title)!.includes(selected)
-    );
+    addOptionSet(FILTER_FEATURE_LABEL, featureNames, (p: PlatformNode, selected: string) => {
+      setFeatureRoute(selected);
+      //p?.features?.map((f: FeatureNode) => f?.featureData?.title)!.includes(selected)
+      return true;
+    });
   }, []);
 
   // const routeHandler = (slug: string) => {
@@ -67,13 +71,20 @@ export default function HomePage(props: Props) {
   // }
 
   function getFeatureSlug(feature: string) {
-    return features.find((f: FeatureNode) => f.title === feature)?.slug;
+    return props.features.find((f: FeatureNode) => f.title === feature)?.slug;
   }
-  useEffect(() => {
+  function setFeatureRoute(feature: string) {
     if (feature) {
       const featureSlug = getFeatureSlug(feature);
       if (featureSlug) router.push(`/features/${featureSlug}`);
     }
+  }
+  useEffect(() => {
+    console.log('feature changed', feature);
+    // if (feature) {
+    //   const featureSlug = getFeatureSlug(feature);
+    //   if (featureSlug) router.push(`/features/${featureSlug}`);
+    // }
   }, [feature]);
   return (
     <PageLayout metaTitle={META.HOME.TITLE} metaDescription={META.HOME.DESCRIPTION} canonical={META.CANONICAL}>
@@ -116,7 +127,7 @@ export default function HomePage(props: Props) {
             >
               <motion.ul layout>
                 <AnimatePresence>
-                  {platforms.map((platform) => (
+                  {props.platforms.map((platform) => (
                     <motion.li
                       layout
                       key={platform.slug}
@@ -142,11 +153,13 @@ export default function HomePage(props: Props) {
 export async function getStaticProps() {
   const platforms = await getPlatforms();
   const features = await getFeatures();
+  const platformFeatures = await getPlatformsFeatures();
   // const audiences = await getAudiences();
   return {
     props: {
       platforms: platforms.sort((a: PlatformNode, b: PlatformNode) => a.order - b.order),
       features,
+      platformFeatures,
       // audiences,
     },
   };

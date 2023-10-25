@@ -17,10 +17,10 @@ const navLinks = [
 
 export function MainNavigation() {
   return (
-    <nav id="main-navigation" className="h-16  px-4 sm:px-20 w-full">
+    <nav id="main-navigation" className="h-16 sm:px-16 w-full">
       <Link href="/">
         <Flex direction="row" align="end">
-          <Heading as="h1" size="5" className="!text-lg sm:!text-2xl tracking-tightest">
+          <Heading as="h1" size="5" className="!text-base sm:!text-2xl tracking-tightest !whitespace-nowrap">
             {WEBSITE_NAME}
           </Heading>
         </Flex>

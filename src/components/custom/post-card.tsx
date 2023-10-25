@@ -40,7 +40,7 @@ export const PostCard = ({ title, description, href, image, ...rest }: Props) =>
             <Strong>{title}</Strong>
           </Link>
         </Heading>
-        <Text as="p" size="2" >
+        <Text as="p" size="2">
           {description}
         </Text>
       </Flex>

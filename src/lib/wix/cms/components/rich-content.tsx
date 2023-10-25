@@ -32,6 +32,9 @@ import { IMAGE_WIDTH, IMAGE_HEIGHT, THUMBNAIL_FACTOR } from '@/constants/image';
 import { media } from '@wix/sdk';
 import { ReactElement } from 'react';
 import { createWixStaticUrl, createWixStaticVideoUrl } from '@/lib/wix/utils/create-url';
+import { externalImageLoader } from '@/lib/utils/external-image-loader';
+
+import Image from 'next/image';
 
 const THUMB_HEIGHT = IMAGE_HEIGHT * THUMBNAIL_FACTOR;
 const THUMB_WIDTH = IMAGE_WIDTH * THUMBNAIL_FACTOR;
@@ -82,7 +85,7 @@ function WixHeading({ node }: { node: Wix.Heading }) {
 
 function WixParagraph({ node }: { node: Wix.Paragraph }) {
   return (
-    <Text as="p" size="4" my="2" id={node._id} className="cms-rich-content cms-p">
+    <Text as="p" my="2" id={node._id} className="cms-rich-content cms-p">
       <>
         {(node.nodes as BodyItemUnion[]).map((innerNode: BodyItemUnion, ix: number) => (
           <WixNode node={innerNode} key={`${ix}-${innerNode._id}`} />
@@ -103,7 +106,11 @@ function WixTextDecorated({ node }: { node: Wix.Text }) {
       href={decoration.linkData.link.url}
       style={{ color: 'inherit' }}
       className="cms-rich-content cms-link"
-      target={decoration.linkData.link.target?.toLowerCase() === '_blank' || decoration.linkData.link.target?.toLowerCase() === 'blank' ? '_blank' : undefined}
+      target={
+        decoration.linkData.link.target?.toLowerCase() === '_blank' || decoration.linkData.link.target?.toLowerCase() === 'blank'
+          ? '_blank'
+          : undefined
+      }
       rel={`${decoration.linkData.link.rel?.nofollow ? 'nofollow' : ''} ${decoration.linkData.link.rel?.noreferrer ? 'noreferrer' : ''}`}
     >
       {children}
@@ -159,38 +166,45 @@ function WixText({ node }: { node: Wix.Text }) {
     });
     return text;
   }
-  return <>{getText(node)}</>;
+  return getText(node);
 }
 
 function WixLinkPreview({ node }: { node: Wix.LinkPreview }) {
   return (
-    <Card size="2" style={{ maxWidth: '100%', maxHeight: THUMB_HEIGHT }} className="cms-rich-content cms-link-preview link-preview-card">
-      <Flex direction="row">
-        <Inset side="left" style={{ width: THUMB_WIDTH, maxHeight: THUMB_HEIGHT, marginRight: 16 }}>
-          <img
-            src={node.linkPreviewData.thumbnailUrl}
-            alt="Bold typography"
-            width={THUMB_WIDTH}
-            height={THUMB_HEIGHT}
-            style={{
-              display: 'block',
-              objectFit: 'cover',
-              width: THUMB_WIDTH,
-              height: THUMB_HEIGHT,
-              backgroundColor: 'var(--gray-5)',
-            }}
-          />
-        </Inset>
-        <Flex direction="column" p="4" className="!p-4">
-          <Text as="p" size="4">
-            <Strong>{node.linkPreviewData.title}</Strong>
-          </Text>
+    <Card className="cms-rich-content cms-link-preview link-preview-card">
+      <Flex direction={{ initial: 'column', sm: 'row' }} height="min-content">
+        <Flex width={{ initial: '100%', sm: '100%' }} className="link-preview-thumb">
+          <AspectRatio ratio={THUMB_WIDTH / THUMB_HEIGHT} className="aspect-ratio-box">
+            <Image
+              src={node.linkPreviewData.thumbnailUrl}
+              alt={node.linkPreviewData.title}
+              loader={externalImageLoader}
+              fill
+              // style={{
+              //   display: 'block',
+              //   objectFit: 'cover',
+              //   width: THUMB_WIDTH,
+              //   height: THUMB_HEIGHT,
+              //   backgroundColor: 'var(--gray-5)',
+              // }}
+            />
+          </AspectRatio>
+        </Flex>
+        <Flex direction="column" className="link-preview-content">
           <Text as="p" size="3">
-            {node.linkPreviewData.description}
+            <Strong className="!text-overflow-ellipsis">{node.linkPreviewData.title}</Strong>
+          </Text>
+          <Text as="p" size="2" className="text-text-low-contrast">
+            {node.linkPreviewData.description.slice(0, 150)} {node.linkPreviewData.description.length > 150 && '...'}
           </Text>
         </Flex>
+        <a
+          href={node.linkPreviewData.link.url}
+          className="cover-box"
+          target="_blank"
+          rel={node.linkPreviewData.link.url.includes('blogplatforms.app') ? '' : 'noopener nofollow'}
+        ></a>
       </Flex>
-      <a href={node.linkPreviewData.link.url} className="cover-box" target="_blank" rel="noopener nofollow"></a>
     </Card>
   );
 }

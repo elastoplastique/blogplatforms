@@ -47,7 +47,7 @@ export default function PlatformPage({ platform, platformFeatures, platformCompa
 
   // console.log("[slug] page platformFeatures: ", platform)
   // console.log("[slug] page platformResourceLinks: ", platformResourceLinks)
-  // console.log("[slug] page progressFeatures: ", platform.progressFeatures)
+  console.log('[slug] page platformFeatures: ', platformFeatures);
   // console.log("[slug] page accounts: ", platform.accounts)
 
   return (
@@ -57,8 +57,8 @@ export default function PlatformPage({ platform, platformFeatures, platformCompa
       canonical={`${removeTrailing(META.CANONICAL)}/${ROUTES.PLATFORMS_DIRECTORY.path}/${removeTrailing(platform.slug)}`}
       image={platform.cover}
     >
-      <Container size="3" className="w-full">
-        <Card id="page-card" className="w-full h-full relative flex flex-col justify-start min-w-full" mt={'2'} size="5" variant="surface">
+      <Container size="3" className="w-full" id="platform-page">
+        <Card id="page-card" className="w-full h-full relative flex flex-col justify-start min-w-full" mt={'2'} size="3">
           <Flex width="100%" justify="center">
             <Breadcrumb links={[{ name: platform.title, href: `/platforms/${platform.slug}`, current: true }]} />
           </Flex>
@@ -72,11 +72,11 @@ export default function PlatformPage({ platform, platformFeatures, platformCompa
           )}
 
           <motion.div className="relative min-w-full rounded-3xl flex flex-col justify-center items-center min-h-32 my-8">
-            <Heading as="h1" size="6" className="tracking-tight text-center !font-semi-bold !mx-8 text-inherit pt-2">
+            <Heading as="h1" size="4" className="tracking-tight text-center !font-semi-bold !mx-8 text-inherit pt-2 whitespace-nowrap">
               <span className="!text-lg block font-medium !mb-2">
                 <Link href="/">Best Blog Platforms</Link>
               </span>
-              <span className="!text-8xl block !tracking-tighter uppercase">{platform.title}</span>
+              <span className="text-5xl sm:text-6xl  block !tracking-tighter uppercase">{platform.title}</span>
             </Heading>
 
             {/* SOCIAL ACCOUNTS  */}
@@ -87,10 +87,10 @@ export default function PlatformPage({ platform, platformFeatures, platformCompa
               rel="noopener nofollow"
               transition={{ duration: 0.3, ease: 'easeInOut' }}
               style={{
-                borderRadius: 12,
+                borderRadius: 16,
                 backgroundColor: 'black',
                 color: 'white',
-                padding: '16px 64px',
+                padding: '12px 32px',
                 textAlign: 'center',
                 fontWeight: 'bold',
               }}
@@ -121,8 +121,8 @@ export default function PlatformPage({ platform, platformFeatures, platformCompa
             <Audience title={platform.title} audience_text={(platform.audience || []).join(',') || ''} />
 
             {/* PROGRESS FEATURES */}
-            {comparativeFeatures && comparativeFeatures.length > 0 && (
-              <ProgressFeatures platformName={platform.title} platformComparativeFeatures={comparativeFeatures} />
+            {platformComparativeFeatures && platformComparativeFeatures.length > 0 && (
+              <ProgressFeatures platformName={platform.title} platformComparativeFeatures={platformComparativeFeatures} />
             )}
 
             {/* FEATURES */}

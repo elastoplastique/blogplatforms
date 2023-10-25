@@ -1,4 +1,18 @@
 :root {
+  --image-width: 1920px;
+  --image-height: 1080px;
+  --thumbnail-factor: 0.15;
+  --thumbnail-width: calc(var(--image-width) * var(--thumbnail-factor));
+  --thumbnail-height: calc(var(--image-height) * var(--thumbnail-factor));
+}
+:root {
+  --screen-sm: 640px;
+  --screen-md: 768px;
+  --screen-lg: 1024px;
+  --screen-xl: 1280px;
+}
+
+:root {
   --space-s: 6px;
   --space-m: 12px;
   --space-l: 18px;
@@ -115,3 +129,4 @@
   --color-grey-4xLight: #f5f2fe;
   --color-grey-5xLight: #ffffff;
 }
+

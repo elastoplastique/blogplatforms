@@ -138,10 +138,10 @@ export async function getItem({ dataItemId, options }: GetDataItemParams) {
 // PLATFORMS DATA
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////
 export async function getPlatforms(): Promise<PlatformNode[]> {
-  const platforms = await getItems(COLLECTIONS.PLATFORMS);
-  for await (const p of platforms) {
-    p.features = await getPlatformFeatures(p._id);
-  }
+  const platforms = await getItems(COLLECTIONS.PLATFORMS, ['platformType']);
+  // for await (const p of platforms) {
+  //   p.features = await getPlatformFeatures(p._id);
+  // }
   return platforms;
 }
 
@@ -229,9 +229,9 @@ export async function getPlatformFeatures(platformId?: string): Promise<Platform
     eq: ['platform', platformId],
     includeReferencedItems: ['feature', 'platform'],
   });
-  for await (const pf of platformFeatures) {
-    pf.featureData = await getFeature(pf.feature);
-  }
+  // for await (const pf of platformFeatures) {
+  //   pf.featureData = await getFeature(pf.feature);
+  // }
   return platformFeatures;
 }
 

@@ -8,7 +8,7 @@ export const MainFooter = () => (
     <footer className="py-12 sm:py-16 lg:py-20 relative z-[1] border-t-1 border-ui-border shadow-4">
       <div className="px-4 mx-auto max-w-7xl sm:px-6 lg:px-2">
         <div className="md:flex md:items-start md:justify-between">
-          <div className="flex flex-col justify-start pt-16 mr-16">
+          <div className="flex flex-col justify-start pt-16 sm:mr-16 items-center">
             <h5 className="max-w-xl text-3xl font-bold  sm:text-4xl xl:text-5xl font-pj tracking-tightest">{FOOTER_CONTENT.TITLE.text}</h5>
             <h6 className="max-w-xl text-lg  mt-4">{FOOTER_CONTENT.SUBTITLE.text}</h6>
             <hr className="mt-12 border-subtle-border md:mt-20 mr-4" />

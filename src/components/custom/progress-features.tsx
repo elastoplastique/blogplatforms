@@ -26,7 +26,7 @@ export const ProgressFeatures = ({ platformComparativeFeatures, platformName }: 
 export const ProgressFeature = ({ platformComparativeFeature }: { platformComparativeFeature: PlatformComparativeFeatureNode }) => {
   // @ts-ignore
   const progressValue = PPROGRESS_FEATURE_VALUES[platformComparativeFeature.rating];
-  const Icon = PROGRESS_FEATURE_ICONS[platformComparativeFeature?.featureData?.title as keyof typeof PROGRESS_FEATURE_ICONS] || RadarIcon;
+  const Icon = PROGRESS_FEATURE_ICONS[platformComparativeFeature?.feature?.title as keyof typeof PROGRESS_FEATURE_ICONS] || RadarIcon;
   return (
     <Card style={{ backgroundColor: `var(--subtle-bg)` }} my="4">
       <Flex direction="row" className="flex w-full rounded-xl" p="2" align="center">
@@ -36,11 +36,11 @@ export const ProgressFeature = ({ platformComparativeFeature }: { platformCompar
 
         <Flex direction="column" grow="1">
           <Heading as="h3" size="5" mr="4" weight="bold" className="text-white">
-            {platformComparativeFeature.featureData.title}
+            {platformComparativeFeature.feature.title}
           </Heading>
 
           <Text as="p" size="2" my="2">
-            {platformComparativeFeature.featureData.description}
+            {platformComparativeFeature.feature.description}
           </Text>
 
           <Progress value={progressValue} max={PROGRESS_MAX} getValueLabel={getValueLabel} />

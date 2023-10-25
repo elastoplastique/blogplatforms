@@ -50,8 +50,8 @@ export default function PlatformPage({ feature, platforms }: Props) {
       metaDescription={feature.description}
       canonical={`${removeTrailing(META.CANONICAL)}/${ROUTES.FEATURES_DIRECTORY.path}/${removeTrailing(feature.slug)}`}
     >
-      <Container size="3" className="w-full">
-        <Card id="page-card" className="w-full h-full relative flex flex-col justify-start min-w-full" mt={'2'} size="5" variant="surface">
+      <Container size="3" className="w-full" id="feature-page">
+        <Card id="page-card" className="w-full h-full relative flex flex-col justify-start min-w-full" mt={'2'} size="4">
           <Flex width="100%" justify="center">
             <Breadcrumb
               links={[
@@ -62,25 +62,31 @@ export default function PlatformPage({ feature, platforms }: Props) {
           </Flex>
 
           <motion.div className="relative min-w-full rounded-3xl flex flex-col justify-center items-center min-h-32 my-8">
-            <Heading as="h1" size="4" className="tracking-tight text-center !font-semi-bold !mx-8 text-inherit pt-2">
+            <Heading as="h1" size="4" className="tracking-tight text-center !font-semi-bold !mx-8 text-inherit pt-2 whitespace-nowrap">
               <span className="text-4xl sm:text-6xl  block !tracking-tighter uppercase">{feature.title}</span>
             </Heading>
-            <Heading as="h2" size="8" className="tracking-tight text-center !font-regular !mx-8 text-inherit pt-8 serif my-6">
+            <Heading
+              as="h2"
+              size={{
+                initial: '4',
+                sm: '5',
+                md: '6',
+              }}
+              className="tracking-tight text-center !font-regular text-inherit pt-8 serif my-6"
+            >
               The blog platforms that support {feature.title} feature.
             </Heading>
-            <Link href="/" className="my-8">
-              <Button variant="outline">Back to Home</Button>
-            </Link>
           </motion.div>
 
           {/* DESCRIPTION  */}
           <Flex direction="column" justify="start" align="stretch">
-            {feature.body 
-            ? <RichContent body={feature.body} />
-            
-            : <Text as="p" align="center" weight="medium" size="5">
-              {feature.description}
-            </Text>}
+            {feature.body ? (
+              <RichContent body={feature.body} />
+            ) : (
+              <Text as="p" align="center" weight="medium" size="5">
+                {feature.description}
+              </Text>
+            )}
           </Flex>
           <Separator className="my-8" size="4" />
 

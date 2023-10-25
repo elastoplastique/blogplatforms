@@ -24,9 +24,9 @@ export const PlatformFeatures = ({ platformName, platformFeatures }: { platformN
         {platformName} {PLATFORM_PAGE.platformFeatures}
       </Heading>
       <Separator />
-      <Grid width="100%" columns="2" gap="1">
+      <Grid width="100%" columns={{ initial: '1', sm: '2' }} gap="1">
         {orderedPlatformFeatures.map((pf: PlatformFeatureNode, index) => (
-          <HorizontalFeatureCard title={pf.title} description={pf.feature.description} key={`pf-${pf.featureData.slug}-${index}`} />
+          <HorizontalFeatureCard title={pf.feature.title} description={pf.feature.description} key={`pf-${pf.feature.slug}-${index}`} />
           // <Badge key={`pf-${pf.feature.slug}-${index}`} size="2" className="m-2 !min-h-[60px] flex space-between !items-center">
           //   <Flex direction="column" align="center" className="mr-1">
           //     {pf?.feature?.title}
@@ -47,13 +47,12 @@ export const PlatformFeatures = ({ platformName, platformFeatures }: { platformN
 
 function orderPlatformFeatures(pfs: PlatformFeatureNode[]) {
   let orderedFeatures: PlatformFeatureNode[] = [];
-  const categorySet =
-    new Set(pfs.map((pf) => (pf.featureData.category ? pf.featureData.category.flat() : [].flat())).flat()) || new Set([]);
+  const categorySet = new Set(pfs.map((pf) => (pf.feature.category ? pf.feature.category.flat() : [].flat())).flat()) || new Set([]);
 
   const categoryFeaturesMap = new Map<string, PlatformFeatureNode[]>();
 
   categorySet.forEach((category: string) => {
-    const features = pfs.filter((pf) => pf?.featureData?.category?.includes(category));
+    const features = pfs.filter((pf) => pf?.feature?.category?.includes(category));
     categoryFeaturesMap.set(category, features);
   });
 

@@ -19,17 +19,21 @@ export type Props = {
 export function Breadcrumb(props: Props) {
   return (
     <nav className="flex my-4" aria-label="Breadcrumb">
-      <ol className="flex items-center space-x-4">
+      <ol className="flex items-center">
         <li>
           <div>
-            <Link href="https://blogplatforms.app" className="!text-gray-400 hover:text-gray-500 border-b-1" title="Best Blog Platforms">
+            <Link
+              href="https://blogplatforms.app"
+              className="!text-gray-400 text-sm hover:text-gray-500 border-b-1 whitespace-nowrap"
+              title="Best Blog Platforms"
+            >
               Blog Platforms
             </Link>
           </div>
         </li>
         {props.links.map((page) => (
           <li key={page.name}>
-            <div className="flex items-center">
+            <div className="flex items-center whitespace-nowrap">
               <svg
                 className="flex-shrink-0 h-5 w-5 text-gray-300"
                 xmlns="http://www.w3.org/2000/svg"
@@ -41,7 +45,11 @@ export function Breadcrumb(props: Props) {
               </svg>
               <Link
                 href={page.href}
-                className={page.current ? 'ml-4 !text-gray-400 hover:text-gray-500' : 'ml-4 !text-gray-400 hover:text-gray-500 border-b-1'}
+                className={
+                  page.current
+                    ? 'ml-1 !text-gray-400 hover:text-gray-500 text-sm'
+                    : 'ml-1 !text-gray-400 hover:text-gray-500 border-b-1 text-sm'
+                }
                 aria-current={page.current ? 'page' : undefined}
                 title={page.title || page.name}
               >
