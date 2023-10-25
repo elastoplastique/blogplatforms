@@ -123,9 +123,9 @@ function WixTextDecorated({ node }: { node: Wix.Text }) {
     <Em className="cms-rich-content cms-em">{children}</Em>
   );
   const ColorDecoration = ({ decoration, children }: { decoration: ColorDecoration; children: ReactNode | string }) => (
-    <mark className="cms-rich-content cms-mark" style={{ ...decoration.colorData }}>
+    <span className="cms-rich-content cms-span" style={{ ...decoration.colorData }}>
       {children}
-    </mark>
+    </span>
   );
 
   const SingleDecoration = ({ decoration, children }: { decoration: TextDecorationUnion; children: ReactNode }) => {
