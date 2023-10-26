@@ -146,7 +146,11 @@ export async function getPlatforms(): Promise<PlatformNode[]> {
 }
 
 export async function getPlatform(slug: string): Promise<PlatformNode> {
-  const platforms = await getPlatforms();
+  const platforms = await queryItems({
+    dataCollectionId: COLLECTIONS.PLATFORMS,
+    eq: ['slug', slug],
+    includeReferencedItems: ['posts'],
+  });
   const platform = platforms.find((platform) => platform.slug === slug) || ({} as PlatformNode);
 
   // Image field URL fix

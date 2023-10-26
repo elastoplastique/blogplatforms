@@ -43,7 +43,7 @@ export default function PlatformPage({ post }: Props) {
       image={createWixStaticUrl(post.cover!)}
     >
       <Container size="3" className="w-full">
-        <Card id="page-card" className="w-full h-full relative flex flex-col justify-start min-w-full" mt={'2'} size="5" variant="surface">
+        <Card id="page-card" className="w-full h-full relative flex flex-col justify-start min-w-full" mt={'2'} size="3" variant="surface">
           {post.cover && (
             <AspectRatio ratio={16 / 9} style={{ width: '100%', height: '100%', minHeight: 200, position: 'relative' }}>
               <img src={createWixStaticUrl(post.cover)} alt={post.title} className="rounded-lg" />

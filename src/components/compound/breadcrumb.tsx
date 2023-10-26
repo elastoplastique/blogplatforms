@@ -19,7 +19,7 @@ export type Props = {
 export function Breadcrumb(props: Props) {
   return (
     <nav className="flex my-4" aria-label="Breadcrumb">
-      <ol className="flex items-center">
+      <ol className="flex flex-col sm:flex-row items-center">
         <li>
           <div>
             <Link

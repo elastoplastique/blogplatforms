@@ -17,7 +17,6 @@ export const PlatformFeatures = ({ platformName, platformFeatures }: { platformN
   // order platform features by category title
   // the features that have the same category type will be grouped together
   const orderedPlatformFeatures = useMemo(() => orderPlatformFeatures(platformFeatures), [platformFeatures]);
-
   return (
     <Section>
       <Heading as="h2" size="6" className="font-medium capitalize">
@@ -26,7 +25,11 @@ export const PlatformFeatures = ({ platformName, platformFeatures }: { platformN
       <Separator />
       <Grid width="100%" columns={{ initial: '1', sm: '2' }} gap="1">
         {orderedPlatformFeatures.map((pf: PlatformFeatureNode, index) => (
-          <HorizontalFeatureCard title={pf.feature.title} description={pf.feature.description} key={`pf-${pf.feature.slug}-${index}`} />
+          <HorizontalFeatureCard
+            title={pf.feature.title}
+            description={pf.note || pf.feature.description}
+            key={`pf-${pf.feature.slug}-${index}`}
+          />
           // <Badge key={`pf-${pf.feature.slug}-${index}`} size="2" className="m-2 !min-h-[60px] flex space-between !items-center">
           //   <Flex direction="column" align="center" className="mr-1">
           //     {pf?.feature?.title}

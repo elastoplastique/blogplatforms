@@ -74,9 +74,13 @@ export interface PlatformNode {
   cons?: string;
 
   resources?: { nodes: BodyItemUnion[] };
+  updates?: { nodes: BodyItemUnion[] };
   type?: PlatformTypeNode;
+
   features?: PlatformFeatureNode[];
   comparativeFeatures?: PlatformComparativeFeatureNode[];
+
+  posts: PostNode[];
 }
 export interface Platform extends DataItem {
   _id: string;

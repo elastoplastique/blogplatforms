@@ -240,14 +240,14 @@ button.remove-selection:hover svg {
 }
 
 .post-card:hover img {
-    transform: scale(1.2) !important;
+    transform: scale(1.1) !important;
 }
 
 .post-card .post-card-body {
     transition: all 0.8s ease;
 }
 .post-card:hover .post-card-body {
-    transform: translateY(8px) !important;
+
 }
 
 

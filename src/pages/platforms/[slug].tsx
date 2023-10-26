@@ -1,7 +1,7 @@
 /* eslint-disable @next/next/no-img-element */
 import React, { useEffect, useState, useMemo } from 'react';
 import { PageLayout } from '@/components/layout/page-layout';
-import { AspectRatio, Badge, Heading, Text, Flex, Card, Container, Separator } from '@/components/ui';
+import { AspectRatio, Badge, Heading, Text, Flex, Card, Container, Separator, Grid } from '@/components/ui';
 import { motion } from 'framer-motion';
 import { ExternalLink } from 'lucide-react';
 import { ProsCons } from '@/components/custom/pros-cons';
@@ -26,6 +26,8 @@ import {
 import { RichContent } from '@/lib/wix/cms/components/rich-content';
 import { removeTrailing } from '@/lib/utils/remove-trailing-slash';
 import { PlatformMedia } from '@/components/custom/platform-media';
+import { PostCard } from '@/components/custom/post-card';
+import { createWixStaticUrl } from '@/lib/wix/utils/create-url';
 
 type Props = {
   platform: PlatformNode;
@@ -45,9 +47,9 @@ export default function PlatformPage({ platform, platformFeatures, platformCompa
     [platform.slug]
   );
 
-  // console.log("[slug] page platformFeatures: ", platform)
+  console.log('[slug] page platformFeatures: ', platform);
   // console.log("[slug] page platformResourceLinks: ", platformResourceLinks)
-  console.log('[slug] page platformFeatures: ', platformFeatures);
+  // console.log('[slug] page platformFeatures: ', platformFeatures);
   // console.log("[slug] page accounts: ", platform.accounts)
 
   return (
@@ -130,6 +132,40 @@ export default function PlatformPage({ platform, platformFeatures, platformCompa
 
             {/* PROS CONS */}
             <ProsCons platform={platform} id={`${platform.slug}-platform-pros-cons`} />
+
+            {/* RESOURCES */}
+            {platform.posts && (
+              <Flex direction="column" align="stretch" grow="1" id="list-box">
+                <Heading as="h2" size="6" className="font-medium capitalize">
+                  APPEARED ON
+                </Heading>
+                <Separator />
+                <Grid
+                  width="100%"
+                  columns={{
+                    initial: '1',
+                    sm: '2',
+                    md: '2',
+                    lg: '2',
+                  }}
+                  p="1"
+                  asChild
+                >
+                  <ul>
+                    {platform.posts.map((pp: Wix.PostNode, ix: number) => (
+                      <li key={`pf-${pp.slug}-${ix}`} className="p-4">
+                        <PostCard
+                          image={createWixStaticUrl(pp.cover!)}
+                          title={pp.title}
+                          description={pp.description}
+                          href={`/blog/${pp.slug}`}
+                        />
+                      </li>
+                    ))}
+                  </ul>
+                </Grid>
+              </Flex>
+            )}
 
             {/* RESOURCES */}
             {platform.resources && <PlatformResources platformTitle={platform.title} body={platform.resources} />}

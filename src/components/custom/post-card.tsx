@@ -1,9 +1,11 @@
 /* eslint-disable @next/next/no-img-element */
-import { Text, Card, Flex, Heading, Inset, Strong } from '@/components/ui';
+import { Text, Card, Flex, Heading, Inset, Strong, AspectRatio } from '@/components/ui';
 import { InfoTooltip } from '@/components/compound/info-tooltip';
 import { StoryIcon } from '@/components/icons/bold-icons';
 import { FEATURE_ICONS, FEATURE_COLORS } from '@/constants/features';
 import Link from 'next/link';
+import Image from 'next/image';
+import { externalImageLoader } from '@/lib/utils/external-image-loader';
 
 type Props = {
   platformFeature?: PlatformFeatureNode;
@@ -17,30 +19,39 @@ type Props = {
 export const PostCard = ({ title, description, href, image, ...rest }: Props) => {
   // 329 100 96
   return (
-    <Card variant="surface" m={'3'} style={{ backgroundColor: `var(--iris-a2)`, width: '100%', margin: 0 }} {...rest} className="post-card">
+    <Card
+      variant="surface"
+      m={'3'}
+      style={{ backgroundColor: `var(--iris-a2)`, width: '100%', margin: 0, borderRadius: 16 }}
+      {...rest}
+      className="post-card"
+    >
       {/* @ts-ignore */}
-      <Inset clip="padding-box" side="top" pb="current">
+      <AspectRatio ratio={16 / 9} className="aspect-ratio-box !overflow-hidden rounded-md">
         <Link href={href} title={title}>
-          <img
-            src={image!}
-            alt={title}
-            style={{
-              display: 'block',
-              objectFit: 'cover',
-              width: '100%',
-              height: 140,
-              backgroundColor: 'var(--gray-5)',
-            }}
+          <Image
+            src={image}
+            alt={title!}
+            loader={externalImageLoader}
+            loading="lazy"
+            fill
+            // style={{
+            //   display: 'block',
+            //   objectFit: 'cover',
+            //   width: THUMB_WIDTH,
+            //   height: THUMB_HEIGHT,
+            //   backgroundColor: 'var(--gray-5)',
+            // }}
           />
         </Link>
-      </Inset>
-      <Flex p="2" direction="column" className="min-h-[100px] post-card-body">
+      </AspectRatio>
+      <Flex p="2" direction="column" className="min-h-[100px] post-card-body relative mt-4">
         <Heading as="h3" size="3">
           <Link href={href}>
             <Strong>{title}</Strong>
           </Link>
         </Heading>
-        <Text as="p" size="2">
+        <Text as="p" size="2" mt="2" className="text-text-low-contrast">
           {description}
         </Text>
       </Flex>
