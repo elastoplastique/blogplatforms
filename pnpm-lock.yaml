@@ -98,6 +98,9 @@ dependencies:
   '@wix/sdk':
     specifier: ^1.5.3
     version: 1.5.3
+  '@wix/sdk-react':
+    specifier: ^0.3.5
+    version: 0.3.5(react@18.2.0)
   '@wix/stores':
     specifier: ^1.0.98
     version: 1.0.98
@@ -563,6 +566,13 @@ packages:
     engines: {node: '>=6.9.0'}
     dependencies:
       regenerator-runtime: 0.14.0
+
+  /@babel/runtime@7.23.2:
+    resolution: {integrity: sha512-mM8eg4yl5D6i3lu2QKPuPH4FArvJ8KhTofbE7jwMUv9KX5mBvwPAqnV3MlyBNqdp9RyRKP6Yck8TrfYrPvX3bg==}
+    engines: {node: '>=6.9.0'}
+    dependencies:
+      regenerator-runtime: 0.14.0
+    dev: false
 
   /@babel/template@7.22.15:
     resolution: {integrity: sha512-QPErUVm4uyJa60rkI73qneDacvdvzxshT3kksGqlGWYdOTIUOwJ7RDUL8sGqslY1uXWSL6xMFKEXDS3ox2uF0w==}
@@ -5524,10 +5534,25 @@ packages:
       '@wix/sdk-types': 1.5.0
     dev: false
 
+  /@wix/identity@1.0.60:
+    resolution: {integrity: sha512-sLQIifW57hQ7sDuZQnwQfrR1BiwB5rMnzFBTo5gm66+FkXWMrRHt1fJZSttlR3FcRFfFWDoa/Y6T/qzlNfyXUQ==}
+    dependencies:
+      '@wix/metro-runtime': 1.1534.0
+      '@wix/motion-edm-autogen-query-wrapper': 1.0.38
+      '@wix/sdk-types': 1.5.1
+    dev: false
+
   /@wix/image-kit@1.37.0:
     resolution: {integrity: sha512-NtoS9lq8y5o9AYPbUzTICjHBKgK/3oKrKQpBpXH4FzKc7ko43Bhf8bWvUdBAcWnAFIkHdnH5ohoTTj/TsfMVHQ==}
     dependencies:
       '@babel/runtime': 7.23.1
+      tslib: 2.6.2
+    dev: false
+
+  /@wix/image-kit@1.38.0:
+    resolution: {integrity: sha512-3SwheldW3z4/WoVh0wBBbxqIojoUvE0pSeOAA5zVhnWxXITs1zMOIPdUudxmXBeBTfSeW5RdmlPz0kwlyfhLFw==}
+    dependencies:
+      '@babel/runtime': 7.23.2
       tslib: 2.6.2
     dev: false
 
@@ -5626,8 +5651,29 @@ packages:
       '@wix/sdk-types': 1.5.0
     dev: false
 
+  /@wix/redirects@1.0.26:
+    resolution: {integrity: sha512-sxxAzqI6OcmV41r7wKi5zRdCKCqp6xrNuLmq0sEphU9hgcW+7QCvXjUY8aieM0HUqNmsz0bXe90Fw+n1p174OQ==}
+    dependencies:
+      '@wix/metro-runtime': 1.1534.0
+      '@wix/motion-edm-autogen-query-wrapper': 1.0.38
+      '@wix/sdk-types': 1.5.1
+    dev: false
+
+  /@wix/sdk-react@0.3.5(react@18.2.0):
+    resolution: {integrity: sha512-SqT0X1LXxjl35iIgxg/IUDPkeD5rKqgNvfHAgWhPj+sE8MfWttch2wW3ewSDBvTsMihEkCrDDFHUSSa3sLctyQ==}
+    peerDependencies:
+      react: ^16.0.0 || ^17.0.0 || ^18.0.0
+    dependencies:
+      '@wix/sdk': 1.5.6
+      react: 18.2.0
+    dev: false
+
   /@wix/sdk-types@1.5.0:
     resolution: {integrity: sha512-lCn9xs4Px7e1b019rcuLkbO21TT9gD/eQeX/EhR/jXB8/H5a1Kt1JAWcqEH28GYDTLaBuSEhhyYHO0MuIt38+g==}
+
+  /@wix/sdk-types@1.5.1:
+    resolution: {integrity: sha512-Q4nxSMa2xtutD7EYFtl09g7lJYxSoX93wJ0q6VKt4M/wbCibPxtyybFuJSFBAdVF8pSac/ufmtaBSmzzasuLzg==}
+    dev: false
 
   /@wix/sdk@1.5.3:
     resolution: {integrity: sha512-7iASSHkyqwUoZW1GtXNZtUAmEY0WVCPPMSbukyS5aohhXNkNr+fknymOhZzxHxrSqYy812wX/Ukn+1M4IniWUg==}
@@ -5637,6 +5683,21 @@ packages:
       '@wix/image-kit': 1.37.0
       '@wix/redirects': 1.0.25
       '@wix/sdk-types': 1.5.0
+      pkce-challenge: 3.1.0
+      querystring: 0.2.1
+      type-fest: 3.13.1
+    optionalDependencies:
+      graphql: 16.8.1
+    dev: false
+
+  /@wix/sdk@1.5.6:
+    resolution: {integrity: sha512-gemmrN28JToeEpm5GxwpUDYvRz8XyUZB3bb3ZxHTUebAZuNuhfdPoybDduUwBo0X0iJ9R4xUif+7nMLTzta1aQ==}
+    dependencies:
+      '@babel/runtime': 7.23.2
+      '@wix/identity': 1.0.60
+      '@wix/image-kit': 1.38.0
+      '@wix/redirects': 1.0.26
+      '@wix/sdk-types': 1.5.1
       pkce-challenge: 3.1.0
       querystring: 0.2.1
       type-fest: 3.13.1

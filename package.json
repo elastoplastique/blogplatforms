@@ -44,6 +44,7 @@
     "@wix/members": "^1.0.36",
     "@wix/redirects": "^1.0.25",
     "@wix/sdk": "^1.5.3",
+    "@wix/sdk-react": "^0.3.5",
     "@wix/stores": "^1.0.98",
     "autoprefixer": "10.4.14",
     "class-variance-authority": "^0.7.0",

@@ -1,16 +1,12 @@
-import { createClient, ApiKeyStrategy } from '@wix/api-client';
+import { createClient, OAuthStrategy } from '@wix/sdk';
 import { items } from '@wix/data';
 
-export async function getWixClient() {
+export const getWixClient = async () => {
   const wixClient = createClient({
     modules: { items },
-    auth: ApiKeyStrategy({
-      apiKey: process.env.WIX_ADMIN_API_KEY!,
-      siteId: process.env.WIX_SITE_ID!,
-      accountId: process.env.WIX_ACCOUNT_ID!,
-    }),
+    auth: OAuthStrategy({ clientId: process.env.NEXT_PUBLIC_WIX_CLIENT_ID! }),
   });
-  // const tokens = await wixClient.auth.generateVisitorTokens();
-  // wixClient.auth.setTokens(tokens);
+  const tokens = await wixClient.auth.generateVisitorTokens();
+  wixClient.auth.setTokens(tokens);
   return wixClient;
-}
+};

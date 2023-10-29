@@ -13,7 +13,7 @@ import { media as wixMedia } from '@wix/api-client';
 import { members } from '@wix/members';
 import { useEffect, useState } from 'react';
 import { items } from '@wix/data';
-import { wixClient } from '@/lib/wix';
+import { wixClient } from '@/lib/wix/provider/client-provider';
 import { createWixStaticUrl } from '@/lib/wix/utils/create-url';
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////

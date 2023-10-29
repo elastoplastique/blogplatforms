@@ -2,6 +2,8 @@ import { Flex } from '../ui';
 import Head from 'next/head';
 import { META } from '@/constants/meta';
 import { Favicons } from '@/components/compound/favicons';
+import { authentication } from '@wix/members'
+import { useWixModules } from '@wix/sdk-react';
 
 type PageLayoutProps = {
   children: React.ReactNode;
