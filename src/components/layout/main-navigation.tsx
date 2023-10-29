@@ -1,7 +1,9 @@
+import { useEffect } from 'react';
 import Link from 'next/link';
 import { WEBSITE_NAME } from '@/constants/content';
 import { Flex, Heading } from '../ui';
 import { ThemeToggle } from '@/components/theme-toggle';
+import { useWixModule } from '@/lib/wix/provider';
 
 type NavLink = {
   name: string;
@@ -16,6 +18,14 @@ const navLinks = [
 ];
 
 export function MainNavigation() {
+  const { memberClient } = useWixModule();
+
+
+  useEffect(() => {
+   memberClient.getCurrentMember().then((member: any) => {
+    console.log('member', member);
+   });
+  },[])
   return (
     <nav id="main-navigation" className="h-16 sm:px-16 w-full">
       <Link href="/">
