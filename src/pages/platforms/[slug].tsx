@@ -28,6 +28,7 @@ import { removeTrailing } from '@/lib/utils/remove-trailing-slash';
 import { PlatformMedia } from '@/components/custom/platform-media';
 import { PostCard } from '@/components/custom/post-card';
 import { createWixStaticUrl } from '@/lib/wix/utils/create-url';
+import { externalImageLoader } from '@/lib/utils/external-image-loader';
 
 type Props = {
   platform: PlatformNode;
@@ -60,14 +61,19 @@ export default function PlatformPage({ platform, platformFeatures, platformCompa
       image={platform.cover}
     >
       <Container size="3" className="w-full" id="platform-page">
-        <Card id="page-card" className="w-full h-full relative flex flex-col justify-start min-w-full" mt={'2'} size="3">
+        <Card id="page-card" className="w-full h-full relative flex flex-col justify-start min-w-full" mt={'2'} size={{
+          initial: '1',
+          sm: '4',
+          md: '5',
+          lg: '5',
+        }}>
           <Flex width="100%" justify="center">
             <Breadcrumb links={[{ name: platform.title, href: `/platforms/${platform.slug}`, current: true }]} />
           </Flex>
 
           {platform.cover ? (
             <AspectRatio ratio={16 / 9} style={{ width: '100%', height: '100%', minHeight: 200, position: 'relative' }}>
-              <img src={platform.cover} alt={platform.title} />
+              <Image src={platform.cover} alt={platform.title} loader={externalImageLoader} fill priority />
             </AspectRatio>
           ) : (
             <img src={platform.logo!} alt={platform.title} width={64} height={64} style={{ borderRadius: '100%', top: '26px' }} />

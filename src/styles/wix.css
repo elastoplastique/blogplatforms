@@ -53,7 +53,8 @@ RICH CONTENT
 
   #rich-content li,
   #rich-content p,
-  #rich-content span,
+  #rich-content em,
+  #rich-content strong,
   #rich-content div {
     font-size: var(--fontSize-xs) !important;
   }

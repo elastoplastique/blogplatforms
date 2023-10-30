@@ -2,6 +2,9 @@ article#post h2 {margin-top:96px; margin-bottom:16px; font-size: 48px; letter-sp
 article#post h3 {margin-top:48px; margin-bottom:16px; font-size: 40px; letter-spacing: -0.03em; }
 article#post h4 {margin-top:32px; margin-bottom:16px; font-size: 28px; letter-spacing: -0.03em; }
 article#post  p {margin-top: 8px; margin-bottom:16px; font-size: 20px; letter-spacing: -0.03em; }
+article#post  span {margin-top: 8px; margin-bottom:16px; font-size: 20px; letter-spacing: -0.03em; }
+article#post  em {margin-top: 8px; margin-bottom:16px; font-size: 20px; letter-spacing: -0.03em; }
+article#post  strong {margin-top: 8px; margin-bottom:16px; font-size: 20px; letter-spacing: -0.03em; }
 
 /* article#post  a { text-decoration: underline }
 

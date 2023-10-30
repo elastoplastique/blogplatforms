@@ -29,6 +29,8 @@ import { RichContent } from '@/lib/wix/cms/components/rich-content';
 import { removeTrailing } from '@/lib/utils/remove-trailing-slash';
 import { PlatformMedia } from '@/components/custom/platform-media';
 import { createWixStaticUrl } from '@/lib/wix/utils/create-url';
+import { externalImageLoader } from '@/lib/utils/external-image-loader';
+
 
 type Props = {
   post: Wix.PostNode;
@@ -44,26 +46,28 @@ export default function PlatformPage({ post }: Props) {
     >
       <Container size="3" className="w-full">
         <Card id="page-card" className="w-full h-full relative flex flex-col justify-start min-w-full" mt={'2'} size="3" variant="surface">
+          <Flex width="100%" justify="center">
+            <Breadcrumb
+              links={[
+                { name: 'Blog', href: `/blog`, current: false },
+                { name: post.title, href: `/blog/${post.slug}`, current: true, truncate: true },
+              ]}
+            />
+          </Flex>
+
           {post.cover && (
             <AspectRatio ratio={16 / 9} style={{ width: '100%', height: '100%', minHeight: 200, position: 'relative' }}>
-              <img src={createWixStaticUrl(post.cover)} alt={post.title} className="rounded-lg" />
+              <Image src={createWixStaticUrl(post.cover)} alt={post.title} className="rounded-lg" loader={externalImageLoader} fill priority />
             </AspectRatio>
           )}
 
-          <motion.div className="relative min-w-full rounded-3xl flex flex-col justify-center items-center min-h-32 !mt-40">
+          <motion.div className="relative min-w-full rounded-3xl flex flex-col justify-center items-center min-h-32 !mt-20">
             <Heading as="h1" size="6" className="tracking-tight text-center !font-semi-bold !mx-8 text-inherit pt-2">
               <span className="text-4xl sm:text-6xl block !tracking-tighter">{post.title}</span>
             </Heading>
           </motion.div>
 
-          <Flex width="100%" justify="center">
-            <Breadcrumb
-              links={[
-                { name: 'Blog', href: `/blog`, current: false },
-                { name: post.title, href: `/blog/${post.slug}`, current: true },
-              ]}
-            />
-          </Flex>
+
 
           <Separator className="my-8" size="4" />
 
@@ -72,7 +76,7 @@ export default function PlatformPage({ post }: Props) {
 
           {/* CONTENT */}
           <Flex direction="column" justify="start" align="stretch">
-            <Text as="p" align="center" weight="medium" size="5">
+            <Text as="p" align="center" weight="medium" size="4">
               {post.description}
             </Text>
 
