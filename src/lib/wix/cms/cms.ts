@@ -382,3 +382,15 @@ export function generateFileUrl(fileId: string): string {
   }
   return `https://static.wixstatic.com/media/${fileId}`;
 }
+
+export const getRichData = async (url: string) => {
+  const response = await fetch(url);
+  console.log('RESPONSE', response);
+  const textResponse = await response.text();
+  console.log('TEXT RESPONSE', textResponse);
+  if (textResponse) {
+    const parser = new DOMParser();
+    const htmlDocument = parser.parseFromString(textResponse, 'text/html');
+  }
+  return textResponse;
+};

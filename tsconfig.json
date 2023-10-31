@@ -70,6 +70,8 @@
     ".next/types/**/*.ts",
     "types",
     "types/wix/index.d.ts",
+    "types/wix/rich-data.d.ts",
+
   ],
   "exclude": [
     "node_modules",

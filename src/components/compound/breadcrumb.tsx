@@ -1,18 +1,5 @@
 import Link from 'next/link';
 
-const pages = [
-  { name: 'Projects', href: '#', current: false },
-  { name: 'Project Nero', href: '#', current: true },
-];
-
-export type BreadcrumbLink = {
-  name: string;
-  href: string;
-  current: boolean;
-  title?: string;
-  truncate?: boolean;
-};
-
 export type Props = {
   links: BreadcrumbLink[];
 };

@@ -19,6 +19,7 @@ import { META } from '@/constants/meta';
 import { DEFAULT_PLATFORMS_LOADING_PARAMS } from '@/constants/settings';
 import { getPlatforms, getFeatures, getAudiences, getPlatformsFeatures } from '@/lib/wix/cms/cms';
 import { slugify } from '@/lib/utils/slugify';
+import { generatePage } from '@/lib/rich-data/page';
 
 type Props = {
   platforms: PlatformNode[];
@@ -87,7 +88,20 @@ export default function HomePage(props: Props) {
     // }
   }, [feature]);
   return (
-    <PageLayout metaTitle={META.HOME.TITLE} metaDescription={META.HOME.DESCRIPTION} canonical={META.CANONICAL}>
+    <PageLayout
+      metaTitle={META.HOME.TITLE}
+      metaDescription={META.HOME.DESCRIPTION}
+      canonical={META.CANONICAL}
+      richData={generatePage({
+        page: {
+          name: META.WEBSITE_NAME,
+          description: META.DESCRIPTION,
+          url: META.CANONICAL,
+          image: META.IMAGE,
+        },
+        breadcrumbsLinks: [{ name: META.WEBSITE_NAME, href: META.CANONICAL, current: true }],
+      })}
+    >
       <Container size="3">
         {/* <Image
           src={decoreative}
