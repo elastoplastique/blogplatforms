@@ -2,6 +2,7 @@ export const META = {
   WEBSITE_NAME: 'Blog Platforms',
   CANONICAL: 'https://blogplatforms.app/',
   TITLE: 'Best Blogging Platforms & Sites | BlogPlatforms.app',
+  IMAGE: 'https://blogplatforms.app/assets/home-light.jpg',
   DESCRIPTION:
     'Discover and compare the best blogging sites and platforms at BloggingSites.app. Our curated list provides in-depth reviews, helping you make an informed decision for your blogging journey.',
   HOME: {

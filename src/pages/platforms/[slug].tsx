@@ -22,6 +22,7 @@ import {
   getPlatformFeatures,
   getPlatformAccounts,
   queryReferencedItems,
+  getRichData,
 } from '@/lib/wix/cms';
 import { RichContent } from '@/lib/wix/cms/components/rich-content';
 import { removeTrailing } from '@/lib/utils/remove-trailing-slash';
@@ -29,6 +30,7 @@ import { PlatformMedia } from '@/components/custom/platform-media';
 import { PostCard } from '@/components/custom/post-card';
 import { createWixStaticUrl } from '@/lib/wix/utils/create-url';
 import { externalImageLoader } from '@/lib/utils/external-image-loader';
+import { generatePlatformPage } from '@/lib/rich-data';
 
 type Props = {
   platform: PlatformNode;
@@ -48,7 +50,7 @@ export default function PlatformPage({ platform, platformFeatures, platformCompa
     [platform.slug]
   );
 
-  console.log('[slug] page platformFeatures: ', platform);
+  // console.log('[slug] page platformFeatures: ', platform);
   // console.log("[slug] page platformResourceLinks: ", platformResourceLinks)
   // console.log('[slug] page platformFeatures: ', platformFeatures);
   // console.log("[slug] page accounts: ", platform.accounts)
@@ -59,14 +61,32 @@ export default function PlatformPage({ platform, platformFeatures, platformCompa
       metaDescription={platform.description}
       canonical={`${removeTrailing(META.CANONICAL)}/${ROUTES.PLATFORMS_DIRECTORY.path}/${removeTrailing(platform.slug)}`}
       image={platform.cover}
+      richData={generatePlatformPage({
+        platform: {
+          name: platform.title,
+          url: platform.url,
+          description: platform.description,
+          image: platform.cover,
+        },
+        rating: '5',
+        breadcrumbsLinks: [
+          { name: platform.title, href: `https://blogplatforms.app`, current: true },
+          { name: platform.title, href: `https://blogplatforms.app/platforms/${platform.slug}`, current: true },
+        ],
+      })}
     >
       <Container size="3" className="w-full" id="platform-page">
-        <Card id="page-card" className="w-full h-full relative flex flex-col justify-start min-w-full" mt={'2'} size={{
-          initial: '1',
-          sm: '4',
-          md: '5',
-          lg: '5',
-        }}>
+        <Card
+          id="page-card"
+          className="w-full h-full relative flex flex-col justify-start min-w-full"
+          mt={'2'}
+          size={{
+            initial: '1',
+            sm: '4',
+            md: '5',
+            lg: '5',
+          }}
+        >
           <Flex width="100%" justify="center">
             <Breadcrumb links={[{ name: platform.title, href: `/platforms/${platform.slug}`, current: true }]} />
           </Flex>

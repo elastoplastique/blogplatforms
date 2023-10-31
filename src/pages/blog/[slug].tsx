@@ -31,7 +31,6 @@ import { PlatformMedia } from '@/components/custom/platform-media';
 import { createWixStaticUrl } from '@/lib/wix/utils/create-url';
 import { externalImageLoader } from '@/lib/utils/external-image-loader';
 
-
 type Props = {
   post: Wix.PostNode;
 };
@@ -57,7 +56,14 @@ export default function PlatformPage({ post }: Props) {
 
           {post.cover && (
             <AspectRatio ratio={16 / 9} style={{ width: '100%', height: '100%', minHeight: 200, position: 'relative' }}>
-              <Image src={createWixStaticUrl(post.cover)} alt={post.title} className="rounded-lg" loader={externalImageLoader} fill priority />
+              <Image
+                src={createWixStaticUrl(post.cover)}
+                alt={post.title}
+                className="rounded-lg"
+                loader={externalImageLoader}
+                fill
+                priority
+              />
             </AspectRatio>
           )}
 
@@ -66,8 +72,6 @@ export default function PlatformPage({ post }: Props) {
               <span className="text-4xl sm:text-6xl block !tracking-tighter">{post.title}</span>
             </Heading>
           </motion.div>
-
-
 
           <Separator className="my-8" size="4" />
 

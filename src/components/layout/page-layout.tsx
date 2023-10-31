@@ -9,6 +9,7 @@ type PageLayoutProps = {
   metaDescription?: string;
   image?: string;
   canonical?: string;
+  richData?: any;
 };
 
 export function PageLayout({ children, ...props }: PageLayoutProps) {
@@ -35,6 +36,7 @@ export function PageLayout({ children, ...props }: PageLayoutProps) {
         {props.image && <meta property="twitter:image" content={props.image} />}
 
         <link rel="canonical" href={props.canonical || META.CANONICAL} />
+        {props.richData && <script type="application/ld+json">{`${JSON.stringify(props.richData)}`}</script>}
         <Favicons />
       </Head>
       <Flex className="!min-w-full py-20 min-h-[70vh]" direction="column" align="center" id="page-layout">

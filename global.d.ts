@@ -48,6 +48,13 @@ declare global {
     frontMatter: FrontMatter;
     content: string;
   };
+  declare type BreadcrumbLink = {
+    name: string;
+    href: string;
+    current: boolean;
+    title?: string;
+    truncate?: boolean;
+  };
 }
 
 declare module 'remark-relative-links';
