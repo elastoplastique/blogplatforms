@@ -20,7 +20,7 @@ export const ListCardCover = memo(
       <Card
         variant="surface"
         m={'3'}
-        style={{ backgroundColor: `var(--iris-a2)`, width: '100%', margin: 0, borderRadius: 16, height: "100%" }}
+        style={{ backgroundColor: `var(--iris-a2)`, width: '100%', margin: 0, borderRadius: 16, height: '100%' }}
         className="post-card"
         // variant="surface"
         // className={`list-card p-3 w-auto max-w-60 h-80 relative overflow-hidden rounded-4xl border border-subtle-border flex flex-col justify-center items-center`}
@@ -46,8 +46,8 @@ export const ListCardCover = memo(
           </Link>
         </AspectRatio>
         <Flex p="1" direction="column" className="min-h-[100px] post-card-body relative mt-4">
-          <Heading as="h3" size="3" >
-            <Link href={`/platforms/${platform.slug}`} className='flex flex-row items-center'>
+          <Heading as="h3" size="3">
+            <Link href={`/platforms/${platform.slug}`} className="flex flex-row items-center">
               <Image
                 // src={createWixStaticUrl(platform.cover!)}
                 src={`${ASSETS_DIRECTORY.LOGO_DIRECTORY}/${platform.slug}.png`}
@@ -57,8 +57,7 @@ export const ListCardCover = memo(
                 loading="lazy"
                 width={40}
                 height={40}
-                style={{ borderRadius: '100%', marginRight:16  }}
-
+                style={{ borderRadius: '100%', marginRight: 16 }}
               />
               <Strong>{platform.title}</Strong>
             </Link>
