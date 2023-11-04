@@ -94,6 +94,7 @@ export interface FeatureNode {
   _id: string;
   title: string;
   slug: string;
+  header?: string;
   description?: string;
   body?: { nodes: BodyItemUnion[] };
   category?: string[];

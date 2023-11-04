@@ -1,13 +1,15 @@
 /* eslint-disable react/display-name */
 import { useRef, useState, useMemo, memo } from 'react';
 import type { ComponentProps } from 'react';
-import { AspectRatio, Box, Badge, Heading, Text, Flex, Card } from '@/components/ui';
+import { AspectRatio, Box, Badge, Heading, Text, Flex, Card, Strong } from '@/components/ui';
 import Image from 'next/image';
 import Link from 'next/link';
 import { motion, useMotionValue } from 'framer-motion';
 import { useRouter } from 'next/router';
 import { ExternalLink } from 'lucide-react';
 import { ASSETS_DIRECTORY } from '@/constants/assets-directory';
+import { externalImageLoader } from '@/lib/utils/external-image-loader';
+import { createWixStaticUrl } from '@/lib/wix/utils/create-url';
 
 export const openSpring = { type: 'spring', stiffness: 200, damping: 30 };
 export const closeSpring = { type: 'spring', stiffness: 300, damping: 35 };
@@ -17,47 +19,55 @@ export const ListCardCover = memo(
     return (
       <Card
         variant="surface"
-        className={`list-card p-3 w-auto max-w-60 h-80 relative overflow-hidden rounded-4xl border border-subtle-border flex flex-col justify-center items-center`}
+        m={'3'}
+        style={{ backgroundColor: `var(--iris-a2)`, width: '100%', margin: 0, borderRadius: 16, height: "100%" }}
+        className="post-card"
+        // variant="surface"
+        // className={`list-card p-3 w-auto max-w-60 h-80 relative overflow-hidden rounded-4xl border border-subtle-border flex flex-col justify-center items-center`}
       >
-        <Flex direction="column" justify="start" align="center" className="w-full h-full relative" mt={'4'}>
-          <motion.div
-            className=""
-            style={{
-              borderRadius: '50%',
-              padding: 0,
-              border: '1px solid var(--subtle-border)',
-              backgroundColor: 'white',
-            }}
-          >
-            <Image
-              src={`${ASSETS_DIRECTORY.LOGO_DIRECTORY}/${platform.slug}.png`}
-              alt={`Blog platform: ${platform.title}`}
-              width={64}
-              height={64}
-              style={{ borderRadius: '100%', top: '26px' }}
-            />
-          </motion.div>
+        {/* @ts-ignore */}
+        <AspectRatio ratio={16 / 9} className="aspect-ratio-box !overflow-hidden rounded-md">
           <Link href={`/platforms/${platform.slug}`}>
-            <Heading as="h3" size="4" className="tracking-tight !font-semi-bold !mx-8 text-inherit pt-2">
-              {platform.title}
-            </Heading>
+            <Image
+              src={createWixStaticUrl(platform.cover!)}
+              // src={`${ASSETS_DIRECTORY.LOGO_DIRECTORY}/${platform.slug}.png`}
+              alt={`Blog platform: ${platform.title}`}
+              loader={externalImageLoader}
+              loading="lazy"
+              fill
+              // style={{
+              //   display: 'block',
+              //   objectFit: 'cover',
+              //   width: THUMB_WIDTH,
+              //   height: THUMB_HEIGHT,
+              //   backgroundColor: 'var(--gray-5)',
+              // }}
+            />
           </Link>
+        </AspectRatio>
+        <Flex p="1" direction="column" className="min-h-[100px] post-card-body relative mt-4">
+          <Heading as="h3" size="3" >
+            <Link href={`/platforms/${platform.slug}`} className='flex flex-row items-center'>
+              <Image
+                // src={createWixStaticUrl(platform.cover!)}
+                src={`${ASSETS_DIRECTORY.LOGO_DIRECTORY}/${platform.slug}.png`}
+                alt={`Blog platform: ${platform.title}`}
+                loader={externalImageLoader}
+                className="border-subtle-border border logo"
+                loading="lazy"
+                width={40}
+                height={40}
+                style={{ borderRadius: '100%', marginRight:16  }}
 
-          <motion.div className="relative w-full rounded-3xl flex flex-col justify-center items-center h-32">
-            <Text align="center">
-              {platform.description && platform?.description.length > 120
-                ? platform.description?.slice(0, 120) + '...'
-                : platform.description}
-            </Text>
-          </motion.div>
-
-          <Flex className="relative min-w-full h-14 items-center" justify="end">
-            <Link href={`/platforms/${platform.slug}`} target="_blank" className="link-icon-link absolute bottom-0 right-4">
-              <ExternalLink />
+              />
+              <Strong>{platform.title}</Strong>
             </Link>
-            {/* <OverlayBox className=" min-w-full">
-          </OverlayBox> */}
-          </Flex>
+          </Heading>
+          <Text as="p" size="2" mt="2" className="text-text-low-contrast">
+            {platform.description && platform?.description.length > 160
+              ? platform.description?.slice(0, 160) + '...'
+              : platform.description}
+          </Text>
         </Flex>
       </Card>
     );

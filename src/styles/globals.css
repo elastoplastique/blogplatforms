@@ -239,7 +239,7 @@ button.remove-selection:hover svg {
     transition: all 0.8s ease;
 }
 
-.post-card:hover img {
+.post-card:hover img:not(.logo) {
     transform: scale(1.1) !important;
 }
 

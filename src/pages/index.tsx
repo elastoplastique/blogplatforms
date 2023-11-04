@@ -102,7 +102,7 @@ export default function HomePage(props: Props) {
         breadcrumbsLinks: [{ name: META.WEBSITE_NAME, href: META.CANONICAL, current: true }],
       })}
     >
-      <Container size="3">
+      <Container size="4">
         {/* <Image
           src={decoreative}
           alt="decorative"
@@ -145,7 +145,7 @@ export default function HomePage(props: Props) {
                     <motion.li
                       layout
                       key={platform.slug}
-                      className="relative z-0 h-80 m-4 flex flex-col items-center"
+                      className="relative z-0 h-120 m-4 flex flex-col items-center"
                       initial={{ opacity: 0 }}
                       animate={{ opacity: 1 }}
                       exit={{ opacity: 0 }}
