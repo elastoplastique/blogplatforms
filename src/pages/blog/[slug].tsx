@@ -30,18 +30,42 @@ import { removeTrailing } from '@/lib/utils/remove-trailing-slash';
 import { PlatformMedia } from '@/components/custom/platform-media';
 import { createWixStaticUrl } from '@/lib/wix/utils/create-url';
 import { externalImageLoader } from '@/lib/utils/external-image-loader';
+import { generateArticle } from '@/lib/rich-data/article';
+import type { ArticleRichDataInput } from '@/lib/rich-data/article';
 
 type Props = {
   post: Wix.PostNode;
 };
 
 export default function PlatformPage({ post }: Props) {
+  // console.log('post', post);
+  // const mentions = useMemo(() => {
+  //   const m = post?.platforms!.map(
+  //     (p) =>
+  //       ({
+  //         type: 'Thing',
+  //         name: p.title,
+  //         sameAs: p.url,
+  //       }) as unknown as RichData.SameAsType[]
+  //   );
+  //   return {mentions: m};
+  // }, [post.platforms]);
   return (
     <PageLayout
       metaTitle={`${post.title} | BlogPlatforms.app`}
       metaDescription={post.description}
       canonical={`${removeTrailing(META.CANONICAL)}/${ROUTES.BLOG_POST_DIRECTORY.path}/${removeTrailing(post.slug)}`}
       image={createWixStaticUrl(post.cover!)}
+      richData={
+        generateArticle({
+          title: post.title!,
+          description: post.description!,
+          image: createWixStaticUrl(post.cover!),
+          url: `${removeTrailing(META.CANONICAL)}/${ROUTES.BLOG_POST_DIRECTORY.path}/${removeTrailing(post.slug)}`,
+          datePublished: post._createdDate!.$date!,
+          dateModified: post._updatedDate!.$date!,
+        }) as unknown as ArticleRichDataInput
+      }
     >
       <Container size="3" className="w-full">
         <Card id="page-card" className="w-full h-full relative flex flex-col justify-start min-w-full" mt={'2'} size="3" variant="surface">

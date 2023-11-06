@@ -28,6 +28,14 @@ export interface Thing {
   name: string;
   sameAs: string;
 }
+export type SameAsType =
+  | {
+      type: string;
+      name: string;
+      sameAs: string;
+    }
+  | string
+  | undefined;
 
 export type Author = {
   '@context'?: 'https://schema.org';

@@ -31,6 +31,7 @@ import { PostCard } from '@/components/custom/post-card';
 import { createWixStaticUrl } from '@/lib/wix/utils/create-url';
 import { externalImageLoader } from '@/lib/utils/external-image-loader';
 import { generatePlatformPage } from '@/lib/rich-data';
+import { generateSameAsFromAccounts } from '@/lib/rich-data/same-as';
 
 type Props = {
   platform: PlatformNode;
@@ -53,7 +54,7 @@ export default function PlatformPage({ platform, platformFeatures, platformCompa
   // console.log('[slug] page platformFeatures: ', platform);
   // console.log("[slug] page platformResourceLinks: ", platformResourceLinks)
   // console.log('[slug] page platformFeatures: ', platformFeatures);
-  // console.log("[slug] page accounts: ", platform.accounts)
+  // console.log('[slug] page accounts: ', platformAccounts);
 
   return (
     <PageLayout
@@ -67,6 +68,7 @@ export default function PlatformPage({ platform, platformFeatures, platformCompa
           url: platform.url,
           description: platform.description,
           image: platform.cover,
+          ...(platformAccounts && { sameAs: generateSameAsFromAccounts(platformAccounts) }),
         },
         rating: '5',
         breadcrumbsLinks: [
@@ -108,7 +110,7 @@ export default function PlatformPage({ platform, platformFeatures, platformCompa
             </Heading>
 
             {/* SOCIAL ACCOUNTS  */}
-            {/* <SocialAccounts accounts={platform.accounts} platformTitle={platform.title} /> */}
+            <SocialAccounts accounts={platformAccounts} platformTitle={platform.title} />
             <motion.a
               href={platform.url}
               className="intense-shadow mt-6 mb-12"

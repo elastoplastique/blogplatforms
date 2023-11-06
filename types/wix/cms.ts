@@ -142,6 +142,7 @@ export interface AccountsNode {
 
   // Socials
   facebook?: string;
+  discord?: string;
   github?: string;
   instagram?: string;
   linkedin?: string;
@@ -153,8 +154,11 @@ export interface AccountsNode {
   threads?: string;
   tiktok?: string;
   wikipedia?: string;
+  wikidata?: string;
   x?: string;
   youtube?: string;
+  _createdDate: { $date: string };
+  _updatedDate: { $date: string };
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -170,6 +174,9 @@ export interface PostNode {
   description?: string;
   cover?: string;
   body?: { nodes: BodyItemUnion[] };
+  platforms?: PlatformNode[];
+  _createdDate?: { $date: string };
+  _updatedDate?: { $date: string };
 }
 export interface TagNode {
   _id: string;

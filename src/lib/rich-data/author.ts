@@ -1,7 +1,7 @@
 export type InputAuthorRichData = {
   name: string;
   url: string;
-  sameAs?: RichData.Thing[];
+  sameAs?: RichData.SameAsType[];
 };
 
 export function generateAuthor(data: InputAuthorRichData) {

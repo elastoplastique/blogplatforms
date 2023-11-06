@@ -212,7 +212,7 @@ export async function getComparativeFeature(comparativeFeatureId: string): Promi
 // ACCOUNTS DATA
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////
 export async function getAllAccounts(): Promise<AccountsNode[]> {
-  return await getItems(COLLECTIONS.ACCOUNTS);
+  return await getItems(COLLECTIONS.ACCOUNTS, ['platform']);
 }
 export async function getPlatformAccounts(slug: string): Promise<AccountsNode> {
   const allAccounts = await getAllAccounts();
@@ -303,7 +303,7 @@ export async function getPlatformType(slug: string): Promise<PlatformTypeNode> {
 // POSTS DATA
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////
 export async function getPosts(): Promise<PlatformTypeNode[]> {
-  return await getItems(COLLECTIONS.POSTS);
+  return await getItems(COLLECTIONS.POSTS, ['platforms', 'platforms.accounts']);
 }
 export async function getPost(slug: string): Promise<Wix.PostNode> {
   const posts = await getPosts();

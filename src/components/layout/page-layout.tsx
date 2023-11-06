@@ -16,14 +16,12 @@ export function PageLayout({ children, ...props }: PageLayoutProps) {
   return (
     <>
       <Head>
-
         <title>{props?.metaTitle || META.TITLE}</title>
         <meta name="title" content={props.metaTitle} />
         <meta name="description" content={props?.metaDescription || META.DESCRIPTION} />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
         <Favicons />
-
 
         {/* <!-- Open Graph / Facebook --> */}
         <meta property="og:type" content="website" />
@@ -41,7 +39,6 @@ export function PageLayout({ children, ...props }: PageLayoutProps) {
 
         <link rel="canonical" href={props.canonical || META.CANONICAL} />
         {props.richData && <script type="application/ld+json">{`${JSON.stringify(props.richData)}`}</script>}
-
       </Head>
       <Flex className="!min-w-full py-20 min-h-[70vh]" direction="column" align="center" id="page-layout">
         {children}
