@@ -302,7 +302,7 @@ export async function getPlatformType(slug: string): Promise<PlatformTypeNode> {
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // POSTS DATA
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////
-export async function getPosts(): Promise<PlatformTypeNode[]> {
+export async function getPosts(): Promise<Wix.PostNode[]> {
   return await getItems(COLLECTIONS.POSTS, ['platforms', 'platforms.accounts']);
 }
 export async function getPost(slug: string): Promise<Wix.PostNode> {
@@ -373,7 +373,7 @@ export async function getFeatureSlugs(): Promise<string[]> {
 
 export async function getPostSlugs(): Promise<string[]> {
   const posts = await getPosts();
-  return posts.map((post) => post.slug);
+  return posts.filter((post) => post?.published).map((post) => post.slug);
 }
 
 export function generateFileUrl(fileId: string): string {

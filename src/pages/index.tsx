@@ -20,6 +20,7 @@ import { DEFAULT_PLATFORMS_LOADING_PARAMS } from '@/constants/settings';
 import { getPlatforms, getFeatures, getAudiences, getPlatformsFeatures } from '@/lib/wix/cms/cms';
 import { slugify } from '@/lib/utils/slugify';
 import { generatePage } from '@/lib/rich-data/page';
+// import { CommandBar } from '@/components/compound/command-bar';
 
 type Props = {
   platforms: PlatformNode[];
@@ -89,9 +90,10 @@ export default function HomePage(props: Props) {
   }, [feature]);
   return (
     <PageLayout
-      metaTitle={META.HOME.TITLE}
+      metaTitle={META.TITLE}
       metaDescription={META.HOME.DESCRIPTION}
       canonical={META.CANONICAL}
+      image={META.IMAGE}
       richData={generatePage({
         page: {
           name: META.WEBSITE_NAME,
@@ -111,6 +113,8 @@ export default function HomePage(props: Props) {
         /> */}
 
         <Hero title={META.HOME.TITLE} htmlSubtitle={META.HOME.HTML_DESCRIPTION} />
+
+        {/* <CommandBar features={props.features} platforms={props.platforms} /> */}
 
         <FilterDialogMenu />
 

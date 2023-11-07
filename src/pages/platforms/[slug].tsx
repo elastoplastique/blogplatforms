@@ -65,7 +65,7 @@ export default function PlatformPage({ platform, platformFeatures, platformCompa
       richData={generatePlatformPage({
         platform: {
           name: platform.title,
-          url: platform.url,
+          url: platformAccounts.website || platform.url,
           description: platform.description,
           image: platform.cover,
           ...(platformAccounts && { sameAs: generateSameAsFromAccounts(platformAccounts) }),

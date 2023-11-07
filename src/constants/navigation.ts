@@ -9,7 +9,15 @@ export const NAVLINKS: NavLinkType[] = [
 export const FOOTER_LINKS: NavLinkType[] = [
   {
     path: '/',
-    text: 'Home',
+    text: 'Blog Platforms',
+  },
+  {
+    path: '/features',
+    text: 'Features',
+  },
+  {
+    path: '/blog',
+    text: 'Lists',
   },
 ];
 
