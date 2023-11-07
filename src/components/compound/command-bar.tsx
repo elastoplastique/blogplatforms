@@ -27,12 +27,12 @@ export function CommandBar(props: { features: FeatureNode[]; platforms: Platform
 
         <Command.Group heading="Features">
           {features.map((f: FeatureNode) => (
-            <Command.Item>{f.title}</Command.Item>
+            <Command.Item key={f.slug}>{f.title}</Command.Item>
           ))}
         </Command.Group>
         <Command.Group heading="Platforms">
           {platforms.map((p: FeatureNode) => (
-            <Command.Item>{p.title}</Command.Item>
+            <Command.Item key={p.slug}>{p.title}</Command.Item>
           ))}
         </Command.Group>
       </Command.List>
