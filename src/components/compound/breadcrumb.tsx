@@ -23,7 +23,7 @@ export function Breadcrumb(props: Props) {
           <li key={page.name}>
             <div className="flex items-center whitespace-nowrap my-2">
               <svg
-                className="flex-shrink-0 h-5 w-5 text-gray-300 mx-2"
+                className="flex-shrink-0 h-5 w-4 text-gray-300 mx-1"
                 xmlns="http://www.w3.org/2000/svg"
                 fill="currentColor"
                 viewBox="0 0 20 20"

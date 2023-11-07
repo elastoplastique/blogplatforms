@@ -18,7 +18,7 @@ export const HorizontalFeatureCard = ({ title, description, link, icon, ...rest 
   const featureColor = FEATURE_COLORS[title as keyof typeof FEATURE_COLORS] || 'teal';
   // 329 100 96
   return (
-    <Card variant="surface" m={'3'} style={{ backgroundColor: `var(--${featureColor}-a2)` }} className="horizontal-feature-card" {...rest}>
+    <Card variant="surface" my={'3'} mx={{initial: "0", md: "2"}} style={{ backgroundColor: `var(--${featureColor}-a2)` }} className="horizontal-feature-card" {...rest}>
       <Flex direction="column" className="flex w-full rounded-xl" p="2">
         <Flex justify="center" align="center" p="1" className=" w-12 h-12 mb-4" style={{ borderRadius: '100%' }}>
           <FeatureIcon color={`var(--${featureColor}-9)`} width={32} height={32} />

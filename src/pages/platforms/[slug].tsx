@@ -181,7 +181,7 @@ export default function PlatformPage({ platform, platformFeatures, platformCompa
                 >
                   <ul>
                     {platform.posts.map((pp: Wix.PostNode, ix: number) => (
-                      <li key={`pf-${pp.slug}-${ix}`} className="p-4 h-120">
+                      <li key={`pf-${pp.slug}-${ix}`} className="py-4 h-120">
                         <PostCard
                           image={createWixStaticUrl(pp.cover!)}
                           title={pp.title}
