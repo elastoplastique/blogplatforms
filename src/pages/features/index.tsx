@@ -23,7 +23,7 @@ export default function BlogPlatforms(props: Props) {
           <Heading size="9" className="pb-4" align="center">
             {META.FEATURES_PAGE.TITLE}
           </Heading>
-          <Text size="4" className="mb-8 max-w-[90%]" align="center">
+          <Text size="4" className="mb-8 max-w-[60ch]" align="center">
             {META.FEATURES_PAGE.DESCRIPTION}
           </Text>
         </Flex>

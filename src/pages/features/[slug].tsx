@@ -77,14 +77,16 @@ export default function PlatformPage({ feature, platforms }: Props) {
             />
           </Flex>
           {/* DESCRIPTION  */}
-          <Flex direction="column" justify="start" align="stretch">
-            {feature.body ? (
-              <RichContent body={feature.body} />
-            ) : (
-              <Text as="p" align="center" weight="medium" size="5">
-                {feature.description}
-              </Text>
-            )}
+          <Flex direction="column" justify="start" align="center" className="w-full">
+            <Flex direction="column" justify="start" align="center" className="max-w-[80ch]">
+              {feature.body ? (
+                <RichContent body={feature.body} />
+              ) : (
+                <Text as="p" align="center" weight="medium" size="5">
+                  {feature.description}
+                </Text>
+              )}
+            </Flex>
           </Flex>
           <Separator className="my-8" size="4" />
 

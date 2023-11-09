@@ -1,14 +1,9 @@
 import '@/styles/globals.css';
 import 'swiper/css';
-
 import 'swiper/css/a11y';
-
 import 'swiper/css/autoplay';
-
 import 'swiper/css/keyboard';
-
 import 'swiper/css/pagination';
-
 import 'swiper/css/parallax';
 
 import type { AppProps } from 'next/app';

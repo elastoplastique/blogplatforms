@@ -5,7 +5,7 @@
   "scripts": {
     "dev": "next dev",
     "codegen:supabase": "npx supabase gen types typescript --project-id 'tjtlpskzsejxounjnahu' --schema public > src/types/database.ts",
-    "ts": "tsc --noEmit",
+    "ts": "tsc",
     "format": "prettier --config .prettierrc '**/*.{js,jsx,ts,tsx}' --write",
     "build": "next build",
     "postbuild": "next-sitemap",

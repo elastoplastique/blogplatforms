@@ -89,9 +89,6 @@ export default function PlatformPage({ platform, platformFeatures, platformCompa
             lg: '5',
           }}
         >
-          <Flex width="100%" justify="center">
-            <Breadcrumb links={[{ name: platform.title, href: `/platforms/${platform.slug}`, current: true }]} />
-          </Flex>
 
           {platform.cover ? (
             <AspectRatio ratio={16 / 9} style={{ width: '100%', height: '100%', minHeight: 200, position: 'relative' }}>
@@ -100,6 +97,9 @@ export default function PlatformPage({ platform, platformFeatures, platformCompa
           ) : (
             <img src={platform.logo!} alt={platform.title} width={64} height={64} style={{ borderRadius: '100%', top: '26px' }} />
           )}
+          <Flex width="100%" justify="center">
+            <Breadcrumb links={[{ name: platform.title, href: `/platforms/${platform.slug}`, current: true }]} />
+          </Flex>
 
           <motion.div className="relative min-w-full rounded-3xl flex flex-col justify-center items-center min-h-32 my-8">
             <Heading as="h1" size="4" className="tracking-tight text-center !font-semi-bold !mx-8 text-inherit pt-2 whitespace-nowrap">

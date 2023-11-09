@@ -7,7 +7,7 @@ import { slugify } from '@/lib/utils/slugify';
 
 export type SwiperMedia = {
   type: 'IMAGE' | 'VIDEO';
-  url: string;
+  src: string;
   alt?: string;
   title?: string;
   description?: string;
@@ -34,10 +34,10 @@ export function Swiper(props: Props): JSX.Element {
     keyboard: { enabled: true },
   };
   return (
-    <SwiperJS {...swiperParameters}>
+    <SwiperJS {...swiperParameters} style={{ maxWidth: '100%', overflow: 'hidden', zIndex: 20, position: 'relative' }}>
       {props.media.map((item: SwiperMedia, index: number) => (
-        <SwiperSlide key={`${slugify(item.title)}-${index}`}>
-          {item.type === 'image' ? (
+        <SwiperSlide key={`${slugify(item.title)}-${index}`} className="swiper-slide">
+          {item.type === 'IMAGE' ? (
             <img
               alt={item.alt || item.title || item.description || 'Slide Image'}
               className="swiper-slide-image"

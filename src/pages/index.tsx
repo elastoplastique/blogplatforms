@@ -20,6 +20,7 @@ import { DEFAULT_PLATFORMS_LOADING_PARAMS } from '@/constants/settings';
 import { getPlatforms, getFeatures, getAudiences, getPlatformsFeatures } from '@/lib/wix/cms/cms';
 import { slugify } from '@/lib/utils/slugify';
 import { generatePage } from '@/lib/rich-data/page';
+import { Swiper } from '@/components/compound/swiper';
 // import { CommandBar } from '@/components/compound/command-bar';
 
 type Props = {
@@ -131,6 +132,27 @@ export default function HomePage(props: Props) {
 
           </Flex> */}
           <Flex direction="column" align="stretch" grow="1" id="list-box">
+            {/* <Swiper 
+              media={[
+                {
+                  type: "IMAGE", 
+                  src: "/media/posts/best-blog-platforms-for-artists.webp", 
+                  alt: "Best Blog Platforms for Artists",
+                  link: "/blog/best-blog-platforms-for-artists",
+                  title: "Best Blog Platforms for Artists",
+                  description: "The best blog platforms for artists to showcase their work and sell their art online.",
+                },
+                {
+                  type: "IMAGE", 
+                  src: "/media/posts/best-free-platforms-for-blogging.webp", 
+                  alt: "Best Free Platforms for Blogging",
+                  link: "/blog/best-free-platforms-for-blogging",
+                  title: "Best Free Platforms for Blogging",
+                  description: "The best blog platforms for artists to showcase their work and sell their art online.",
+                }
+              ]}
+            /> */}
+
             <Grid
               width="100%"
               asChild
