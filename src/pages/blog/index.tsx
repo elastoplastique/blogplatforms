@@ -57,7 +57,7 @@ export default function BlogPlatforms(props: Props) {
 }
 
 export const getStaticProps = async () => {
-  const posts = await getPosts();
+  const posts = (await getPosts()).filter(p => p.published);
   console.log('posts', posts);
 
   return {

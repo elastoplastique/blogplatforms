@@ -71,7 +71,6 @@ function WixHeading({ node }: { node: Wix.Heading }) {
         return 'h2';
     }
   }
-  console.log('heading', node);
   return (
     <Heading id={slugify(node.nodes.map((i: any) => i.textData.text).join('-'))} as={getLevel(node)} className="cms-rich-content cms-img">
       <>
