@@ -30,11 +30,18 @@ const listicles = [
     current: false,
     description: 'Best Blogging Platform for Artists',
   },
+
   {
     name: 'Best Blogging Platforms for Designers',
     href: '/blog/best-blog-platforms-for-designers',
     current: false,
     description: 'Best Blogging Platform for Designers',
+  },
+  {
+    name: 'Best Portfolio Sites',
+    href: '/blog/best-portfolio-sites',
+    current: false,
+    description: 'Best Portfolio Sites',
   },
 ];
 
