@@ -22,10 +22,10 @@ export function generatePlatformPage({ platform, rating, breadcrumbsLinks }: Inp
     name: 'Blog Platforms',
     url: 'https://blogplatforms.app',
     sameAs: [
-      'https://twitter.com/blogplatforms',
-      'https://www.facebook.com/blogplatforms',
-      'https://www.instagram.com/blogplatforms',
-      'https://www.linkedin.com/company/blogplatforms',
+      // 'https://www.facebook.com/blogplatforms',
+      'https://twitter.com/elastoplastique',
+      'https://github.com/elastoplastique',
+      'https://www.pinterest.com/blogplatforms/',
     ],
   });
   const software = generateSoftware(platform, rating, author);
