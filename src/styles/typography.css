@@ -17,13 +17,13 @@
   font-display: swap;
   font-style: normal;
 }
-@font-face {
+/* @font-face {
   font-family: 'Permanent Marker';
   src: url('../../public/assets/fonts/PermanentMarker-Regular.ttf') format('truetype');
   font-weight: 200 700;
   font-display: swap;
   font-style: normal;
-}
+} */
 .serif {
   font-family: EB Garamond, serif !important;
   font-style: italic !important;
