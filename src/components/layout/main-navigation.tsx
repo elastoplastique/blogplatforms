@@ -80,14 +80,14 @@ const features = [
 ];
 
 export function MainNavigation() {
-  const { memberClient } = useWixModule();
+  // const { memberClient } = useWixModule();
 
 
-  useEffect(() => {
-   memberClient.getCurrentMember().then((member: any) => {
-    console.log('member', member);
-   });
-  },[])
+  // useEffect(() => {
+  //  memberClient.getCurrentMember().then((member: any) => {
+  //   console.log('member', member);
+  //  });
+  // },[])
   return (
     <nav id="main-navigation" className="h-16 sm:px-16 w-full">
       <Link href="/">
