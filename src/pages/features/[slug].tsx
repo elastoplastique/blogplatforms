@@ -34,7 +34,8 @@ import { PlatformMedia } from '@/components/custom/platform-media';
 import { AnimatePresence } from 'framer-motion';
 import { ListCardCover } from '@/components/compound/list-card-cover';
 import { COLLECTIONS } from '@/lib/wix/cms/cms';
-
+import { createWixStaticUrl } from '@/lib/wix/utils/create-url';
+import { externalImageLoader } from '@/lib/utils/external-image-loader';
 type Props = {
   feature: Wix.FeatureNode;
   platforms: PlatformNode[];
@@ -52,6 +53,19 @@ export default function PlatformPage({ feature, platforms }: Props) {
     >
       <Container size="4" className="w-full" id="feature-page">
         <Card id="page-card" className="w-full h-full relative flex flex-col justify-start min-w-full" mt={'2'} size="4">
+        {feature.image && (
+            <AspectRatio ratio={16 / 9} style={{ width: '100%', height: '100%', minHeight: 200, position: 'relative' }}>
+              <Image
+                src={createWixStaticUrl(feature.image)}
+                alt={feature.title}
+                className="rounded-lg"
+                loader={externalImageLoader}
+                fill
+                priority
+              />
+            </AspectRatio>
+          )}
+          
           <motion.div className="relative min-w-full rounded-3xl flex flex-col justify-center items-center min-h-32 my-8">
             <Heading as="h1" className="tracking-tight text-center !font-semi-bold text-inherit pt-2 !text-4xl md:!text-6xl" style={{maxWidth:640}}>
               {feature.header}
