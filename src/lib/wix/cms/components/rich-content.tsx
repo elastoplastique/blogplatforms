@@ -44,7 +44,7 @@ export const RichContent = memo(
     return (
       <Flex width="100%" direction="column" id="rich-content">
         {body.nodes.map((node: BodyItemUnion) => (
-          <WixNode node={node} key={node._id} />
+          <WixNode node={node} key={node.id} />
         ))}
       </Flex>
     );

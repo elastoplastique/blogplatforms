@@ -225,7 +225,9 @@ export default function PlatformPage({ platform, platformFeatures, platformCompa
 }
 
 export const getStaticProps = async ({ params: { slug } }: { params: { slug: string } }) => {
+  console.log('[slug] page slug: ', slug);
   const platform = await getPlatform(slug);
+  console.log('[slug] page platform: ', platform);
   const platformFeatures = await getPlatformFeatures(platform._id);
   const platformComparativeFeatures = await getPlatformComparativeFeatures(platform._id);
   const platformAccounts = await getPlatformAccounts(platform.slug);

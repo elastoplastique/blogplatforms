@@ -8,6 +8,7 @@ export type BodyMetadata = {
 export interface NodeType<T> {
   type: T;
   _id: string;
+  id?: string;
 }
 
 type TextAlignment = 'AUTO' | 'LEFT' | 'CENTER' | 'RIGHT' | 'JUSTIFY';
@@ -268,6 +269,7 @@ export type BodyItemType =
 
 export interface BodyItem<T> extends NodeType<T> {
   _id: string;
+  id?: string;
   nodes: BodyItem<BodyItemType>[];
 }
 
