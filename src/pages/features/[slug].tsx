@@ -34,7 +34,8 @@ import { PlatformMedia } from '@/components/custom/platform-media';
 import { AnimatePresence } from 'framer-motion';
 import { ListCardCover } from '@/components/compound/list-card-cover';
 import { COLLECTIONS } from '@/lib/wix/cms/cms';
-
+import { createWixStaticUrl } from '@/lib/wix/utils/create-url';
+import { externalImageLoader } from '@/lib/utils/external-image-loader';
 type Props = {
   feature: Wix.FeatureNode;
   platforms: PlatformNode[];
@@ -46,24 +47,28 @@ export default function PlatformPage({ feature, platforms }: Props) {
 
   return (
     <PageLayout
-      metaTitle={`${feature.title} | BlogPlatforms.app`}
+      metaTitle={`${feature.header} | BlogPlatforms.app`}
       metaDescription={feature.description}
       canonical={`${removeTrailing(META.CANONICAL)}/${ROUTES.FEATURES_DIRECTORY.path}/${removeTrailing(feature.slug)}`}
     >
-      <Container size="3" className="w-full" id="feature-page">
+      <Container size="4" className="w-full" id="feature-page">
         <Card id="page-card" className="w-full h-full relative flex flex-col justify-start min-w-full" mt={'2'} size="4">
-          <Flex width="100%" justify="center">
-            <Breadcrumb
-              links={[
-                { name: 'Features', href: `/features`, current: false, title: 'Explore Blog Platforms by Features' },
-                { name: feature.title, href: `/features/${feature.slug}`, current: true },
-              ]}
-            />
-          </Flex>
-
+        {feature.image && (
+            <AspectRatio ratio={16 / 9} style={{ width: '100%', height: '100%', minHeight: 200, position: 'relative' }}>
+              <Image
+                src={createWixStaticUrl(feature.image)}
+                alt={feature.title}
+                className="rounded-lg"
+                loader={externalImageLoader}
+                fill
+                priority
+              />
+            </AspectRatio>
+          )}
+          
           <motion.div className="relative min-w-full rounded-3xl flex flex-col justify-center items-center min-h-32 my-8">
-            <Heading as="h1" size="4" className="tracking-tight text-center !font-semi-bold !mx-8 text-inherit pt-2 whitespace-nowrap">
-              <span className="text-4xl sm:text-6xl  block !tracking-tighter uppercase">{feature.title}</span>
+            <Heading as="h1" className="tracking-tight text-center !font-semi-bold text-inherit pt-2 !text-4xl md:!text-6xl" style={{maxWidth:640}}>
+              {feature.header}
             </Heading>
             <Heading
               as="h2"
@@ -77,16 +82,25 @@ export default function PlatformPage({ feature, platforms }: Props) {
               The blog platforms that support {feature.title} feature.
             </Heading>
           </motion.div>
-
+          <Flex width="100%" justify="center">
+            <Breadcrumb
+              links={[
+                { name: 'Features', href: `/features`, current: false, title: 'Explore Blog Platforms by Features' },
+                { name: feature.title, href: `/features/${feature.slug}`, current: true },
+              ]}
+            />
+          </Flex>
           {/* DESCRIPTION  */}
-          <Flex direction="column" justify="start" align="stretch">
-            {feature.body ? (
-              <RichContent body={feature.body} />
-            ) : (
-              <Text as="p" align="center" weight="medium" size="5">
-                {feature.description}
-              </Text>
-            )}
+          <Flex direction="column" justify="start" align="center" className="w-full">
+            <Flex direction="column" justify="start" align="center" className="max-w-[80ch]">
+              {feature.body ? (
+                <RichContent body={feature.body} />
+              ) : (
+                <Text as="p" align="center" weight="medium" size="5">
+                  {feature.description}
+                </Text>
+              )}
+            </Flex>
           </Flex>
           <Separator className="my-8" size="4" />
 
@@ -115,7 +129,7 @@ export default function PlatformPage({ feature, platforms }: Props) {
                   md: '2',
                   lg: '2',
                 }}
-                style={{ minHeight: '70vh' }}
+                style={{ minHeight: '40vh', marginBottom: '30vh' }}
                 p="1"
               >
                 <motion.ul layout>
@@ -124,7 +138,7 @@ export default function PlatformPage({ feature, platforms }: Props) {
                       <motion.li
                         layout
                         key={platform.slug}
-                        className="relative z-0 h-80 m-4 flex flex-col items-center"
+                        className="relative z-0 min-h-120 m-4 flex flex-col items-center"
                         initial={{ opacity: 0 }}
                         animate={{ opacity: 1 }}
                         exit={{ opacity: 0 }}

@@ -1,6 +1,6 @@
 /* eslint-disable react/display-name */
 /* eslint-disable @next/next/no-img-element */
-import { useState, useEffect, memo } from 'react';
+import { useState, useEffect, memo, useId } from 'react';
 import type { ReactNode } from 'react';
 import { AspectRatio, Link, Heading, Text, Flex, Card, Inset, Strong, Em, Separator } from '@/components/ui';
 import {
@@ -33,7 +33,7 @@ import { media } from '@wix/sdk';
 import { ReactElement } from 'react';
 import { createWixStaticUrl, createWixStaticVideoUrl } from '@/lib/wix/utils/create-url';
 import { externalImageLoader } from '@/lib/utils/external-image-loader';
-
+import { slugify } from '@/lib/utils/slugify';
 import Image from 'next/image';
 
 const THUMB_HEIGHT = IMAGE_HEIGHT * THUMBNAIL_FACTOR;
@@ -71,9 +71,8 @@ function WixHeading({ node }: { node: Wix.Heading }) {
         return 'h2';
     }
   }
-
   return (
-    <Heading id={node._id} as={getLevel(node)} className="cms-rich-content cms-img">
+    <Heading id={slugify(node.nodes.map((i: any) => i.textData.text).join('-'))} as={getLevel(node)} className="cms-rich-content cms-img">
       <>
         {(node.nodes as BodyItemUnion[]).map((innerNode) => (
           <WixNode node={innerNode} key={innerNode._id} />
@@ -96,6 +95,10 @@ function WixParagraph({ node }: { node: Wix.Paragraph }) {
 }
 
 function WixTextDecorated({ node }: { node: Wix.Text }) {
+  const id1 = useId();
+  const id2 = useId();
+  const id3 = useId();
+  const id4 = useId();
   // const getBoldDecoration = node.textData.decorations.find((decoration: Decoration<DecorationType>) => decoration.type === "BOLD")
   // const getColorDecoration = node.textData.decorations.find((decoration: Decoration<DecorationType>) => decoration.type === "COLOR")
   // const getItalicDecoration = node.textData.decorations.find((decoration: Decoration<DecorationType>) => decoration.type === "ITALIC")
@@ -112,18 +115,23 @@ function WixTextDecorated({ node }: { node: Wix.Text }) {
           : undefined
       }
       rel={`${decoration.linkData.link.rel?.nofollow ? 'nofollow' : ''} ${decoration.linkData.link.rel?.noreferrer ? 'noreferrer' : ''}`}
+      id={id1}
     >
       {children}
     </Link>
   );
   const BoldDecoration = ({ decoration, children }: { decoration: BoldDecoration; children: ReactNode | string }) => (
-    <Strong className="cms-rich-content cms-strong">{children}</Strong>
+    <Strong className="cms-rich-content cms-strong" id={id2}>
+      {children}
+    </Strong>
   );
   const ItalicDecoration = ({ decoration, children }: { decoration: ItalicDecoration; children: ReactNode | string }) => (
-    <Em className="cms-rich-content cms-em">{children}</Em>
+    <Em className="cms-rich-content cms-em" id={id3}>
+      {children}
+    </Em>
   );
   const ColorDecoration = ({ decoration, children }: { decoration: ColorDecoration; children: ReactNode | string }) => (
-    <span className="cms-rich-content cms-span" style={{ ...decoration.colorData }}>
+    <span className="cms-rich-content cms-span" style={decoration.colorData && { ...decoration.colorData }} id={id4}>
       {children}
     </span>
   );

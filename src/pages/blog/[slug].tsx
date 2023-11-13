@@ -29,41 +29,73 @@ import { RichContent } from '@/lib/wix/cms/components/rich-content';
 import { removeTrailing } from '@/lib/utils/remove-trailing-slash';
 import { PlatformMedia } from '@/components/custom/platform-media';
 import { createWixStaticUrl } from '@/lib/wix/utils/create-url';
+import { externalImageLoader } from '@/lib/utils/external-image-loader';
+import { generateArticle } from '@/lib/rich-data/article';
+import type { ArticleRichDataInput } from '@/lib/rich-data/article';
 
 type Props = {
   post: Wix.PostNode;
 };
 
 export default function PlatformPage({ post }: Props) {
+  // console.log('post', post);
+  // const mentions = useMemo(() => {
+  //   const m = post?.platforms!.map(
+  //     (p) =>
+  //       ({
+  //         type: 'Thing',
+  //         name: p.title,
+  //         sameAs: p.url,
+  //       }) as unknown as RichData.SameAsType[]
+  //   );
+  //   return {mentions: m};
+  // }, [post.platforms]);
   return (
     <PageLayout
       metaTitle={`${post.title} | BlogPlatforms.app`}
       metaDescription={post.description}
       canonical={`${removeTrailing(META.CANONICAL)}/${ROUTES.BLOG_POST_DIRECTORY.path}/${removeTrailing(post.slug)}`}
       image={createWixStaticUrl(post.cover!)}
+      // richData={
+      //   generateArticle({
+      //     title: post.title!,
+      //     description: post.description!,
+      //     image: createWixStaticUrl(post.cover!),
+      //     url: `${removeTrailing(META.CANONICAL)}/${ROUTES.BLOG_POST_DIRECTORY.path}/${removeTrailing(post.slug)}`,
+      //     datePublished: post._createdDate!.$date!,
+      //     dateModified: post._updatedDate!.$date!,
+      //   }) as unknown as ArticleRichDataInput
+      // }
     >
       <Container size="3" className="w-full">
         <Card id="page-card" className="w-full h-full relative flex flex-col justify-start min-w-full" mt={'2'} size="3" variant="surface">
-          {post.cover && (
-            <AspectRatio ratio={16 / 9} style={{ width: '100%', height: '100%', minHeight: 200, position: 'relative' }}>
-              <img src={createWixStaticUrl(post.cover)} alt={post.title} className="rounded-lg" />
-            </AspectRatio>
-          )}
-
-          <motion.div className="relative min-w-full rounded-3xl flex flex-col justify-center items-center min-h-32 !mt-40">
-            <Heading as="h1" size="6" className="tracking-tight text-center !font-semi-bold !mx-8 text-inherit pt-2">
-              <span className="text-4xl sm:text-6xl block !tracking-tighter">{post.title}</span>
-            </Heading>
-          </motion.div>
-
           <Flex width="100%" justify="center">
             <Breadcrumb
               links={[
                 { name: 'Blog', href: `/blog`, current: false },
-                { name: post.title, href: `/blog/${post.slug}`, current: true },
+                { name: post.title, href: `/blog/${post.slug}`, current: true, truncate: true },
               ]}
             />
           </Flex>
+
+          {post.cover && (
+            <AspectRatio ratio={16 / 9} style={{ width: '100%', height: '100%', minHeight: 200, position: 'relative' }}>
+              <Image
+                src={createWixStaticUrl(post.cover)}
+                alt={post.title}
+                className="rounded-lg"
+                loader={externalImageLoader}
+                fill
+                priority
+              />
+            </AspectRatio>
+          )}
+
+          <motion.div className="relative min-w-full rounded-3xl flex flex-col justify-center items-center min-h-32 !mt-20">
+            <Heading as="h1" size="6" className="tracking-tight text-center !font-semi-bold !mx-8 text-inherit pt-2">
+              <span className="text-4xl sm:text-6xl block !tracking-tighter">{post.title}</span>
+            </Heading>
+          </motion.div>
 
           <Separator className="my-8" size="4" />
 
@@ -72,7 +104,7 @@ export default function PlatformPage({ post }: Props) {
 
           {/* CONTENT */}
           <Flex direction="column" justify="start" align="stretch">
-            <Text as="p" align="center" weight="medium" size="5">
+            <Text as="p" align="center" weight="medium" size="4">
               {post.description}
             </Text>
 

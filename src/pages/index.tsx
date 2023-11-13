@@ -19,6 +19,9 @@ import { META } from '@/constants/meta';
 import { DEFAULT_PLATFORMS_LOADING_PARAMS } from '@/constants/settings';
 import { getPlatforms, getFeatures, getAudiences, getPlatformsFeatures } from '@/lib/wix/cms/cms';
 import { slugify } from '@/lib/utils/slugify';
+import { generatePage } from '@/lib/rich-data/page';
+import { Swiper } from '@/components/compound/swiper';
+// import { CommandBar } from '@/components/compound/command-bar';
 
 type Props = {
   platforms: PlatformNode[];
@@ -87,8 +90,22 @@ export default function HomePage(props: Props) {
     // }
   }, [feature]);
   return (
-    <PageLayout metaTitle={META.HOME.TITLE} metaDescription={META.HOME.DESCRIPTION} canonical={META.CANONICAL}>
-      <Container size="3">
+    <PageLayout
+      metaTitle={META.TITLE}
+      metaDescription={META.HOME.DESCRIPTION}
+      canonical={META.CANONICAL}
+      image={META.IMAGE}
+      richData={generatePage({
+        page: {
+          name: META.WEBSITE_NAME,
+          description: META.DESCRIPTION,
+          url: META.CANONICAL,
+          image: META.IMAGE,
+        },
+        breadcrumbsLinks: [{ name: META.WEBSITE_NAME, href: META.CANONICAL, current: true }],
+      })}
+    >
+      <Container size="4">
         {/* <Image
           src={decoreative}
           alt="decorative"
@@ -97,6 +114,8 @@ export default function HomePage(props: Props) {
         /> */}
 
         <Hero title={META.HOME.TITLE} htmlSubtitle={META.HOME.HTML_DESCRIPTION} />
+
+        {/* <CommandBar features={props.features} platforms={props.platforms} /> */}
 
         <FilterDialogMenu />
 
@@ -113,6 +132,27 @@ export default function HomePage(props: Props) {
 
           </Flex> */}
           <Flex direction="column" align="stretch" grow="1" id="list-box">
+            {/* <Swiper 
+              media={[
+                {
+                  type: "IMAGE", 
+                  src: "/media/posts/best-blog-platforms-for-artists.webp", 
+                  alt: "Best Blog Platforms for Artists",
+                  link: "/blog/best-blog-platforms-for-artists",
+                  title: "Best Blog Platforms for Artists",
+                  description: "The best blog platforms for artists to showcase their work and sell their art online.",
+                },
+                {
+                  type: "IMAGE", 
+                  src: "/media/posts/best-free-platforms-for-blogging.webp", 
+                  alt: "Best Free Platforms for Blogging",
+                  link: "/blog/best-free-platforms-for-blogging",
+                  title: "Best Free Platforms for Blogging",
+                  description: "The best blog platforms for artists to showcase their work and sell their art online.",
+                }
+              ]}
+            /> */}
+
             <Grid
               width="100%"
               asChild
@@ -131,7 +171,7 @@ export default function HomePage(props: Props) {
                     <motion.li
                       layout
                       key={platform.slug}
-                      className="relative z-0 h-80 m-4 flex flex-col items-center"
+                      className="relative z-0 h-120 m-4 flex flex-col items-center"
                       initial={{ opacity: 0 }}
                       animate={{ opacity: 1 }}
                       exit={{ opacity: 0 }}

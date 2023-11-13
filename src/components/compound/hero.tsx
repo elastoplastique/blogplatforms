@@ -18,7 +18,7 @@ export const Hero = ({ title, subtitle, htmlSubtitle }: HeroProps) => (
         </Text>
       )}
       {htmlSubtitle && (
-        <Text size="4" className="mb-8 max-w-[90%]" align="center" dangerouslySetInnerHTML={{ __html: htmlSubtitle }}></Text>
+        <Text size="4" className="mb-8 max-w-[60ch]" align="center" dangerouslySetInnerHTML={{ __html: htmlSubtitle }}></Text>
       )}
     </Flex>
     <Separator className="my-8" size="4" />

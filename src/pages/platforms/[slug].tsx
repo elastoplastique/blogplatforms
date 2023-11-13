@@ -22,12 +22,16 @@ import {
   getPlatformFeatures,
   getPlatformAccounts,
   queryReferencedItems,
+  getRichData,
 } from '@/lib/wix/cms';
 import { RichContent } from '@/lib/wix/cms/components/rich-content';
 import { removeTrailing } from '@/lib/utils/remove-trailing-slash';
 import { PlatformMedia } from '@/components/custom/platform-media';
 import { PostCard } from '@/components/custom/post-card';
 import { createWixStaticUrl } from '@/lib/wix/utils/create-url';
+import { externalImageLoader } from '@/lib/utils/external-image-loader';
+import { generatePlatformPage } from '@/lib/rich-data';
+import { generateSameAsFromAccounts } from '@/lib/rich-data/same-as';
 
 type Props = {
   platform: PlatformNode;
@@ -47,10 +51,10 @@ export default function PlatformPage({ platform, platformFeatures, platformCompa
     [platform.slug]
   );
 
-  console.log('[slug] page platformFeatures: ', platform);
+  // console.log('[slug] page platformFeatures: ', platform);
   // console.log("[slug] page platformResourceLinks: ", platformResourceLinks)
   // console.log('[slug] page platformFeatures: ', platformFeatures);
-  // console.log("[slug] page accounts: ", platform.accounts)
+  // console.log('[slug] page accounts: ', platformAccounts);
 
   return (
     <PageLayout
@@ -58,20 +62,44 @@ export default function PlatformPage({ platform, platformFeatures, platformCompa
       metaDescription={platform.description}
       canonical={`${removeTrailing(META.CANONICAL)}/${ROUTES.PLATFORMS_DIRECTORY.path}/${removeTrailing(platform.slug)}`}
       image={platform.cover}
+      richData={generatePlatformPage({
+        platform: {
+          name: platform.title,
+          url: platformAccounts.website || platform.url,
+          description: platform.description,
+          image: platform.cover,
+          ...(platformAccounts && { sameAs: generateSameAsFromAccounts(platformAccounts) }),
+        },
+        rating: '5',
+        breadcrumbsLinks: [
+          { name: platform.title, href: `https://blogplatforms.app`, current: true },
+          { name: platform.title, href: `https://blogplatforms.app/platforms/${platform.slug}`, current: true },
+        ],
+      })}
     >
       <Container size="3" className="w-full" id="platform-page">
-        <Card id="page-card" className="w-full h-full relative flex flex-col justify-start min-w-full" mt={'2'} size="3">
-          <Flex width="100%" justify="center">
-            <Breadcrumb links={[{ name: platform.title, href: `/platforms/${platform.slug}`, current: true }]} />
-          </Flex>
+        <Card
+          id="page-card"
+          className="w-full h-full relative flex flex-col justify-start min-w-full"
+          mt={'2'}
+          size={{
+            initial: '1',
+            sm: '4',
+            md: '5',
+            lg: '5',
+          }}
+        >
 
           {platform.cover ? (
             <AspectRatio ratio={16 / 9} style={{ width: '100%', height: '100%', minHeight: 200, position: 'relative' }}>
-              <img src={platform.cover} alt={platform.title} />
+              <Image src={platform.cover} alt={platform.title} loader={externalImageLoader} fill priority />
             </AspectRatio>
           ) : (
             <img src={platform.logo!} alt={platform.title} width={64} height={64} style={{ borderRadius: '100%', top: '26px' }} />
           )}
+          <Flex width="100%" justify="center">
+            <Breadcrumb links={[{ name: platform.title, href: `/platforms/${platform.slug}`, current: true }]} />
+          </Flex>
 
           <motion.div className="relative min-w-full rounded-3xl flex flex-col justify-center items-center min-h-32 my-8">
             <Heading as="h1" size="4" className="tracking-tight text-center !font-semi-bold !mx-8 text-inherit pt-2 whitespace-nowrap">
@@ -82,7 +110,7 @@ export default function PlatformPage({ platform, platformFeatures, platformCompa
             </Heading>
 
             {/* SOCIAL ACCOUNTS  */}
-            {/* <SocialAccounts accounts={platform.accounts} platformTitle={platform.title} /> */}
+            <SocialAccounts accounts={platformAccounts} platformTitle={platform.title} />
             <motion.a
               href={platform.url}
               className="intense-shadow mt-6 mb-12"
@@ -153,7 +181,7 @@ export default function PlatformPage({ platform, platformFeatures, platformCompa
                 >
                   <ul>
                     {platform.posts.map((pp: Wix.PostNode, ix: number) => (
-                      <li key={`pf-${pp.slug}-${ix}`} className="p-4">
+                      <li key={`pf-${pp.slug}-${ix}`} className="py-4 h-120">
                         <PostCard
                           image={createWixStaticUrl(pp.cover!)}
                           title={pp.title}

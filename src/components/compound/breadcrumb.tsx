@@ -1,17 +1,5 @@
 import Link from 'next/link';
 
-const pages = [
-  { name: 'Projects', href: '#', current: false },
-  { name: 'Project Nero', href: '#', current: true },
-];
-
-export type BreadcrumbLink = {
-  name: string;
-  href: string;
-  current: boolean;
-  title?: string;
-};
-
 export type Props = {
   links: BreadcrumbLink[];
 };
@@ -19,7 +7,7 @@ export type Props = {
 export function Breadcrumb(props: Props) {
   return (
     <nav className="flex my-4" aria-label="Breadcrumb">
-      <ol className="flex flex-col sm:flex-row items-center">
+      <ol className="flex flex-row  items-center justify-start sm:justify-center">
         <li>
           <div>
             <Link
@@ -31,11 +19,11 @@ export function Breadcrumb(props: Props) {
             </Link>
           </div>
         </li>
-        {props.links.map((page) => (
+        {props.links.map((page, i) => (
           <li key={page.name}>
-            <div className="flex items-center whitespace-nowrap">
+            <div className="flex items-center whitespace-nowrap my-2">
               <svg
-                className="flex-shrink-0 h-5 w-5 text-gray-300"
+                className="flex-shrink-0 h-5 w-4 text-gray-300 mx-1"
                 xmlns="http://www.w3.org/2000/svg"
                 fill="currentColor"
                 viewBox="0 0 20 20"
@@ -53,7 +41,7 @@ export function Breadcrumb(props: Props) {
                 aria-current={page.current ? 'page' : undefined}
                 title={page.title || page.name}
               >
-                {page.name}
+                {!page.truncate ? page.name : page.name.length > 20 ? `${page.name.slice(0, 20)}...` : page.name}
               </Link>
             </div>
           </li>

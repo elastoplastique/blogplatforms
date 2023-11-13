@@ -212,7 +212,7 @@ export async function getComparativeFeature(comparativeFeatureId: string): Promi
 // ACCOUNTS DATA
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////
 export async function getAllAccounts(): Promise<AccountsNode[]> {
-  return await getItems(COLLECTIONS.ACCOUNTS);
+  return await getItems(COLLECTIONS.ACCOUNTS, ['platform']);
 }
 export async function getPlatformAccounts(slug: string): Promise<AccountsNode> {
   const allAccounts = await getAllAccounts();
@@ -302,8 +302,8 @@ export async function getPlatformType(slug: string): Promise<PlatformTypeNode> {
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // POSTS DATA
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////
-export async function getPosts(): Promise<PlatformTypeNode[]> {
-  return await getItems(COLLECTIONS.POSTS);
+export async function getPosts(): Promise<Wix.PostNode[]> {
+  return await getItems(COLLECTIONS.POSTS, ['platforms', 'platforms.accounts'])
 }
 export async function getPost(slug: string): Promise<Wix.PostNode> {
   const posts = await getPosts();
@@ -373,7 +373,7 @@ export async function getFeatureSlugs(): Promise<string[]> {
 
 export async function getPostSlugs(): Promise<string[]> {
   const posts = await getPosts();
-  return posts.map((post) => post.slug);
+  return posts.filter((post) => post?.published).map((post) => post.slug);
 }
 
 export function generateFileUrl(fileId: string): string {
@@ -382,3 +382,15 @@ export function generateFileUrl(fileId: string): string {
   }
   return `https://static.wixstatic.com/media/${fileId}`;
 }
+
+export const getRichData = async (url: string) => {
+  const response = await fetch(url);
+  console.log('RESPONSE', response);
+  const textResponse = await response.text();
+  console.log('TEXT RESPONSE', textResponse);
+  if (textResponse) {
+    const parser = new DOMParser();
+    const htmlDocument = parser.parseFromString(textResponse, 'text/html');
+  }
+  return textResponse;
+};

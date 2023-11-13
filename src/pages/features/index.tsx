@@ -14,7 +14,7 @@ type Props = {
 export default function BlogPlatforms(props: Props) {
   return (
     <PageLayout metaTitle={`Best Blogging Site | BlogPlatforms.app`} canonical={'https://blogplatforms.app/features'}>
-      <Container size="3">
+      <Container size="4">
         <Heading as="h1" size="4" className="tracking-tight text-center !font-semi-bold !mx-8 text-inherit pt-2">
           <span className="!text-6xl block !tracking-tighter uppercase"></span>
         </Heading>
@@ -23,7 +23,7 @@ export default function BlogPlatforms(props: Props) {
           <Heading size="9" className="pb-4" align="center">
             {META.FEATURES_PAGE.TITLE}
           </Heading>
-          <Text size="4" className="mb-8 max-w-[90%]" align="center">
+          <Text size="4" className="mb-8 max-w-[60ch]" align="center">
             {META.FEATURES_PAGE.DESCRIPTION}
           </Text>
         </Flex>

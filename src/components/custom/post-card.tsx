@@ -25,8 +25,7 @@ export const PostCard = ({ title, description, href, image, className, ...rest }
     <Card
       variant="surface"
       m={'3'}
-      style={{ backgroundColor: `var(--iris-a2)`, width: '100%', margin: 0, borderRadius: 16 }}
-      className={cls}
+      style={{ backgroundColor: `var(--iris-a2)`, width: '100%', margin: 0, borderRadius: 16, minHeight:430 }}
       {...rest}
     >
       {/* @ts-ignore */}
