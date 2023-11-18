@@ -77,7 +77,14 @@ export default function PlatformPage({ platform, platformFeatures, platformCompa
         ],
       })}
     >
-      <Container size="3" className="w-full" id="platform-page">
+      <Container
+        size={{
+          initial: '1',
+          md: '3',
+        }}
+        id="platform-page"
+        className="px-2 md:px-16 w-full"
+      >
         <Card
           id="page-card"
           className="w-full h-full relative flex flex-col justify-start min-w-full"
@@ -89,7 +96,6 @@ export default function PlatformPage({ platform, platformFeatures, platformCompa
             lg: '5',
           }}
         >
-
           {platform.cover ? (
             <AspectRatio ratio={16 / 9} style={{ width: '100%', height: '100%', minHeight: 200, position: 'relative' }}>
               <Image src={platform.cover} alt={platform.title} loader={externalImageLoader} fill priority />
@@ -225,9 +231,7 @@ export default function PlatformPage({ platform, platformFeatures, platformCompa
 }
 
 export const getStaticProps = async ({ params: { slug } }: { params: { slug: string } }) => {
-  console.log('[slug] page slug: ', slug);
   const platform = await getPlatform(slug);
-  console.log('[slug] page platform: ', platform);
   const platformFeatures = await getPlatformFeatures(platform._id);
   const platformComparativeFeatures = await getPlatformComparativeFeatures(platform._id);
   const platformAccounts = await getPlatformAccounts(platform.slug);

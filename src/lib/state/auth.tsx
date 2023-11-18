@@ -6,8 +6,6 @@ export const useAuth = create<UseAuth>((set, get) => ({
   setUser: (user) => {
     return set({ user });
   },
-
-  
 }));
 
 interface UseAuth {

@@ -1,6 +1,6 @@
 /* eslint-disable react/display-name */
 /* eslint-disable @next/next/no-img-element */
-import { useState, useEffect, memo, useId } from 'react';
+import { useState, useEffect, useMemo, memo, useId } from 'react';
 import type { ReactNode } from 'react';
 import { AspectRatio, Link, Heading, Text, Flex, Card, Inset, Strong, Em, Separator } from '@/components/ui';
 import {
@@ -35,6 +35,9 @@ import { createWixStaticUrl, createWixStaticVideoUrl } from '@/lib/wix/utils/cre
 import { externalImageLoader } from '@/lib/utils/external-image-loader';
 import { slugify } from '@/lib/utils/slugify';
 import Image from 'next/image';
+import { useWixModules } from '@wix/sdk-react';
+import { files } from '@wix/media';
+import { wixClient } from '@/lib/wix/provider/client-provider';
 
 const THUMB_HEIGHT = IMAGE_HEIGHT * THUMBNAIL_FACTOR;
 const THUMB_WIDTH = IMAGE_WIDTH * THUMBNAIL_FACTOR;
@@ -44,7 +47,7 @@ export const RichContent = memo(
     return (
       <Flex width="100%" direction="column" id="rich-content">
         {body.nodes.map((node: BodyItemUnion) => (
-          <WixNode node={node} key={node.id} />
+          <WixNode node={node} key={node.id || node._id} />
         ))}
       </Flex>
     );
@@ -75,7 +78,7 @@ function WixHeading({ node }: { node: Wix.Heading }) {
     <Heading id={slugify(node.nodes.map((i: any) => i.textData.text).join('-'))} as={getLevel(node)} className="cms-rich-content cms-img">
       <>
         {(node.nodes as BodyItemUnion[]).map((innerNode) => (
-          <WixNode node={innerNode} key={innerNode._id} />
+          <WixNode node={innerNode} key={innerNode._id || innerNode.id} />
         ))}
       </>
     </Heading>
@@ -84,7 +87,7 @@ function WixHeading({ node }: { node: Wix.Heading }) {
 
 function WixParagraph({ node }: { node: Wix.Paragraph }) {
   return (
-    <Text as="p" my="2" id={node._id} className="cms-rich-content cms-p">
+    <Text as="p" mb="2" id={node._id} className="cms-rich-content cms-p">
       <>
         {(node.nodes as BodyItemUnion[]).map((innerNode: BodyItemUnion, ix: number) => (
           <WixNode node={innerNode} key={`${ix}-${innerNode._id}`} />
@@ -131,7 +134,7 @@ function WixTextDecorated({ node }: { node: Wix.Text }) {
     </Em>
   );
   const ColorDecoration = ({ decoration, children }: { decoration: ColorDecoration; children: ReactNode | string }) => (
-    <span className="cms-rich-content cms-span" style={decoration.colorData && { ...decoration.colorData }} id={id4}>
+    <span className="cms-rich-content cms-span" id={id4}>
       {children}
     </span>
   );
@@ -248,19 +251,59 @@ function WixBulletedList({ node }: { node: Wix.BulletedList }) {
 }
 
 function WixImage({ node }: { node: Wix.Image }) {
+  const imageId = node.imageData.image.src._id || node.imageData.image.src.id!;
   return (
     <AspectRatio ratio={node.imageData.image.width / node.imageData.image.height} className="cms-rich-content cms-img">
-      {node.imageData.image.src._id && (
-        <img loading="lazy" src={createWixStaticUrl(node.imageData.image.src._id)} alt={''} className="absolute top-0 left-0" />
+      {imageId && (
+        <Image
+          loading="lazy"
+          loader={externalImageLoader}
+          src={createWixStaticUrl(imageId)}
+          alt={''}
+          className="absolute top-0 left-0"
+          fill
+        />
       )}
     </AspectRatio>
   );
 }
 
 function WixVideo({ node }: { node: Wix.Video }) {
+  const { generateVideoStreamingUrl } = useWixModules(files);
+  const videoId = useMemo(() => node.videoData.video.src._id || node.videoData.video.src.id!, [node.id]);
+  const [videoUrl, setVideoUrl] = useState<string | undefined>();
+
+  console.log('videoUrl', videoUrl);
+
+  async function getVideoStreamingUrl(videoId: string) {
+    try {
+      const vid = videoId.replace('video/', '');
+      console.log('vid', vid);
+      const videoResponse = await generateVideoStreamingUrl(vid);
+      // console.log('VIDEO RESPONSE', videoResponse)
+      if (videoResponse?.downloadUrl && videoResponse?.downloadUrl.url) {
+        if (!videoUrl || videoUrl !== videoResponse.downloadUrl.url) {
+          setVideoUrl(videoResponse.downloadUrl.url);
+        }
+      }
+    } catch (error) {
+      console.log('error', error);
+      console.log('error', error);
+    }
+  }
+
+  useEffect(() => {
+    if (videoId) {
+      getVideoStreamingUrl(videoId);
+      console.log('videoId', videoId);
+      console.log('node', node);
+      console.log('createWixStaticVideoUrl(node.videoData.video.src._id)', createWixStaticVideoUrl(videoId));
+    }
+  }, [videoId]);
+  if (!videoUrl) return <></>;
   return (
     <AspectRatio ratio={16 / 9} className="cms-rich-content cms-video relative">
-      {node.videoData.video.src._id && (
+      {videoUrl && (
         <video
           controls
           width="100%"

@@ -114,6 +114,7 @@ type BodyItemVideoData = {
   video: {
     src: {
       _id: string;
+      id?: string;
     };
     duration: number;
   };
@@ -137,6 +138,7 @@ type BodyItemImageData = {
   image: {
     src: {
       _id: string;
+      id?: string;
     };
     width: number;
     height: number;

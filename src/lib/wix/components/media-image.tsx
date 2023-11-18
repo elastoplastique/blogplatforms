@@ -29,14 +29,10 @@ export function WixMediaImage({
   disableZoom?: boolean;
   objectFit?: 'cover' | 'contain';
 }) {
-  const imageUrl = media
-    ? getImageUrlForMedia(media || '', width, height)
-    : SKELETON_CARD;
+  const imageUrl = media ? getImageUrlForMedia(media || '', width, height) : SKELETON_CARD;
 
   const styleProps: Partial<ImageProps> = {
-    ...(objectFit
-      ? { style: { objectFit }, fill: true, sizes }
-      : { width, height }),
+    ...(objectFit ? { style: { objectFit }, fill: true, sizes } : { width, height }),
   };
 
   return (
@@ -46,9 +42,7 @@ export function WixMediaImage({
           {...styleProps}
           src={imageUrl}
           alt={alt}
-          className={`object-cover w-full ${
-            !disableZoom ? 'group-hover:scale-110' : ''
-          } transition duration-300 ease-in-out ${className}`}
+          className={`object-cover w-full ${!disableZoom ? 'group-hover:scale-110' : ''} transition duration-300 ease-in-out ${className}`}
         />
       </div>
     </div>

@@ -6,7 +6,7 @@ import { FEATURE_ICONS, FEATURE_COLORS } from '@/constants/features';
 import Link from 'next/link';
 import Image from 'next/image';
 import { externalImageLoader } from '@/lib/utils/external-image-loader';
-import {cx} from '@/lib/utils/cx';
+import { cx } from '@/lib/utils/cx';
 
 type Props = {
   platformFeature?: PlatformFeatureNode;
@@ -25,7 +25,7 @@ export const PostCard = ({ title, description, href, image, className, ...rest }
     <Card
       variant="surface"
       m={'3'}
-      style={{ backgroundColor: `var(--iris-a2)`, width: '100%', margin: 0, borderRadius: 16, minHeight:430 }}
+      style={{ backgroundColor: `var(--iris-a2)`, width: '100%', margin: 0, borderRadius: 16, minHeight: 430 }}
       {...rest}
     >
       {/* @ts-ignore */}
@@ -38,13 +38,13 @@ export const PostCard = ({ title, description, href, image, className, ...rest }
             loading="lazy"
             fill
             sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-          // style={{
-          //   display: 'block',
-          //   objectFit: 'cover',
-          //   width: THUMB_WIDTH,
-          //   height: THUMB_HEIGHT,
-          //   backgroundColor: 'var(--gray-5)',
-          // }}
+            // style={{
+            //   display: 'block',
+            //   objectFit: 'cover',
+            //   width: THUMB_WIDTH,
+            //   height: THUMB_HEIGHT,
+            //   backgroundColor: 'var(--gray-5)',
+            // }}
           />
         </AspectRatio>
       </Link>

@@ -13,8 +13,10 @@ import { media as wixMedia } from '@wix/api-client';
 import { members } from '@wix/members';
 import { useEffect, useState } from 'react';
 import { items } from '@wix/data';
-import { wixClient } from '@/lib/wix/provider/client-provider';
+import { getServerWixClient } from '@/lib/wix/auth/wix-client.server';
 import { createWixStaticUrl } from '@/lib/wix/utils/create-url';
+import Cookies from 'js-cookie';
+import { wixClient } from '@/lib/wix/provider/client-provider';
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // CONSTANTS
@@ -165,16 +167,16 @@ export async function getPlatform(slug: string): Promise<PlatformNode> {
     });
   }
 
-  let videos = platform.media?.filter((mediaItem: Wix.Media) => mediaItem.type === 'video') || [];
-  for await (const v of videos) {
-    const videoResponse = await wixClient.files.generateVideoStreamingUrl(v.slug);
-    // console.log('VIDEO RESPONSE', videoResponse)
-    if (videoResponse?.downloadUrl && videoResponse?.downloadUrl.url) {
-      v.src = videoResponse.downloadUrl.url;
-      v.assetKey = videoResponse.downloadUrl.assetKey;
-    }
-  }
-  platform.media = [...images, ...videos];
+  // let videos = platform.media?.filter((mediaItem: Wix.Media) => mediaItem.type === 'video') || [];
+  // for await (const v of videos) {
+  //   const videoResponse = await wixClient.files.generateVideoStreamingUrl(v.slug);
+  //   // console.log('VIDEO RESPONSE', videoResponse)
+  //   if (videoResponse?.downloadUrl && videoResponse?.downloadUrl.url) {
+  //     v.src = videoResponse.downloadUrl.url;
+  //     v.assetKey = videoResponse.downloadUrl.assetKey;
+  //   }
+  // }
+  platform.media = [...images];
 
   // media = media
   //   ?.filter((mediaItem: Wix.Media) => mediaItem.type === 'image')
@@ -303,7 +305,7 @@ export async function getPlatformType(slug: string): Promise<PlatformTypeNode> {
 // POSTS DATA
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////
 export async function getPosts(): Promise<Wix.PostNode[]> {
-  return await getItems(COLLECTIONS.POSTS, ['platforms', 'platforms.accounts'])
+  return await getItems(COLLECTIONS.POSTS, ['platforms', 'platforms.accounts']);
 }
 export async function getPost(slug: string): Promise<Wix.PostNode> {
   const posts = await getPosts();

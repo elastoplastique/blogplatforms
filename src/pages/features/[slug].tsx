@@ -53,7 +53,7 @@ export default function PlatformPage({ feature, platforms }: Props) {
     >
       <Container size="4" className="w-full" id="feature-page">
         <Card id="page-card" className="w-full h-full relative flex flex-col justify-start min-w-full" mt={'2'} size="4">
-        {feature.image && (
+          {feature.image && (
             <AspectRatio ratio={16 / 9} style={{ width: '100%', height: '100%', minHeight: 200, position: 'relative' }}>
               <Image
                 src={createWixStaticUrl(feature.image)}
@@ -65,9 +65,13 @@ export default function PlatformPage({ feature, platforms }: Props) {
               />
             </AspectRatio>
           )}
-          
+
           <motion.div className="relative min-w-full rounded-3xl flex flex-col justify-center items-center min-h-32 my-8">
-            <Heading as="h1" className="tracking-tight text-center !font-semi-bold text-inherit pt-2 !text-4xl md:!text-6xl" style={{maxWidth:640}}>
+            <Heading
+              as="h1"
+              className="tracking-tight text-center !font-semi-bold text-inherit pt-2 !text-4xl md:!text-6xl"
+              style={{ maxWidth: 640 }}
+            >
               {feature.header}
             </Heading>
             <Heading

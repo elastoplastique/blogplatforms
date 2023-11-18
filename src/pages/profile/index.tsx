@@ -28,8 +28,6 @@ export default function ProfilePage() {
           </Text>
         </Flex>
         <Separator className="my-8" size="4" />
-
-
       </Container>
     </PageLayout>
   );

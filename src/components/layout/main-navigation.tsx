@@ -82,7 +82,6 @@ const features = [
 export function MainNavigation() {
   // const { memberClient } = useWixModule();
 
-
   // useEffect(() => {
   //  memberClient.getCurrentMember().then((member: any) => {
   //   console.log('member', member);
