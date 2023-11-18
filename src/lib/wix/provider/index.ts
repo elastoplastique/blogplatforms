@@ -1,2 +1,2 @@
 export * from './client-provider';
-export * from './context';
+export * from './module-provider';

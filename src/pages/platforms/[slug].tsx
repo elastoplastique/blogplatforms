@@ -77,7 +77,14 @@ export default function PlatformPage({ platform, platformFeatures, platformCompa
         ],
       })}
     >
-      <Container size="3" className="w-full" id="platform-page">
+      <Container
+        size={{
+          initial: '1',
+          md: '3',
+        }}
+        id="platform-page"
+        className="px-2 md:px-16 w-full"
+      >
         <Card
           id="page-card"
           className="w-full h-full relative flex flex-col justify-start min-w-full"
@@ -89,7 +96,6 @@ export default function PlatformPage({ platform, platformFeatures, platformCompa
             lg: '5',
           }}
         >
-
           {platform.cover ? (
             <AspectRatio ratio={16 / 9} style={{ width: '100%', height: '100%', minHeight: 200, position: 'relative' }}>
               <Image src={platform.cover} alt={platform.title} loader={externalImageLoader} fill priority />

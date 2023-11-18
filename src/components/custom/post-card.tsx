@@ -6,6 +6,7 @@ import { FEATURE_ICONS, FEATURE_COLORS } from '@/constants/features';
 import Link from 'next/link';
 import Image from 'next/image';
 import { externalImageLoader } from '@/lib/utils/external-image-loader';
+import { cx } from '@/lib/utils/cx';
 
 type Props = {
   platformFeature?: PlatformFeatureNode;
@@ -13,28 +14,30 @@ type Props = {
   title?: string;
   description?: string;
   href: string;
+  className?: string;
   rest?: any;
 };
 
-export const PostCard = ({ title, description, href, image, ...rest }: Props) => {
+export const PostCard = ({ title, description, href, image, className, ...rest }: Props) => {
+  const cls = cx('post-card', className);
   // 329 100 96
   return (
     <Card
       variant="surface"
       m={'3'}
-      style={{ backgroundColor: `var(--iris-a2)`, width: '100%', margin: 0, borderRadius: 16, minHeight:430 }}
+      style={{ backgroundColor: `var(--iris-a2)`, width: '100%', margin: 0, borderRadius: 16, minHeight: 430 }}
       {...rest}
-      className="post-card"
     >
       {/* @ts-ignore */}
-      <AspectRatio ratio={16 / 9} className="aspect-ratio-box !overflow-hidden rounded-md">
-        <Link href={href} title={title}>
+      <Link href={href} title={title}>
+        <AspectRatio ratio={16 / 9} className="aspect-ratio-box !overflow-hidden rounded-md relative">
           <Image
             src={image}
             alt={title!}
             loader={externalImageLoader}
             loading="lazy"
             fill
+            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
             // style={{
             //   display: 'block',
             //   objectFit: 'cover',
@@ -43,8 +46,8 @@ export const PostCard = ({ title, description, href, image, ...rest }: Props) =>
             //   backgroundColor: 'var(--gray-5)',
             // }}
           />
-        </Link>
-      </AspectRatio>
+        </AspectRatio>
+      </Link>
       <Flex p="2" direction="column" className="min-h-[100px] post-card-body relative mt-4">
         <Heading as="h3" size="3">
           <Link href={href}>

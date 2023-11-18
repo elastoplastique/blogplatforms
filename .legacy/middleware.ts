@@ -1,32 +1,61 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { createClient, OAuthStrategy } from '@wix/sdk';
+import {
+  AUTH_LOGIN_CALLBACK_PARAM,
+  AUTH_LOGIN_PATHNAME,
+  PROMPT_QUERY_PARAM,
+  REDIRECT_FROM_WIX_LOGIN_STATUS,
+  WIX_REFRESH_TOKEN,
+} from '@/lib/wix/constants';
+import { RequestCookies } from 'next/dist/compiled/@edge-runtime/cookies';
 
-export const WIX_ACCESS_TOKEN = process.env.NEXT_PUBLIC_WIX_ACCESS_TOKEN!;
-export const WIX_REFRESH_TOKEN = process.env.NEXT_PUBLIC_WIX_REFRESH_TOKEN!;
+import type { WixClientType } from '@/lib/wix/auth/wix-client.base';
+import { getServerWixClient } from '@/lib/wix/auth/wix-client.server';
+import { getRequestUrl } from '@/lib/wix/utils/get-request-url';
+
+const setVisitorTokens = async ({ wixClient, response }: { wixClient: WixClientType; request: NextRequest; response: NextResponse }) => {
+  const tokens = await wixClient!.auth.generateVisitorTokens();
+  response.cookies.set(WIX_REFRESH_TOKEN, JSON.stringify(tokens.refreshToken), {
+    maxAge: 60 * 60 * 24 * 30,
+  });
+};
 
 export async function middleware(request: NextRequest) {
+  const cookies = request.cookies;
   const requestHeaders = new Headers(request.headers);
   const requestUrl = request.url;
   requestHeaders.set('x-middleware-request-url', requestUrl);
-  const cookies = request.cookies;
   const res = NextResponse.next({
     request: {
       headers: requestHeaders,
     },
   });
-  if (cookies.get(WIX_REFRESH_TOKEN)) {
-    return res;
+  const wixClient = getServerWixClient({
+    cookieStore: request.cookies,
+  });
+  const isLoggedIn = wixClient?.auth.loggedIn();
+  if (!cookies.get(WIX_REFRESH_TOKEN) && !isLoggedIn) {
+    await setVisitorTokens({ response: res, wixClient, request });
   }
-  const wixClient = createClient({
-    auth: OAuthStrategy({ clientId: process.env.NEXT_PUBLIC_WIX_CLIENT_ID! }),
-  });
-  const tokens = await wixClient.auth.generateVisitorTokens();
-  res.cookies.set(WIX_REFRESH_TOKEN, JSON.stringify(tokens.refreshToken), {
-    maxAge: 60 * 60 * 24 * 30,
-  });
+
+  const wixMemberLoggedIn = request.nextUrl.searchParams.get(REDIRECT_FROM_WIX_LOGIN_STATUS);
+
+  if (wixMemberLoggedIn === 'false' && isLoggedIn) {
+    cookies.delete(WIX_REFRESH_TOKEN);
+    await setVisitorTokens({ response: res, wixClient, request });
+  }
+
+  if (wixMemberLoggedIn === 'true' || (!isLoggedIn && request.nextUrl.pathname.startsWith('/account'))) {
+    const redirectUrl = new URL(AUTH_LOGIN_PATHNAME, requestUrl);
+    const loginCallbackUrl = new URL(requestUrl);
+    redirectUrl.searchParams.delete(REDIRECT_FROM_WIX_LOGIN_STATUS);
+    loginCallbackUrl.searchParams.delete(REDIRECT_FROM_WIX_LOGIN_STATUS);
+    redirectUrl.searchParams.set(AUTH_LOGIN_CALLBACK_PARAM, loginCallbackUrl.toString());
+    redirectUrl.searchParams.set(PROMPT_QUERY_PARAM, 'none');
+    return NextResponse.redirect(redirectUrl);
+  }
   return res;
 }
 
 export const config = {
-  unstable_allowDynamic: ['./node_modules/@wix/**'],
+  unstable_allowDynamic: ['**/node_modules/lodash/**', '**/node_modules/@wix/**'],
 };

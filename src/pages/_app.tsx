@@ -19,7 +19,6 @@ const GA_MEASUREMENT_ID = process.env.NEXT_PUBLIC_MEASUREMENT_ID;
 
 export default function MyApp({ Component, pageProps }: AppProps) {
   // Create a new supabase browser client on every first render.
-
   return (
     <>
       <Script src={`https://www.googletagmanager.com/gtag/js?id=${GA_MEASUREMENT_ID}`} strategy="afterInteractive" />

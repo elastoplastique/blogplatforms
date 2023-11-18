@@ -8,6 +8,7 @@ export type BodyMetadata = {
 export interface NodeType<T> {
   type: T;
   _id: string;
+  id?: string;
 }
 
 type TextAlignment = 'AUTO' | 'LEFT' | 'CENTER' | 'RIGHT' | 'JUSTIFY';
@@ -113,6 +114,7 @@ type BodyItemVideoData = {
   video: {
     src: {
       _id: string;
+      id?: string;
     };
     duration: number;
   };
@@ -136,6 +138,7 @@ type BodyItemImageData = {
   image: {
     src: {
       _id: string;
+      id?: string;
     };
     width: number;
     height: number;
@@ -268,6 +271,7 @@ export type BodyItemType =
 
 export interface BodyItem<T> extends NodeType<T> {
   _id: string;
+  id?: string;
   nodes: BodyItem<BodyItemType>[];
 }
 

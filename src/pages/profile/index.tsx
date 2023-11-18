@@ -7,12 +7,11 @@ import { getFeatures, getPosts } from '@/lib/wix/cms/cms';
 import { PostCard } from '@/components/custom/post-card';
 import { META } from '@/constants/meta';
 import { createWixStaticUrl } from '@/lib/wix/utils/create-url';
+import { useWixClient } from '@/lib/wix/hooks/use-wix-client';
 
-type Props = {
-  posts: Wix.PostNode[];
-};
+export default function ProfilePage() {
+  const wixClient = useWixClient();
 
-export default function BlogPlatforms(props: Props) {
   return (
     <PageLayout metaTitle={`Best Blogging Site | BlogPlatforms.app`} canonical={'https://blogplatforms.app/blog'}>
       <Container size="3">
@@ -29,35 +28,13 @@ export default function BlogPlatforms(props: Props) {
           </Text>
         </Flex>
         <Separator className="my-8" size="4" />
-
-        <Flex direction="column" align="stretch" grow="1" id="list-box">
-          <Grid
-            width="100%"
-            columns={{
-              initial: '1',
-              sm: '2',
-              md: '2',
-              lg: '2',
-            }}
-            p="1"
-            asChild
-          >
-            <ul>
-              {props.posts.map((p: Wix.PostNode, ix: number) => (
-                <li key={`pf-${p.slug}-${ix}`} className="p-4">
-                  <PostCard image={createWixStaticUrl(p.cover!)} title={p.title} description={p.description} href={`/blog/${p.slug}`} />
-                </li>
-              ))}
-            </ul>
-          </Grid>
-        </Flex>
       </Container>
     </PageLayout>
   );
 }
 
 export const getStaticProps = async () => {
-  const posts = (await getPosts()).filter((p) => p.published);
+  const posts = await getPosts();
   console.log('posts', posts);
 
   return {
