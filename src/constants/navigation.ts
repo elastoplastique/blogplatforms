@@ -9,7 +9,7 @@ export const NAVLINKS: NavLinkType[] = [
 export const FOOTER_LINKS: NavLinkType[] = [
   {
     path: '/',
-    text: 'Blog Platforms',
+    text: 'Best Blog Platforms',
   },
   {
     path: '/features',
@@ -26,7 +26,7 @@ export const FOOTER_CONTENT = {
     text: 'Blog Platforms',
   },
   SUBTITLE: {
-    text: 'Your ultimate guide to choose the best blog platforms on the web.',
+    text: 'The ultimate guide to choosing the best blog platforms. Search and compare the best blogging platforms by features you need.',
   },
   MESSAGE: {
     text: '',

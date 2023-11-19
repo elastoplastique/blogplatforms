@@ -70,7 +70,7 @@
     ".next/types/**/*.ts",
     "types",
     "types/wix/index.d.ts",
-    "types/wix/rich-data.d.ts",
+    "types/wix/rich-data.d.ts", ".legacy/middleware.ts",
 
   ],
   "exclude": [

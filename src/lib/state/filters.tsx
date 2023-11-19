@@ -40,6 +40,8 @@ export const useFilters = create<UseFilters>((set, get) => ({
       }
     });
     const filteredPlatforms = get().filterPlatforms(selecteds);
+    console.log('removing selected');
+    console.log('selecteds', selecteds);
     return set(() => ({
       selecteds: selecteds,
       filteredPlatforms: filteredPlatforms.length > 0 ? filteredPlatforms : get().platforms,

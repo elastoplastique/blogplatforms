@@ -4,6 +4,7 @@ import { META } from '@/constants/meta';
 import { Favicons } from '@/components/compound/favicons';
 import { authentication } from '@wix/members';
 import { useWixModules } from '@wix/sdk-react';
+import { SmoothScroll } from '@/components/layout/scroll-container';
 
 type PageLayoutProps = {
   children: React.ReactNode;
@@ -42,7 +43,7 @@ export function PageLayout({ children, ...props }: PageLayoutProps) {
         <link rel="canonical" href={props.canonical || META.CANONICAL} />
         {props.richData && <script type="application/ld+json">{`${JSON.stringify(props.richData)}`}</script>}
       </Head>
-      <Flex className="!min-w-full py-20 min-h-[70vh]" direction="column" align="center" id="page-layout">
+      <Flex className="!min-w-full py-20 min-h-[70vh] !mb-[500px]" direction="column" align="center" id="page-layout">
         {children}
       </Flex>
     </>

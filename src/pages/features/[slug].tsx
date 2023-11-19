@@ -15,147 +15,121 @@ import { Breadcrumb } from '@/components/compound/breadcrumb';
 import { ROUTES } from '@/constants/routes';
 import { META } from '@/constants/meta';
 import { SocialAccounts } from '@/components/custom/social-accounts';
-import {
-  getPlatformSlugs,
-  getPlatforms,
-  getPlatformComparativeFeatures,
-  getPlatformFeatures,
-  getPlatformAccounts,
-  getPlatformsFeatures,
-  getFeature,
-  getFeatureSlugs,
-  queryItems,
-  getPost,
-  queryReferencedItems,
-} from '@/lib/wix/cms';
+import { getPlatformsFeatures, getFeature, getFeatures, getFeatureSlugs, queryItems, getPost, queryReferencedItems } from '@/lib/wix/cms';
 import { RichContent } from '@/lib/wix/cms/components/rich-content';
 import { removeTrailing } from '@/lib/utils/remove-trailing-slash';
-import { PlatformMedia } from '@/components/custom/platform-media';
-import { AnimatePresence } from 'framer-motion';
-import { ListCardCover } from '@/components/compound/list-card-cover';
 import { COLLECTIONS } from '@/lib/wix/cms/cms';
 import { createWixStaticUrl } from '@/lib/wix/utils/create-url';
 import { externalImageLoader } from '@/lib/utils/external-image-loader';
+import { PlatformsGridView } from '@/components/views/platforms-grid-view';
+import { FilterFeatureView } from '@/components/views/feature-filter-view';
+
+import { useRouter } from 'next/router';
+import { FilterMenu } from '@/components/compound/filter-menu';
+import { FilterDialogMenu } from '@/components/compound/filter-dialog-menu';
+import { useFilters } from '@/lib/state/filters';
+import { AUDIENCES } from '@/constants/audiences';
+import { FILTER_FEATURE_LABEL, FILTER_AUDIENCE_LABEL } from '@/constants/content';
+import decoreative from '/public/assets/decorative/blurry2.svg';
+import { DEFAULT_PLATFORMS_LOADING_PARAMS } from '@/constants/settings';
+import { FeatureInfoView } from '@/components/views/feature-info-view';
 type Props = {
   feature: Wix.FeatureNode;
   platforms: PlatformNode[];
+  features: Wix.FeatureNode[];
+  platformFeatures: PlatformFeatureNode[];
 };
 
-export default function PlatformPage({ feature, platforms }: Props) {
-  // console.log('[slug] page: ', platforms);
-  // console.log('[slug] page: ', feature);
+export default function FeaturePage(props: Props) {
+  const router = useRouter();
+  const routeSlug = router.asPath.split('/')[router.asPath.split('/').length - 1];
+
+  // Filter Store
+  const setPlatforms = useFilters((state) => state.setPlatforms);
+  const setFeatures = useFilters((state) => state.setFeatures);
+  const addOptionSet = useFilters((state) => state.addOptionSet);
+  const selecteds = useFilters((state) => state.selecteds);
+
+  const filteredPlatforms = useFilters((state) => state.filteredPlatforms);
+  const options = useFilters((state) => state.options);
+
+  // Memoized platforms list
+  const platforms = useMemo(
+    () => (filteredPlatforms.length > 0 ? filteredPlatforms : props.platforms),
+    [props.platforms, filteredPlatforms]
+  );
+  const features = useMemo(() => props.features, [props.features]);
+
+  // Memoized features list
+  const featureNames = useMemo(() => features?.map((f: FeatureNode) => f?.title), [features]);
+
+  function getFeatureSlug(feature: string) {
+    return props.features.find((f: FeatureNode) => f.title === feature)?.slug;
+  }
+
+  function setFeatureRoute(feature: string) {
+    if (feature) {
+      const featureSlug = getFeatureSlug(feature);
+      if (featureSlug && featureSlug !== routeSlug) {
+        router.push(`/${ROUTES.FEATURES_DIRECTORY.path}/${featureSlug}`);
+      } else {
+        router.push('/');
+      }
+    }
+  }
+
+  useEffect(() => {
+    setPlatforms(props.platforms);
+    setFeatures(props.features);
+
+    addOptionSet(FILTER_FEATURE_LABEL, featureNames, (p: PlatformNode, selected: string) => {
+      setFeatureRoute(selected);
+      return true;
+    });
+  }, []);
 
   return (
     <PageLayout
-      metaTitle={`${feature.header} | BlogPlatforms.app`}
-      metaDescription={feature.description}
-      canonical={`${removeTrailing(META.CANONICAL)}/${ROUTES.FEATURES_DIRECTORY.path}/${removeTrailing(feature.slug)}`}
+      metaTitle={`${props.feature.header} | BlogPlatforms.app`}
+      metaDescription={props.feature.description}
+      canonical={`${removeTrailing(META.CANONICAL)}/${ROUTES.FEATURES_DIRECTORY.path}/${removeTrailing(props.feature.slug)}`}
     >
-      <Container size="4" className="w-full" id="feature-page">
+      <Container
+        size={{
+          initial: '1',
+          md: '3',
+          lg: '4',
+        }}
+        className="w-full"
+        id="feature-page"
+      >
         <Card id="page-card" className="w-full h-full relative flex flex-col justify-start min-w-full" mt={'2'} size="4">
-          {feature.image && (
+          {/* {props.feature.image && (
             <AspectRatio ratio={16 / 9} style={{ width: '100%', height: '100%', minHeight: 200, position: 'relative' }}>
               <Image
-                src={createWixStaticUrl(feature.image)}
-                alt={feature.title}
+                src={createWixStaticUrl(props.feature.image)}
+                alt={props.feature.title}
                 className="rounded-lg"
                 loader={externalImageLoader}
                 fill
                 priority
               />
             </AspectRatio>
-          )}
+          )} */}
 
-          <motion.div className="relative min-w-full rounded-3xl flex flex-col justify-center items-center min-h-32 my-8">
-            <Heading
-              as="h1"
-              className="tracking-tight text-center !font-semi-bold text-inherit pt-2 !text-4xl md:!text-6xl"
-              style={{ maxWidth: 640 }}
-            >
-              {feature.header}
-            </Heading>
-            <Heading
-              as="h2"
-              size={{
-                initial: '4',
-                sm: '5',
-                md: '6',
-              }}
-              className="tracking-tight text-center !font-regular text-inherit pt-8 serif my-6"
-            >
-              The blog platforms that support {feature.title} feature.
-            </Heading>
-          </motion.div>
-          <Flex width="100%" justify="center">
-            <Breadcrumb
-              links={[
-                { name: 'Features', href: `/features`, current: false, title: 'Explore Blog Platforms by Features' },
-                { name: feature.title, href: `/features/${feature.slug}`, current: true },
-              ]}
-            />
-          </Flex>
-          {/* DESCRIPTION  */}
-          <Flex direction="column" justify="start" align="center" className="w-full">
-            <Flex direction="column" justify="start" align="center" className="max-w-[80ch]">
-              {feature.body ? (
-                <RichContent body={feature.body} />
-              ) : (
-                <Text as="p" align="center" weight="medium" size="5">
-                  {feature.description}
-                </Text>
-              )}
-            </Flex>
-          </Flex>
+          <FeatureInfoView
+            header={props.feature.header!}
+            title={props.feature.title}
+            description={props.feature.description}
+            body={props.feature.body}
+            slug={props.feature.slug}
+          />
+
           <Separator className="my-8" size="4" />
 
-          {/* MEDIA */}
-          {/* {platform.media && platform.media.length > 0 && <PlatformMedia media={platform.media} />} */}
+          <FilterFeatureView features={features} />
 
-          <Flex
-            direction={{
-              initial: 'column',
-              sm: 'row',
-              md: 'row',
-            }}
-            align="stretch"
-            className="min-w-full"
-          >
-            {/* <Flex direction="row" align="stretch" grow="0" shrink="1" id="feature-box">
-
-          </Flex> */}
-            <Flex direction="column" align="stretch" grow="1" id="list-box">
-              <Grid
-                width="100%"
-                asChild
-                columns={{
-                  initial: '1',
-                  sm: '2',
-                  md: '2',
-                  lg: '2',
-                }}
-                style={{ minHeight: '40vh', marginBottom: '30vh' }}
-                p="1"
-              >
-                <motion.ul layout>
-                  <AnimatePresence>
-                    {platforms.map((platform) => (
-                      <motion.li
-                        layout
-                        key={platform.slug}
-                        className="relative z-0 min-h-120 m-4 flex flex-col items-center"
-                        initial={{ opacity: 0 }}
-                        animate={{ opacity: 1 }}
-                        exit={{ opacity: 0 }}
-                        transition={{ easings: 'linear', duration: 0.3 }}
-                      >
-                        <ListCardCover platform={platform} />
-                      </motion.li>
-                    ))}
-                  </AnimatePresence>
-                </motion.ul>
-              </Grid>
-            </Flex>
-          </Flex>
+          <PlatformsGridView platforms={platforms} />
         </Card>
       </Container>
     </PageLayout>
@@ -163,30 +137,30 @@ export default function PlatformPage({ feature, platforms }: Props) {
 }
 
 export const getStaticProps = async ({ params: { slug } }: { params: { slug: string } }) => {
-  const feature = await getFeature(slug);
+  const features = await getFeatures();
+  const feature = features.find((f: FeatureNode) => f.slug === slug);
   // console.log("slug", slug, feature.slug)
   const options = {
     dataCollectionId: COLLECTIONS.PLATFORMS_FEATURES,
-    eq: ['feature', feature._id],
+    eq: ['feature', feature!._id],
     includeReferencedItems: ['platform', 'feature'],
   };
   const allPlatformsFeatures = await queryItems(options);
   // console.log("queryItems", allPlatformsFeatures)
   // filter all the platforms that have this feature
-  const platformsFeatures = allPlatformsFeatures.filter((pf) => pf?.feature?.slug === feature.slug);
+  const platformsFeatures = allPlatformsFeatures.filter((pf) => pf?.feature?.slug === feature!.slug);
   // console.log("\n\nplatformsFeature", platformsFeatures)
   const platforms = platformsFeatures.map((pf) => pf.platform);
   // console.log("\n\platforms", platforms)
 
-  // const allPlatforms = await getPlatforms();
-  // const platforms = allPlatforms.filter((p) => platformIds.includes(p._id));
-  // console.log("platforms", platforms)
-  // console.log("platforms", feature)
+  const platformFeatures = await getPlatformsFeatures();
 
   return {
     props: {
       feature,
       platforms,
+      features,
+      platformFeatures,
     },
   };
 };

@@ -1,5 +1,3 @@
-import type { Color } from '../../types/colors';
-
 export const COLORS: Color[] = [
   'jade',
   'teal',
@@ -15,5 +13,5 @@ export const COLORS: Color[] = [
   'ruby',
   'tomato',
 ];
-
+export const DEFAULT_COLOR: Color = 'violet';
 export const COLORS_LIGHT: Color[] = ['sky', 'mint', 'lime', 'yellow', 'amber'];

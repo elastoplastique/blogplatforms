@@ -22,6 +22,8 @@ import { slugify } from '@/lib/utils/slugify';
 import { generatePage } from '@/lib/rich-data/page';
 import { Swiper } from '@/components/compound/swiper';
 // import { CommandBar } from '@/components/compound/command-bar';
+import { PlatformsGridView } from '@/components/views/platforms-grid-view';
+import { FilterFeatureView } from '@/components/views/feature-filter-view';
 
 type Props = {
   platforms: PlatformNode[];
@@ -42,6 +44,8 @@ export default function HomePage(props: Props) {
   const addOptionSet = useFilters((state) => state.addOptionSet);
 
   const { feature } = useFilters((state) => state.selecteds);
+  const removeSelected = useFilters((state) => state.removeSelected);
+
   // // console.log('home page selecteds', feature);
   const filteredPlatforms = useFilters((state) => state.filteredPlatforms);
   const options = useFilters((state) => state.options);
@@ -84,9 +88,7 @@ export default function HomePage(props: Props) {
   }
   useEffect(() => {
     console.log('feature changed', feature);
-    // if (feature) {
-    //   const featureSlug = getFeatureSlug(feature);
-    //   if (featureSlug) router.push(`/features/${featureSlug}`);
+    removeSelected('feature');
     // }
   }, [feature]);
   return (
@@ -105,7 +107,13 @@ export default function HomePage(props: Props) {
         breadcrumbsLinks: [{ name: META.WEBSITE_NAME, href: META.CANONICAL, current: true }],
       })}
     >
-      <Container size="4">
+      <Container
+        size={{
+          initial: '1',
+          md: '3',
+          lg: '4',
+        }}
+      >
         {/* <Image
           src={decoreative}
           alt="decorative"
@@ -117,74 +125,9 @@ export default function HomePage(props: Props) {
 
         {/* <CommandBar features={props.features} platforms={props.platforms} /> */}
 
-        <FilterDialogMenu />
+        <FilterFeatureView features={features} />
 
-        <Flex
-          direction={{
-            initial: 'column',
-            sm: 'row',
-            md: 'row',
-          }}
-          align="stretch"
-          className="min-w-full"
-        >
-          {/* <Flex direction="row" align="stretch" grow="0" shrink="1" id="feature-box">
-
-          </Flex> */}
-          <Flex direction="column" align="stretch" grow="1" id="list-box">
-            {/* <Swiper 
-              media={[
-                {
-                  type: "IMAGE", 
-                  src: "/media/posts/best-blog-platforms-for-artists.webp", 
-                  alt: "Best Blog Platforms for Artists",
-                  link: "/blog/best-blog-platforms-for-artists",
-                  title: "Best Blog Platforms for Artists",
-                  description: "The best blog platforms for artists to showcase their work and sell their art online.",
-                },
-                {
-                  type: "IMAGE", 
-                  src: "/media/posts/best-free-platforms-for-blogging.webp", 
-                  alt: "Best Free Platforms for Blogging",
-                  link: "/blog/best-free-platforms-for-blogging",
-                  title: "Best Free Platforms for Blogging",
-                  description: "The best blog platforms for artists to showcase their work and sell their art online.",
-                }
-              ]}
-            /> */}
-
-            <Grid
-              width="100%"
-              asChild
-              columns={{
-                initial: '1',
-                sm: '2',
-                md: '2',
-                lg: '3',
-              }}
-              style={{ minHeight: '70vh' }}
-              p="1"
-            >
-              <motion.ul layout>
-                <AnimatePresence>
-                  {props.platforms.map((platform) => (
-                    <motion.li
-                      layout
-                      key={platform.slug}
-                      className="relative z-0 h-120 m-4 flex flex-col items-center"
-                      initial={{ opacity: 0 }}
-                      animate={{ opacity: 1 }}
-                      exit={{ opacity: 0 }}
-                      transition={{ easings: 'linear', duration: 0.3 }}
-                    >
-                      <ListCardCover platform={platform} />
-                    </motion.li>
-                  ))}
-                </AnimatePresence>
-              </motion.ul>
-            </Grid>
-          </Flex>
-        </Flex>
+        <PlatformsGridView platforms={platforms} />
       </Container>
     </PageLayout>
   );

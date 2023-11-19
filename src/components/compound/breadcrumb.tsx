@@ -15,7 +15,7 @@ export function Breadcrumb(props: Props) {
               className="!text-gray-400 text-sm hover:text-gray-500 border-b-1 whitespace-nowrap"
               title="Best Blog Platforms"
             >
-              Blog Platforms
+              <strong>Best Blog Platforms</strong>
             </Link>
           </div>
         </li>

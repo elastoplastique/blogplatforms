@@ -1,0 +1,15 @@
+export type Feature =
+  | 'Ad Monetization'
+  | 'Category & Tag System'
+  | 'Code Export'
+  | 'Code Inject'
+  | 'Comment System'
+  | 'E-commerce'
+  | 'Figma Integration'
+  | 'Image Optimization'
+  | 'Integrated Reader Base'
+  | 'Markdown'
+  | 'Newsletter'
+  | 'Open-source'
+  | 'Paywall'
+  | 'Sell Digital Products';

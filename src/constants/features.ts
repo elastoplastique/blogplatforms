@@ -17,7 +17,7 @@ import {
   MusicPlaylistIcon,
 } from '@/components/icons/bold-icons';
 
-export const FEATURES = [
+export const FEATURES: Feature[] = [
   'Ad Monetization',
   'Category & Tag System',
   'Code Export',
@@ -66,4 +66,10 @@ export const FEATURE_COLORS = {
   'Open-source': 'plum',
   Paywall: 'teal',
   'Sell Digital Products': 'jade',
+};
+export const FEATURE_CATEGORY_COLORS: { [FeatureCategory: string]: Color } = {
+  Technical: 'violet',
+  Monetization: 'cyan',
+  Content: 'crimson',
+  Design: 'pink',
 };

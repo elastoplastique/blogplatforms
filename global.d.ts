@@ -1,10 +1,16 @@
 import * as Platforms from './types/cms';
+import { Color } from './types';
+import { Feature } from './types';
+import { FeatureCategory } from './types';
 // export * as externalDatabaseConnections from '@wix/data/src/data-v1-external-database-connection.universal';
 // export * as collections from '@wix/data/src/data-v2-data-collection.universal';
 // export * as items from '@wix/data/src/data-v2-data-item.universal';
 // export * as indexes from '@wix/data/src/data-v2-index.universal';
 
 declare global {
+  declare type Color = Color;
+  declare type Feature = Feature;
+  declare type FeatureCategory = FeatureCategory;
   // declare type PlatformSort = Platforms.PlatformSort
   // declare type PlatformsParams = Platforms.PlatformsParams
   declare type PlatformNode = Platforms.PlatformNode;
