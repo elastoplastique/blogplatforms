@@ -1,44 +1,38 @@
-// @ts-nocheck
-import Cookies from 'js-cookie';
-import { useEffect, useState } from 'react';
 
-import { createClient, OAuthStrategy } from '@wix/sdk';
-import { members } from '@wix/members';
-import { myWixClient } from '@/lib/wix/client';
+import React, { useState } from 'react';
 
-export default function LoginBar() {
-  const [member, setMember] = useState(null);
+const LoginForm = () => {
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
 
-  async function fetchMember() {
-    const { member } = myWixClient.auth.loggedIn() ? await myWixClient.members.getMyMember() : {};
-    setMember(member || undefined);
-  }
+  const handleEmailChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setEmail(e.target.value);
+  };
 
-  async function login() {
-    const data = myWixClient.auth.generateOAuthData(`${window.location.origin}/login-callback`, window.location.href);
-    localStorage.setItem('oauthRedirectData', JSON.stringify(data));
-    const { authUrl } = await myWixClient.auth.getAuthUrl(data);
-    window.location = authUrl; // wix auth will send the user back to the callback page (login-callback.js)
-  }
+  const handlePasswordChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setPassword(e.target.value);
+  };
 
-  async function logout() {
-    const { logoutUrl } = await myWixClient.auth.logout(window.location.href);
-    Cookies.remove('session');
-    window.location = logoutUrl;
-  }
-
-  useEffect(() => {
-    fetchMember();
-  }, []);
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    // Perform login logic here
+    console.log('Email:', email);
+    console.log('Password:', password);
+  };
 
   return (
-    <div>
-      {member !== null && (
-        <section onClick={() => (myWixClient.auth.loggedIn() ? logout() : login())}>
-          <h3>Hello {myWixClient.auth.loggedIn() ? member.profile?.nickname || member.profile?.slug || '' : 'visitor'},</h3>
-          <span>{myWixClient.auth.loggedIn() ? 'Logout' : 'Login'}</span>
-        </section>
-      )}
-    </div>
+    <form onSubmit={handleSubmit}>
+      <div>
+        <label htmlFor="email">Email:</label>
+        <input type="email" id="email" value={email} onChange={handleEmailChange} />
+      </div>
+      <div>
+        <label htmlFor="password">Password:</label>
+        <input type="password" id="password" value={password} onChange={handlePasswordChange} />
+      </div>
+      <button type="submit">Login</button>
+    </form>
   );
-}
+};
+
+export default LoginForm;

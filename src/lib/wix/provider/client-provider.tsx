@@ -10,6 +10,8 @@ import { items } from '@wix/data';
 import { authentication, members } from '@wix/members';
 import Cookies from 'js-cookie';
 import { WixModuleProvider } from './module-provider';
+import { getBrowserWixClient } from '@/lib/wix/auth/wix-client.browser';
+import { WixClientType } from '@/lib/wix/auth/wix-client.base';
 
 const refreshToken = JSON.parse(Cookies.get(process.env.NEXT_PUBLIC_WIX_REFRESH_TOKEN!) || '{}');
 
@@ -26,9 +28,14 @@ export const wixClient = createClient({
     tokens: { refreshToken, accessToken: { value: '', expiresAt: 0 } },
   }),
 });
+
 export type WixClient = typeof wixClient;
+export type WixSession = {
+  wixClient: WixClientType;
+};
 
 export const WixClientContext = createContext<WixClient>(wixClient);
+export const WixSessionContext = createContext<WixSession | null>(null);
 
 export const WixClientProvider = ({ children }: { children: ReactNode }) => (
   <WixProvider
@@ -44,6 +51,8 @@ export const WixClientProvider = ({ children }: { children: ReactNode }) => (
       tokens: { refreshToken, accessToken: { value: '', expiresAt: 0 } },
     })}
   >
-    <WixModuleProvider>{children}</WixModuleProvider>
+    <WixSessionContext.Provider value={{ wixClient: getBrowserWixClient() }}>
+      <WixModuleProvider>{children}</WixModuleProvider>
+    </WixSessionContext.Provider>
   </WixProvider>
 );
