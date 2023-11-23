@@ -119,7 +119,7 @@ export function MainNavigation() {
 
                 {features.map((pf: NavLink) => (
                   <DropdownMenu.Item key={pf.href} className="mt-4 !py-1 !h-12">
-                    <Link href={pf.href} title={pf.description!} className="flex flex-col justify-start">
+                    <Link href={pf.href} prefetch={true} title={pf.description!} className="flex flex-col justify-start">
                       <Text size="3" weight={'regular'} className="py-0 my-0 leading-5">
                         {pf.name}
                       </Text>
