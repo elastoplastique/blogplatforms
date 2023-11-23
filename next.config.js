@@ -10,6 +10,7 @@ const withMDX = require('@next/mdx')({
     workerThreads: false,
     cpus: 1,
   },
+  transpilePackages: ['lodash', 'lodash-es'],
   options: {
     // If you use remark-gfm, you'll need to use next.config.mjs
     // as the package is ESM only

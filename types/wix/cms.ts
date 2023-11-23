@@ -202,3 +202,17 @@ export type CmsDocumentType = {
   _id: string;
   data: PlatformTypeNode | FeatureNode | PlatformFeatureNode | PlatformComparativeFeatureNode | AccountsNode;
 };
+
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////
+// PAGES
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////
+export interface PageNode {
+  _id: string;
+  title: string;
+  slug: string;
+  description?: string;
+  body?: { nodes: BodyItemUnion[] };
+
+  // Images
+  cover?: string;
+}

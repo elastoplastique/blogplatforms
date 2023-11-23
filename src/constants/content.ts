@@ -1,5 +1,5 @@
-export const WEBSITE_NAME = 'Best Blog Platforms';
-export const HOME_TITLE = 'Blog Platforms';
+export const WEBSITE_NAME = 'Blogging Platforms';
+export const HOME_TITLE = 'Blogging Platforms';
 export const HOME_DESCRIPTION =
   '<p>Discover and compare the best <em>blogging platforms</em> and sites. <br/> Our curated list provides in-depth reviews, helping you make an informed decision for your blogging journey.</p><p><strong>Search blog platforms by features</strong></p>';
 

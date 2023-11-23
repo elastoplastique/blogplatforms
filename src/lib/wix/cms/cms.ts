@@ -34,6 +34,7 @@ export const COLLECTIONS = {
   PLATFORMS_COMPARATIVE_FEATURES: 'platformComparativeFeatures',
   POSTS: 'Posts',
   TAGS: 'Tags',
+  PAGES: 'pages',
 };
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -240,6 +241,30 @@ export async function getPlatformFeatures(platformId?: string): Promise<Platform
   // }
   return platformFeatures;
 }
+export async function getPlatformFeaturesByFeatureId(featureId?: string): Promise<PlatformFeatureNode[]> {
+  const platformFeatures = await queryItems({
+    dataCollectionId: COLLECTIONS.PLATFORMS_FEATURES,
+    eq: ['feature', featureId],
+    includeReferencedItems: ['feature', 'platform'],
+  });
+  // for await (const pf of platformFeatures) {
+  //   pf.featureData = await getFeature(pf.feature);
+  // }
+  return platformFeatures;
+}
+
+export async function getPlatformFeaturesByFeatureSlug(featureSlug?: string): Promise<PlatformFeatureNode[]> {
+  const feature = await getFeature(featureSlug!);
+  const platformFeatures = await queryItems({
+    dataCollectionId: COLLECTIONS.PLATFORMS_FEATURES,
+    eq: ['feature', feature._id],
+    includeReferencedItems: ['feature', 'platform'],
+  });
+  // for await (const pf of platformFeatures) {
+  //   pf.featureData = await getFeature(pf.feature);
+  // }
+  return platformFeatures;
+}
 
 // SPECIFIC PLATFORM FEATURE FOR A GIVEN PLATFORM AND A GIVEN FEATURE
 export async function getPlatformFeature({
@@ -396,3 +421,16 @@ export const getRichData = async (url: string) => {
   }
   return textResponse;
 };
+
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////
+// PAGES DATA
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////
+export async function getPages(): Promise<Wix.PageNode[]> {
+  return await getItems(COLLECTIONS.PAGES);
+}
+export async function getPage(slug: string): Promise<Wix.PageNode> {
+  const pages = await getPages();
+  const page = pages.find((page) => page.slug === slug) || ({} as Wix.PageNode);
+  if (page?.cover) page.cover = createWixStaticUrl(page.cover!);
+  return page;
+}

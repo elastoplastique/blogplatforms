@@ -20,7 +20,7 @@ export type InputPlatformRichData = {
 export function generatePlatformPage({ platform, rating, breadcrumbsLinks }: InputPlatformRichData) {
   const author = generateAuthor({
     name: 'Blog Platforms',
-    url: 'https://blogplatforms.app',
+    url: 'https://bloggingplatforms.app',
     sameAs: [
       // 'https://www.facebook.com/blogplatforms',
       'https://twitter.com/elastoplastique',

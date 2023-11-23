@@ -3,13 +3,15 @@ import React, { useEffect, useState, useMemo } from 'react';
 import { ListCardCover } from '@/components/compound/list-card-cover';
 import { Flex, Grid } from '@/components/ui';
 import { motion, AnimatePresence } from 'framer-motion';
+import { useGlobal } from '@/lib/state/global';
 
-type Props = {
-  platforms: PlatformNode[];
-  // audiences: string[];
-};
+// type Props = {
+//   platforms: PlatformNode[];
+//   // audiences: string[];
+// };
 
-export function PlatformsGridView(props: Props) {
+export function PlatformsGridView() {
+  const platformsToRender = useGlobal((state) => state.platformsToRender);
   return (
     <Flex
       direction={{
@@ -39,19 +41,21 @@ export function PlatformsGridView(props: Props) {
         >
           <motion.ul layout>
             <AnimatePresence>
-              {props.platforms.map((platform) => (
-                <motion.li
-                  layout
-                  key={platform.slug}
-                  className="relative z-0 h-120 m-4 flex flex-col items-center"
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  exit={{ opacity: 0 }}
-                  transition={{ easings: 'linear', duration: 0.3 }}
-                >
-                  <ListCardCover platform={platform} />
-                </motion.li>
-              ))}
+              {platformsToRender &&
+                platformsToRender.length > 0 &&
+                platformsToRender.map((platform) => (
+                  <motion.li
+                    layout
+                    key={platform.slug}
+                    className="relative z-0 h-120 m-4 flex flex-col items-center"
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    exit={{ opacity: 0 }}
+                    transition={{ easings: 'linear', duration: 0.3 }}
+                  >
+                    <ListCardCover platform={platform} />
+                  </motion.li>
+                ))}
             </AnimatePresence>
           </motion.ul>
         </Grid>

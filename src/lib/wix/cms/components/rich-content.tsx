@@ -55,6 +55,14 @@ export const RichContent = memo(
   (prevProps, nextProps) => prevProps.body?.metadata?._id === nextProps.body?.metadata?._id
 );
 
+function domainTransformer(url: string) {
+  if (url.includes('blogplatforms.app')) {
+    return url.replace('blogplatforms', 'bloggingplatforms');
+  } else {
+    return url;
+  }
+}
+
 function WixHeading({ node }: { node: Wix.Heading }) {
   function getLevel(node: HeadingI) {
     switch (node.headingData!.level) {
@@ -102,6 +110,7 @@ function WixTextDecorated({ node }: { node: Wix.Text }) {
   const id2 = useId();
   const id3 = useId();
   const id4 = useId();
+
   // const getBoldDecoration = node.textData.decorations.find((decoration: Decoration<DecorationType>) => decoration.type === "BOLD")
   // const getColorDecoration = node.textData.decorations.find((decoration: Decoration<DecorationType>) => decoration.type === "COLOR")
   // const getItalicDecoration = node.textData.decorations.find((decoration: Decoration<DecorationType>) => decoration.type === "ITALIC")
@@ -109,7 +118,7 @@ function WixTextDecorated({ node }: { node: Wix.Text }) {
 
   const LinkDecoration = ({ decoration, children }: { decoration: LinkDecoration; children: ReactNode | string }) => (
     <Link
-      href={decoration.linkData.link.url}
+      href={domainTransformer(decoration.linkData.link.url)}
       style={{ color: 'inherit' }}
       className="cms-rich-content cms-link"
       target={
@@ -181,6 +190,8 @@ function WixText({ node }: { node: Wix.Text }) {
 }
 
 function WixLinkPreview({ node }: { node: Wix.LinkPreview }) {
+  const isInternal =
+    node.linkPreviewData.link.url.includes('blogplatforms.app') || node.linkPreviewData.link.url.includes('bloggingplatforms.app');
   return (
     <Card className="cms-rich-content cms-link-preview link-preview-card">
       <Flex direction={{ initial: 'column', sm: 'row' }} height="min-content">
@@ -210,10 +221,10 @@ function WixLinkPreview({ node }: { node: Wix.LinkPreview }) {
           </Text>
         </Flex>
         <a
-          href={node.linkPreviewData.link.url}
+          href={domainTransformer(node.linkPreviewData.link.url)}
           className="cover-box"
-          target="_blank"
-          rel={node.linkPreviewData.link.url.includes('blogplatforms.app') ? '' : 'noopener nofollow'}
+          target={isInternal ? '' : '_blank'}
+          rel={isInternal ? '' : 'noopener nofollow'}
         ></a>
       </Flex>
     </Card>

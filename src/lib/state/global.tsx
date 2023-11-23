@@ -1,29 +1,42 @@
 import { create } from 'zustand';
 
 export const useGlobal = create<UseFilters>((set, get) => ({
-  activeFeature: null,
   features: [], // features subcollection data
-  activePlatform: null,
-
   setFeatures: (features) => {
     return set({ features });
   },
+  getFeature: (slug) => get().features.find((f: FeatureNode) => f.slug === slug),
 
-  platforms: [], // features subcollection data
-  setPlatforms: (platforms: PlatformNode[]) => {
-    return set({ platforms });
+  platformsByFeature: {},
+  setSingleFeaturePlatforms: (slug: string, platforms: PlatformNode[]) => {
+    const platformsByFeature = { ...get().platformsByFeature, [slug]: platforms };
+    return set({ platformsByFeature });
   },
+  getSingleFeaturePlatforms: (slug) => {
+    return get().platformsByFeature[slug];
+  },
+
+  platformsToRender: [],
+  setPlatformsToRender: (platforms: PlatformNode[]) => {
+    return set({ platformsToRender: platforms });
+  },
+
+  featureToRender: null,
+  setFeatureToRender: (f: FeatureNode) => set({ featureToRender: f }),
 }));
 
-type Func = (p: PlatformNode, selected: string) => boolean;
-
 export interface UseFilters {
-  // feature subcollection data
-  platforms: FeatureNode[];
-  activePlatform: FeatureNode | null;
-  features: FeatureNode[];
-  activeFeature: FeatureNode | null;
-
+  features: FeatureNode[]; // features subcollection data
   setFeatures: (features: FeatureNode[]) => void;
-  setPlatforms: (features: FeatureNode[]) => void;
+  getFeature: (slug: string) => FeatureNode;
+  // feature subcollection data
+  platformsByFeature: { [key: string]: PlatformNode[] };
+  setSingleFeaturePlatforms: (slug: string, platforms: PlatformNode[]) => void;
+  getSingleFeaturePlatforms: (slug: string) => PlatformNode[];
+
+  platformsToRender: PlatformNode[];
+  setPlatformsToRender: (platforms: PlatformNode[]) => void;
+
+  featureToRender: FeatureNode | null;
+  setFeatureToRender: (f: FeatureNode) => void;
 }

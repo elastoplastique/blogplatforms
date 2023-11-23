@@ -8,25 +8,16 @@ import { PostCard } from '@/components/custom/post-card';
 import { META } from '@/constants/meta';
 import { createWixStaticUrl } from '@/lib/wix/utils/create-url';
 import { useWixClient } from '@/lib/wix/hooks/use-wix-client';
+import { LoginBar } from '@/components/auth/status';
 
 export default function ProfilePage() {
   const wixClient = useWixClient();
 
   return (
-    <PageLayout metaTitle={`Best Blogging Site | BlogPlatforms.app`} canonical={'https://blogplatforms.app/blog'}>
+    <PageLayout metaTitle={`Best Blogging Site | BlogPlatforms.app`} canonical={'https://bloggingplatforms.app/blog'}>
       <Container size="3">
-        <Heading as="h1" size="4" className="tracking-tight text-center !font-semi-bold !mx-8 text-inherit pt-2">
-          <span className="!text-6xl block !tracking-tighter uppercase"></span>
-        </Heading>
+        <LoginBar />
 
-        <Flex width="100%" direction="column" justify="center" align="center" className="!z-[1] relative">
-          <Heading size="9" className="pb-4" align="center">
-            {META.POSTS_PAGE.TITLE}
-          </Heading>
-          <Text size="4" className="mb-8 max-w-[90%]" align="center">
-            {META.POSTS_PAGE.DESCRIPTION}
-          </Text>
-        </Flex>
         <Separator className="my-8" size="4" />
       </Container>
     </PageLayout>

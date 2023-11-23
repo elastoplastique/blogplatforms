@@ -11,33 +11,49 @@ import { ROUTES } from '@/constants/routes';
 import { FEATURE_CATEGORY_COLORS } from '@/constants/features';
 import { DEFAULT_COLOR } from '@/constants/colors';
 import { cn } from '@/lib/utils';
+import { useRouter } from 'next/router';
 
 type Props = { features: FeatureNode[] };
 
 type OptionData = { [key: string]: any };
 
 export const FilterFeatureView = ({ features }: Props) => {
-  const options = useFilters((state) => state.options);
-
-  const filterOptionKeys = useMemo(() => Object.keys(options), [options]);
-  //   console.log('features', features);
+  const router = useRouter();
+  const routeSlug = router.asPath.split('/')[router.asPath.split('/').length - 1];
+  const selectHandler = (featureSlug: string) => {
+    if (featureSlug === routeSlug) {
+      router.push('/', undefined, { shallow: true });
+    } else {
+      router.push(`/${ROUTES.FEATURES_DIRECTORY.path}/${featureSlug}`, undefined, { shallow: true });
+    }
+  };
+  const getColor = (f: FeatureNode) => {
+    const color: Color = f && f.category.length > 0 ? FEATURE_CATEGORY_COLORS[f.category[0] as Feature] : (DEFAULT_COLOR as Color);
+    return color;
+  };
 
   return (
     <Card id="filter-menu-card" className="!w-full min-h-[60px] !mb-8" variant="surface">
       <Grid width="100%" columns="1">
-        {filterOptionKeys.map((o: string) => (
-          <OptionSelect
-            option={o}
-            options={options[o]!}
-            key={`filter-option-set-${o}`}
-            optionData={o === FILTER_FEATURE_LABEL ? features : null}
-          />
-        ))}
+        <motion.ul className="flex flex-row flex-wrap justify-center items-center list-none">
+          {features.map((f: FeatureNode) => (
+            <motion.li key={`feature-badge-${f.slug}`}>
+              <Badge className={'m-1 !cursor-pointer relative overflow-hidden !px-8'} color={getColor(f)}>
+                <motion.div
+                  style={{ minHeight: 36 }}
+                  onClick={() => selectHandler(f.slug)}
+                  className="flex flex-row justify-center items-center"
+                >
+                  <motion.div className="mr-2">{f.title}</motion.div>
+
+                  <InfoTooltip text={f.header!} />
+                  {f.slug === routeSlug && <Box className="select-item-active" />}
+                </motion.div>
+              </Badge>
+            </motion.li>
+          ))}
+        </motion.ul>
       </Grid>
-
-      {/* <Separator />
-
-      <SelectedOptionBadges /> */}
     </Card>
   );
 };
@@ -53,30 +69,21 @@ const OptionSelect = ({
   color?: Color;
   optionData?: OptionData | null;
 }) => {
+  const router = useRouter();
+  const featureSlug = router.asPath.split('/')[router.asPath.split('/').length - 1];
+  console.log('featureSlug', featureSlug);
   const setSelected = useFilters((state) => state.setSelected);
   const selecteds = useFilters((state) => state.selecteds);
 
   const removeSelected = useFilters((state) => state.removeSelected);
 
-  const selectHandler = (value: string) => (value === FILTER_DEFAULT_VALUE ? removeSelected(option) : setSelected(option, value));
-  console.log('option', option);
+  const selectHandler = useCallback(() => {
+    if (selecteds[option]) {
+    } else {
+    }
+  }, [featureSlug]);
 
-  return (
-    <>
-      <motion.ul className="flex flex-row flex-wrap justify-center items-center list-none">
-        {options.map((posssibleOption) => (
-          <motion.li key={`filter-option-${posssibleOption}`}>
-            <SelectOption
-              title={posssibleOption}
-              active={selecteds[option] === posssibleOption}
-              onSelectHandler={() => selectHandler(posssibleOption)}
-              optionData={optionData ? optionData.find((o: FeatureNode) => o.title === posssibleOption) : null}
-            />
-          </motion.li>
-        ))}
-      </motion.ul>
-    </>
-  );
+  return <></>;
 };
 
 const SelectOption = ({

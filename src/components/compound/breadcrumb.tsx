@@ -11,11 +11,11 @@ export function Breadcrumb(props: Props) {
         <li>
           <div>
             <Link
-              href="https://blogplatforms.app"
+              href="https://bloggingplatforms.app"
               className="!text-gray-400 text-sm hover:text-gray-500 border-b-1 whitespace-nowrap"
               title="Best Blog Platforms"
             >
-              <strong>Best Blog Platforms</strong>
+              <strong>Best Blogging Platforms</strong>
             </Link>
           </div>
         </li>

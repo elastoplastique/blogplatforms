@@ -13,7 +13,7 @@ export type ArticleRichDataInput = {
 
 const defaultAuthor = generateAuthor({
   name: 'Blog Platforms',
-  url: 'https://blogplatforms.app',
+  url: 'https://bloggingplatforms.app',
   sameAs: [
     'https://twitter.com/blogplatforms',
     'https://www.facebook.com/blogplatforms',
@@ -28,7 +28,7 @@ export function generateArticle(data: ArticleRichDataInput) {
     '@type': 'Article',
     mainEntityOfPage: {
       '@type': 'WebPage',
-      '@id': 'https://blogplatforms.app/',
+      '@id': 'https://bloggingplatforms.app/',
     },
     headline: data.title,
     description: data.description,
@@ -40,7 +40,7 @@ export function generateArticle(data: ArticleRichDataInput) {
       name: 'Blog Platforms',
       logo: {
         '@type': 'ImageObject',
-        url: 'https://blogplatforms.app/images/logo.png',
+        url: 'https://bloggingplatforms.app/images/logo.png',
       },
     },
   };

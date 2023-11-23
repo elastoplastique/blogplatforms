@@ -1,17 +1,22 @@
+/* eslint-disable react/display-name */
+import { memo } from 'react';
 import { motion } from 'framer-motion';
 import { AspectRatio, Badge, Heading, Text, Flex, Card, Container, Separator, Grid, Button } from '@/components/ui';
 import { Breadcrumb } from '@/components/compound/breadcrumb';
 import { RichContent } from '@/lib/wix/cms/components/rich-content';
+import { useGlobal } from '@/lib/state/global';
 
-type Props = {
-  header: string;
-  title: string;
-  slug: string;
-  description?: string;
-  body?: any;
-};
+// type Props = {
+//   header: string;
+//   title: string;
+//   slug: string;
+//   description?: string;
+//   body?: any;
+// };
 
-export const FeatureInfoView = (props: Props) => {
+export const FeatureInfoView = memo(() => {
+  const featureToRender = useGlobal((state) => state.featureToRender);
+  if (!featureToRender) return <></>;
   return (
     <>
       <motion.div
@@ -24,7 +29,7 @@ export const FeatureInfoView = (props: Props) => {
           style={{ maxWidth: 640 }}
           id="feature-title"
         >
-          {props.header}
+          {featureToRender.header}
         </Heading>
         <Heading
           as="h2"
@@ -36,29 +41,29 @@ export const FeatureInfoView = (props: Props) => {
           }}
           className="tracking-tight text-center !font-regular text-inherit pt-8 serif my-6"
         >
-          The blog platforms that support {props.title} feature.
+          The blog platforms that support {featureToRender.title} feature.
         </Heading>
       </motion.div>
       <Flex width="100%" justify="center">
         <Breadcrumb
           links={[
             { name: 'Features', href: `/features`, current: false, title: 'Explore Blog Platforms by Features' },
-            { name: props.title, href: `/features/${props.slug}`, current: true },
+            { name: featureToRender?.title, href: `/features/${featureToRender.slug}`, current: true },
           ]}
         />
       </Flex>
       {/* DESCRIPTION  */}
       <Flex direction="column" justify="start" align="center" className="w-full">
         <Flex direction="column" justify="start" align="center" className="max-w-[80ch]">
-          {props.body ? (
-            <RichContent body={props.body} />
+          {featureToRender.body ? (
+            <RichContent body={featureToRender.body} />
           ) : (
             <Text as="p" align="center" weight="regular" size="5">
-              {props.description}
+              {featureToRender.description}
             </Text>
           )}
         </Flex>
       </Flex>
     </>
   );
-};
+});

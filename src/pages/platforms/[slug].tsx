@@ -72,8 +72,8 @@ export default function PlatformPage({ platform, platformFeatures, platformCompa
         },
         rating: '5',
         breadcrumbsLinks: [
-          { name: platform.title, href: `https://blogplatforms.app`, current: true },
-          { name: platform.title, href: `https://blogplatforms.app/platforms/${platform.slug}`, current: true },
+          { name: platform.title, href: `https://bloggingplatforms.app`, current: true },
+          { name: platform.title, href: `https://bloggingplatforms.app/platforms/${platform.slug}`, current: true },
         ],
       })}
     >

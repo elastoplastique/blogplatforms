@@ -10,7 +10,7 @@ import { useRouter } from 'next/router';
 import Image from 'next/image';
 import { FilterMenu } from '@/components/compound/filter-menu';
 import { FilterDialogMenu } from '@/components/compound/filter-dialog-menu';
-import { useFilters } from '@/lib/state/filters';
+import { useGlobal } from '@/lib/state/global';
 import { AUDIENCES } from '@/constants/audiences';
 import { FILTER_FEATURE_LABEL, FILTER_AUDIENCE_LABEL } from '@/constants/content';
 import decoreative from '/public/assets/decorative/blurry2.svg';
@@ -34,63 +34,25 @@ type Props = {
 
 export default function HomePage(props: Props) {
   const router = useRouter();
-  // console.log("home page props", props.platforms)
-  // console.log("home page props", props.features)
-  // console.log("home page props audiences", props.audiences)
+  const routeSlug = router.asPath.split('/')[router.asPath.split('/').length - 1];
+  const setPlatformsToRender = useGlobal((state) => state.setPlatformsToRender);
 
-  // Filter Store
-  const setPlatforms = useFilters((state) => state.setPlatforms);
-  const setFeatures = useFilters((state) => state.setFeatures);
-  const addOptionSet = useFilters((state) => state.addOptionSet);
+  const currentPlatforms = useMemo(() => {
+    console.log('routeSlug', routeSlug);
+    const platforms = props.platformFeatures
+      .filter((pf: PlatformFeatureNode) => {
+        return pf.feature.slug === routeSlug;
+      })
+      .map((pf: PlatformFeatureNode) => pf.platform);
 
-  const { feature } = useFilters((state) => state.selecteds);
-  const removeSelected = useFilters((state) => state.removeSelected);
-
-  // // console.log('home page selecteds', feature);
-  const filteredPlatforms = useFilters((state) => state.filteredPlatforms);
-  const options = useFilters((state) => state.options);
-
-  // Memoized platforms list
-  const platforms = useMemo(
-    () => (filteredPlatforms.length > 0 ? filteredPlatforms : props.platforms),
-    [props.platforms, filteredPlatforms]
-  );
-  const features = useMemo(() => props.features, [props.features]);
-
-  // Memoized features list
-  const featureNames = useMemo(() => features?.map((f: FeatureNode) => f?.title), [features]);
+    return platforms.length > 0 ? platforms : props.platforms;
+  }, [routeSlug]);
 
   useEffect(() => {
-    setPlatforms(props.platforms);
-    setFeatures(props.features);
-
-    // Add Audience Selection
-    // addOptionSet(FILTER_AUDIENCE_LABEL, AUDIENCES, (p: PlatformNode, selected: string) => p?.audience!.includes(selected));
-    addOptionSet(FILTER_FEATURE_LABEL, featureNames, (p: PlatformNode, selected: string) => {
-      setFeatureRoute(selected);
-      //p?.features?.map((f: FeatureNode) => f?.featureData?.title)!.includes(selected)
-      return true;
-    });
+    setPlatformsToRender(currentPlatforms);
   }, []);
 
-  // const routeHandler = (slug: string) => {
-  //   router.push(`${slug || "/"}`, undefined, { shallow: true })
-  // }
-
-  function getFeatureSlug(feature: string) {
-    return props.features.find((f: FeatureNode) => f.title === feature)?.slug;
-  }
-  function setFeatureRoute(feature: string) {
-    if (feature) {
-      const featureSlug = getFeatureSlug(feature);
-      if (featureSlug) router.push(`/features/${featureSlug}`);
-    }
-  }
-  useEffect(() => {
-    console.log('feature changed', feature);
-    removeSelected('feature');
-    // }
-  }, [feature]);
+  const features = useMemo(() => props.features, [props.features]);
   return (
     <PageLayout
       metaTitle={META.TITLE}
@@ -114,20 +76,11 @@ export default function HomePage(props: Props) {
           lg: '4',
         }}
       >
-        {/* <Image
-          src={decoreative}
-          alt="decorative"
-          layout="fill"
-          className="absolute top-0 left-0 z-[-1] opacity-30"
-        /> */}
-
         <Hero title={META.HOME.TITLE} htmlSubtitle={META.HOME.HTML_DESCRIPTION} />
-
-        {/* <CommandBar features={props.features} platforms={props.platforms} /> */}
 
         <FilterFeatureView features={features} />
 
-        <PlatformsGridView platforms={platforms} />
+        <PlatformsGridView />
       </Container>
     </PageLayout>
   );

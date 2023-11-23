@@ -3,7 +3,7 @@ export function generateProject() {
     '@context': 'https://schema.org',
     '@type': 'Project',
     name: 'Blog Platforms',
-    url: 'https://blogplatforms.app',
-    logo: 'https://blogplatforms.app/assets/blogplatforms.png',
+    url: 'https://bloggingplatforms.app',
+    logo: 'https://bloggingplatforms.app/assets/blogplatforms.png',
   };
 }

@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-const LoginForm = () => {
+const SignupForm: React.FC = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
@@ -12,9 +12,9 @@ const LoginForm = () => {
     setPassword(e.target.value);
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    // Perform login logic here
+    // Perform signup logic here
     console.log('Email:', email);
     console.log('Password:', password);
   };
@@ -29,9 +29,9 @@ const LoginForm = () => {
         <label htmlFor="password">Password:</label>
         <input type="password" id="password" value={password} onChange={handlePasswordChange} />
       </div>
-      <button type="submit">Login</button>
+      <button type="submit">Sign Up</button>
     </form>
   );
 };
 
-export default LoginForm;
+export default SignupForm;
