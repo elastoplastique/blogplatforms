@@ -13,9 +13,9 @@ export function Breadcrumb(props: Props) {
             <Link
               href="https://bloggingplatforms.app"
               className="!text-gray-400 text-sm hover:text-gray-500 border-b-1 whitespace-nowrap"
-              title="Best Blog Platforms"
+              title="Blogging Platforms"
             >
-              <strong>Best Blogging Platforms</strong>
+              <strong>Blogging Platforms</strong>
             </Link>
           </div>
         </li>
