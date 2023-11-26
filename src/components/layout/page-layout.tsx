@@ -5,6 +5,7 @@ import { Favicons } from '@/components/meta';
 import { authentication } from '@wix/members';
 import { useWixModules } from '@wix/sdk-react';
 import { SmoothScroll } from '@/components/layout/scroll-container';
+import { ASSETS_DIRECTORY } from '@/constants/assets-directory';
 
 type PageLayoutProps = {
   children: React.ReactNode;

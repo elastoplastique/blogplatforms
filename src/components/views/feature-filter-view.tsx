@@ -35,16 +35,16 @@ export const FilterFeatureView = ({ features }: Props) => {
   return (
     <Card id="filter-menu-card" className="!w-full min-h-[60px] !mb-8" variant="surface">
       <Grid width="100%" columns="1">
-        <motion.ul className="flex flex-row flex-wrap justify-center items-center list-none">
+        <motion.ul className="flex flex-row flex-wrap justify-center md:justify-center items-center list-none">
           {features.map((f: FeatureNode) => (
             <motion.li key={`feature-badge-${f.slug}`}>
-              <Badge className={'m-1 !cursor-pointer relative overflow-hidden !px-8'} color={getColor(f)}>
+              <Badge className={'m-1 !cursor-pointer relative overflow-hidden px-4 md:!px-8 !py-0 !md:py-2'} color={getColor(f)}>
                 <motion.div
                   style={{ minHeight: 36 }}
                   onClick={() => selectHandler(f.slug)}
                   className="flex flex-row justify-center items-center"
                 >
-                  <motion.div className="mr-2">{f.title}</motion.div>
+                  <motion.div className="mr-2 !text-xs">{f.title}</motion.div>
 
                   <InfoTooltip text={f.header!} />
                   {f.slug === routeSlug && <Box className="select-item-active" />}

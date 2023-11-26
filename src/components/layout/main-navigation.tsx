@@ -27,6 +27,12 @@ const listicles = [
     description: 'Best Free Platforms for Blogging',
   },
   {
+    name: 'Best Blogging Platforms for Developers',
+    href: '/blog/best-blogging-platforms-for-developers',
+    current: false,
+    description: 'Best Blogging Platform for Developers',
+  },
+  {
     name: 'Best Blogging Platforms for Artists',
     href: '/blog/best-blog-platforms-for-artists',
     current: false,
@@ -91,7 +97,7 @@ export function MainNavigation() {
     <nav id="main-navigation" className="h-16 sm:px-16 w-full">
       <Link href="/">
         <Flex direction="row" align="end">
-          <Heading as="h1" size="5" className="!text-base sm:!text-2xl tracking-tightest !whitespace-nowrap !mr-4">
+          <Heading as="h1" size="5" className="!text-sm sm:!text-xl tracking-tightest !whitespace-nowrap !mr-4">
             {WEBSITE_NAME}
           </Heading>
         </Flex>
