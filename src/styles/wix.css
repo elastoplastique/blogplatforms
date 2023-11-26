@@ -58,8 +58,17 @@ RICH CONTENT
   #rich-content div {
     font-size: var(--fontSize-xs) !important;
   }
+  h2.cms-rich-content {  line-height: 1.4; font-size: var(--fontSize-l) !important; margin-top: 1rem; }
+  h3.cms-rich-content {  line-height: 1.4; font-size: var(--fontSize-m)  !important; margin-top: 1rem; }
+  h4.cms-rich-content {  line-height: 1.4; font-size: var(--fontSize-s)  !important; margin-top: 1rem; }
+  h5.cms-rich-content {  line-height: 1.4; font-size: var(--fontSize-xs)  !important; margin-top: 1rem; } 
+  h6.cms-rich-content {  line-height: 1.4; font-size: var(--fontSize-xs)  !important; margin-top: 1rem; }
 }
+#rich-content ul,
+#rich-content ol {
+  padding-left: 30px; /* adjust as needed */
 
+}
 #rich-content ul li {
   list-style-type: disc;
 }
@@ -70,9 +79,9 @@ RICH CONTENT
 
 #rich-content li {
   margin-bottom: 0.5em;
-  text-indent: 1em;
   list-style-position: inside;
   display: list-item;
+  text-indent: -1em !important;
 }
 
 #rich-content li p {
@@ -94,6 +103,27 @@ RICH CONTENT
   margin: 0;
   padding: 0;
 }
+
+h2.cms-rich-content ,
+h3.cms-rich-content ,
+h4.cms-rich-content ,
+h5.cms-rich-content , 
+h6.cms-rich-content  {
+  font-family: 'GeneralSans', -apple-system, BlinkMacSystemFont, 'Segoe UI (Custom)', Roboto, 'Helvetica Neue', 'Open Sans (Custom)', system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', sans-serif !important;
+  margin: 0;
+  padding: 0;
+  letter-spacing: -0.03em !important;
+  line-height: 1.1 !important;
+  margin-bottom: 16px
+}
+
+h2.cms-rich-content { font-weight: 600; font-size: var(--fontSize-2xl) !important; margin-top: 1.5rem; border-left: 2px solid var(--pink-8);   padding-left: 4px !important;}
+h3.cms-rich-content { font-weight: 600; font-size: var(--fontSize-xl)  !important; margin-top: 1.25rem; border-left: 2px solid var(--purple-8); padding-left: 4px !important;}
+h4.cms-rich-content { font-weight: 600; font-size: var(--fontSize-m)   !important; margin-top: 1.1rem; border-left: 2px solid var(--blue-8);   padding-left: 4px !important;}
+h5.cms-rich-content { font-weight: 600; font-size: var(--fontSize-s)   !important; margin-top: 1rem; border-left: 2px solid var(--teal-8);   padding-left: 4px !important;} 
+h6.cms-rich-content { font-weight: 600; font-size: var(--fontSize-s)   !important; margin-top: 1rem; border-left: 2px solid var(--teal-8);   padding-left: 4px !important;}
+
+
 
 .cms-rich-content a.cms-link {
   background-color: transparent;

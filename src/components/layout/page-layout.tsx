@@ -22,16 +22,16 @@ export function PageLayout({ children, ...props }: PageLayoutProps) {
         <title>{props?.metaTitle || META.TITLE}</title>
         <meta name="title" content={props.metaTitle} />
         <meta name="description" content={props?.metaDescription || META.DESCRIPTION} />
-        
+
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <link rel="canonical" href={props.canonical || META.CANONICAL} />
 
         <Favicons />
-        <meta 
-          name="impact-site-verification" 
+        <meta
+          name="impact-site-verification"
           // @ts-ignore
-          value="b6a8f574-eaa4-4304-b6f0-de6e82d1cd0b" 
-          content="b6a8f574-eaa4-4304-b6f0-de6e82d1cd0b" 
+          value="b6a8f574-eaa4-4304-b6f0-de6e82d1cd0b"
+          content="b6a8f574-eaa4-4304-b6f0-de6e82d1cd0b"
         />
 
         {/* <!-- Open Graph / Facebook --> */}
@@ -48,7 +48,6 @@ export function PageLayout({ children, ...props }: PageLayoutProps) {
         <meta property="twitter:description" content={props.metaDescription} />
         {props.image && <meta property="twitter:image" content={props.image} />}
 
-   
         {props.richData && <script type="application/ld+json">{`${JSON.stringify(props.richData)}`}</script>}
       </Head>
       <Flex className="!min-w-full py-20 min-h-[60vh] !mb-[300px]" direction="column" align="center" id="page-layout">

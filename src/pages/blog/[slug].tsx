@@ -67,8 +67,19 @@ export default function PlatformPage({ post }: Props) {
       //   }) as unknown as ArticleRichDataInput
       // }
     >
-      <Container size="3" className="w-full">
-        <Card id="page-card" className="w-full h-full relative flex flex-col justify-start min-w-full" mt={'2'} size="3" variant="surface">
+      <Container size="3" className="w-full !md:px-16">
+        <Card
+          id="page-card"
+          className="w-full h-full relative flex flex-col justify-start min-w-full"
+          mt={'2'}
+          size={{
+            initial: '1',
+            sm: '3',
+            md: '5',
+            lg: '5',
+          }}
+          variant="surface"
+        >
           <Flex width="100%" justify="center">
             <Breadcrumb
               links={[
@@ -108,7 +119,7 @@ export default function PlatformPage({ post }: Props) {
               {post.description}
             </Text>
 
-            <Flex direction="column" justify="start" align="stretch" my="8">
+            <Flex direction="column" justify="start" align="stretch" my="4">
               {post.body && <RichContent body={post.body} />}
             </Flex>
           </Flex>

@@ -234,8 +234,8 @@ function WixLinkPreview({ node }: { node: Wix.LinkPreview }) {
 function WixListItem({ node }: { node: Wix.ListItem }) {
   return (
     <li className="cms-rich-content cms-li">
-      {(node.nodes as BodyItemUnion[]).map((innerNode) => (
-        <WixNode node={innerNode} key={innerNode._id} />
+      {(node.nodes as BodyItemUnion[]).map((innerNode, ix: number) => (
+        <WixNode node={innerNode} key={`list-item-${ix}-${innerNode?._id ? innerNode?._id : innerNode?.id ? innerNode?.id : 'li'}`} />
       ))}
     </li>
   );
@@ -244,8 +244,11 @@ function WixListItem({ node }: { node: Wix.ListItem }) {
 function WixOrderedList({ node }: { node: Wix.OrderedList }) {
   return (
     <ol className="cms-rich-content cms-ol">
-      {(node.nodes as ListItem[]).map((innerNode: ListItem) => (
-        <WixNode node={innerNode} key={innerNode._id} />
+      {(node.nodes as ListItem[]).map((innerNode: ListItem, ix: number) => (
+        <WixNode
+          node={innerNode}
+          key={`ordered-list-item-${ix}-${innerNode?._id ? innerNode?._id : innerNode?.id ? innerNode?.id : 'a'}`}
+        />
       ))}
     </ol>
   );
@@ -254,8 +257,11 @@ function WixOrderedList({ node }: { node: Wix.OrderedList }) {
 function WixBulletedList({ node }: { node: Wix.BulletedList }) {
   return (
     <ul className="cms-rich-content cms-ul">
-      {(node.nodes as ListItem[]).map((innerNode: ListItem) => (
-        <WixNode node={innerNode} key={innerNode._id} />
+      {(node.nodes as ListItem[]).map((innerNode: ListItem, ix: number) => (
+        <WixNode
+          node={innerNode}
+          key={`bulleted-list-item-${ix}-${innerNode?._id ? innerNode?._id : innerNode?.id ? innerNode?.id : 'bulleted'}`}
+        />
       ))}
     </ul>
   );
