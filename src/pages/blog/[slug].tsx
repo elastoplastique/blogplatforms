@@ -56,16 +56,16 @@ export default function PlatformPage({ post }: Props) {
       metaDescription={post.description}
       canonical={`${removeTrailing(META.CANONICAL)}/${ROUTES.BLOG_POST_DIRECTORY.path}/${removeTrailing(post.slug)}`}
       image={createWixStaticUrl(post.cover!)}
-      // richData={
-      //   generateArticle({
-      //     title: post.title!,
-      //     description: post.description!,
-      //     image: createWixStaticUrl(post.cover!),
-      //     url: `${removeTrailing(META.CANONICAL)}/${ROUTES.BLOG_POST_DIRECTORY.path}/${removeTrailing(post.slug)}`,
-      //     datePublished: post._createdDate!.$date!,
-      //     dateModified: post._updatedDate!.$date!,
-      //   }) as unknown as ArticleRichDataInput
-      // }
+      richData={
+        generateArticle({
+          title: post.title!,
+          description: post.description!,
+          image: createWixStaticUrl(post.cover!),
+          url: `${removeTrailing(META.CANONICAL)}/${ROUTES.BLOG_POST_DIRECTORY.path}/${removeTrailing(post.slug)}`,
+          datePublished: post._createdDate!.$date!,
+          dateModified: post._updatedDate!.$date!,
+        }) as unknown as ArticleRichDataInput
+      }
     >
       <Container size="3" className="w-full !md:px-16">
         <Card

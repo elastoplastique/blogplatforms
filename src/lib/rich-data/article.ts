@@ -15,10 +15,8 @@ const defaultAuthor = generateAuthor({
   name: 'Blog Platforms',
   url: 'https://bloggingplatforms.app',
   sameAs: [
-    'https://twitter.com/blogplatforms',
-    'https://www.facebook.com/blogplatforms',
-    'https://www.instagram.com/blogplatforms',
-    'https://www.linkedin.com/company/blogplatforms',
+    'https://twitter.com/bloggingapp',
+    "https://www.pinterest.com/bloggingplatforms/"
   ],
 });
 
@@ -28,7 +26,7 @@ export function generateArticle(data: ArticleRichDataInput) {
     '@type': 'Article',
     mainEntityOfPage: {
       '@type': 'WebPage',
-      '@id': 'https://bloggingplatforms.app/',
+      '@id': 'https://bloggingplatforms.app',
     },
     headline: data.title,
     description: data.description,
@@ -40,7 +38,7 @@ export function generateArticle(data: ArticleRichDataInput) {
       name: 'Blog Platforms',
       logo: {
         '@type': 'ImageObject',
-        url: 'https://bloggingplatforms.app/images/logo.png',
+        url: 'https://bloggingplatforms.app/assets/bloggingplatforms.png',
       },
     },
   };
