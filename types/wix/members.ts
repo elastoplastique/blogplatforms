@@ -1,3 +1,27 @@
+export type LoginState = 'FAILURE' | 'SUCCESS' | 'EMAIL_VERIFICATION_REQUIRED' | 'OWNER_APPROVAL_REQUIRED';
+
+export interface AuthResponseType {
+  loginState: LoginState;
+  error?: string;
+  errorCodde?: string;
+  data?: { [key: string]: any };
+  [key: string]: any;
+}
+export interface AuthResponseCallbackType {
+  onSuccess?: (data: any) => void;
+  onFailure?: (data: any) => void;
+}
+
+export type RegisterMemberCredentials = {
+  email: string;
+  password: string;
+};
+
+export type LoginMemberCredentials = {
+  email: string;
+  password: string;
+};
+
 export interface Member {
   /**
    * Member ID.

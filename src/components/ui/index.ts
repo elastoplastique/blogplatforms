@@ -5,3 +5,4 @@ export * from './radix-primitives';
 export * from './link';
 export * from './separator';
 export * from './typography';
+export * from './form';

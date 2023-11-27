@@ -72,6 +72,7 @@ export default function HomePage(props: Props) {
       <Container
         size={{
           initial: '1',
+          sm: '2',
           md: '3',
           lg: '4',
         }}

@@ -9,28 +9,33 @@ import { META } from '@/constants/meta';
 import { createWixStaticUrl } from '@/lib/wix/utils/create-url';
 import { useWixClient } from '@/lib/wix/hooks/use-wix-client';
 import { LoginBar } from '@/components/auth/status';
+import { getCurrentMember } from '@/lib/wix/utils/get-current-member';
+import { AUTH_LOGIN_PATHNAME } from '@/lib/wix/constants';
 
 export default function ProfilePage() {
   const wixClient = useWixClient();
 
   return (
-    <PageLayout metaTitle={`Best Blogging Site | BlogPlatforms.app`} canonical={'https://bloggingplatforms.app/blog'}>
+    <PageLayout metaTitle={`Best Blogging Site | BlogPlatforms.app`}>
       <Container size="3">
-        <LoginBar />
-
         <Separator className="my-8" size="4" />
       </Container>
     </PageLayout>
   );
 }
 
-export const getStaticProps = async () => {
-  const posts = await getPosts();
-  console.log('posts', posts);
-
+export async function getServerSideProps() {
+  const user = await getCurrentMember();
+  if (!user) {
+    console.log('login page: member is already logged in');
+    return {
+      redirect: {
+        destination: AUTH_LOGIN_PATHNAME,
+        permanent: false,
+      },
+    };
+  }
   return {
-    props: {
-      posts,
-    },
+    props: {},
   };
-};
+}

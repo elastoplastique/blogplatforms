@@ -1,10 +1,12 @@
+export const WIX_AUTH_TOKENS = 'wix_authTokens';
 export const WIX_ACCESS_TOKEN = 'wix_accessToken';
 export const WIX_MEDIA_PREFIX = 'https://static.wixstatic.com/media/';
 export const OAUTH_COOKIE_STATE = 'oAuthState';
 export const WIX_LOGIN_REDIRECT = 'WIX_LOGIN_REDIRECT';
 export const WIX_REFRESH_TOKEN = 'wix_refreshToken';
-export const AUTH_CALLBACK_PATHNAME = '/auth/callback';
-export const AUTH_LOGIN_PATHNAME = '/auth/login-redirect';
+export const AUTH_CALLBACK_PATHNAME = '/profile';
+export const AUTH_LOGIN_PATHNAME = '/profile/login';
+export const AUTH_SIGNUP_PATHNAME = '/profile/signup';
 export const AUTH_LOGIN_CALLBACK_PARAM = '/profile';
 export const REDIRECT_FROM_WIX_LOGIN_STATUS = 'wixMemberLoggedIn';
 export const PROMPT_QUERY_PARAM = 'prompt';

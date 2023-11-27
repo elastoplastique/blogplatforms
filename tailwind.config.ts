@@ -2,6 +2,7 @@
 
 import type { Config } from 'tailwindcss';
 import { radixThemePreset } from 'radix-themes-tw';
+const { blackA, violet, mauve } = require('@radix-ui/colors');
 
 const { nextui } = require('@nextui-org/react');
 
@@ -43,6 +44,9 @@ export default {
       },
     },
     colors: {
+      ...blackA,
+      ...violet,
+      ...mauve,
       overlay: 'var(--overlay)',
       'app-bg': 'var(--app-bg)',
       'subtle-bg': 'var(--subtle-bg)',
