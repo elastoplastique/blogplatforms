@@ -167,7 +167,7 @@ export default function PlatformPage({ platform, platformFeatures, platformCompa
             {/* PROS CONS */}
             <ProsCons platform={platform} id={`${platform.slug}-platform-pros-cons`} />
 
-            {/* RESOURCES */}
+            {/* APPEARED LISTS */}
             {platform.posts && (
               <Flex direction="column" align="stretch" grow="1" id="list-box">
                 <Heading as="h2" size="6" className="font-medium capitalize">
@@ -187,7 +187,7 @@ export default function PlatformPage({ platform, platformFeatures, platformCompa
                 >
                   <ul>
                     {platform.posts.map((pp: Wix.PostNode, ix: number) => (
-                      <li key={`pf-${pp.slug}-${ix}`} className="py-4 h-120">
+                      <li key={`pf-${pp.slug}-${ix}`} className="py-4 h-120 mx-4">
                         <PostCard
                           image={createWixStaticUrl(pp.cover!)}
                           title={pp.title}

@@ -47,7 +47,6 @@ type Props = {
 };
 
 export default function FeaturePage(props: Props) {
-  console.log('props', props);
   const router = useRouter();
   const routeSlug = router.asPath.split('/')[router.asPath.split('/').length - 1];
   const setSingleFeaturePlatforms = useGlobal((state) => state.setSingleFeaturePlatforms);

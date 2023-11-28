@@ -70,7 +70,7 @@
     ".next/types/**/*.ts",
     "types",
     "types/wix/index.d.ts",
-    "types/wix/rich-data.d.ts", ".legacy/middleware.ts", "src/components/meta/verifications.tsxications.tsx", ".legacy/verifications.tsx",
+    "types/wix/rich-data.d.ts", "src/middleware.ts", "src/components/meta/verifications.tsxications.tsx", ".legacy/verifications.tsx",
 
   ],
   "exclude": [

@@ -17,7 +17,6 @@ const refreshToken = JSON.parse(Cookies.get(process.env.NEXT_PUBLIC_WIX_REFRESH_
 
 export const wixClient = createClient({
   modules: {
-    redirects,
     authentication,
     files,
     items,
@@ -40,7 +39,6 @@ export const WixSessionContext = createContext<WixSession | null>(null);
 export const WixClientProvider = ({ children }: { children: ReactNode }) => (
   <WixProvider
     modules={{
-      redirects,
       authentication,
       files,
       items,

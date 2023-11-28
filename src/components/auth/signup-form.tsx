@@ -4,6 +4,7 @@ import { Container, Flex, Heading, Text, Separator, Card, AspectRatio } from '@/
 import { LOGO } from '@/constants/image';
 import { AUTH_LOGIN_PATHNAME } from '@/lib/wix/constants';
 import Link from 'next/link';
+import { getErrorMessageFromCode } from '@/constants/errors';
 
 export const SignupForm = ({ onSubmit }: { onSubmit: any }) => {
   const [email, setEmail] = useState('');
@@ -14,6 +15,7 @@ export const SignupForm = ({ onSubmit }: { onSubmit: any }) => {
     email: false,
     password: false,
     passwordConfirmation: false,
+    message: ""
   });
   const handleEmailChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setEmail(e.target.value);
@@ -31,7 +33,9 @@ export const SignupForm = ({ onSubmit }: { onSubmit: any }) => {
       console.log("passwords don't match");
       setServerErrors({ ...serverErrors, passwordConfirmation: true });
     }
-    const response = onSubmit({ email, password });
+    onSubmit({ email, password },{
+      onFailure: (errorCode: Wix.AUTH_ERROR_CODE) => setServerErrors((old) => ({...old, message: getErrorMessageFromCode(errorCode)})),
+    });
     // Perform signup logic here
     console.log('Email:', email);
     console.log('Password:', password);
@@ -41,7 +45,7 @@ export const SignupForm = ({ onSubmit }: { onSubmit: any }) => {
     <FormPrimitive.Root
       className="w-[260px]"
       onSubmit={handleSubmit}
-      onClearServerErrors={() => setServerErrors({ email: false, password: false, passwordConfirmation: false })}
+      onClearServerErrors={() => setServerErrors((old) => ({...old, email: false, password: false, passwordConfirmation: false }))}
     >
       {/* EMAIL */}
       <FormPrimitive.Field className="grid mb-[10px]" name="email" serverInvalid={serverErrors.email}>
@@ -122,6 +126,9 @@ export const SignupForm = ({ onSubmit }: { onSubmit: any }) => {
           Login.
         </Link>
       </Text>
+      <div>
+        {serverErrors.message && <Text size="1" py="4" className="text-[#ff0000]">{serverErrors.message}</Text>}
+      </div>
     </FormPrimitive.Root>
   );
 };
