@@ -17,6 +17,7 @@ import {
   MusicPlaylistIcon,
 } from '@/components/icons/bold-icons';
 
+export const FEATURE_SELECTION_TITLE = 'Discover blogging platforms by choosing a feature';
 export const FEATURES: Feature[] = [
   'Ad Monetization',
   'Category & Tag System',

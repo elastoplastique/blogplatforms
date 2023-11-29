@@ -2,7 +2,7 @@
 import { useEffect, useCallback, useMemo } from 'react';
 import { useFilters } from '@/lib/state/filters';
 import { FILTER_DEFAULT_VALUE, FILTER_FEATURE_LABEL } from '@/constants/content';
-import { Container, Box, Flex, Grid, Button, Text, Dialog, Separator, Card, Select, Badge, ScrollArea } from '@/components/ui';
+import { Container, Box, Flex, Grid, Button, Text, Heading, Dialog, Separator, Card, Select, Badge, ScrollArea } from '@/components/ui';
 import { X, ListFilter } from 'lucide-react';
 import Link from 'next/link';
 import { InfoTooltip } from '@/components/compound/info-tooltip';
@@ -12,6 +12,7 @@ import { FEATURE_CATEGORY_COLORS } from '@/constants/features';
 import { DEFAULT_COLOR } from '@/constants/colors';
 import { cn } from '@/lib/utils';
 import { useRouter } from 'next/router';
+import { FEATURE_SELECTION_TITLE } from '@/constants/features';
 
 type Props = { features: FeatureNode[] };
 
@@ -34,6 +35,7 @@ export const FilterFeatureView = ({ features }: Props) => {
 
   return (
     <Card id="filter-menu-card" className="!w-full min-h-[60px] !mb-8" variant="surface">
+      <Heading size="3" align={"center"} mb="4">{FEATURE_SELECTION_TITLE}</Heading>
       <Grid width="100%" columns="1">
         <motion.ul className="flex flex-row flex-wrap justify-center md:justify-center items-center list-none">
           {features.map((f: FeatureNode) => (

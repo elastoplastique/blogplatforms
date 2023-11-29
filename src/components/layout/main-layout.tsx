@@ -2,6 +2,7 @@ import { MainNavigation } from '@/components/layout/main-navigation';
 import { MainFooter } from './main-footer';
 import { DecorationWaves } from '@/components/decorative/waves';
 import { Container, Flex, Grid, Heading, Text, Separator } from '@/components/ui';
+import { BottomBar } from '@/components/comparison/bottom-bar';
 
 const NavWrapper = ({ children }: { children: React.ReactNode }) => (
   <>
@@ -24,7 +25,7 @@ export const MainLayout = ({ children }: { children: React.ReactNode }) => {
         <MainNavigation />
       </NavWrapper>
       <main>{children}</main>
-
+      <BottomBar />
       <MainFooter />
     </div>
   );

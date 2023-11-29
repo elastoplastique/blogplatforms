@@ -79,6 +79,7 @@ export interface PlatformNode {
 
   features?: PlatformFeatureNode[];
   comparativeFeatures?: PlatformComparativeFeatureNode[];
+  affiliate?: boolean;
 
   posts: PostNode[];
 }

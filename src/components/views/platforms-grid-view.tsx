@@ -45,13 +45,20 @@ export function PlatformsGridView() {
                 platformsToRender.length > 0 &&
                 platformsToRender.map((platform) => (
                   <motion.li
+                    drag
+                    dragPropagation
                     layout
                     key={platform.slug}
-                    className="relative z-0 h-120 m-4 flex flex-col items-center"
+                    className="relative z-10 h-120 m-4 flex flex-col items-center border-1 border-solid border-transparent rounded-xl shadow-xl"
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
+                    whileDrag={{ borderColor: '#000', scale: 1.06 }}
                     exit={{ opacity: 0 }}
-                    transition={{ easings: 'linear', duration: 0.3 }}
+                    transition={{ easings: 'linear', duration: 0.1 }}
+                    dragSnapToOrigin
+                    dragTransition={{ bounceStiffness: 600, bounceDamping: 50 }}
+                    dragMomentum={false}
+
                   >
                     <ListCardCover platform={platform} />
                   </motion.li>
