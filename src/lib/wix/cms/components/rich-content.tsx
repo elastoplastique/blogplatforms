@@ -269,18 +269,32 @@ function WixBulletedList({ node }: { node: Wix.BulletedList }) {
 
 function WixImage({ node }: { node: Wix.Image }) {
   const imageId = node.imageData.image.src._id || node.imageData.image.src.id!;
+  const imageLink = node.imageData?.link?.url;
   return (
     <AspectRatio ratio={node.imageData.image.width / node.imageData.image.height} className="cms-rich-content cms-img">
-      {imageId && (
-        <Image
-          loading="lazy"
-          loader={externalImageLoader}
-          src={createWixStaticUrl(imageId)}
-          alt={''}
-          className="absolute top-0 left-0"
-          fill
-        />
-      )}
+      {imageId &&
+        (imageLink ? (
+          <a href={imageLink} target="_blank" title={node.imageData?.altText}>
+            <Image
+              loading="lazy"
+              loader={externalImageLoader}
+              src={createWixStaticUrl(imageId)}
+              alt={node.imageData?.altText || ''}
+              className="absolute top-0 left-0"
+              fill
+            />
+          </a>
+        ) : (
+          <Image
+            loading="lazy"
+            loader={externalImageLoader}
+            src={createWixStaticUrl(imageId)}
+            alt={node.imageData?.altText || ''}
+            className="absolute top-0 left-0"
+            fill
+          />
+        ))}
+      {}
     </AspectRatio>
   );
 }

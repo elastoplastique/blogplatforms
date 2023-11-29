@@ -143,6 +143,8 @@ type BodyItemImageData = {
     width: number;
     height: number;
   };
+  link?: { url: string };
+  altText?: string;
 };
 
 type BodyItemMediaData = {
