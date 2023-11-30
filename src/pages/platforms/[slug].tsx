@@ -150,7 +150,7 @@ export default function PlatformPage({ platform, platformFeatures, platformCompa
             </Text>
 
             <Flex direction="column" justify="start" align="stretch" my="8">
-              {platform.body && <RichContent body={platform.body} />}
+              {platform.body && <RichContent body={platform.body} contentId={platform.slug} />}
             </Flex>
 
             {/* AUDIENCE */}

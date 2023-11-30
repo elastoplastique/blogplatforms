@@ -120,7 +120,7 @@ export default function PlatformPage({ post }: Props) {
             </Text>
 
             <Flex direction="column" justify="start" align="stretch" my="4">
-              {post.body && <RichContent body={post.body} />}
+              {post.body && <RichContent body={post.body} contentId={post.slug} />}
             </Flex>
           </Flex>
         </Card>

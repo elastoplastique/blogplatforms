@@ -43,7 +43,7 @@ const THUMB_HEIGHT = IMAGE_HEIGHT * THUMBNAIL_FACTOR;
 const THUMB_WIDTH = IMAGE_WIDTH * THUMBNAIL_FACTOR;
 
 export const RichContent = memo(
-  ({ body }: { body: { nodes: Wix.BodyItemUnion[]; metadata?: Wix.BodyMetadata } }) => {
+  ({ body }: { body: { nodes: Wix.BodyItemUnion[]; metadata?: Wix.BodyMetadata }, contentId: string }) => {
     return (
       <Flex width="100%" direction="column" id="rich-content">
         {body.nodes.map((node: BodyItemUnion) => (
@@ -52,7 +52,7 @@ export const RichContent = memo(
       </Flex>
     );
   },
-  (prevProps, nextProps) => prevProps.body?.metadata?._id === nextProps.body?.metadata?._id
+  (prevProps, nextProps) => prevProps.contentId === nextProps.contentId
 );
 
 function domainTransformer(url: string) {
