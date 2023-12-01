@@ -1,4 +1,6 @@
 import Link from 'next/link';
+import { motion } from 'framer-motion';
+
 
 export type Props = {
   links: BreadcrumbLink[];
@@ -6,9 +8,9 @@ export type Props = {
 
 export function Breadcrumb(props: Props) {
   return (
-    <nav className="flex my-4" aria-label="Breadcrumb">
+    <motion.nav className="flex my-4" aria-label="Breadcrumb">
       <ol className="flex flex-row  items-center justify-start sm:justify-center">
-        <li>
+        <motion.li layoutId="breadcrumb-link-home">
           <div>
             <Link
               href="https://bloggingplatforms.app"
@@ -18,9 +20,9 @@ export function Breadcrumb(props: Props) {
               <strong>Blogging Platforms</strong>
             </Link>
           </div>
-        </li>
+        </motion.li>
         {props.links.map((page, i) => (
-          <li key={page.name}>
+          <motion.li key={page.name} layoutId={`breadcrumb-link-${i}`}>
             <div className="flex items-center whitespace-nowrap my-2">
               <svg
                 className="flex-shrink-0 h-5 w-4 text-gray-300 mx-1"
@@ -44,9 +46,9 @@ export function Breadcrumb(props: Props) {
                 {!page.truncate ? page.name : page.name.length > 20 ? `${page.name.slice(0, 20)}...` : page.name}
               </Link>
             </div>
-          </li>
+          </motion.li>
         ))}
       </ol>
-    </nav>
+    </motion.nav>
   );
 }

@@ -202,7 +202,7 @@ export default function PlatformPage({ platform, platformFeatures, platformCompa
             )}
 
             {/* RESOURCES */}
-            {platform.resources && <PlatformResources platformTitle={platform.title} body={platform.resources} />}
+            {platform.resources && <PlatformResources platformTitle={platform.title} body={platform.resources} slug={platform.slug} />}
 
             <motion.a
               href={platform.url}

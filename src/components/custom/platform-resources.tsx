@@ -10,9 +10,11 @@ type Props = {
 export const PlatformResources = ({
   body,
   platformTitle,
+  slug,
 }: {
   platformTitle: string;
   body: { nodes: Wix.BodyItemUnion[]; metadata: Wix.BodyMetadata };
+  slug: string;
 }) => {
   return (
     <Section>
@@ -21,7 +23,7 @@ export const PlatformResources = ({
       </Heading>
       <Separator />
 
-      {<RichContent body={body} />}
+      {<RichContent body={body}   contentId={slug}/> }
     </Section>
   );
 };
