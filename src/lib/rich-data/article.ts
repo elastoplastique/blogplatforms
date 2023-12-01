@@ -14,10 +14,7 @@ export type ArticleRichDataInput = {
 const defaultAuthor = generateAuthor({
   name: 'Blog Platforms',
   url: 'https://bloggingplatforms.app',
-  sameAs: [
-    'https://twitter.com/bloggingapp',
-    "https://www.pinterest.com/bloggingplatforms/"
-  ],
+  sameAs: ['https://twitter.com/bloggingapp', 'https://www.pinterest.com/bloggingplatforms/'],
 });
 
 export function generateArticle(data: ArticleRichDataInput) {

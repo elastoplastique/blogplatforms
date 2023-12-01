@@ -22,7 +22,6 @@ export const FeatureInfoView = memo(() => {
       <motion.div
         className="relative min-w-full rounded-3xl flex flex-col justify-center items-center min-h-32 my-8"
         id="feature-info-view"
-        
       >
         <Heading
           as="h1"
@@ -46,12 +45,12 @@ export const FeatureInfoView = memo(() => {
         </Heading>
       </motion.div>
       <Flex width="100%" justify="center">
-          <Breadcrumb
-            links={[
-              { name: 'Features', href: `/features`, current: false, title: 'Explore Blog Platforms by Features' },
-              { name: featureToRender?.title, href: `/features/${featureToRender.slug}`, current: true },
-            ]}
-          />
+        <Breadcrumb
+          links={[
+            { name: 'Features', href: `/features`, current: false, title: 'Explore Blog Platforms by Features' },
+            { name: featureToRender?.title, href: `/features/${featureToRender.slug}`, current: true },
+          ]}
+        />
       </Flex>
       {/* DESCRIPTION  */}
       <Flex direction="column" justify="start" align="center" className="w-full">

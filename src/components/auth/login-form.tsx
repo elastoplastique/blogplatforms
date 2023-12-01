@@ -12,7 +12,7 @@ export const LoginForm = ({ onSubmit }: { onSubmit: any }) => {
   const [serverErrors, setServerErrors] = React.useState({
     email: false,
     password: false,
-    message: ""
+    message: '',
   });
   const handleEmailChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setEmail(e.target.value);
@@ -24,9 +24,12 @@ export const LoginForm = ({ onSubmit }: { onSubmit: any }) => {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    onSubmit({ email, password }, {
-      onFailure: (errorCode: Wix.AUTH_ERROR_CODE) => setServerErrors((old) => ({...old, message: getErrorMessageFromCode(errorCode)})),
-    });
+    onSubmit(
+      { email, password },
+      {
+        onFailure: (errorCode: Wix.AUTH_ERROR_CODE) => setServerErrors((old) => ({ ...old, message: getErrorMessageFromCode(errorCode) })),
+      }
+    );
     // Perform login logic here
     console.log('Email:', email);
     console.log('Password:', password);
@@ -93,9 +96,12 @@ export const LoginForm = ({ onSubmit }: { onSubmit: any }) => {
         </Link>
       </Text>
       <div>
-        {serverErrors.message && <Text size="1" py="4" className="text-[#ff0000]">{serverErrors.message}</Text>}
+        {serverErrors.message && (
+          <Text size="1" py="4" className="text-[#ff0000]">
+            {serverErrors.message}
+          </Text>
+        )}
       </div>
-
     </FormPrimitive.Root>
   );
 };

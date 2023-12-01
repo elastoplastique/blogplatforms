@@ -1,3 +1,1 @@
-export function getErrorMessage(){
-    
-}
+export function getErrorMessage() {}

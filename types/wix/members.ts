@@ -1,4 +1,4 @@
-export type AUTH_ERROR_CODE = "invalidPassword"
+export type AUTH_ERROR_CODE = 'invalidPassword';
 
 export type LoginState = 'FAILURE' | 'SUCCESS' | 'EMAIL_VERIFICATION_REQUIRED' | 'OWNER_APPROVAL_REQUIRED';
 

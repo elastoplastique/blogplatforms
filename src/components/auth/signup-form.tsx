@@ -15,7 +15,7 @@ export const SignupForm = ({ onSubmit }: { onSubmit: any }) => {
     email: false,
     password: false,
     passwordConfirmation: false,
-    message: ""
+    message: '',
   });
   const handleEmailChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setEmail(e.target.value);
@@ -33,9 +33,12 @@ export const SignupForm = ({ onSubmit }: { onSubmit: any }) => {
       console.log("passwords don't match");
       setServerErrors({ ...serverErrors, passwordConfirmation: true });
     }
-    onSubmit({ email, password },{
-      onFailure: (errorCode: Wix.AUTH_ERROR_CODE) => setServerErrors((old) => ({...old, message: getErrorMessageFromCode(errorCode)})),
-    });
+    onSubmit(
+      { email, password },
+      {
+        onFailure: (errorCode: Wix.AUTH_ERROR_CODE) => setServerErrors((old) => ({ ...old, message: getErrorMessageFromCode(errorCode) })),
+      }
+    );
     // Perform signup logic here
     console.log('Email:', email);
     console.log('Password:', password);
@@ -45,7 +48,7 @@ export const SignupForm = ({ onSubmit }: { onSubmit: any }) => {
     <FormPrimitive.Root
       className="w-[260px]"
       onSubmit={handleSubmit}
-      onClearServerErrors={() => setServerErrors((old) => ({...old, email: false, password: false, passwordConfirmation: false }))}
+      onClearServerErrors={() => setServerErrors((old) => ({ ...old, email: false, password: false, passwordConfirmation: false }))}
     >
       {/* EMAIL */}
       <FormPrimitive.Field className="grid mb-[10px]" name="email" serverInvalid={serverErrors.email}>
@@ -127,7 +130,11 @@ export const SignupForm = ({ onSubmit }: { onSubmit: any }) => {
         </Link>
       </Text>
       <div>
-        {serverErrors.message && <Text size="1" py="4" className="text-[#ff0000]">{serverErrors.message}</Text>}
+        {serverErrors.message && (
+          <Text size="1" py="4" className="text-[#ff0000]">
+            {serverErrors.message}
+          </Text>
+        )}
       </div>
     </FormPrimitive.Root>
   );

@@ -71,7 +71,7 @@ export default function AboutPage({ page }: Props) {
               {page.description}
             </Text>
             <Flex direction="column" justify="start" align="stretch" my="8">
-              {page.body && <RichContent body={page.body} />}
+              {page.body && <RichContent body={page.body} contentId="about-page" />}
             </Flex>
           </Flex>
         </Card>

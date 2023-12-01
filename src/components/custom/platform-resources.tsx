@@ -23,7 +23,7 @@ export const PlatformResources = ({
       </Heading>
       <Separator />
 
-      {<RichContent body={body}   contentId={slug}/> }
+      {<RichContent body={body} contentId={slug} />}
     </Section>
   );
 };
