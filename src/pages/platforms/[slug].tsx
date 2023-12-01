@@ -32,6 +32,7 @@ import { createWixStaticUrl } from '@/lib/wix/utils/create-url';
 import { externalImageLoader } from '@/lib/utils/external-image-loader';
 import { generatePlatformPage } from '@/lib/rich-data';
 import { generateSameAsFromAccounts } from '@/lib/rich-data/same-as';
+import { useRouter } from 'next/router';
 
 type Props = {
   platform: PlatformNode;
@@ -42,6 +43,7 @@ type Props = {
 };
 
 export default function PlatformPage({ platform, platformFeatures, platformComparativeFeatures, platformAccounts }: Props) {
+  const asPath = useRouter().asPath;
   // console.log('[slug] page: ', platform.body);
   // console.log("[slug] page platformComparativeFeatures: ", platformComparativeFeatures)
   // console.log("[slug] page platformFeatures: ", platformFeatures)
@@ -150,7 +152,7 @@ export default function PlatformPage({ platform, platformFeatures, platformCompa
             </Text>
 
             <Flex direction="column" justify="start" align="stretch" my="8">
-              {platform.body && <RichContent body={platform.body} contentId={platform.slug} />}
+              {platform.body && <RichContent body={platform.body} contentId={asPath} />}
             </Flex>
 
             {/* AUDIENCE */}
