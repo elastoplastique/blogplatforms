@@ -24,7 +24,7 @@ export const FilterFeatureView = ({ features }: Props) => {
     if (featureSlug === routeSlug) {
       router.push('/', undefined, { shallow: true });
     } else {
-      router.push(`/${ROUTES.FEATURES_DIRECTORY.path}/${featureSlug}`, undefined, { shallow: true });
+      router.push(`/${ROUTES.FEATURES_DIRECTORY.path}/${featureSlug}`, undefined);
     }
   };
   const getColor = (f: FeatureNode) => {

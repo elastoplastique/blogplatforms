@@ -11,9 +11,16 @@ import { useWixClient } from '@/lib/wix/hooks/use-wix-client';
 import { LoginBar } from '@/components/auth/status';
 import { getCurrentMember } from '@/lib/wix/utils/get-current-member';
 import { AUTH_LOGIN_PATHNAME } from '@/lib/wix/constants';
+import { useAuth0 } from "@auth0/auth0-react";
+import { useRouter } from 'next/router';
 
 export default function ProfilePage() {
-  const wixClient = useWixClient();
+  const { user, isAuthenticated, getAccessTokenSilently } = useAuth0();
+  const router = useRouter();
+
+  if (user && isAuthenticated){
+    return router.push('/');
+  }
 
   return (
     <PageLayout metaTitle={`Best Blogging Site | BlogPlatforms.app`}>
@@ -25,17 +32,10 @@ export default function ProfilePage() {
 }
 
 export async function getServerSideProps() {
-  const user = await getCurrentMember();
-  if (!user) {
-    console.log('login page: member is already logged in');
-    return {
-      redirect: {
-        destination: AUTH_LOGIN_PATHNAME,
-        permanent: false,
-      },
-    };
-  }
   return {
-    props: {},
+    redirect: {
+      destination: AUTH_LOGIN_PATHNAME,
+      permanent: false,
+    },
   };
 }

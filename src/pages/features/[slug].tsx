@@ -70,7 +70,7 @@ export default function FeaturePage(props: Props) {
     });
     setPlatformsToRender(props.platformsByFeature.map((pf: PlatformFeatureNode) => pf.platform));
     setFeatureToRender(props.feature);
-  }, []);
+  }, [routeSlug]);
 
   useEffect(() => {
     if (props.feature.slug !== routeSlug) {
@@ -101,11 +101,11 @@ export default function FeaturePage(props: Props) {
         id="feature-page"
       >
         <Card id="page-card" className="w-full h-full relative flex flex-col justify-start min-w-full" mt={'2'} size="4">
-          <FeatureInfoView />
+          <FeatureInfoView  contentId={`feature-info-${routeSlug}`}  />
 
           <Separator className="my-8" size="4" />
 
-          <FilterFeatureView features={props.features} />
+          <FilterFeatureView features={props.features}/>
 
           <PlatformsGridView />
         </Card>
