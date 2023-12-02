@@ -1,9 +1,22 @@
+import { META } from '@/constants/meta';
+import { generateImageObject } from '@/lib/rich-data/image';
 export function generateProject() {
   return {
     '@context': 'https://schema.org',
     '@type': 'Project',
-    name: 'Blog Platforms',
-    url: 'https://bloggingplatforms.app',
-    logo: 'https://bloggingplatforms.app/assets/blogplatforms.png',
+    name: META.TITLE,
+    url: META.CANONICAL,
+    email: META.EMAIL,
+    logo: generateImageObject({src: META.LOGO, alt: META.TITLE}),
+    image: generateImageObject({src: META.IMAGE, alt: META.TITLE}),
+    keywords: META.KEYWORDS,
+
+    description: META.DESCRIPTION,
+    contactPoint: {
+      '@type': 'ContactPoint',
+      telephone: '+13153143058',
+      email: 'hello@bloggingplatforms.app',
+    },
+    sameAs: [META.SOCIAL.TWITTER, META.SOCIAL.GITHUB, META.SOCIAL.PINTEREST],
   };
 }

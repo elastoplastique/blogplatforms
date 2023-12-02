@@ -44,7 +44,6 @@ type Props = {
 
 export default function PlatformPage({ platform, platformFeatures, platformComparativeFeatures, platformAccounts }: Props) {
   const asPath = useRouter().asPath;
-  // console.log('[slug] page: ', platform.body);
   // console.log("[slug] page platformComparativeFeatures: ", platformComparativeFeatures)
   // console.log("[slug] page platformFeatures: ", platformFeatures)
   const features = useMemo(() => platformFeatures.filter((pf: Wix.PlatformFeatureNode) => pf.featureData?.title), [platform.slug]);
@@ -70,6 +69,7 @@ export default function PlatformPage({ platform, platformFeatures, platformCompa
           url: platformAccounts.website || platform.url,
           description: platform.description,
           image: platform.cover,
+          logo: platform.logo,
           ...(platformAccounts && { sameAs: generateSameAsFromAccounts(platformAccounts) }),
         },
         rating: '5',

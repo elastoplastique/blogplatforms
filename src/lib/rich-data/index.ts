@@ -5,6 +5,8 @@ import { generateProject } from './project';
 import { generateReview } from './review';
 import { generateAuthor } from './author';
 import { generatePage } from './page';
+import { generateImageObject } from './image';
+import { META } from '@/constants/meta';
 
 export type InputPlatformRichData = {
   platform: {
@@ -22,10 +24,9 @@ export function generatePlatformPage({ platform, rating, breadcrumbsLinks }: Inp
     name: 'Blog Platforms',
     url: 'https://bloggingplatforms.app',
     sameAs: [
-      // 'https://www.facebook.com/blogplatforms',
-      'https://twitter.com/elastoplastique',
-      'https://github.com/elastoplastique',
-      'https://www.pinterest.com/blogplatforms/',
+      META.SOCIAL.TWITTER,
+      META.SOCIAL.GITHUB,
+      META.SOCIAL.PINTEREST,
     ],
   });
   const software = generateSoftware(platform, rating, author);
@@ -34,7 +35,8 @@ export function generatePlatformPage({ platform, rating, breadcrumbsLinks }: Inp
       name: platform.name,
       description: platform.description,
       url: platform.url,
-      image: platform.logo,
+      image: platform.image,
+      logo: platform.logo,
     },
     breadcrumbsLinks,
     mentions: software,

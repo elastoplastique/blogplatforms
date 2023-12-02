@@ -20,6 +20,8 @@ import { DEFAULT_PLATFORMS_LOADING_PARAMS } from '@/constants/settings';
 import { getPlatforms, getFeatures, getAudiences, getPlatformsFeatures } from '@/lib/wix/cms/cms';
 import { slugify } from '@/lib/utils/slugify';
 import { generatePage } from '@/lib/rich-data/page';
+import { generateProject } from '@/lib/rich-data/project';
+
 import { Swiper } from '@/components/compound/swiper';
 // import { CommandBar } from '@/components/compound/command-bar';
 import { PlatformsGridView } from '@/components/views/platforms-grid-view';
@@ -59,15 +61,19 @@ export default function HomePage(props: Props) {
       metaDescription={META.HOME.DESCRIPTION}
       canonical={META.CANONICAL}
       image={META.IMAGE}
-      richData={generatePage({
-        page: {
-          name: META.WEBSITE_NAME,
-          description: META.DESCRIPTION,
-          url: META.CANONICAL,
-          image: META.IMAGE,
-        },
-        breadcrumbsLinks: [{ name: META.WEBSITE_NAME, href: META.CANONICAL, current: true }],
-      })}
+      richData={[
+        generatePage({
+          page: {
+            name: META.WEBSITE_NAME,
+            description: META.DESCRIPTION,
+            url: META.CANONICAL,
+            image: META.IMAGE,
+            logo: META.LOGO,
+          },
+          breadcrumbsLinks: [{ name: META.WEBSITE_NAME, href: META.CANONICAL, current: true }],
+        }),
+        generateProject()
+      ]}
     >
       <Container
         size={{

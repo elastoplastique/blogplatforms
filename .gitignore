@@ -118,3 +118,4 @@ dist
 /blog-platforms.code-workspace
 *.code-workspace
 .legacy
+/src/pages/.DS_Store

@@ -6,6 +6,7 @@ export type ArticleRichDataInput = {
   url: string;
   image: string;
   author?: RichData.Author;
+  about?: RichData.SameAsType;
   mentions?: RichData.SameAsType[];
   datePublished: string;
   dateModified: string;
@@ -18,17 +19,15 @@ const defaultAuthor = generateAuthor({
 });
 
 export function generateArticle(data: ArticleRichDataInput) {
+  console.log('data', data.about)
   return {
     '@context': 'https://schema.org',
     '@type': 'Article',
-    mainEntityOfPage: {
-      '@type': 'WebPage',
-      '@id': 'https://bloggingplatforms.app',
-    },
     headline: data.title,
     description: data.description,
     image: data.image,
     author: data?.author || defaultAuthor,
+    ...(data.about && { about: data?.about }),
     ...(data.mentions && { mentions: data?.mentions }),
     publisher: {
       '@type': 'Organization',

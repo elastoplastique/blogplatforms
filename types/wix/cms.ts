@@ -177,6 +177,8 @@ export interface PostNode {
   platforms?: PlatformNode[];
   _createdDate?: { $date: string };
   _updatedDate?: { $date: string };
+  about?: RichData.SameAsType;
+  mentions?: RichData.SameAsType[];
 }
 export interface TagNode {
   _id: string;

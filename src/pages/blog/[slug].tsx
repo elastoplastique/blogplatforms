@@ -38,18 +38,20 @@ type Props = {
 };
 
 export default function PlatformPage({ post }: Props) {
-  // console.log('post', post);
-  // const mentions = useMemo(() => {
-  //   const m = post?.platforms!.map(
-  //     (p) =>
-  //       ({
-  //         type: 'Thing',
-  //         name: p.title,
-  //         sameAs: p.url,
-  //       }) as unknown as RichData.SameAsType[]
-  //   );
-  //   return {mentions: m};
-  // }, [post.platforms]);
+  const mentions = useMemo(() => {
+    const m = post?.platforms!.map(
+      (p) =>
+        ({
+          type: 'Thing',
+          name: p.title,
+          sameAs: p.url,
+        }) as unknown as RichData.SameAsType
+    );
+    if (post.mentions && post.mentions.length > 0) {
+      return m.concat(post.mentions)
+    }
+    return m;
+  }, [post.platforms]);
   return (
     <PageLayout
       metaTitle={`${post.title} | BlogPlatforms.app`}
@@ -59,9 +61,12 @@ export default function PlatformPage({ post }: Props) {
       richData={
         generateArticle({
           title: post.title!,
+
           description: post.description!,
           image: createWixStaticUrl(post.cover!),
           url: `${removeTrailing(META.CANONICAL)}/${ROUTES.BLOG_POST_DIRECTORY.path}/${removeTrailing(post.slug)}`,
+          ...(post.about && { about: post.about }),
+          ...(mentions && mentions.length && { mentions }),
           datePublished: post._createdDate!.$date!,
           dateModified: post._updatedDate!.$date!,
         }) as unknown as ArticleRichDataInput
