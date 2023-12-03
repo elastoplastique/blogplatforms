@@ -119,3 +119,4 @@ dist
 *.code-workspace
 .legacy
 /src/pages/.DS_Store
+/src/pages/.DS_Store
