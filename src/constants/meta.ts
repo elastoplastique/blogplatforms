@@ -1,5 +1,7 @@
 export const META = {
   WEBSITE_NAME: 'Blogging Platforms',
+  CREATED: '2023-11-20',
+  UPDATED: (new Date()).toISOString().slice(0, 10),
   CANONICAL: 'https://bloggingplatforms.app/',
   TITLE: 'Best Blogging Platforms & Sites | BloggingPlatforms.app',
   IMAGE: 'https://bloggingplatforms.app/assets/home-light.jpg',

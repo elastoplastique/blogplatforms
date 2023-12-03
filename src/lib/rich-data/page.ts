@@ -1,3 +1,4 @@
+import { SameAsType } from './../../../types/rich-data..d';
 import { generateBreadcrumbs } from '@/lib/rich-data/breadcrumbs';
 import { generateProject } from '@/lib/rich-data/project';
 import { generateImageObject } from './image';
@@ -7,9 +8,10 @@ export type InputPageRichData = {
   page: any;
   breadcrumbsLinks: BreadcrumbLink[];
   mentions?: any;
+  about?: RichData.About;
 };
 
-export function generatePage({ page, breadcrumbsLinks, mentions }: InputPageRichData) {
+export function generatePage({ page, breadcrumbsLinks, mentions, about }: InputPageRichData) {
   let imageData = null;
   if (page.image && page.logo) {
     imageData = [
@@ -28,6 +30,8 @@ export function generatePage({ page, breadcrumbsLinks, mentions }: InputPageRich
     name: page.name,
     description: page.description,
     url: page.url,
+    ...(page.dateCreated && { dateCreated: page.dateCreated } ),
+    ...(page.dateModified && { dateModified: page.dateModified } ),
     ...(imageData !== null && { image: imageData }),
     "publisher": {
       "@type": "Organization",
@@ -38,6 +42,8 @@ export function generatePage({ page, breadcrumbsLinks, mentions }: InputPageRich
       '@type': 'WebPage',
       '@id': page.url,
     },
-    ...(mentions && { mentions: mentions }),
+    ...(mentions && { mentions }),
+    ...(about && { about }),
+
   };
 }

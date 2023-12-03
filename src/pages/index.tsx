@@ -26,6 +26,7 @@ import { Swiper } from '@/components/compound/swiper';
 // import { CommandBar } from '@/components/compound/command-bar';
 import { PlatformsGridView } from '@/components/views/platforms-grid-view';
 import { FilterFeatureView } from '@/components/views/feature-filter-view';
+import { generateAbout } from '@/lib/rich-data/about';
 
 type Props = {
   platforms: PlatformNode[];
@@ -69,10 +70,17 @@ export default function HomePage(props: Props) {
             url: META.CANONICAL,
             image: META.IMAGE,
             logo: META.LOGO,
+            about: generateAbout({
+              name: 'Category:Blog hosting services',
+              url: 'https://www.wikidata.org/wiki/Q7001351',
+            }),
+            dateCreated: META.CREATED,
+            dateModified: META.UPDATED,
+
           },
           breadcrumbsLinks: [{ name: META.WEBSITE_NAME, href: META.CANONICAL, current: true }],
         }),
-        generateProject()
+        generateProject(),
       ]}
     >
       <Container

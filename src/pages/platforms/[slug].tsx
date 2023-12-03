@@ -33,6 +33,7 @@ import { externalImageLoader } from '@/lib/utils/external-image-loader';
 import { generatePlatformPage } from '@/lib/rich-data';
 import { generateSameAsFromAccounts } from '@/lib/rich-data/same-as';
 import { useRouter } from 'next/router';
+import { generateAbout } from '@/lib/rich-data/about';
 
 type Props = {
   platform: PlatformNode;
@@ -44,7 +45,7 @@ type Props = {
 
 export default function PlatformPage({ platform, platformFeatures, platformComparativeFeatures, platformAccounts }: Props) {
   const asPath = useRouter().asPath;
-  // console.log("[slug] page platformComparativeFeatures: ", platformComparativeFeatures)
+  console.log("[slug] page platformComparativeFeatures: ", platform)
   // console.log("[slug] page platformFeatures: ", platformFeatures)
   const features = useMemo(() => platformFeatures.filter((pf: Wix.PlatformFeatureNode) => pf.featureData?.title), [platform.slug]);
   const comparativeFeatures = useMemo(
@@ -70,13 +71,20 @@ export default function PlatformPage({ platform, platformFeatures, platformCompa
           description: platform.description,
           image: platform.cover,
           logo: platform.logo,
+          dateCreated:  platform._createdDate.$date,
+          dateModified: platform._updatedDate.$date,
           ...(platformAccounts && { sameAs: generateSameAsFromAccounts(platformAccounts) }),
+
         },
         rating: '5',
         breadcrumbsLinks: [
           { name: platform.title, href: `https://bloggingplatforms.app`, current: true },
           { name: platform.title, href: `https://bloggingplatforms.app/platforms/${platform.slug}`, current: true },
         ],
+        about: generateAbout({
+          name: "blog software",
+          url: "https://www.wikidata.org/wiki/Q1810858",
+        }),
       })}
     >
       <Container

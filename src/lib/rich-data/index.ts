@@ -14,20 +14,19 @@ export type InputPlatformRichData = {
     description: string;
     url: string;
     image: string;
+    dateCreated?: string;
+    dateModified?: string;
   };
   rating: string;
   breadcrumbsLinks: BreadcrumbLink[];
+  about?: RichData.About;
 };
 
-export function generatePlatformPage({ platform, rating, breadcrumbsLinks }: InputPlatformRichData) {
+export function generatePlatformPage({ platform, rating, breadcrumbsLinks, about }: InputPlatformRichData) {
   const author = generateAuthor({
     name: 'Blog Platforms',
     url: 'https://bloggingplatforms.app',
-    sameAs: [
-      META.SOCIAL.TWITTER,
-      META.SOCIAL.GITHUB,
-      META.SOCIAL.PINTEREST,
-    ],
+    sameAs: [META.SOCIAL.TWITTER, META.SOCIAL.GITHUB, META.SOCIAL.PINTEREST],
   });
   const software = generateSoftware(platform, rating, author);
   return generatePage({
@@ -37,8 +36,11 @@ export function generatePlatformPage({ platform, rating, breadcrumbsLinks }: Inp
       url: platform.url,
       image: platform.image,
       logo: platform.logo,
+      dateCreated: platform.dateCreated,
+      dateModified: platform.dateModified,
     },
     breadcrumbsLinks,
     mentions: software,
+    about,
   });
 }

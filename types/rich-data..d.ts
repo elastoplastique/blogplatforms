@@ -86,4 +86,12 @@ export type SoftwareApp = {
   review: Review;
 };
 
+export type About = {
+  "@type": "Thing",
+  name?: string;
+  url?: string;
+  description?: string;
+  sameAs?: string;
+};
+
 export as namespace RichData;
