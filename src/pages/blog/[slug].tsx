@@ -48,7 +48,7 @@ export default function PlatformPage({ post }: Props) {
         }) as unknown as RichData.SameAsType
     );
     if (post.mentions && post.mentions.length > 0) {
-      return m.concat(post.mentions)
+      return m.concat(post.mentions);
     }
     return m;
   }, [post.platforms]);

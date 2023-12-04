@@ -16,9 +16,9 @@ export function generateImageObject(data: ImagePlatformRichData) {
     '@type': 'ImageObject',
     contentUrl: data.src,
     creditText: data.alt,
-    ...(data.licenseUrl && {license: data.licenseUrl}),
-    ...(data.acquireLicensePage && {acquireLicensePage: data.acquireLicensePage}),
-    ...(data.creator && {creator: data.creator}),
-    ...(data.copyrightNotice && {copyrightNotice: data.copyrightNotice}),
+    ...(data.licenseUrl && { license: data.licenseUrl }),
+    ...(data.acquireLicensePage && { acquireLicensePage: data.acquireLicensePage }),
+    ...(data.creator && { creator: data.creator }),
+    ...(data.copyrightNotice && { copyrightNotice: data.copyrightNotice }),
   };
 }

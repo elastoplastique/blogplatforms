@@ -38,9 +38,9 @@ export default function MyApp({ Component, pageProps }: AppProps) {
             domain={process.env.NEXT_PUBLIC_AUTH0_CLIENT_DOMAIN!}
             clientId={process.env.NEXT_PUBLIC_AUTH0_CLIENT_ID!}
             authorizationParams={{
-              redirect_uri:process.env.NEXT_PUBLIC_AUTH0_REDIRECT_URI,
+              redirect_uri: process.env.NEXT_PUBLIC_AUTH0_REDIRECT_URI,
               audience: `${META.CANONICAL}/api/v2/`,
-              scope: "read:current_user update:current_user_metadata"
+              scope: 'read:current_user update:current_user_metadata',
             }}
           >
             <WixClientProvider>

@@ -30,12 +30,12 @@ export function generatePage({ page, breadcrumbsLinks, mentions, about }: InputP
     name: page.name,
     description: page.description,
     url: page.url,
-    ...(page.dateCreated && { dateCreated: page.dateCreated } ),
-    ...(page.dateModified && { dateModified: page.dateModified } ),
+    ...(page.dateCreated && { dateCreated: page.dateCreated }),
+    ...(page.dateModified && { dateModified: page.dateModified }),
     ...(imageData !== null && { image: imageData }),
-    "publisher": {
-      "@type": "Organization",
-      "name": "Blogging Platforms",
+    publisher: {
+      '@type': 'Organization',
+      name: 'Blogging Platforms',
     },
     breadcrumb: generateBreadcrumbs(breadcrumbsLinks),
     mainEntityOfPage: {
@@ -44,6 +44,5 @@ export function generatePage({ page, breadcrumbsLinks, mentions, about }: InputP
     },
     ...(mentions && { mentions }),
     ...(about && { about }),
-
   };
 }

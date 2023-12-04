@@ -76,7 +76,6 @@ export default function HomePage(props: Props) {
             }),
             dateCreated: META.CREATED,
             dateModified: META.UPDATED,
-
           },
           breadcrumbsLinks: [{ name: META.WEBSITE_NAME, href: META.CANONICAL, current: true }],
         }),

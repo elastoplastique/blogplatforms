@@ -87,7 +87,7 @@ export type SoftwareApp = {
 };
 
 export type About = {
-  "@type": "Thing",
+  '@type': 'Thing';
   name?: string;
   url?: string;
   description?: string;

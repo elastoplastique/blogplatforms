@@ -37,7 +37,6 @@ export const FOOTER_CONTENT = {
   },
 };
 
-
 export const FOOTER_FEATURE_LINKS: NavLinkType[] = [
   {
     path: '/features/headless',

@@ -7,7 +7,7 @@ import { LogoutButton } from '@/components/auth0/logout-button';
 export const AuthButton = () => {
   const { user, isAuthenticated, isLoading } = useAuth0();
   const [userMetadata, setUserMetadata] = useState(null);
-//   console.log('user', user, isAuthenticated, isLoading);
+  //   console.log('user', user, isAuthenticated, isLoading);
 
   if (isLoading) {
     return <div>Loading ...</div>;

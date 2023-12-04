@@ -11,14 +11,14 @@ import { useWixClient } from '@/lib/wix/hooks/use-wix-client';
 import { LoginBar } from '@/components/auth/status';
 import { getCurrentMember } from '@/lib/wix/utils/get-current-member';
 import { AUTH_LOGIN_PATHNAME } from '@/lib/wix/constants';
-import { useAuth0 } from "@auth0/auth0-react";
+import { useAuth0 } from '@auth0/auth0-react';
 import { useRouter } from 'next/router';
 
 export default function ProfilePage() {
   const { user, isAuthenticated, getAccessTokenSilently } = useAuth0();
   const router = useRouter();
 
-  if (user && isAuthenticated){
+  if (user && isAuthenticated) {
     return router.push('/');
   }
 

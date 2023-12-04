@@ -1,11 +1,11 @@
 export const META = {
   WEBSITE_NAME: 'Blogging Platforms',
   CREATED: '2023-11-20',
-  UPDATED: (new Date()).toISOString().slice(0, 10),
+  UPDATED: new Date().toISOString().slice(0, 10),
   CANONICAL: 'https://bloggingplatforms.app/',
   TITLE: 'Best Blogging Platforms & Sites | BloggingPlatforms.app',
   IMAGE: 'https://bloggingplatforms.app/assets/home-light.jpg',
-  EMAIL: "hello@bloggingplatforms.app",
+  EMAIL: 'hello@bloggingplatforms.app',
   LOGO: 'https://bloggingplatforms.app/assets/bloggingplatforms.png',
   DESCRIPTION:
     'Discover and compare the best blogging sites and platforms at Blogging Platforms. Our curated list provides in-depth reviews, helping you make an informed decision for your blogging journey.',
@@ -28,7 +28,7 @@ export const META = {
   SOCIAL: {
     TWITTER: 'https://twitter.com/bloggingapp',
     PINTEREST: 'https://www.pinterest.com/bloggingplatforms/',
-    GITHUB: 'https://github.com/elastoplastique'
-},
-KEYWORDS:["blogging"]
+    GITHUB: 'https://github.com/elastoplastique',
+  },
+  KEYWORDS: ['blogging'],
 };

@@ -11,7 +11,7 @@ import { LOGO } from '@/constants/image';
 import { externalImageLoader } from '@/lib/utils/external-image-loader';
 import { META } from '@/constants/meta';
 import Image from 'next/image';
-import { useAuth0 } from "@auth0/auth0-react";
+import { useAuth0 } from '@auth0/auth0-react';
 
 const LoginPage: React.FC = () => {
   return (

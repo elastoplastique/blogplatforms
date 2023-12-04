@@ -1,5 +1,5 @@
 import { FOOTER_LINKS, FOOTER_CONTENT, FOOTER_FEATURE_LINKS, FOOTER_BLOG_LINKS } from '@/constants/navigation';
-import {SOCIAL_MEDIA } from '@/constants/social-media';
+import { SOCIAL_MEDIA } from '@/constants/social-media';
 import { LOGO } from '@/constants/image';
 import { keyifier } from '@/lib/utils/keyifier';
 import Link from 'next/link';
@@ -88,7 +88,7 @@ export const MainFooter = () => {
             <ul className="mt-8 space-y-4">
               {FOOTER_BLOG_LINKS.map((nl: NavLinkType, i: number) => (
                 <li key={`footer-blog-link-${nl.path}`}>
-                <Link
+                  <Link
                     href={nl.path}
                     title={nl.description}
                     className="text-base text-white transition-all duration-200 hover:text-opacity-80 focus:text-opacity-80"
@@ -153,14 +153,8 @@ export const MainFooter = () => {
 
         <div className="flex flex-wrap items-center justify-between">
           <div className="relative w-20 h-20 rounded-full overflow-hidden">
-
-          <Image
-            className="h-8 auto md:order-1 !rounded-full"
-            src={LOGO}
-            alt="Blogging Platforms logo"
-            fill
-            />
-            </div>
+            <Image className="h-8 auto md:order-1 !rounded-full" src={LOGO} alt="Blogging Platforms logo" fill />
+          </div>
 
           <ul className="flex items-center space-x-3 md:order-3">
             <li>
@@ -174,7 +168,6 @@ export const MainFooter = () => {
                 </svg>
               </a>
             </li>
-
 
             <li>
               <a
