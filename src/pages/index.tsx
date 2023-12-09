@@ -27,6 +27,7 @@ import { Swiper } from '@/components/compound/swiper';
 import { PlatformsGridView } from '@/components/views/platforms-grid-view';
 import { FilterFeatureView } from '@/components/views/feature-filter-view';
 import { generateAbout } from '@/lib/rich-data/about';
+import { useUser } from '@auth0/nextjs-auth0/client';
 
 type Props = {
   platforms: PlatformNode[];
@@ -39,7 +40,8 @@ export default function HomePage(props: Props) {
   const router = useRouter();
   const routeSlug = router.asPath.split('/')[router.asPath.split('/').length - 1];
   const setPlatformsToRender = useGlobal((state) => state.setPlatformsToRender);
-
+  const { user, error, isLoading } = useUser();
+  console.log('home user', user, error, isLoading);
   const currentPlatforms = useMemo(() => {
     console.log('routeSlug', routeSlug);
     const platforms = props.platformFeatures

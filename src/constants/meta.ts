@@ -4,6 +4,7 @@ export const META = {
   UPDATED: new Date().toISOString().slice(0, 10),
   CANONICAL: 'https://bloggingplatforms.app/',
   TITLE: 'Best Blogging Platforms & Sites | BloggingPlatforms.app',
+  TAGLINE: 'Find the best blogging platform that meets your needs.',
   IMAGE: 'https://bloggingplatforms.app/assets/home-light.jpg',
   EMAIL: 'hello@bloggingplatforms.app',
   LOGO: 'https://bloggingplatforms.app/assets/bloggingplatforms.png',
