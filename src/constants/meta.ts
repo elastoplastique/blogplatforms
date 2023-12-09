@@ -3,7 +3,7 @@ export const META = {
   CREATED: '2023-11-20',
   UPDATED: new Date().toISOString().slice(0, 10),
   CANONICAL: 'https://bloggingplatforms.app/',
-  TITLE: 'Best Blogging Platforms & Sites | BloggingPlatforms.app',
+  TITLE: 'Best Blogging Platforms & Sites',
   IMAGE: 'https://bloggingplatforms.app/assets/home-light.jpg',
   EMAIL: 'hello@bloggingplatforms.app',
   LOGO: 'https://bloggingplatforms.app/assets/bloggingplatforms.png',

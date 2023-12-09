@@ -95,7 +95,7 @@ export function MainNavigation() {
   // },[])
   return (
     <nav id="main-navigation" className="h-16 sm:px-16 w-full">
-      <Link href="/">
+      <Link href="/" title="Best Blogging Platforms">
         <Flex direction="row" align="end">
           <Heading as="h1" size="5" className="!text-sm sm:!text-xl tracking-tightest !whitespace-nowrap !mr-4">
             {WEBSITE_NAME}
