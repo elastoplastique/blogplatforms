@@ -4,7 +4,7 @@ import { generateAbout } from '@/lib/rich-data/about';
 
 type Props = {
   mentions?: RichData.SameAsType[];
-}
+};
 
 export function generateProject(props: Props = {}) {
   return {
@@ -28,7 +28,6 @@ export function generateProject(props: Props = {}) {
       url: 'https://www.wikidata.org/wiki/Q7001351',
     }),
     sameAs: [META.SOCIAL.TWITTER, META.SOCIAL.GITHUB, META.SOCIAL.PINTEREST],
-    ...(props.mentions  && { mentions: props.mentions }),
-
+    ...(props.mentions && { mentions: props.mentions }),
   };
 }

@@ -92,7 +92,7 @@ export default function HomePage(props: Props) {
           },
           breadcrumbsLinks: [{ name: META.WEBSITE_NAME, href: META.CANONICAL, current: true }],
         }),
-        generateProject({mentions}),
+        generateProject({ mentions }),
       ]}
     >
       <Container

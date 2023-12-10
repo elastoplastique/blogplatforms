@@ -47,7 +47,7 @@ export type Author = {
 
 export type RawQA = [string, string];
 
-export type QA ={
+export type QA = {
   '@type': 'Question';
   name: RawQA[0];
   acceptedAnswer: {

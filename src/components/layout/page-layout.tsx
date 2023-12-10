@@ -17,18 +17,18 @@ type PageLayoutProps = {
 };
 
 export function PageLayout({ children, ...props }: PageLayoutProps) {
-  function mergeRichData(richData: any){
+  function mergeRichData(richData: any) {
     /**
      * A bug in Safari requires a merge for multiple rich data types
      * https://stackoverflow.com/questions/76995140/safari-throws-when-parsing-json-ld
      */
-    if (Array.isArray(richData)){
+    if (Array.isArray(richData)) {
       return {
-        "@context": "http://schema.org",
-        "@graph": richData
-      }
+        '@context': 'http://schema.org',
+        '@graph': richData,
+      };
     }
-    return richData
+    return richData;
   }
   return (
     <>

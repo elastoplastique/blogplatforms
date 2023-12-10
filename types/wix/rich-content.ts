@@ -33,7 +33,7 @@ export interface ItalicDecoration extends Decoration<'ITALIC'> {
 export interface ColorDecoration extends Decoration<'COLOR'> {
   colorData: {
     background: string;
-    foreground: string
+    foreground: string;
   };
 }
 

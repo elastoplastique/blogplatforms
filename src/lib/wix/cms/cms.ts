@@ -353,7 +353,6 @@ export async function getFileDescriptors({ fileIds }: Wix.GetFileDescriptorsRequ
 }
 export async function getFileDescriptor(fileId: string): Promise<Wix.GetFileDescriptorResponse['file']> {
   const result = await wixMedia.getImageUrl(fileId);
-  console.log('FILE DESCRIPTOR', JSON.stringify(result, null, 2));
   return result;
 }
 
@@ -412,9 +411,7 @@ export function generateFileUrl(fileId: string): string {
 
 export const getRichData = async (url: string) => {
   const response = await fetch(url);
-  console.log('RESPONSE', response);
   const textResponse = await response.text();
-  console.log('TEXT RESPONSE', textResponse);
   if (textResponse) {
     const parser = new DOMParser();
     const htmlDocument = parser.parseFromString(textResponse, 'text/html');

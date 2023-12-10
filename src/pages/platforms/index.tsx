@@ -4,9 +4,12 @@ import { ListCard } from '@/components/compound/list-card';
 import { PageLayout } from '@/components/layout/page-layout';
 import { useRouter } from 'next/router';
 
-
-
 export default function BlogPlatforms(props: any) {
+  const router = useRouter();
+
+  useEffect(() => {
+    router.push('/');
+  },[])
   return (
     <PageLayout metaTitle={`Best Blogging Site | BlogPlatforms.app`} canonical={'https://bloggingplatforms.app'}>
       {props.children}
@@ -19,10 +22,8 @@ export const getStaticProps = async () => {
   // console.log("blog-platforms/index.tsx frontmatter", allFrontMatters)
 
   return {
-    redirect: {
-      destination: '/',
-      permanent: false,
-      // statusCode: 301
+    props: {
+
     },
   };
 };

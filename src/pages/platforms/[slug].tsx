@@ -45,7 +45,6 @@ type Props = {
 
 export default function PlatformPage({ platform, platformFeatures, platformComparativeFeatures, platformAccounts }: Props) {
   const asPath = useRouter().asPath;
-  console.log('[slug] page platformComparativeFeatures: ', platform);
   // console.log("[slug] page platformFeatures: ", platformFeatures)
   const features = useMemo(() => platformFeatures.filter((pf: Wix.PlatformFeatureNode) => pf.featureData?.title), [platform.slug]);
   const comparativeFeatures = useMemo(
