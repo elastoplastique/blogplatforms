@@ -1,4 +1,5 @@
 import { generateAuthor } from './author';
+import { generateFAQ } from '@/lib/rich-data/faq';
 
 export type ArticleRichDataInput = {
   title: string;
@@ -8,6 +9,7 @@ export type ArticleRichDataInput = {
   author?: RichData.Author;
   about?: RichData.SameAsType;
   mentions?: RichData.SameAsType[];
+  questions?: RichData.RawQA[];
   datePublished: string;
   dateModified: string;
 };
@@ -29,6 +31,7 @@ export function generateArticle(data: ArticleRichDataInput) {
     author: data?.author || defaultAuthor,
     ...(data.about && { about: data?.about }),
     ...(data.mentions && { mentions: data?.mentions }),
+    ...(data.questions && { mainEntity: generateFAQ(data?.questions) }),
     publisher: {
       '@type': 'Organization',
       name: 'Blog Platforms',

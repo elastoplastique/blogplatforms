@@ -358,7 +358,7 @@ function WixNode({ node }: { node: BodyItemUnion }) {
     return <WixParagraph node={node} />;
   }
   if (node.type === 'TEXT') {
-    if (node.textData.decorations.length > 0) {
+    if (node.textData.decorations.length > 0 && !textHasEmptyDecoration(node)) {
       return <WixTextDecorated node={node} />;
     } else {
       return <WixText node={node} />;
@@ -387,6 +387,20 @@ function WixNode({ node }: { node: BodyItemUnion }) {
   } else {
     return <></>;
   }
+}
+
+function textHasEmptyDecoration(node: Wix.Text) {
+  const decorations = node.textData.decorations
+
+    // COLOR
+    const isEmptyColor = ((d: TextDecorationUnion) => d.type === "COLOR" && d?.colorData.background === "" && d?.colorData.foreground === "")
+    
+    
+    // Empty decoration values are collected as True
+    const emptyList = decorations.map((d: TextDecorationUnion) => (
+        isEmptyColor(d)
+    )).filter(Boolean)
+    return emptyList.length  === decorations.length
 }
 
 // function WixTextDecoration({ text, decorations }: { text: string, decorations: Decoration<DecorationType>[] }) {

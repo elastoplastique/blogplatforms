@@ -64,6 +64,7 @@ export default function PlatformPage({ post }: Props) {
 
           description: post.description!,
           image: createWixStaticUrl(post.cover!),
+          questions: post.questions,
           url: `${removeTrailing(META.CANONICAL)}/${ROUTES.BLOG_POST_DIRECTORY.path}/${removeTrailing(post.slug)}`,
           ...(post.about && { about: post.about }),
           ...(mentions && mentions.length && { mentions }),

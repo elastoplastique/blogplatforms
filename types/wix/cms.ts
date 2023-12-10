@@ -179,6 +179,7 @@ export interface PostNode {
   _updatedDate?: { $date: string };
   about?: RichData.SameAsType;
   mentions?: RichData.SameAsType[];
+  questions?: RichData.RawQA[];
 }
 export interface TagNode {
   _id: string;

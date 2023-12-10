@@ -45,6 +45,23 @@ export type Author = {
   sameAs: string;
 };
 
+export type RawQA = [string, string];
+
+export type QA ={
+  '@type': 'Question';
+  name: RawQA[0];
+  acceptedAnswer: {
+    '@type': 'Answer';
+    text: RawQA[1];
+  };
+};
+
+export type FAQPage = {
+  '@context': 'https://schema.org';
+  '@type': 'FAQPage';
+  mainEntity: QA[];
+};
+
 export type Project = {
   '@context'?: 'https://schema.org';
   '@type': string;
