@@ -2,7 +2,11 @@ import { META } from '@/constants/meta';
 import { generateImageObject } from '@/lib/rich-data/image';
 import { generateAbout } from '@/lib/rich-data/about';
 
-export function generateProject() {
+type Props = {
+  mentions?: RichData.SameAsType[];
+}
+
+export function generateProject(props: Props = {}) {
   return {
     '@context': 'https://schema.org',
     '@type': 'Project',
@@ -24,5 +28,7 @@ export function generateProject() {
       url: 'https://www.wikidata.org/wiki/Q7001351',
     }),
     sameAs: [META.SOCIAL.TWITTER, META.SOCIAL.GITHUB, META.SOCIAL.PINTEREST],
+    ...(props.mentions  && { mentions: props.mentions }),
+
   };
 }

@@ -42,7 +42,7 @@ export function generatePage({ page, breadcrumbsLinks, mentions, about }: InputP
       '@type': 'WebPage',
       '@id': page.url,
     },
-    ...(mentions && { mentions }),
+    ...(mentions ? { mentions } : page.mentions ? { mentions: page.mentions } : {}),
     ...(about && { about }),
   };
 }

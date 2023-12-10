@@ -17,6 +17,19 @@ type PageLayoutProps = {
 };
 
 export function PageLayout({ children, ...props }: PageLayoutProps) {
+  function mergeRichData(richData: any){
+    /**
+     * A bug in Safari requires a merge for multiple rich data types
+     * https://stackoverflow.com/questions/76995140/safari-throws-when-parsing-json-ld
+     */
+    if (Array.isArray(richData)){
+      return {
+        "@context": "http://schema.org",
+        "@graph": richData
+      }
+    }
+    return richData
+  }
   return (
     <>
       <Head>
@@ -49,7 +62,7 @@ export function PageLayout({ children, ...props }: PageLayoutProps) {
         <meta property="twitter:description" content={props.metaDescription} />
         {props.image && <meta property="twitter:image" content={props.image} />}
 
-        {props.richData && <script type="application/ld+json">{`${JSON.stringify(props.richData)}`}</script>}
+        {props.richData && <script type="application/ld+json">{`${JSON.stringify(mergeRichData(props.richData))}`}</script>}
       </Head>
       <Flex className="!min-w-full py-20 min-h-[60vh] !mb-[300px]" direction="column" align="center" id="page-layout">
         {children}

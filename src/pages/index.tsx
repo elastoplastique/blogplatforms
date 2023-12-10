@@ -51,6 +51,19 @@ export default function HomePage(props: Props) {
     return platforms.length > 0 ? platforms : props.platforms;
   }, [routeSlug]);
 
+  const mentions = useMemo(() => {
+    console.log('currentPlatforms', currentPlatforms);
+    const m = currentPlatforms?.map(
+      (p) =>
+        ({
+          type: 'Thing',
+          name: p.title,
+          sameAs: p.url,
+        }) as unknown as RichData.SameAsType
+    );
+    return m;
+  }, [currentPlatforms]);
+
   useEffect(() => {
     setPlatformsToRender(currentPlatforms);
   }, []);
@@ -79,7 +92,7 @@ export default function HomePage(props: Props) {
           },
           breadcrumbsLinks: [{ name: META.WEBSITE_NAME, href: META.CANONICAL, current: true }],
         }),
-        generateProject(),
+        generateProject({mentions}),
       ]}
     >
       <Container
