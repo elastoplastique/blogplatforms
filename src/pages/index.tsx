@@ -52,7 +52,6 @@ export default function HomePage(props: Props) {
   }, [routeSlug]);
 
   const mentions = useMemo(() => {
-    console.log('currentPlatforms', currentPlatforms);
     const m = currentPlatforms?.map(
       (p) =>
         ({

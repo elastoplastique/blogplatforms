@@ -127,7 +127,7 @@ h6.cms-rich-content { font-weight: 600; font-size: var(--fontSize-s)   !importan
 
 .cms-rich-content a.cms-link {
   background-color: transparent;
-  border-bottom: 2px solid var(--subtle-bg);
+  border-bottom: 2px solid var(--solid-bg);
   box-sizing: inherit;
   cursor: pointer;
   font-family: "Ivy Journal", serif;
@@ -139,8 +139,8 @@ h6.cms-rich-content { font-weight: 600; font-size: var(--fontSize-s)   !importan
 }
 
 .cms-rich-content a.cms-link:hover {
-  background-color: var(--subtle-bg);
-  color: black !important;
+  background-color: var(--hover-solid-bg);
+  color: white !important;
   outline-width: 0px;
   text-decoration: none;
 }

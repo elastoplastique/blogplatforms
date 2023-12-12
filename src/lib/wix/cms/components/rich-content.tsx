@@ -138,9 +138,9 @@ function WixTextDecorated({ node }: { node: Wix.Text }) {
     </Strong>
   );
   const ItalicDecoration = ({ decoration, children }: { decoration: ItalicDecoration; children: ReactNode | string }) => (
-    <Em className="cms-rich-content cms-em" id={id3}>
+    <em className="cms-rich-content cms-em" id={id3}>
       {children}
-    </Em>
+    </em>
   );
   const ColorDecoration = ({ decoration, children }: { decoration: ColorDecoration; children: ReactNode | string }) => (
     <span className="cms-rich-content cms-span" id={id4}>

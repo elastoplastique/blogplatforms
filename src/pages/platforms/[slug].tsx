@@ -52,11 +52,13 @@ export default function PlatformPage({ platform, platformFeatures, platformCompa
     [platform.slug]
   );
 
-  // console.log('[slug] page platformFeatures: ', platform);
-  // console.log("[slug] page platformResourceLinks: ", platformResourceLinks)
-  // console.log('[slug] page platformFeatures: ', platformFeatures);
-  // console.log('[slug] page accounts: ', platformAccounts);
 
+  function matchSameAsUrl(platformAccounts: Wix.AccountsNode, fallback: string){
+    if (platformAccounts.wikidata) return platformAccounts.wikidata;
+    if (platformAccounts.wikipedia) return platformAccounts.wikipedia;
+    if (platformAccounts.website) return platformAccounts.website;
+    return fallback;
+  }
   return (
     <PageLayout
       metaTitle={`${platform.title} | BlogPlatforms.app`}
@@ -73,6 +75,10 @@ export default function PlatformPage({ platform, platformFeatures, platformCompa
           dateCreated: platform._createdDate.$date,
           dateModified: platform._updatedDate.$date,
           ...(platformAccounts && { sameAs: generateSameAsFromAccounts(platformAccounts) }),
+          about: generateAbout({
+            name: platform.title,
+            url: matchSameAsUrl(platformAccounts, platform.url)
+          }),
         },
         rating: '5',
         breadcrumbsLinks: [

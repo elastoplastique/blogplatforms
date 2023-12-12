@@ -38,10 +38,13 @@ export const ProgressFeature = ({ platformComparativeFeature }: { platformCompar
           <Heading as="h3" size="5" mr="4" weight="bold" className="text-white">
             {platformComparativeFeature.feature.title}
           </Heading>
-
-          <Text as="p" size="2" my="2">
-            {platformComparativeFeature.feature.description}
-          </Text>
+          {platformComparativeFeature?.note ? (
+            <div dangerouslySetInnerHTML={{ __html: platformComparativeFeature?.note }} />
+          ) : (
+            <p>
+              {platformComparativeFeature.feature.description}
+            </p>
+          )}
 
           <Progress value={progressValue} max={PROGRESS_MAX} getValueLabel={getValueLabel} />
         </Flex>
