@@ -120,3 +120,4 @@ dist
 .legacy
 /src/pages/.DS_Store
 /src/pages/.DS_Store
+/public/media/posts/.DS_Store

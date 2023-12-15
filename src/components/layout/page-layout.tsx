@@ -6,6 +6,7 @@ import { authentication } from '@wix/members';
 import { useWixModules } from '@wix/sdk-react';
 import { SmoothScroll } from '@/components/layout/scroll-container';
 import { ASSETS_DIRECTORY } from '@/constants/assets-directory';
+import { usePageTracking } from '@/lib/hooks/use-page-tracking';
 
 type PageLayoutProps = {
   children: React.ReactNode;
@@ -17,6 +18,8 @@ type PageLayoutProps = {
 };
 
 export function PageLayout({ children, ...props }: PageLayoutProps) {
+  usePageTracking();
+  
   function mergeRichData(richData: any) {
     /**
      * A bug in Safari requires a merge for multiple rich data types
