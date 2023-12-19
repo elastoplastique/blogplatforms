@@ -89,9 +89,10 @@ export default function HomePage(props: Props) {
             dateCreated: META.CREATED,
             dateModified: META.UPDATED,
           },
+          mentions,
           breadcrumbsLinks: [{ name: META.WEBSITE_NAME, href: META.CANONICAL, current: true }],
         }),
-        generateProject({ mentions }),
+        generateProject(),
       ]}
     >
       <Container
