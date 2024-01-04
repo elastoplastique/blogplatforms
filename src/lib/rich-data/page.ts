@@ -15,7 +15,7 @@ export function generatePage({ page, breadcrumbsLinks, mentions, about }: InputP
   let imageData = null;
   if (page.image && page.logo) {
     imageData = [
-      generateImageObject(typeof page.image === 'string' ? { src: page.image, alt: `${page.name} | BlogPlatforms.app` } : page.image),
+      generateImageObject(typeof page.image === 'string' ? { src: page.image, alt: `${page.name} | BloggingPlatforms.app` } : page.image),
       generateImageObject(typeof page.logo === 'string' ? { src: page.logo, alt: page.name } : page.logo),
     ];
   } else if (page.image || page.logo) {
