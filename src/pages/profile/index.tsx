@@ -23,7 +23,7 @@ export default function ProfilePage() {
   }
 
   return (
-    <PageLayout metaTitle={`Best Blogging Site | BlogPlatforms.app`}>
+    <PageLayout metaTitle={`Best Blogging Site | BloggingPlatforms.app`}>
       <Container size="3">
         <Separator className="my-8" size="4" />
       </Container>

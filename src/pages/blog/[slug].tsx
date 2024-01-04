@@ -54,7 +54,7 @@ export default function PlatformPage({ post }: Props) {
   }, [post.platforms]);
   return (
     <PageLayout
-      metaTitle={`${post.title} | BlogPlatforms.app`}
+      metaTitle={`${post.title} | BloggingPlatforms.app`}
       metaDescription={post.description}
       canonical={`${removeTrailing(META.CANONICAL)}/${ROUTES.BLOG_POST_DIRECTORY.path}/${removeTrailing(post.slug)}`}
       image={createWixStaticUrl(post.cover!)}

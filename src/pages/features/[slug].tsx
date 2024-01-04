@@ -87,7 +87,7 @@ export default function FeaturePage(props: Props) {
 
   return (
     <PageLayout
-      metaTitle={`${data.feature.header} | BlogPlatforms.app`}
+      metaTitle={`${data.feature.header} | BloggingPlatforms.app`}
       metaDescription={data.feature.description}
       canonical={`${removeTrailing(META.CANONICAL)}/${ROUTES.FEATURES_DIRECTORY.path}/${removeTrailing(data.feature.slug)}`}
     >
