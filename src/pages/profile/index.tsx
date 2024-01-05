@@ -13,10 +13,12 @@ import { getCurrentMember } from '@/lib/wix/utils/get-current-member';
 import { AUTH_LOGIN_PATHNAME } from '@/lib/wix/constants';
 import { useAuth0 } from '@auth0/auth0-react';
 import { useRouter } from 'next/router';
+import { ROUTES } from '@/constants/routes';
 
 export default function ProfilePage() {
   const { user, isAuthenticated, getAccessTokenSilently } = useAuth0();
   const router = useRouter();
+  console.log('profile index:', user, isAuthenticated);
 
   if (user && isAuthenticated) {
     return router.push('/');
@@ -32,9 +34,21 @@ export default function ProfilePage() {
 }
 
 export async function getServerSideProps() {
+  const user = await getCurrentMember();
+  console.log('profile index page - user: ', user);
+  if (!user){
+    console.log('profile index page - non-existent user: ', user);
+    return {
+      redirect: {
+        destination: ROUTES.LOGIN.path,
+        permanent: false,
+      },
+    }
+  }
+  console.log('profile index page - existing user: ', user);
   return {
     redirect: {
-      destination: AUTH_LOGIN_PATHNAME,
+      destination: ROUTES.HOME.path,
       permanent: false,
     },
   };

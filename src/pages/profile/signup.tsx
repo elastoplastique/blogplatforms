@@ -5,7 +5,7 @@ import { SignupForm } from '@/components/auth/signup-form';
 import { wixClient } from '@/lib/wix/provider/client-provider';
 import { getCurrentMember } from '@/lib/wix/utils/get-current-member';
 import { registerMember } from '@/lib/wix/utils/register-member';
-
+import { ROUTES } from '@/constants/routes';
 import { AUTH_CALLBACK_PATHNAME } from '@/lib/wix/constants';
 import { LOGO } from '@/constants/image';
 import { externalImageLoader } from '@/lib/utils/external-image-loader';
@@ -42,11 +42,12 @@ const SignupPage: React.FC = () => {
 
 export async function getServerSideProps() {
   const user = await getCurrentMember();
+  console.log('profile signup page - user: ', user);
   if (user) {
-    console.log('login page: member is already logged in');
+    console.log('profile signup page - existing user: ', user);
     return {
       redirect: {
-        destination: AUTH_CALLBACK_PATHNAME,
+        destination: ROUTES.HOME.path,
         permanent: false,
       },
     };

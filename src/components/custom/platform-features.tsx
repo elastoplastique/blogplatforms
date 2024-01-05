@@ -12,7 +12,7 @@ import { PLATFORM_PAGE } from '@/constants/content';
 import { CircuitBoard, Info } from 'lucide-react';
 import { InfoTooltip } from '@/components/compound/info-tooltip';
 import { HorizontalFeatureCard } from '@/components/custom/horizontal-feature-card';
-import { ROUTES } from '@/constants/routes';
+import { ROUTE } from '@/constants/routes';
 
 export const PlatformFeatures = ({ platformName, platformFeatures }: { platformName: string; platformFeatures: PlatformFeatureNode[] }) => {
   // order platform features by category title
@@ -30,7 +30,7 @@ export const PlatformFeatures = ({ platformName, platformFeatures }: { platformN
             title={pf.feature.title}
             description={pf.note || pf.feature.description}
             key={`pf-${pf.feature.slug}-${index}`}
-            link={`/${ROUTES.FEATURES_DIRECTORY.path}/${pf.feature.slug}`}
+            link={`/${ROUTE.FEATURES_DIRECTORY.path}/${pf.feature.slug}`}
           />
           // <Badge key={`pf-${pf.feature.slug}-${index}`} size="2" className="m-2 !min-h-[60px] flex space-between !items-center">
           //   <Flex direction="column" align="center" className="mr-1">

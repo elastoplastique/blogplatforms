@@ -5,4 +5,6 @@ export const ROUTES = {
   FEATURES_DIRECTORY: { path: 'features', label: 'Features' },
   BLOG_POST_DIRECTORY: { path: 'blog', label: 'Blog' },
   ABOUT: { path: 'about', label: 'About' },
+  LOGIN: { path:  'profile/login', label: 'Login' },
+  SIGNUP: { path: 'profile/signup', label: 'Signup' },
 };

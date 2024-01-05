@@ -12,7 +12,7 @@ import { PlatformFeatures } from '@/components/custom/platform-features';
 import { PlatformResources } from '@/components/custom/platform-resources';
 import { ProgressFeatures } from '@/components/custom/progress-features';
 import { Breadcrumb } from '@/components/compound/breadcrumb';
-import { ROUTES } from '@/constants/routes';
+import { ROUTE } from '@/constants/routes';
 import { META } from '@/constants/meta';
 import { SocialAccounts } from '@/components/custom/social-accounts';
 import {
@@ -89,7 +89,7 @@ export default function FeaturePage(props: Props) {
     <PageLayout
       metaTitle={`${data.feature.header} | BloggingPlatforms.app`}
       metaDescription={data.feature.description}
-      canonical={`${removeTrailing(META.CANONICAL)}/${ROUTES.FEATURES_DIRECTORY.path}/${removeTrailing(data.feature.slug)}`}
+      canonical={`${removeTrailing(META.CANONICAL)}/${ROUTE.FEATURES_DIRECTORY.path}/${removeTrailing(data.feature.slug)}`}
     >
       <Container
         size={{

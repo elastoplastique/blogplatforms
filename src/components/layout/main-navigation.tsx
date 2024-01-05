@@ -5,6 +5,7 @@ import { Flex, Heading } from '../ui';
 import { ThemeToggle } from '@/components/theme-toggle';
 import { DropdownMenu, Button, Text } from '../ui';
 import { useWixModule } from '@/lib/wix/provider';
+import { AuthButton } from '@/components/auth0/auth-button';
 
 type NavLink = {
   name: string;
@@ -158,6 +159,9 @@ export function MainNavigation() {
                 ))}
               </DropdownMenu.Content>
             </DropdownMenu.Root>
+          </li>
+          <li>
+          <AuthButton />
           </li>
         </ul>
         <ThemeToggle />

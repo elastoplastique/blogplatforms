@@ -5,7 +5,7 @@ import { LoginForm } from '@/components/auth/login-form';
 import { wixClient } from '@/lib/wix/provider/client-provider';
 import { getCurrentMember } from '@/lib/wix/utils/get-current-member';
 import { loginMember } from '@/lib/wix/utils/login-member';
-
+import { ROUTES } from '@/constants/routes';
 import { AUTH_CALLBACK_PATHNAME } from '@/lib/wix/constants';
 import { LOGO } from '@/constants/image';
 import { externalImageLoader } from '@/lib/utils/external-image-loader';
@@ -43,18 +43,22 @@ const LoginPage: React.FC = () => {
 
 export async function getServerSideProps() {
   const user = await getCurrentMember();
+  console.log('profile login page - user:', user);
+
   if (user) {
-    console.log('login page: member is already logged in');
+    console.log('profile login page - existing user:', user);
     return {
       redirect: {
-        destination: AUTH_CALLBACK_PATHNAME,
+        destination: ROUTES.HOME.path,
         permanent: false,
       },
     };
+  } else {
+    console.log('profile login page - not exist user:', user);
+    return {
+      props: {},
+    };
   }
-  return {
-    props: {},
-  };
 }
 
 export default LoginPage;
