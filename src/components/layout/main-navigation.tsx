@@ -164,6 +164,10 @@ export function MainNavigation() {
           <AuthButton />
           </li>
         </ul>
+
+        <Flex direction="row" align="end">
+          <AuthButton />
+        </Flex>
         <ThemeToggle />
       </Flex>
     </nav>

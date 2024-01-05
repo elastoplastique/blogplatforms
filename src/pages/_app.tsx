@@ -16,6 +16,7 @@ import Script from 'next/script';
 import { WixClientProvider } from '@/lib/wix';
 import { Auth0Provider } from '@auth0/auth0-react';
 import { META } from '@/constants/meta';
+import { UserProvider } from '@auth0/nextjs-auth0/client';
 
 const GA_MEASUREMENT_ID = process.env.NEXT_PUBLIC_MEASUREMENT_ID;
 
@@ -34,21 +35,20 @@ export default function MyApp({ Component, pageProps }: AppProps) {
       </Script>
       <Theme accentColor="violet" radius="large" grayColor="mauve">
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
-          <Auth0Provider
-            domain={process.env.NEXT_PUBLIC_AUTH0_CLIENT_DOMAIN!}
-            clientId={process.env.NEXT_PUBLIC_AUTH0_CLIENT_ID!}
-            authorizationParams={{
-              redirect_uri: process.env.NEXT_PUBLIC_AUTH0_REDIRECT_URI,
-              audience: `${META.CANONICAL}/api/v2/`,
-              scope: 'read:current_user update:current_user_metadata',
-            }}
-          >
-            <WixClientProvider>
-              <MainLayout>
-                <Component {...pageProps} />
-              </MainLayout>
-            </WixClientProvider>
-          </Auth0Provider>
+          
+            <UserProvider loginUrl="/api/auth/login">
+              {/* domain={process.env.NEXT_PUBLIC_AUTH0_CLIENT_DOMAIN!}
+              clientId={process.env.NEXT_PUBLIC_AUTH0_CLIENT_ID!}
+              authorizationParams={{
+                redirect_uri: process.env.NEXT_PUBLIC_AUTH0_REDIRECT_URI,
+              }}
+            > */}
+              <WixClientProvider>
+                <MainLayout>
+                  <Component {...pageProps} />
+                </MainLayout>
+              </WixClientProvider>
+            </UserProvider>
         </ThemeProvider>
       </Theme>
     </>

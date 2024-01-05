@@ -7,4 +7,5 @@ export const ROUTES = {
   ABOUT: { path: 'about', label: 'About' },
   LOGIN: { path:  'profile/login', label: 'Login' },
   SIGNUP: { path: 'profile/signup', label: 'Signup' },
+  AUTH_LOGIN: { path: '/api/auth/login', label: 'Login' },
 };
