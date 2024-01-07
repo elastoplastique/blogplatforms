@@ -1,36 +1,27 @@
-// An About page
-import React from 'react';
+/* eslint-disable @next/next/no-img-element */
+import React, { useEffect, useState, useMemo } from 'react';
+import { Breadcrumb } from '@/components/compound/breadcrumb';
+import { ROUTES, STATIC_ROUTES, Route } from '@/constants/routes';
 import { PageLayout } from '@/components/layout/page-layout';
 import { Container, Flex, Heading, Text, Separator, Card, AspectRatio } from '@/components/ui';
 import { getPage } from '@/lib/wix/cms/cms';
-import { ROUTES } from '@/constants/routes';
 import { generatePage } from '@/lib/rich-data/page';
 import { RichContent } from '@/lib/wix/cms/components/rich-content';
 import Image from 'next/image';
 import { externalImageLoader } from '@/lib/utils/external-image-loader';
-import { Breadcrumb } from '@/components/compound/breadcrumb';
 import { motion } from 'framer-motion';
 
 type Props = {
   page: Wix.PageNode;
 };
 
-export default function AboutPage({ page }: Props) {
+export default function StaticPage({ page }: Props) {
   return (
     <PageLayout
       metaTitle={page.title}
       metaDescription={page.description}
       canonical={`${ROUTES.DOMAIN.path}/${page.slug}`}
       image={page.cover}
-      richData={generatePage({
-        page: {
-          name: page.title,
-          description: page.description,
-          url: `${ROUTES.DOMAIN.path}/${page.slug}`,
-          image: page.cover,
-        },
-        breadcrumbsLinks: [{ name: page.title, href: `${ROUTES.DOMAIN.path}/${page.slug}`, current: true }],
-      })}
     >
       <Container
         size={{
@@ -57,7 +48,7 @@ export default function AboutPage({ page }: Props) {
           )}
 
           <Flex width="100%" justify="center">
-            <Breadcrumb links={[{ name: page.title, href: `/${page.slug}`, current: true }]} />
+            <Breadcrumb links={[{ name: page.title, href: `${ROUTES.US_DIRECTORY.path}/${page.slug}`, current: true }]} />
           </Flex>
 
           <motion.div className="relative min-w-full rounded-3xl flex flex-col justify-center items-center min-h-32 my-8">
@@ -67,9 +58,6 @@ export default function AboutPage({ page }: Props) {
           </motion.div>
           {/* CONTENT */}
           <Flex direction="column" justify="start" align="stretch">
-            <Text as="p" align="center" weight="medium" size="5">
-              {page.description}
-            </Text>
             <Flex direction="column" justify="start" align="stretch" my="8">
               {page.body && <RichContent body={page.body} contentId="about-page" />}
             </Flex>
@@ -80,11 +68,21 @@ export default function AboutPage({ page }: Props) {
   );
 }
 
-export async function getStaticProps() {
-  const page = await getPage(ROUTES.ABOUT.path);
+export async function getStaticProps({ params: { slug } }: { params: { slug: string } }) {
+  const page = await getPage(slug);
+  console.log('page', page)
   return {
     props: {
       page,
     },
   };
 }
+
+export const getStaticPaths = async () => {
+  const paths = STATIC_ROUTES.map((route: Route) => ({ params: { slug: route.path.split("/")[route.path.split("/").length - 1] } }));
+  console.log("paths", paths);
+  return {
+    paths,
+    fallback: false,
+  };
+};

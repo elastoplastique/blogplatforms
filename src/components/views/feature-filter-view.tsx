@@ -7,7 +7,7 @@ import { X, ListFilter } from 'lucide-react';
 import Link from 'next/link';
 import { InfoTooltip } from '@/components/compound/info-tooltip';
 import { motion } from 'framer-motion';
-import { ROUTE } from '@/constants/routes';
+import { ROUTES } from '@/constants/routes';
 import { FEATURE_CATEGORY_COLORS } from '@/constants/features';
 import { DEFAULT_COLOR } from '@/constants/colors';
 import { cn } from '@/lib/utils';
@@ -24,7 +24,7 @@ export const FilterFeatureView = ({ features }: Props) => {
     if (featureSlug === routeSlug) {
       router.push('/', undefined, { shallow: true });
     } else {
-      router.push(`/${ROUTE.FEATURES_DIRECTORY.path}/${featureSlug}`, undefined);
+      router.push(`${ROUTES.FEATURES_DIRECTORY.path}/${featureSlug}`, undefined);
     }
   };
   const getColor = (f: FeatureNode) => {

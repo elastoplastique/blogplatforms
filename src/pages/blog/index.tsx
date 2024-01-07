@@ -44,7 +44,7 @@ export default function BlogPlatforms(props: Props) {
           >
             <ul>
               {props.posts.map((p: Wix.PostNode, ix: number) => (
-                <li key={`pf-${p.slug}-${ix}`} className="p-4">
+                <li key={`pf-${p.slug}-${ix}`} className="p-2">
                   <PostCard image={createWixStaticUrl(p.cover!)} title={p.title} description={p.description} href={`/blog/${p.slug}`} />
                 </li>
               ))}

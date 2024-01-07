@@ -12,7 +12,7 @@ import { PlatformFeatures } from '@/components/custom/platform-features';
 import { PlatformResources } from '@/components/custom/platform-resources';
 import { ProgressFeatures } from '@/components/custom/progress-features';
 import { Breadcrumb } from '@/components/compound/breadcrumb';
-import { ROUTE } from '@/constants/routes';
+import { ROUTES } from '@/constants/routes';
 import { META } from '@/constants/meta';
 import { SocialAccounts } from '@/components/custom/social-accounts';
 import {
@@ -63,7 +63,7 @@ export default function PlatformPage({ platform, platformFeatures, platformCompa
     <PageLayout
       metaTitle={`${platform.title} | BloggingPlatforms.app`}
       metaDescription={platform.description}
-      canonical={`${removeTrailing(META.CANONICAL)}/${ROUTE.PLATFORMS_DIRECTORY.path}/${removeTrailing(platform.slug)}`}
+      canonical={`${removeTrailing(META.CANONICAL)}${ROUTES.PLATFORMS_DIRECTORY.path}/${removeTrailing(platform.slug)}`}
       image={platform.cover}
       richData={generatePlatformPage({
         platform: {

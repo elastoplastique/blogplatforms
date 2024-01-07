@@ -1,3 +1,5 @@
+import { ROUTES } from './routes';
+
 // EXISTS IN BOTH TOP-NAV NAD FOOTER
 export const NAVLINKS: NavLinkType[] = [
   {
@@ -8,20 +10,28 @@ export const NAVLINKS: NavLinkType[] = [
 
 export const FOOTER_LINKS: NavLinkType[] = [
   {
-    path: '/',
+    path: ROUTES.HOME.path,
     text: 'Blogging Platforms',
   },
   {
-    path: '/features',
-    text: 'Features',
+    path: ROUTES.FEATURES_DIRECTORY.path,
+    text: ROUTES.FEATURES_DIRECTORY.label,
   },
   {
-    path: '/blog',
-    text: 'Lists',
+    path: ROUTES.BLOG_POST_DIRECTORY.path,
+    text: ROUTES.BLOG_POST_DIRECTORY.label,
   },
   {
-    path: '/about',
-    text: 'About',
+    path: ROUTES.ABOUT.path,
+    text: ROUTES.ABOUT.label,
+  },
+  {
+    path: ROUTES.PRIVACY_POLICY.path,
+    text: ROUTES.PRIVACY_POLICY.label,
+  },
+  {
+    path: ROUTES.TOS.path,
+    text: ROUTES.TOS.label,
   },
 ];
 
@@ -87,9 +97,9 @@ export const FOOTER_FEATURE_LINKS: NavLinkType[] = [
 
 export const FOOTER_BLOG_LINKS: NavLinkType[] = [
   {
-    path: '/blog/create-a-blog-site',
-    text: 'How to create a blog site',
-    description: 'How to create a blog site',
+    path: '/blog/beginners-guide-to-structure-blog-post-urls',
+    text: 'A Guide to an SEO-Friendly URL Structure',
+    description: 'Before sharing your first blog post, one of the things you should pay attention to is how your blog posts and their URLs should be organized.',
   },
   {
     path: '/blog/best-portfolio-sites',
@@ -98,7 +108,7 @@ export const FOOTER_BLOG_LINKS: NavLinkType[] = [
   },
   {
     path: '/blog/best-free-platforms-for-blogging',
-    text: 'Best Free Platforms for Blogging',
+    text: 'Best Free Blogging Platforms',
     description: 'A list of the best free platforms for blogging',
   },
   {
@@ -112,8 +122,8 @@ export const FOOTER_BLOG_LINKS: NavLinkType[] = [
     description: 'A list of the best blogging platforms for artists',
   },
   {
-    path: '/blog/best-blog-platforms-for-designers',
-    text: 'Best Blogging Platforms for Designers',
-    description: 'A list of the best blogging platforms for designers',
+    path: '/blog/blog/best-blog-sites-for-students',
+    text: 'Best Blogging Sites for Students',
+    description: 'We\'ll discuss the features you should look for when choosing a platform, the benefits of blogging, and the best blog sites for students.',
   },
 ];

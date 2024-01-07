@@ -4,7 +4,6 @@ import { WEBSITE_NAME } from '@/constants/content';
 import { Flex, Heading } from '../ui';
 import { ThemeToggle } from '@/components/theme-toggle';
 import { DropdownMenu, Button, Text } from '../ui';
-import { useWixModule } from '@/lib/wix/provider';
 import { AuthButton } from '@/components/auth0/auth-button';
 
 type NavLink = {
@@ -89,6 +88,7 @@ const features = [
 export function MainNavigation() {
   // const { memberClient } = useWixModule();
 
+
   // useEffect(() => {
   //  memberClient.getCurrentMember().then((member: any) => {
   //   console.log('member', member);
@@ -160,14 +160,11 @@ export function MainNavigation() {
               </DropdownMenu.Content>
             </DropdownMenu.Root>
           </li>
-          <li>
-          <AuthButton />
-          </li>
         </ul>
 
-        <Flex direction="row" align="end">
+        {/* <Flex direction="row" align="end">
           <AuthButton />
-        </Flex>
+        </Flex> */}
         <ThemeToggle />
       </Flex>
     </nav>

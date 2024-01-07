@@ -3,7 +3,7 @@ User-agent: *
 Allow: /
 
 # Host
-Host: https://blogplatforms.app
+Host: https://bloggingplatforms.app
 
 # Sitemaps
-Sitemap: https://blogplatforms.app/sitemap.xml
+Sitemap: https://bloggingplatforms.app/sitemap.xml

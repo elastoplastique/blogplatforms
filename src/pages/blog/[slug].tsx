@@ -56,7 +56,7 @@ export default function PlatformPage({ post }: Props) {
     <PageLayout
       metaTitle={`${post.title} | BloggingPlatforms.app`}
       metaDescription={post.description}
-      canonical={`${removeTrailing(META.CANONICAL)}/${ROUTES.BLOG_POST_DIRECTORY.path}/${removeTrailing(post.slug)}`}
+      canonical={`${removeTrailing(META.CANONICAL)}${ROUTES.BLOG_POST_DIRECTORY.path}/${removeTrailing(post.slug)}`}
       image={createWixStaticUrl(post.cover!)}
       richData={
         generateArticle({
@@ -65,7 +65,7 @@ export default function PlatformPage({ post }: Props) {
           description: post.description!,
           image: createWixStaticUrl(post.cover!),
           questions: post.questions,
-          url: `${removeTrailing(META.CANONICAL)}/${ROUTES.BLOG_POST_DIRECTORY.path}/${removeTrailing(post.slug)}`,
+          url: `${removeTrailing(META.CANONICAL)}${ROUTES.BLOG_POST_DIRECTORY.path}/${removeTrailing(post.slug)}`,
           ...(post.about && { about: post.about }),
           ...(mentions && mentions.length && { mentions }),
           datePublished: post._createdDate!.$date!,

@@ -30,7 +30,7 @@ export const PlatformFeatures = ({ platformName, platformFeatures }: { platformN
             title={pf.feature.title}
             description={pf.note || pf.feature.description}
             key={`pf-${pf.feature.slug}-${index}`}
-            link={`/${ROUTES.FEATURES_DIRECTORY.path}/${pf.feature.slug}`}
+            link={`${ROUTES.FEATURES_DIRECTORY.path}/${pf.feature.slug}`}
           />
           // <Badge key={`pf-${pf.feature.slug}-${index}`} size="2" className="m-2 !min-h-[60px] flex space-between !items-center">
           //   <Flex direction="column" align="center" className="mr-1">

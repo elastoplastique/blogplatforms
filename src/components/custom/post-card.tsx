@@ -24,8 +24,7 @@ export const PostCard = ({ title, description, href, image, className, ...rest }
   return (
     <Card
       variant="surface"
-      mx={'3'}
-      style={{ backgroundColor: `var(--iris-a2)`, width: '100%', borderRadius: 16, minHeight: 430 }}
+      style={{ width: '100%', borderRadius: 16, minHeight: 430 }}
       {...rest}
     >
       {/* @ts-ignore */}
