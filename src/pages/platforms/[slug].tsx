@@ -124,7 +124,7 @@ export default function PlatformPage({ platform, platformFeatures, platformCompa
           <motion.div className="relative min-w-full rounded-3xl flex flex-col justify-center items-center min-h-32 my-8">
             <Heading as="h1" size="4" className="tracking-tight text-center !font-semi-bold !mx-8 text-inherit pt-2 whitespace-nowrap">
               <span className="!text-lg block font-medium !mb-2">
-                <Link href="/">Best Blog Platforms</Link>
+                <Link href="/">Best Blogging Platforms</Link>
               </span>
               <span className="text-5xl sm:text-6xl  block !tracking-tighter uppercase">{platform.title}</span>
             </Heading>
