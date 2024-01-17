@@ -11,7 +11,7 @@ export const CONTENT = {
     text: 'Blog Platforms',
   },
   SUBTITLE: {
-    text: 'Your ultimate guide to choose the best blog platforms on the web.',
+    text: 'Your ultimate guide to choose the best blogging platforms on the web.',
   },
   MESSAGE: {
     text: '',

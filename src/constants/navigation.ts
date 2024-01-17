@@ -40,7 +40,7 @@ export const FOOTER_CONTENT = {
     text: 'Blogging Platforms',
   },
   SUBTITLE: {
-    text: 'The ultimate guide for choosing the best blog platforms. Search and compare the best blogging platforms by features you need.',
+    text: 'The ultimate guide for choosing the best blogging platforms. Search and compare the best blogging platforms by features you need.',
   },
   MESSAGE: {
     text: '',
@@ -98,7 +98,7 @@ export const FOOTER_FEATURE_LINKS: NavLinkType[] = [
 export const FOOTER_BLOG_LINKS: NavLinkType[] = [
   {
     path: '/blog/beginners-guide-to-structure-blog-post-urls',
-    text: 'A Guide to an SEO-Friendly URL Structure',
+    text: 'SEO-Friendly URL Structure',
     description: 'Before sharing your first blog post, one of the things you should pay attention to is how your blog posts and their URLs should be organized.',
   },
   {
@@ -122,7 +122,7 @@ export const FOOTER_BLOG_LINKS: NavLinkType[] = [
     description: 'A list of the best blogging platforms for artists',
   },
   {
-    path: '/blog/blog/best-blog-sites-for-students',
+    path: '/blog/best-blog-sites-for-students',
     text: 'Best Blogging Sites for Students',
     description: 'We\'ll discuss the features you should look for when choosing a platform, the benefits of blogging, and the best blog sites for students.',
   },

@@ -11,7 +11,7 @@ export default function BlogPlatforms(props: any) {
     router.push('/');
   },[])
   return (
-    <PageLayout metaTitle={`Best Blogging Site | BlogPlatforms.app`} canonical={'https://bloggingplatforms.app'}>
+    <PageLayout metaTitle={`Best Blogging Site | BloggingPlatforms.app`} canonical={'https://bloggingplatforms.app'}>
       {props.children}
     </PageLayout>
   );
