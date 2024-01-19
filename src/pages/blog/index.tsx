@@ -57,8 +57,7 @@ export default function BlogPlatforms(props: Props) {
 }
 
 export const getStaticProps = async () => {
-  const posts = (await getPosts()).filter((p) => p.published);
-  console.log('posts', posts);
+  const posts = (await getPosts()).filter((p) => p.published).sort((a,b) => a.order! - b.order!);
 
   return {
     props: {

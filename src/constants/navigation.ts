@@ -101,11 +101,7 @@ export const FOOTER_BLOG_LINKS: NavLinkType[] = [
     text: 'SEO-Friendly URL Structure',
     description: 'Before sharing your first blog post, one of the things you should pay attention to is how your blog posts and their URLs should be organized.',
   },
-  {
-    path: '/blog/best-portfolio-sites',
-    text: 'Best Portfolio Sites',
-    description: 'Best portfolio sites',
-  },
+
   {
     path: '/blog/best-free-platforms-for-blogging',
     text: 'Best Free Blogging Platforms',
@@ -125,5 +121,15 @@ export const FOOTER_BLOG_LINKS: NavLinkType[] = [
     path: '/blog/best-blog-sites-for-students',
     text: 'Best Blogging Sites for Students',
     description: 'We\'ll discuss the features you should look for when choosing a platform, the benefits of blogging, and the best blog sites for students.',
+  },
+  {
+    path: '/blog/best-portfolio-sites',
+    text: 'Best Portfolio Sites',
+    description: 'Best portfolio sites',
+  },
+  {
+    path: '/blog/best-grammar-tools',
+    text: 'Best Grammar Tools',
+    description: 'This article aims to provide bloggers with a comprehensive review of the best grammar tools available.'
   },
 ];
