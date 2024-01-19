@@ -48,7 +48,7 @@ export default function StaticPage({ page }: Props) {
           )}
 
           <Flex width="100%" justify="center">
-            <Breadcrumb links={[{ name: page.title, href: `${ROUTES.US_DIRECTORY.path}/us/${page.slug}`, current: true }]} />
+            <Breadcrumb links={[{ name: page.title, href: `${ROUTES.US_DIRECTORY.path}/${page.slug}`, current: true }]} />
           </Flex>
 
           <motion.div className="relative min-w-full rounded-3xl flex flex-col justify-center items-center min-h-32 my-8">
