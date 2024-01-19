@@ -20,7 +20,7 @@ export default function StaticPage({ page }: Props) {
     <PageLayout
       metaTitle={page.title}
       metaDescription={page.description}
-      canonical={`${ROUTES.DOMAIN.path}/${page.slug}`}
+      canonical={`${ROUTES.DOMAIN.path}/us/${page.slug}`}
       image={page.cover}
     >
       <Container
