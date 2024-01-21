@@ -1,6 +1,8 @@
 # *
 User-agent: *
 Allow: /
+Disallow: /api*
+Disallow: /profile*
 
 # Host
 Host: https://bloggingplatforms.app
