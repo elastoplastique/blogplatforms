@@ -49,6 +49,7 @@ type Props = {
 export default function FeaturePage(props: Props) {
   const router = useRouter();
   const routeSlug = router.asPath.split('/')[router.asPath.split('/').length - 1];
+  const contentId = useMemo(() => `feature-info-${routeSlug}`, [routeSlug]);
   const setSingleFeaturePlatforms = useGlobal((state) => state.setSingleFeaturePlatforms);
   const setFeatures = useGlobal((state) => state.setFeatures);
   const setPlatformsToRender = useGlobal((state) => state.setPlatformsToRender);
@@ -101,7 +102,7 @@ export default function FeaturePage(props: Props) {
         id="feature-page"
       >
         <Card id="page-card" className="w-full h-full relative flex flex-col justify-start min-w-full" mt={'2'} size="4">
-          <FeatureInfoView contentId={`feature-info-${routeSlug}`} />
+          <FeatureInfoView contentId={contentId} />
 
           <Separator className="my-8" size="4" />
 

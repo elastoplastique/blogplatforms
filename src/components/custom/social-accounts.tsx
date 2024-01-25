@@ -43,14 +43,14 @@ type SocialLinkType = {
   icon: string;
 };
 const SocialAccountLink = ({ link, title, icon }: SocialLinkType) => (
-  <motion.div className="p-0" whileHover={{ scale: 1.1 }}>
+  <motion.div className="p-0 social-account-link mx-1" whileHover={{ scale: 1.1 }}>
     <a
       href={link}
       target="_blank"
       rel="noopener nofollow"
-      className="flex items-center justify-center w-16 h-16 rounded-full  transition-colors duration-300 ease-in-out"
+      className="flex items-center justify-center w-12 h-12 rounded-full  transition-colors duration-300 ease-in-out"
     >
-      <Image src={icon} alt={title} width={32} height={32} title={title} />
+      <Image src={icon} alt={title} width={28} height={28} title={title} />
     </a>
     <span className="sr-only">{title}</span>
   </motion.div>

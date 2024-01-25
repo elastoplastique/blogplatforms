@@ -9,11 +9,12 @@ type Props = {
   icon?: React.ReactNode;
   title?: string;
   description?: string;
+  header?: string;
   link?: string;
   rest?: any;
 };
 
-export const HorizontalFeatureCard = ({ title, description, link, icon, ...rest }: Props) => {
+export const HorizontalFeatureCard = ({ title, description, link, icon, header, ...rest }: Props) => {
   const FeatureIcon = FEATURE_ICONS[title as keyof typeof FEATURE_ICONS] || icon || StoryIcon;
   const featureColor = FEATURE_COLORS[title as keyof typeof FEATURE_COLORS] || 'teal';
   // 329 100 96
@@ -35,15 +36,16 @@ export const HorizontalFeatureCard = ({ title, description, link, icon, ...rest 
           <Heading as="h3" size="5" mr="4" weight="bold" className="text-white">
             {link ? <Link href={link}>{title}</Link> : title}
           </Heading>
-          {description && <InfoTooltip size={20} text={description || ''} color={`var(--${featureColor}-12)`} />}
+          {/* {description && <InfoTooltip size={20} text={description || ''} color={`var(--${featureColor}-12)`} />} */}
         </Flex>
-        <Flex className="min-h-[80px]">
+        <Flex className="min-h-[80px] relative">
           {description && link ? (
-            <Link href={link}>
-              <Text className="text-text-low-contrast" size="3" dangerouslySetInnerHTML={{ __html: description }} />
-            </Link>
+            <>
+              <Link href={link} className="absolute top-0 left-0 right-0 bottom-0 z-0" title={header}></Link>
+              <div className="text-text-low-contrast z-10" dangerouslySetInnerHTML={{ __html: description }} />
+            </>
           ) : (
-            <Text className="text-text-low-contrast" size="3" dangerouslySetInnerHTML={{ __html: description! }} />
+            <div className="text-text-low-contrast" dangerouslySetInnerHTML={{ __html: description! }} />
           )}
         </Flex>
         {/* <p className="ml-5 text-sm font-normal leading-4 tracking-wide text-gray-600">{platformFeature.feature.description}</p> */}

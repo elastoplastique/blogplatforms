@@ -12,6 +12,7 @@ import { useGlobal } from '@/lib/state/global';
 
 export function PlatformsGridView() {
   const platformsToRender = useGlobal((state) => state.platformsToRender);
+
   return (
     <Flex
       direction={{
@@ -43,7 +44,7 @@ export function PlatformsGridView() {
             <AnimatePresence>
               {platformsToRender &&
                 platformsToRender.length > 0 &&
-                platformsToRender.map((platform) => (
+                platformsToRender.sort((a,b) => a.order - b.order).map((platform) => (
                   <motion.li
                     layout
                     key={platform.slug}

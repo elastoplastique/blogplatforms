@@ -43,7 +43,7 @@ const THUMB_HEIGHT = IMAGE_HEIGHT * THUMBNAIL_FACTOR;
 const THUMB_WIDTH = IMAGE_WIDTH * THUMBNAIL_FACTOR;
 
 export const RichContent = memo(
-  ({ body }: { body: { nodes: Wix.BodyItemUnion[]; metadata?: Wix.BodyMetadata }; contentId: string }) => {
+  ({ body, contentId }: { body: { nodes: Wix.BodyItemUnion[]; metadata?: Wix.BodyMetadata }; contentId: string }) => {
     return (
       <Flex width="100%" direction="column" id="rich-content">
         {body.nodes.map((node: BodyItemUnion) => (
@@ -83,7 +83,11 @@ function WixHeading({ node }: { node: Wix.Heading }) {
     }
   }
   return (
-    <Heading id={slugify(node.nodes.map((i: any) => i.textData.text).join('-'))} as={getLevel(node)} className="cms-rich-content cms-img">
+    <Heading 
+      as={getLevel(node)} 
+      id={slugify(node.nodes.map((i: any) => i.textData.text).join('-'))} 
+      key={slugify(node.nodes.map((i: any) => i.textData.text).join('-'))} 
+      className="cms-rich-content cms-img">
       <>
         {(node.nodes as BodyItemUnion[]).map((innerNode) => (
           <WixNode node={innerNode} key={innerNode._id || innerNode.id} />

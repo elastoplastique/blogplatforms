@@ -28,6 +28,7 @@ export const PlatformFeatures = ({ platformName, platformFeatures }: { platformN
         {orderedPlatformFeatures.map((pf: PlatformFeatureNode, index) => (
           <HorizontalFeatureCard
             title={pf.feature.title}
+            header={pf.feature.header}
             description={pf.note || pf.feature.description}
             key={`pf-${pf.feature.slug}-${index}`}
             link={`${ROUTES.FEATURES_DIRECTORY.path}/${pf.feature.slug}`}

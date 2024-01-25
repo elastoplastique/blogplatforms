@@ -45,7 +45,7 @@ type Props = {
 
 export default function PlatformPage({ platform, platformFeatures, platformComparativeFeatures, platformAccounts }: Props) {
   const asPath = useRouter().asPath;
-  // console.log("[slug] page platformFeatures: ", platformFeatures)
+  const audienceText = (platform.audience || []).join(',') || ''
   const features = useMemo(() => platformFeatures.filter((pf: Wix.PlatformFeatureNode) => pf.featureData?.title), [platform.slug]);
   const comparativeFeatures = useMemo(
     () => platformComparativeFeatures.filter((pcf: Wix.PlatformComparativeFeatureNode) => pcf.featureData?.title),
@@ -163,9 +163,8 @@ export default function PlatformPage({ platform, platformFeatures, platformCompa
             <Flex direction="column" justify="start" align="stretch" my="8">
               {platform.body && <RichContent body={platform.body} contentId={asPath} />}
             </Flex>
-
             {/* AUDIENCE */}
-            <Audience title={platform.title} audience_text={(platform.audience || []).join(',') || ''} />
+            <Audience title={platform.title} audience_text={audienceText} />
 
             {/* PROGRESS FEATURES */}
             {platformComparativeFeatures && platformComparativeFeatures.length > 0 && (
@@ -179,7 +178,7 @@ export default function PlatformPage({ platform, platformFeatures, platformCompa
             <ProsCons platform={platform} id={`${platform.slug}-platform-pros-cons`} />
 
             {/* APPEARED LISTS */}
-            {platform.posts && (
+            {platform.posts && platform.posts.length >0  && (
               <Flex direction="column" align="stretch" grow="1" id="list-box">
                 <Heading as="h2" size="6" className="font-medium capitalize">
                   APPEARED ON
@@ -214,7 +213,6 @@ export default function PlatformPage({ platform, platformFeatures, platformCompa
 
             {/* RESOURCES */}
             {platform.resources && <PlatformResources platformTitle={platform.title} body={platform.resources} slug={platform.slug} />}
-
             <motion.a
               href={platform.url}
               className="mt-4 mb-12"

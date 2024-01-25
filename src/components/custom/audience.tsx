@@ -38,11 +38,13 @@ export const Audience = (props: { title: string; audience_text: string }) => (
       <Flex direction="row" wrap="wrap" width="100%">
         {props.audience_text
           .split(',')
+          .filter((t) => t.length > 0)
           .sort()
           .map((item: string, index: number) => (
             <Badge
               size="2"
-              key={`target-audience-${item}`}
+              key={`target-audience-${index}`}
+              id={`target-audience-${index}`}
               /// @ts-ignore
               color={getAudienceColor(item)}
               className="mr-2 mb-2"

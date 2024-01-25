@@ -54,7 +54,7 @@ export const FeatureInfoView = memo(
         <Flex direction="column" justify="start" align="center" className="w-full">
           <Flex direction="column" justify="start" align="center" className="max-w-[80ch]">
             {featureToRender.body ? (
-              <RichContent body={featureToRender.body} contentId={props.contentId} />
+              <RichContent body={featureToRender.body} contentId={featureToRender.slug} />
             ) : (
               <Text as="p" align="center" weight="regular" size="5">
                 {featureToRender.description}
