@@ -75,7 +75,7 @@ export const FOOTER_FEATURE_LINKS: NavLinkType[] = [
   },
   {
     path: '/features/image-optimization',
-    text: 'Advanced Image Optimization',
+    text: 'Image Optimization',
     description: 'Blog platforms supporting advanced image optimization',
   },
   {
@@ -87,6 +87,11 @@ export const FOOTER_FEATURE_LINKS: NavLinkType[] = [
     path: '/features/open-source',
     text: 'Open-source',
     description: 'Open-source blogging platforms',
+  },
+  {
+    path: '/features/markdown',
+    text: 'Markdown',
+    description: 'Markdown blogging platforms',
   },
   {
     path: '/features/sell-digital-products',
@@ -104,32 +109,32 @@ export const FOOTER_BLOG_LINKS: NavLinkType[] = [
 
   {
     path: '/blog/best-free-platforms-for-blogging',
-    text: 'Best Free Blogging Platforms',
+    text: 'Free Blogging Platforms',
     description: 'A list of the best free platforms for blogging',
   },
   {
     path: '/blog/best-blogging-platforms-for-developers',
-    text: 'Best Blogging Platforms for Developers',
+    text: 'Blogging Platforms for Developers',
     description: 'A list of the best blogging platforms for developers',
   },
   {
     path: '/blog/best-blog-platforms-for-artists',
-    text: 'Best Blogging Platforms for Artists',
+    text: 'Blogging Platforms for Artists',
     description: 'A list of the best blogging platforms for artists',
   },
   {
     path: '/blog/best-blog-sites-for-students',
-    text: 'Best Blogging Sites for Students',
+    text: 'Blogging Sites for Students',
     description: 'We\'ll discuss the features you should look for when choosing a platform, the benefits of blogging, and the best blog sites for students.',
   },
   {
     path: '/blog/best-portfolio-sites',
-    text: 'Best Portfolio Sites',
+    text: 'Portfolio Sites',
     description: 'Best portfolio sites',
   },
   {
     path: '/blog/best-grammar-tools',
-    text: 'Best Grammar Tools',
+    text: 'Grammar Tools',
     description: 'This article aims to provide bloggers with a comprehensive review of the best grammar tools available.'
   },
 ];

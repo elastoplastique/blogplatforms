@@ -13,7 +13,7 @@ export const MainFooter = () => {
     <footer className="py-10 bg-gray-900 sm:pt-16 lg:pt-24 relative z-[1]">
       <div className="px-4 mx-auto sm:px-6 lg:px-8 max-w-7xl">
         <div className="grid grid-cols-1 gap-x-5 gap-y-12 md:grid-cols-4 md:gap-x-12">
-          <div>
+          <nav>
             <p className="text-base  text-white font-bold">{FOOTER_CONTENT.TITLE.text}</p>
 
             <ul className="mt-4 space-y-2">
@@ -29,9 +29,9 @@ export const MainFooter = () => {
                 </li>
               ))}
             </ul>
-          </div>
+          </nav>
 
-          <div>
+          <nav>
             <p className="text-base text-white font-bold">Features</p>
 
             <ul className="mt-4 space-y-2">
@@ -47,9 +47,9 @@ export const MainFooter = () => {
                 </li>
               ))}
             </ul>
-          </div>
+          </nav>
 
-          <div>
+          <nav>
             <p className="text-base  text-white font-bold">Blog</p>
 
             <ul className="mt-4 space-y-2">
@@ -66,7 +66,7 @@ export const MainFooter = () => {
                 </li>
               ))}
             </ul>
-          </div>
+          </nav>
 
         </div>
 

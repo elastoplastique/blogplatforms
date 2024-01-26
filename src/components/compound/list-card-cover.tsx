@@ -22,19 +22,21 @@ export const ListCardCover = memo(
         m={'3'}
         style={{ backgroundColor: `var(--iris-a2)`, width: '100%', margin: 0, borderRadius: 16, height: '100%' }}
         className="post-card"
-        // variant="surface"
-        // className={`list-card p-3 w-auto max-w-60 h-80 relative overflow-hidden rounded-4xl border border-subtle-border flex flex-col justify-center items-center`}
+      // variant="surface"
+      // className={`list-card p-3 w-auto max-w-60 h-80 relative overflow-hidden rounded-4xl border border-subtle-border flex flex-col justify-center items-center`}
       >
         {/* @ts-ignore */}
-        <AspectRatio ratio={16 / 9} className="aspect-ratio-box !overflow-hidden rounded-md">
-          <Link href={`/platforms/${platform.slug}`}>
-            <Image
-              src={createWixStaticUrl(platform.cover!)}
-              // src={`${ASSETS_DIRECTORY.LOGO_DIRECTORY}/${platform.slug}.png`}
-              alt={`Blog platform: ${platform.title}`}
-              loader={externalImageLoader}
-              loading="lazy"
-              fill
+        <Link href={`/platforms/${platform.slug}`}>
+            <div className="relative">
+          <AspectRatio ratio={16 / 9} className="aspect-ratio-box !overflow-hidden rounded-md">
+
+              <Image
+                src={createWixStaticUrl(platform.cover!)}
+                // src={`${ASSETS_DIRECTORY.LOGO_DIRECTORY}/${platform.slug}.png`}
+                alt={`Blog platform: ${platform.title}`}
+                loader={externalImageLoader}
+                loading="lazy"
+                fill
               // style={{
               //   display: 'block',
               //   objectFit: 'cover',
@@ -42,23 +44,28 @@ export const ListCardCover = memo(
               //   height: THUMB_HEIGHT,
               //   backgroundColor: 'var(--gray-5)',
               // }}
-            />
-          </Link>
-        </AspectRatio>
-        <Flex p="1" direction="column" className="min-h-[100px] post-card-body relative mt-4">
+              />
+          </AspectRatio>
+            </div>
+        </Link>
+        <Flex p="1" direction="column" className="min-h-[140px] post-card-body relative mt-4">
           <Heading as="h3" size="3">
             <Link href={`/platforms/${platform.slug}`} className="flex flex-row items-center">
-              <Image
-                // src={createWixStaticUrl(platform.cover!)}
-                src={`${ASSETS_DIRECTORY.LOGO_DIRECTORY}/${platform.slug}.png`}
-                alt={`Blog platform: ${platform.title}`}
-                loader={externalImageLoader}
-                className="border-subtle-border border logo"
-                loading="lazy"
-                width={40}
-                height={40}
-                style={{ borderRadius: '100%', marginRight: 16 }}
-              />
+              <div className="relative platform-mini-icon mr-2">
+
+
+                <Image
+                  // src={createWixStaticUrl(platform.cover!)}
+                  src={`${ASSETS_DIRECTORY.LOGO_DIRECTORY}/${platform.slug}.png`}
+                  alt={`Blog platform: ${platform.title}`}
+                  loader={externalImageLoader}
+                  className="border-subtle-border border logo"
+                  loading="lazy"
+                  width={40}
+                  height={40}
+                  style={{ borderRadius: '100%', marginRight: 16 }}
+                />
+              </div>
               <Strong>{platform.title}</Strong>
             </Link>
           </Heading>

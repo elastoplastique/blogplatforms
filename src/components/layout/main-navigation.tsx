@@ -21,32 +21,32 @@ const navLinks = [
 
 const listicles = [
   {
-    name: 'Best Free Platforms for Blogging',
+    name: 'Free Blogging Platforms',
     href: '/blog/best-free-platforms-for-blogging',
     current: false,
     description: 'Best Free Platforms for Blogging',
   },
   {
-    name: 'Best Blogging Platforms for Developers',
+    name: 'Blogging Platforms for Developers',
     href: '/blog/best-blogging-platforms-for-developers',
     current: false,
     description: 'Best Blogging Platform for Developers',
   },
   {
-    name: 'Best Blogging Platforms for Artists',
+    name: 'Blogging Platforms for Artists',
     href: '/blog/best-blog-platforms-for-artists',
     current: false,
     description: 'Best Blogging Platform for Artists',
   },
 
   {
-    name: 'Best Blogging Platforms for Designers',
-    href: '/blog/best-blog-platforms-for-designers',
+    name: 'Blogging Platforms for Students',
+    href: '/blog/best-blog-sites-for-students',
     current: false,
-    description: 'Best Blogging Platform for Designers',
+    description: 'Best Blogging Platform for Students',
   },
   {
-    name: 'Best Portfolio Sites',
+    name: 'Portfolio Sites',
     href: '/blog/best-portfolio-sites',
     current: false,
     description: 'Best Portfolio Sites',
@@ -76,7 +76,9 @@ const features = [
     current: false,
     description: 'Blog platforms having integrated reader base',
   },
-  { name: 'Open-source', href: '/features/open-source', current: false, description: 'Open-source blog platforms' },
+  { name: 'Open-source', href: '/features/open-source', current: false, description: 'Open-source blogging platforms' },
+  { name: 'Markdown', href: '/features/markdown', current: false, description: 'Markdown blogging platforms' },
+
   {
     name: 'Sell Digital Products',
     href: '/features/sell-digital-products',

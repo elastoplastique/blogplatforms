@@ -126,7 +126,7 @@ function WixTextDecorated({ node }: { node: Wix.Text }) {
       style={{ color: 'inherit' }}
       className="cms-rich-content cms-link"
       target={
-        decoration.linkData.link.target?.toLowerCase() === '_blank' || decoration.linkData.link.target?.toLowerCase() === 'blank'
+        (decoration.linkData.link.target?.toLowerCase() === '_blank' || decoration.linkData.link.target?.toLowerCase() === 'blank') && !domainTransformer(decoration.linkData.link.url).includes("bloggingplatforms")
           ? '_blank'
           : undefined
       }

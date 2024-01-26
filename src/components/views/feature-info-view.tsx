@@ -16,8 +16,8 @@ export const FeatureInfoView = memo(
     const featureToRender = useGlobal((state) => state.featureToRender);
     if (!featureToRender) return <></>;
     return (
-      <motion.div layoutId="feature-info-view">
-        <motion.div
+      <motion.article layoutId="feature-info-view">
+        <motion.header
           className="relative min-w-full rounded-3xl flex flex-col justify-center items-center min-h-32 my-8"
           id="feature-info-view"
         >
@@ -41,7 +41,7 @@ export const FeatureInfoView = memo(
           >
             The blog platforms that support {featureToRender.title} feature.
           </Heading>
-        </motion.div>
+        </motion.header>
         <Flex width="100%" justify="center">
           <Breadcrumb
             links={[
@@ -62,7 +62,7 @@ export const FeatureInfoView = memo(
             )}
           </Flex>
         </Flex>
-      </motion.div>
+      </motion.article>
     );
   },
   (prev, next) => prev.contentId === next.contentId

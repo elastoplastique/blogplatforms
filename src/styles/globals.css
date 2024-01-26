@@ -134,7 +134,12 @@ a.link-icon-link {
 .list-card:hover svg {
     color: white;
 }
-
+.post-card .platform-mini-icon {
+    background-color: rgba(255,255,255,0.9) !important;
+    max-width:40px;
+    max-height:40px;
+    border-radius:50%;
+}
 #filter-menu-card {
     background-color: var(--card-blur-bg) !important;
     backdrop-filter: blur(var(--card-blur-radius)) saturate(var(--card-blur-saturation)) !important;

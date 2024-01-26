@@ -94,7 +94,7 @@ export default function FeaturePage(props: Props) {
     >
       <Container
         size={{
-          initial: '1',
+          initial: '2',
           md: '3',
           lg: '4',
         }}
