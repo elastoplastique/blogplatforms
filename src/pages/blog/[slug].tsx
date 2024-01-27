@@ -111,28 +111,34 @@ export default function PlatformPage({ post }: Props) {
               />
             </AspectRatio>
           )}
+          <motion.article>
 
-          <motion.div className="relative min-w-full rounded-3xl flex flex-col justify-center items-center min-h-32 !mt-20">
-            <Heading as="h1" size="6" className="tracking-tight text-center !font-semi-bold !mx-8 text-inherit pt-2">
-              <span className="text-4xl sm:text-6xl block !tracking-tighter">{post.title}</span>
-            </Heading>
-          </motion.div>
+            <motion.header className="relative min-w-full rounded-3xl flex flex-col justify-center items-center min-h-32 !mt-20">
+              <Heading as="h1" size="6" className="tracking-tight text-center !font-semi-bold !mx-8 text-inherit pt-2">
+                <span className="text-4xl sm:text-6xl block !tracking-tighter">{post.title}</span>
+              </Heading>
+            </motion.header>
 
-          <Separator className="my-8" size="4" />
+            <Separator className="my-8" size="4" />
 
-          {/* MEDIA */}
-          {/* {platform.media && platform.media.length > 0 && <PlatformMedia media={platform.media} />} */}
+            {/* MEDIA */}
+            {/* {platform.media && platform.media.length > 0 && <PlatformMedia media={platform.media} />} */}
 
-          {/* CONTENT */}
-          <Flex direction="column" justify="start" align="stretch">
-            <Text as="p" align="center" weight="medium" size="4">
-              {post.description}
-            </Text>
+            {/* CONTENT */}
+            <Flex direction="column" justify="start" align="stretch">
+              <Text as="p" align="center" weight="medium" size="4">
+                {post.description}
+              </Text>
 
-            <Flex direction="column" justify="start" align="stretch" my="4">
-              {post.body && <RichContent body={post.body} contentId={post.slug} />}
+              <Flex direction="column" justify="start" align="stretch" my="4">
+                <main>
+
+                  {post.body && <RichContent body={post.body} contentId={post.slug} />}
+                </main>
+              </Flex>
             </Flex>
-          </Flex>
+          </motion.article>
+
         </Card>
       </Container>
     </PageLayout>
