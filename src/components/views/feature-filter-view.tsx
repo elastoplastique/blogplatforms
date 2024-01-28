@@ -33,8 +33,8 @@ export const FilterFeatureView = ({ features }: Props) => {
   };
 
   return (
-    <Card id="filter-menu-card" className="!w-full min-h-[60px] !mb-8" variant="surface">
-      <aside>
+    <aside>
+      <Card id="filter-menu-card" className="!w-full min-h-[60px] !mb-8" variant="surface">
         <Grid width="100%" columns="1">
           <motion.ul className="flex flex-row flex-wrap justify-center md:justify-center items-center list-none">
             {features.map((f: FeatureNode) => (
@@ -55,8 +55,8 @@ export const FilterFeatureView = ({ features }: Props) => {
             ))}
           </motion.ul>
         </Grid>
-      </aside>
-    </Card>
+      </Card>
+    </aside>
   );
 };
 

@@ -53,7 +53,7 @@ export default function PlatformPage({ platform, platformFeatures, platformCompa
   );
 
 
-  function matchSameAsUrl(platformAccounts: Wix.AccountsNode, fallback: string){
+  function matchSameAsUrl(platformAccounts: Wix.AccountsNode, fallback: string) {
     if (platformAccounts.wikidata) return platformAccounts.wikidata;
     if (platformAccounts.wikipedia) return platformAccounts.wikipedia;
     if (platformAccounts.website) return platformAccounts.website;
@@ -161,7 +161,9 @@ export default function PlatformPage({ platform, platformFeatures, platformCompa
             </Text>
 
             <Flex direction="column" justify="start" align="stretch" my="8">
-              {platform.body && <RichContent body={platform.body} contentId={asPath} />}
+              <main>
+                {platform.body && <RichContent body={platform.body} contentId={asPath} />}
+              </main>
             </Flex>
             {/* AUDIENCE */}
             <Audience title={platform.title} audience_text={audienceText} />
@@ -178,41 +180,47 @@ export default function PlatformPage({ platform, platformFeatures, platformCompa
             <ProsCons platform={platform} id={`${platform.slug}-platform-pros-cons`} />
 
             {/* APPEARED LISTS */}
-            {platform.posts && platform.posts.length >0  && (
-              <Flex direction="column" align="stretch" grow="1" id="list-box">
-                <Heading as="h2" size="6" className="font-medium capitalize">
-                  APPEARED ON
-                </Heading>
-                <Separator />
-                <Grid
-                  width="100%"
-                  columns={{
-                    initial: '1',
-                    sm: '2',
-                    md: '2',
-                    lg: '2',
-                  }}
-                  p="1"
-                  asChild
-                >
-                  <ul>
-                    {platform.posts.map((pp: Wix.PostNode, ix: number) => (
-                      <li key={`pf-${pp.slug}-${ix}`} className="py-4 h-120 mx-4">
-                        <PostCard
-                          image={createWixStaticUrl(pp.cover!)}
-                          title={pp.title}
-                          description={pp.description}
-                          href={`/blog/${pp.slug}`}
-                        />
-                      </li>
-                    ))}
-                  </ul>
-                </Grid>
-              </Flex>
+            {platform.posts && platform.posts.length > 0 && (
+              <aside>
+
+                <section id="list-box" className="flex flex-col flex-grow items-stretch">
+                  <Heading as="h2" size="6" className="font-medium capitalize">
+                    APPEARED ON
+                  </Heading>
+                  <Separator />
+                  <Grid
+                    width="100%"
+                    columns={{
+                      initial: '1',
+                      sm: '2',
+                      md: '2',
+                      lg: '2',
+                    }}
+                    p="1"
+                    asChild
+                  >
+                    <ul>
+                      {platform.posts.map((pp: Wix.PostNode, ix: number) => (
+                        <li key={`pf-${pp.slug}-${ix}`} className="py-4 h-120 mx-4">
+                          <PostCard
+                            image={createWixStaticUrl(pp.cover!)}
+                            title={pp.title}
+                            description={pp.description}
+                            href={`/blog/${pp.slug}`}
+                          />
+                        </li>
+                      ))}
+                    </ul>
+                  </Grid>
+                </section>
+              </aside>
             )}
 
             {/* RESOURCES */}
-            {platform.resources && <PlatformResources platformTitle={platform.title} body={platform.resources} slug={platform.slug} />}
+            {platform.resources && <aside>
+              <PlatformResources platformTitle={platform.title} body={platform.resources} slug={platform.slug} />
+            </aside>
+            }
             <motion.a
               href={platform.url}
               className="mt-4 mb-12"

@@ -23,7 +23,7 @@ export const SocialAccounts = (props: AccountProps) => {
   }, [props.accounts]);
 
   return (
-    <div className="flex flex-row flex-wrap w-full justify-center mt-4">
+    <section className="flex flex-row flex-wrap w-full justify-center mt-4">
       {Object.keys(socials).map((key: string, index: number) => (
         <SocialAccountLink
           key={`social-account-${socials[key]}-${index} }`}
@@ -33,7 +33,7 @@ export const SocialAccounts = (props: AccountProps) => {
           icon={`${ASSETS_DIRECTORY.ICON_DIRECTORY}/${ACCOUNT_ICONS[key]}.svg`}
         />
       ))}
-    </div>
+    </section>
   );
 };
 

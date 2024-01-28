@@ -17,7 +17,7 @@ export const FeatureInfoView = memo(
     if (!featureToRender) return <></>;
     return (
       <motion.article layoutId="feature-info-view">
-        <motion.header
+        <motion.section
           className="relative min-w-full rounded-3xl flex flex-col justify-center items-center min-h-32 my-8"
           id="feature-info-view"
         >
@@ -41,7 +41,7 @@ export const FeatureInfoView = memo(
           >
             The blog platforms that support {featureToRender.title} feature.
           </Heading>
-        </motion.header>
+        </motion.section>
         <Flex width="100%" justify="center">
           <Breadcrumb
             links={[
@@ -50,6 +50,7 @@ export const FeatureInfoView = memo(
             ]}
           />
         </Flex>
+
         {/* DESCRIPTION  */}
         <Flex direction="column" justify="start" align="center" className="w-full">
           <Flex direction="column" justify="start" align="center" className="max-w-[80ch]">
