@@ -99,6 +99,7 @@ export interface FeatureNode {
   body?: { nodes: BodyItemUnion[] };
   category?: string[];
   image?: string;
+  keywords?: string;
 }
 export interface PlatformFeatureNode {
   _id: string;
@@ -180,6 +181,7 @@ export interface PostNode {
   about?: RichData.SameAsType;
   mentions?: RichData.SameAsType[];
   questions?: RichData.RawQA[];
+  keywords?: string;
 }
 export interface TagNode {
   _id: string;

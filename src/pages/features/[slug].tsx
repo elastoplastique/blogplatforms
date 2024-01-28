@@ -55,7 +55,6 @@ export default function FeaturePage(props: Props) {
   const setPlatformsToRender = useGlobal((state) => state.setPlatformsToRender);
   const setFeatureToRender = useGlobal((state) => state.setFeatureToRender);
   const getFeature = useGlobal((state) => state.getFeature);
-
   const [data, setData] = useState<any>({
     slug: routeSlug,
     feature: props.feature,
@@ -90,6 +89,7 @@ export default function FeaturePage(props: Props) {
     <PageLayout
       metaTitle={`${data.feature.header} | BloggingPlatforms.app`}
       metaDescription={data.feature.description}
+      keywords={data.feature.keywords}
       canonical={`${removeTrailing(META.CANONICAL)}${ROUTES.FEATURES_DIRECTORY.path}/${removeTrailing(data.feature.slug)}`}
     >
       <Container

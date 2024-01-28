@@ -58,6 +58,7 @@ export default function PlatformPage({ post }: Props) {
       metaDescription={post.description}
       canonical={`${removeTrailing(META.CANONICAL)}${ROUTES.BLOG_POST_DIRECTORY.path}/${removeTrailing(post.slug)}`}
       image={createWixStaticUrl(post.cover!)}
+      keywords={post.keywords}
       richData={
         generateArticle({
           title: post.title!,

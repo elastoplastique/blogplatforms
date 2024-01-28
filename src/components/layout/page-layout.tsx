@@ -14,6 +14,7 @@ type PageLayoutProps = {
   metaDescription?: string;
   image?: string;
   canonical?: string;
+  keywords?: string;
   richData?: any;
 };
 
@@ -64,6 +65,7 @@ export function PageLayout({ children, ...props }: PageLayoutProps) {
         <meta property="twitter:title" content={props.metaTitle} />
         <meta property="twitter:description" content={props.metaDescription} />
         {props.image && <meta property="twitter:image" content={props.image} />}
+        {props.keywords && <meta property="keywords" content={props.keywords} />}
 
         {props.richData && <script type="application/ld+json">{`${JSON.stringify(mergeRichData(props.richData))}`}</script>}
       </Head>
