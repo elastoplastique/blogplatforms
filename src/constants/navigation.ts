@@ -49,11 +49,6 @@ export const FOOTER_CONTENT = {
 
 export const FOOTER_FEATURE_LINKS: NavLinkType[] = [
   {
-    path: '/features/headless',
-    text: 'Headless',
-    description: 'Headless blogging platforms',
-  },
-  {
     path: '/features/ad-monetization',
     text: 'Ad Monetization',
     description: 'Blogging platforms supporting ad monetization',
@@ -74,6 +69,11 @@ export const FOOTER_FEATURE_LINKS: NavLinkType[] = [
     description: 'Blog platforms supporting Figma integration',
   },
   {
+    path: '/features/headless',
+    text: 'Headless Blogging Platforms',
+    description: 'Headless blogging platforms',
+  },
+  {
     path: '/features/image-optimization',
     text: 'Image Optimization',
     description: 'Blog platforms supporting advanced image optimization',
@@ -85,12 +85,12 @@ export const FOOTER_FEATURE_LINKS: NavLinkType[] = [
   },
   {
     path: '/features/open-source',
-    text: 'Open-source',
+    text: 'Open-source Blogging Platforms',
     description: 'Open-source blogging platforms',
   },
   {
     path: '/features/markdown',
-    text: 'Markdown',
+    text: 'Markdown Blogging Platforms',
     description: 'Markdown blogging platforms',
   },
   {

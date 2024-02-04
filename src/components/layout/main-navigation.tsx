@@ -54,7 +54,6 @@ const listicles = [
 ];
 
 const features = [
-  { name: 'Headless', href: '/features/headless', current: false, description: 'Headless blog platforms' },
   { name: 'Ad-monetization', href: '/features/ad-monetization', current: false, description: 'Ad-monetization Friendly Blog Platforms' },
   {
     name: 'Category & Tag System',
@@ -64,6 +63,7 @@ const features = [
   },
   { name: 'Comment System', href: '/features/comment-system', current: false, description: 'Blog platforms that support commenting' },
   { name: 'Figma Integration', href: '/features/figma', current: false, description: 'Blog platforms having Figma integration' },
+  { name: 'Headless Blogging Platforms', href: '/features/headless', current: false, description: 'Headless blog platforms' },
   {
     name: 'Image Optimization',
     href: '/features/image-optimization',
@@ -76,8 +76,8 @@ const features = [
     current: false,
     description: 'Blog platforms having integrated reader base',
   },
-  { name: 'Open-source', href: '/features/open-source', current: false, description: 'Open-source blogging platforms' },
-  { name: 'Markdown', href: '/features/markdown', current: false, description: 'Markdown blogging platforms' },
+  { name: 'Markdown Blogging Platforms', href: '/features/markdown', current: false, description: 'Markdown blogging platforms' },
+  { name: 'Open-source Blogging Platforms', href: '/features/open-source', current: false, description: 'Open-source blogging platforms' },
 
   {
     name: 'Sell Digital Products',
