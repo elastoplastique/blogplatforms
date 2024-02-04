@@ -59,6 +59,7 @@ export default function PlatformPage({ platform, platformFeatures, platformCompa
     if (platformAccounts.website) return platformAccounts.website;
     return fallback;
   }
+  //console.log("platform", platform)
   return (
     <PageLayout
       metaTitle={`${platform.title} | BloggingPlatforms.app`}
@@ -130,7 +131,7 @@ export default function PlatformPage({ platform, platformFeatures, platformCompa
             <SocialAccounts accounts={platformAccounts} platformTitle={platform.title} />
             <motion.a
               href={platform.url}
-              className="intense-shadow mt-6 mb-12"
+              className={`intense-shadow mt-6 mb-12${platform.affiliate ? ' affiliate': ''}`}
               rel="noopener nofollow"
               transition={{ duration: 0.3, ease: 'easeInOut' }}
               style={{
@@ -223,7 +224,7 @@ export default function PlatformPage({ platform, platformFeatures, platformCompa
             }
             <motion.a
               href={platform.url}
-              className="mt-4 mb-12"
+              className={`mt-4 mb-12${platform.affiliate ? ' affiliate': ''}`}
               rel="noopener nofollow"
               transition={{ duration: 0.3, ease: 'easeInOut' }}
               style={{
