@@ -69,7 +69,7 @@ export function PageLayout({ children, ...props }: PageLayoutProps) {
 
         {props.richData && <script type="application/ld+json">{`${JSON.stringify(mergeRichData(props.richData))}`}</script>}
       </Head>
-      <Flex className="!min-w-full py-20 min-h-[60vh] !mb-[300px]" direction="column" align="center" id="page-layout">
+      <Flex className="!min-w-full py-20 min-h-[60vh] !mb-[100px]" direction="column" align="center" id="page-layout">
         {children}
       </Flex>
     </>

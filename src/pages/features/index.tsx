@@ -38,7 +38,7 @@ export default function BlogPlatforms(props: Props) {
               md: '2',
               lg: '2',
             }}
-            style={{ minHeight: '70vh' }}
+            style={{ minHeight: '40vh' }}
             p="1"
           >
             {props.features.map((f: Wix.FeatureNode, ix: number) => (

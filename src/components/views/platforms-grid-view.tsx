@@ -39,7 +39,7 @@ export function PlatformsGridView() {
               md: '2',
               lg: '3',
             }}
-            style={{ minHeight: '70vh' }}
+            style={{ minHeight: '40vh' }}
             p="1"
           >
             <motion.ul layout>

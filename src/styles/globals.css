@@ -200,14 +200,14 @@ a.link-icon-link {
     align-self: center;
     border-radius: 100%;
     background-image: linear-gradient(308deg, #ff7448 25%, #ff4848 54%, #6248ff 78%);
-    opacity: 0.3;
+    opacity: 0.2;
     -webkit-filter: blur(80px) blur(80px);
     filter: blur(80px) blur(80px);
 }
 
 .dark .header-blur {
-    background-image: linear-gradient(308deg, hsl(237, 97%, 27%) 25%, hsl(224, 77%, 19%) 54%, hsl(180, 98%, 17%) 78%);
-    opacity: 0.8;
+    background-image: linear-gradient(308deg, hsl(262, 100%, 15%) 25%, hsl(224, 77%, 14%) 54%, hsl(180, 98%, 13%) 78%);
+    opacity: 0.6;
     -webkit-filter: blur(80px) (80px);
     filter: blur(80px) (80px);
 }
