@@ -1,0 +1,11 @@
+.microlight {
+    font-family : monospace;
+    white-space : pre;
+}
+
+pre {
+    background-color: black !important;
+    padding: 8px;
+    border-radius: 8px;
+}
+

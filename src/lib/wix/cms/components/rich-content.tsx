@@ -1,6 +1,6 @@
 /* eslint-disable react/display-name */
 /* eslint-disable @next/next/no-img-element */
-import { useState, useEffect, useMemo, memo, useId } from 'react';
+import { useState, useEffect, useMemo, memo, useId, Fragment } from 'react';
 import type { ReactNode } from 'react';
 import { AspectRatio, Link, Heading, Text, Flex, Card, Inset, Strong, Em, Separator } from '@/components/ui';
 import {
@@ -26,7 +26,7 @@ import {
   ItalicDecoration,
   BulletedList,
   OrderedList,
-  ListItem,
+  ListItem, CodeBlock,
 } from '@/types/wix/rich-content';
 import { IMAGE_WIDTH, IMAGE_HEIGHT, THUMBNAIL_FACTOR } from '@/constants/image';
 import { media } from '@wix/sdk';
@@ -109,6 +109,21 @@ function WixParagraph({ node }: { node: Wix.Paragraph }) {
   );
 }
 
+function WixCodeBlock({ node }: { node: Wix.CodeBlock }) {
+  console.log("code ", node)
+  return (
+    <pre id={node._id} className="cms-rich-content cms-pre">
+      <code className="cms-rich-content cms-code microlight">
+      <>
+        {(node.nodes as BodyItemUnion[]).map((innerNode: BodyItemUnion, ix: number) => (
+          <WixNode node={innerNode} key={`${ix}-${innerNode._id}`} />
+        ))}
+      </>
+        </code>
+    </pre>
+  );
+}
+
 function WixTextDecorated({ node }: { node: Wix.Text }) {
   const id1 = useId();
   const id2 = useId();
@@ -185,10 +200,11 @@ function WixTextDecorated({ node }: { node: Wix.Text }) {
 function WixText({ node }: { node: Wix.Text }) {
   function getText(node: TextI) {
     let text = node.textData.text;
+    text = convertBackticks(text);
     node.nodes.forEach((innerNode: any) => {
       text += innerNode.textData.text;
     });
-    return text;
+    return text
   }
   return getText(node);
 }
@@ -355,11 +371,15 @@ function WixDivider({ node }: { node: Wix.Divider }) {
   return <hr className="cms-rich-content cms-hr" />;
 }
 function WixNode({ node }: { node: BodyItemUnion }) {
+  console.log("node", node)
   if (node.type === 'HEADING') {
     return <WixHeading node={node} />;
   }
   if (node.type === 'PARAGRAPH') {
     return <WixParagraph node={node} />;
+  }
+  if (node.type === 'CODE_BLOCK') {
+    return <WixCodeBlock node={node} />;
   }
   if (node.type === 'TEXT') {
     if (node.textData.decorations.length > 0 && !textHasEmptyDecoration(node)) {
@@ -402,6 +422,23 @@ function textHasEmptyDecoration(node: Wix.Text) {
   // Empty decoration values are collected as True
   const emptyList = decorations.map((d: TextDecorationUnion) => isEmptyColor(d)).filter(Boolean);
   return emptyList.length === decorations.length;
+}
+
+function convertBackticks(text: string){
+  if (text.includes("`")){
+    let result = "";
+    let splitted = text.split("`");
+    for(let i = 0; i < splitted.length; i++){
+      if (i % 2 === 0){
+        result += splitted[i];
+      } else {
+        result += `<code>${splitted[i]}</code>`
+      }
+    }
+    return result;
+  } else {
+    return text
+  }
 }
 
 // function WixTextDecoration({ text, decorations }: { text: string, decorations: Decoration<DecorationType>[] }) {
