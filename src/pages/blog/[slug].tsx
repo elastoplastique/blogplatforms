@@ -180,7 +180,6 @@ export default function BlogPostPage({ post }: Props) {
 
 export const getStaticProps = async ({ params: { slug } }: { params: { slug: string } }) => {
   const post = await getPost(slug);
-  console.log("post in getStaticProps", post)
   return {
     props: {
       post,

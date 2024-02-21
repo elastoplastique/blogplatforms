@@ -91,7 +91,7 @@ function WixHeading({ node }: { node: Wix.Heading }) {
       className="cms-rich-content cms-img">
       <>
         {(node.nodes as BodyItemUnion[]).map((innerNode, ix) => (
-          <WixNode node={innerNode} key={innerNode._id || innerNode.id} t={`${ix}-${innerNode._id || innerNode.id || key}`}/>
+          <WixNode node={innerNode} key={innerNode._id || innerNode.id || key} />
         ))}
       </>
     </Heading>

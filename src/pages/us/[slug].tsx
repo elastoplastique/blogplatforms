@@ -70,7 +70,6 @@ export default function StaticPage({ page }: Props) {
 
 export async function getStaticProps({ params: { slug } }: { params: { slug: string } }) {
   const page = await getPage(slug);
-  console.log('page', page)
   return {
     props: {
       page,
@@ -80,7 +79,6 @@ export async function getStaticProps({ params: { slug } }: { params: { slug: str
 
 export const getStaticPaths = async () => {
   const paths = STATIC_ROUTES.map((route: Route) => ({ params: { slug: route.path.split("/")[route.path.split("/").length - 1] } }));
-  console.log("paths", paths);
   return {
     paths,
     fallback: false,
