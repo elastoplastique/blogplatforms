@@ -1,7 +1,7 @@
 /* eslint-disable @next/next/no-img-element */
 import React, { useEffect, useState, useMemo } from 'react';
 import { PageLayout } from '@/components/layout/page-layout';
-import { AspectRatio, Badge, Heading, Text, Flex, Card, Container, Separator } from '@/components/ui';
+import { AspectRatio, Badge, Heading, Text, Flex, Grid, Card, Container, Separator } from '@/components/ui';
 import { motion } from 'framer-motion';
 import { ExternalLink } from 'lucide-react';
 import { ProsCons } from '@/components/custom/pros-cons';
@@ -32,12 +32,13 @@ import { createWixStaticUrl } from '@/lib/wix/utils/create-url';
 import { externalImageLoader } from '@/lib/utils/external-image-loader';
 import { generateArticle } from '@/lib/rich-data/article';
 import type { ArticleRichDataInput } from '@/lib/rich-data/article';
+import { PostCardLessVerbose } from '@/components/custom/post-card';
 
 type Props = {
   post: Wix.PostNode;
 };
 
-export default function PlatformPage({ post }: Props) {
+export default function BlogPostPage({ post }: Props) {
   const mentions = useMemo(() => {
     const m = post?.platforms!.map(
       (p) =>
@@ -140,6 +141,37 @@ export default function PlatformPage({ post }: Props) {
             </Flex>
           </motion.article>
 
+
+          {post.relatedPosts && post.relatedPosts.length > 0 && <aside>
+            <motion.div className="relative min-w-full rounded-3xl flex flex-col min-h-32 !mt-20">
+              <Heading as="h3" size="4" className="tracking-tight !font-semi-bold text-inherit pt-2">
+                <span className="text-4xl sm:text-2xl block !tracking-tighter">Related articles</span>
+              </Heading>
+            </motion.div>
+            <hr className="mb-8 opacity-60" />
+            <Flex direction="column" align="stretch" grow="1" id="list-box">
+              <Grid
+                width="100%"
+                columns={{
+                  initial: '1',
+                  sm: '2',
+                  md: '2',
+                  lg: '2',
+                }}
+                p="1"
+                asChild
+              >
+                <ul>
+                  {post.relatedPosts.map((p: Wix.PostNode, ix: number) => (
+                    <li key={`related-post-${p.slug}-${ix}`} id={`related-post-${p.slug}-${ix}`} className="p-2">
+                      <PostCardLessVerbose image={createWixStaticUrl(p.cover!)} title={p.title} description={p.description} href={`/blog/${p.slug}`} />
+                    </li>
+                  ))}
+                </ul>
+              </Grid>
+            </Flex>
+          </aside>}
+
         </Card>
       </Container>
     </PageLayout>
@@ -148,6 +180,7 @@ export default function PlatformPage({ post }: Props) {
 
 export const getStaticProps = async ({ params: { slug } }: { params: { slug: string } }) => {
   const post = await getPost(slug);
+  console.log("post in getStaticProps", post)
   return {
     props: {
       post,

@@ -10,10 +10,6 @@ export const NAVLINKS: NavLinkType[] = [
 
 export const FOOTER_LINKS: NavLinkType[] = [
   {
-    path: ROUTES.HOME.path,
-    text: 'Blogging Platforms',
-  },
-  {
     path: ROUTES.FEATURES_DIRECTORY.path,
     text: ROUTES.FEATURES_DIRECTORY.label,
   },
@@ -129,12 +125,17 @@ export const FOOTER_BLOG_LINKS: NavLinkType[] = [
   },
   {
     path: '/blog/best-portfolio-sites',
-    text: 'Portfolio Sites',
-    description: 'Best portfolio sites',
+    text: 'Blogging Platform Must-Haves',
+    description: 'Must have features to look for in a blogging platforms.',
   },
   {
-    path: '/blog/best-grammar-tools',
-    text: 'Grammar Tools',
-    description: 'This article aims to provide bloggers with a comprehensive review of the best grammar tools available.'
+    path: '/blog/features-to-look-for-in-a-blogging-platform',
+    text: 'Must-Have Features for Blogging Platforms',
+    description: 'Must have features to look for in a blogging platforms.',
   },
+  {
+    path: '/blog/optimize-images-for-web',
+    text: 'Optimize Images for the Web',
+    description: 'A user guide to optimize images for the web.',
+  }
 ];

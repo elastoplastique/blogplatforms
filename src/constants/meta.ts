@@ -24,7 +24,7 @@ export const META = {
   },
   POSTS_PAGE: {
     TITLE: 'Blog Posts',
-    DESCRIPTION: 'Blog posts about different blogging platforms and sites.',
+    DESCRIPTION: 'Articles about different blogging platforms and blogging in general.',
   },
   SOCIAL: {
     TWITTER: 'https://twitter.com/bloggingapp',

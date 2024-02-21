@@ -44,13 +44,7 @@ const listicles = [
     href: '/blog/best-blog-sites-for-students',
     current: false,
     description: 'Best Blogging Platform for Students',
-  },
-  {
-    name: 'Portfolio Sites',
-    href: '/blog/best-portfolio-sites',
-    current: false,
-    description: 'Best Portfolio Sites',
-  },
+  }
 ];
 
 const features = [

@@ -79,7 +79,6 @@ export interface PlatformNode {
 
   features?: PlatformFeatureNode[];
   comparativeFeatures?: PlatformComparativeFeatureNode[];
-
   posts: PostNode[];
   affiliation?: boolean;
 }
@@ -183,6 +182,7 @@ export interface PostNode {
   mentions?: RichData.SameAsType[];
   questions?: RichData.RawQA[];
   keywords?: string;
+  relatedPosts?: PostNode[];
 }
 export interface TagNode {
   _id: string;

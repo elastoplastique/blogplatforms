@@ -61,6 +61,46 @@ export const PostCard = ({ title, description, href, image, className, ...rest }
   );
 };
 
+export const PostCardLessVerbose = ({ title, description, href, image, className, ...rest }: Props) => {
+  // 329 100 96
+  return (
+    <Card
+      variant="surface"
+      size="1"
+      style={{ width: '100%', borderRadius: 16, minHeight: "auto", padding: 0}}
+      {...rest}
+    >
+      {/* @ts-ignore */}
+      <Link href={href} title={title}>
+        <AspectRatio ratio={16 / 9} className="aspect-ratio-box !overflow-hidden rounded-md relative">
+          <Image
+            src={image}
+            alt={title!}
+            loader={externalImageLoader}
+            loading="lazy"
+            fill
+            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+            // style={{
+            //   display: 'block',
+            //   objectFit: 'cover',
+            //   width: THUMB_WIDTH,
+            //   height: THUMB_HEIGHT,
+            //   backgroundColor: 'var(--gray-5)',
+            // }}
+          />
+        </AspectRatio>
+      </Link>
+      <Flex p="2" direction="column" className="min-h-[80px] post-card-body relative mt-4">
+        <Heading as="h3" size="3">
+          <Link href={href}>
+            <Strong>{title}</Strong>
+          </Link>
+        </Heading>
+      </Flex>
+    </Card>
+  );
+};
+
 const DefaultIcon = () => (
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="h-16 w-16">
     <path

@@ -82,15 +82,16 @@ function WixHeading({ node }: { node: Wix.Heading }) {
         return 'h2';
     }
   }
+  const key = slugify(node.nodes.map((i: any) => i.textData.text).join('-')) + "-" + getLevel(node)
   return (
     <Heading 
       as={getLevel(node)} 
       id={slugify(node.nodes.map((i: any) => i.textData.text).join('-'))} 
-      key={slugify(node.nodes.map((i: any) => i.textData.text).join('-'))} 
+      key={key} 
       className="cms-rich-content cms-img">
       <>
-        {(node.nodes as BodyItemUnion[]).map((innerNode) => (
-          <WixNode node={innerNode} key={innerNode._id || innerNode.id} />
+        {(node.nodes as BodyItemUnion[]).map((innerNode, ix) => (
+          <WixNode node={innerNode} key={innerNode._id || innerNode.id} t={`${ix}-${innerNode._id || innerNode.id || key}`}/>
         ))}
       </>
     </Heading>
@@ -110,7 +111,6 @@ function WixParagraph({ node }: { node: Wix.Paragraph }) {
 }
 
 function WixCodeBlock({ node }: { node: Wix.CodeBlock }) {
-  console.log("code ", node)
   return (
     <pre id={node._id} className="cms-rich-content cms-pre">
       <code className="cms-rich-content cms-code microlight">
@@ -324,12 +324,12 @@ function WixVideo({ node }: { node: Wix.Video }) {
   const videoId = useMemo(() => node.videoData.video.src._id || node.videoData.video.src.id!, [node.id]);
   const [videoUrl, setVideoUrl] = useState<string | undefined>();
 
-  console.log('videoUrl', videoUrl);
+  // console.log('videoUrl', videoUrl);
 
   async function getVideoStreamingUrl(videoId: string) {
     try {
       const vid = videoId.replace('video/', '');
-      console.log('vid', vid);
+      // console.log('vid', vid);
       const videoResponse = await generateVideoStreamingUrl(vid);
       // console.log('VIDEO RESPONSE', videoResponse)
       if (videoResponse?.downloadUrl && videoResponse?.downloadUrl.url) {
@@ -339,16 +339,16 @@ function WixVideo({ node }: { node: Wix.Video }) {
       }
     } catch (error) {
       console.log('error', error);
-      console.log('error', error);
+      // console.log('error', error);
     }
   }
 
   useEffect(() => {
     if (videoId) {
       getVideoStreamingUrl(videoId);
-      console.log('videoId', videoId);
-      console.log('node', node);
-      console.log('createWixStaticVideoUrl(node.videoData.video.src._id)', createWixStaticVideoUrl(videoId));
+      // console.log('videoId', videoId);
+      // console.log('node', node);
+      // console.log('createWixStaticVideoUrl(node.videoData.video.src._id)', createWixStaticVideoUrl(videoId));
     }
   }, [videoId]);
   if (!videoUrl) return <></>;
@@ -370,8 +370,8 @@ function WixVideo({ node }: { node: Wix.Video }) {
 function WixDivider({ node }: { node: Wix.Divider }) {
   return <hr className="cms-rich-content cms-hr" />;
 }
+
 function WixNode({ node }: { node: BodyItemUnion }) {
-  console.log("node", node)
   if (node.type === 'HEADING') {
     return <WixHeading node={node} />;
   }

@@ -6,7 +6,7 @@ import Link from 'next/link';
 import { Convertkit } from '@/components/compound/convertkit';
 import Image from 'next/image';
 import { externalImageLoader } from '@/lib/utils/external-image-loader';
-
+import { ROUTES } from '@/constants/routes';
 
 export const MainFooter = () => {
   return (
@@ -14,7 +14,13 @@ export const MainFooter = () => {
       <div className="px-4 mx-auto sm:px-6 lg:px-8 max-w-7xl">
         <div className="grid grid-cols-1 gap-x-5 gap-y-12 md:grid-cols-4 md:gap-x-12">
           <nav>
-            <p className="text-base  text-white font-bold">{FOOTER_CONTENT.TITLE.text}</p>
+            <Link
+              href={ROUTES.HOME.path}
+              title={ROUTES.HOME.label}
+              className="text-base font-bold text-white"
+            >
+              {FOOTER_CONTENT.TITLE.text}
+            </Link>
 
             <ul className="mt-4 space-y-2">
               {FOOTER_LINKS.map((nl: NavLinkType, i: number) => (
@@ -32,7 +38,13 @@ export const MainFooter = () => {
           </nav>
 
           <nav>
-            <p className="text-base text-white font-bold">Features</p>
+            <Link
+              href={ROUTES.FEATURES_DIRECTORY.path}
+              title={ROUTES.FEATURES_DIRECTORY.label}
+              className="text-base font-bold text-white"
+            >
+              {ROUTES.FEATURES_DIRECTORY.label}
+            </Link>
 
             <ul className="mt-4 space-y-2">
               {FOOTER_FEATURE_LINKS.map((nl: NavLinkType, i: number) => (
@@ -40,7 +52,7 @@ export const MainFooter = () => {
                   <Link
                     href={nl.path}
                     title={nl.description}
-                    className="text-sm text-white transition-all duration-200 hover:opacity-100 opacity-80"
+                    className="text-sm text-white transition-all duration-200 hover:opacity-100 opacity-70"
                   >
                     {nl.text}
                   </Link>
@@ -50,7 +62,13 @@ export const MainFooter = () => {
           </nav>
 
           <nav>
-            <p className="text-base  text-white font-bold">Blog</p>
+            <Link
+              href={ROUTES.BLOG_POST_DIRECTORY.path}
+              title={ROUTES.BLOG_POST_DIRECTORY.label}
+              className="text-base font-bold text-white"
+            >
+              {ROUTES.BLOG_POST_DIRECTORY.label}
+            </Link>
 
             <ul className="mt-4 space-y-2">
               {FOOTER_BLOG_LINKS.map((nl: NavLinkType, i: number) => (
@@ -58,7 +76,7 @@ export const MainFooter = () => {
                   <Link
                     href={nl.path}
                     title={nl.description}
-                    className="text-sm text-white transition-opacity ease-in-out duration-200 hover:opacity-100 opacity-80"
+                    className="text-sm text-white transition-opacity ease-in-out duration-200 hover:opacity-100 opacity-70"
                   >
                     {' '}
                     {nl.text}{' '}
