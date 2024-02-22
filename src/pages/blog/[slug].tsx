@@ -102,9 +102,9 @@ export default function BlogPostPage({ post }: Props) {
           </Flex>
           <motion.article>
             <motion.div className="relative min-w-full rounded-3xl flex flex-col justify-center items-center min-h-32 !mt-10 px-2">
-              <Heading as="h1" className="tracking-tight text-center !font-semi-bold mx-4 sm:mx-8 text-inherit pt-2 mb-8">
+              <h1 className="tracking-tight text-center !font-semi-bold mx-4 sm:mx-8 text-inherit pt-2 mb-8">
                 <span className="text-6xl md:text-6xl lg:text-7xl block !tracking-tighter">{post.title}</span>
-              </Heading>
+              </h1>
               <Text as="p" align="center" weight="medium" size="4" my="9">
                 {post.description}
               </Text>
@@ -118,6 +118,7 @@ export default function BlogPostPage({ post }: Props) {
                   src={createWixStaticUrl(post.cover)}
                   alt={post.title}
                   className="rounded-lg"
+                  loading="lazy"
                   loader={externalImageLoader}
                   fill
                 />

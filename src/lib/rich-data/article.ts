@@ -21,7 +21,6 @@ const defaultAuthor = generateAuthor({
 });
 
 export function generateArticle(data: ArticleRichDataInput) {
-  console.log('data', data.about);
   return {
     '@context': 'https://schema.org',
     '@type': 'Article',
