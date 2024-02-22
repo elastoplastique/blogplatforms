@@ -24,7 +24,7 @@ export default function MyApp({ Component, pageProps }: AppProps) {
   // Create a new supabase browser client on every first render.
   return (
     <>
-      <Script src={`https://www.googletagmanager.com/gtag/js?id=${GA_MEASUREMENT_ID}`} strategy="afterInteractive" />
+      {/* <Script src={`https://www.googletagmanager.com/gtag/js?id=${GA_MEASUREMENT_ID}`} strategy="afterInteractive" />
       <Script id="google-analytics" strategy="afterInteractive">
         {`
             window.dataLayer = window.dataLayer || [];
@@ -32,7 +32,7 @@ export default function MyApp({ Component, pageProps }: AppProps) {
             gtag('js', new Date());
             gtag('config', '${GA_MEASUREMENT_ID}');
           `}
-      </Script>
+      </Script> */}
       <Theme accentColor="violet" radius="large" grayColor="mauve">
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
           
