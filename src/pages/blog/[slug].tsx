@@ -102,15 +102,15 @@ export default function BlogPostPage({ post }: Props) {
           </Flex>
           <motion.article>
             <motion.div className="relative min-w-full rounded-3xl flex flex-col justify-center items-center min-h-32 !mt-10 px-2">
-              <Heading as="h1" size="6" className="tracking-tight text-center !font-semi-bold !mx-8 text-inherit pt-2 mb-8">
-                <span className="text-4xl sm:text-6xl block !tracking-tighter">{post.title}</span>
+              <Heading as="h1" className="tracking-tight text-center !font-semi-bold mx-4 sm:mx-8 text-inherit pt-2 mb-8">
+                <span className="text-6xl md:text-6xl lg:text-7xl block !tracking-tighter">{post.title}</span>
               </Heading>
               <Text as="p" align="center" weight="medium" size="4" my="9">
                 {post.description}
               </Text>
             </motion.div>
             
-            <Separator className="my-24" size="4" />
+            <Separator className="my-12" size="4" />
 
             {post.cover && (
               <AspectRatio ratio={16 / 9} style={{ width: '100%', height: '100%', minHeight: 200, position: 'relative' }}>
