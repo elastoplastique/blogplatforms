@@ -2,10 +2,6 @@ import { Flex } from '../ui';
 import Head from 'next/head';
 import { META } from '@/constants/meta';
 import { Favicons } from '@/components/meta';
-import { authentication } from '@wix/members';
-import { useWixModules } from '@wix/sdk-react';
-import { SmoothScroll } from '@/components/layout/scroll-container';
-import { ASSETS_DIRECTORY } from '@/constants/assets-directory';
 import { usePageTracking } from '@/lib/hooks/use-page-tracking';
 
 type PageLayoutProps = {

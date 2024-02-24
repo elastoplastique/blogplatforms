@@ -1,43 +1,25 @@
 /* eslint-disable react/display-name */
 /* eslint-disable @next/next/no-img-element */
-import { useState, useEffect, useMemo, memo, useId, Fragment } from 'react';
+import { useState, useEffect, useMemo, memo, useId } from 'react';
 import type { ReactNode } from 'react';
-import { AspectRatio, Link, Heading, Text, Flex, Card, Inset, Strong, Em, Separator } from '@/components/ui';
+import { AspectRatio, Link, Heading, Text, Flex, Card, Strong } from '@/components/ui';
 import {
   Heading as HeadingI,
-  Paragraph as ParagraphI,
-  Text as TextI,
-  Blockquote as BlockquoteI,
-  CodeBlock as CodeBlockI,
-  Video as VideoI,
-  Image as ImageI,
-  File as FileI,
-  LinkPreview as LinkPreviewI,
-  Embed as EmbedI,
-  BodyItem,
-  Decoration,
-  DecorationType,
   BodyItemUnion,
-  BodyItemType,
   TextDecorationUnion,
   LinkDecoration,
   ColorDecoration,
   BoldDecoration,
   ItalicDecoration,
-  BulletedList,
-  OrderedList,
-  ListItem, CodeBlock,
+  ListItem
 } from '@/types/wix/rich-content';
 import { IMAGE_WIDTH, IMAGE_HEIGHT, THUMBNAIL_FACTOR } from '@/constants/image';
-import { media } from '@wix/sdk';
-import { ReactElement } from 'react';
 import { createWixStaticUrl, createWixStaticVideoUrl } from '@/lib/wix/utils/create-url';
 import { externalImageLoader } from '@/lib/utils/external-image-loader';
 import { slugify } from '@/lib/utils/slugify';
 import Image from 'next/image';
 import { useWixModules } from '@wix/sdk-react';
 import { files } from '@wix/media';
-import { wixClient } from '@/lib/wix/provider/client-provider';
 
 const THUMB_HEIGHT = IMAGE_HEIGHT * THUMBNAIL_FACTOR;
 const THUMB_WIDTH = IMAGE_WIDTH * THUMBNAIL_FACTOR;
@@ -198,7 +180,7 @@ function WixTextDecorated({ node }: { node: Wix.Text }) {
 }
 
 function WixText({ node }: { node: Wix.Text }) {
-  function getText(node: TextI) {
+  function getText(node: any) {
     let text = node.textData.text;
     text = convertBackticks(text);
     node.nodes.forEach((innerNode: any) => {

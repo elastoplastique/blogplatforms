@@ -1,33 +1,18 @@
 /* eslint-disable @next/next/no-img-element */
-import React, { useEffect, useState, useMemo } from 'react';
+import React, { useMemo } from 'react';
 import { PageLayout } from '@/components/layout/page-layout';
-import { AspectRatio, Badge, Heading, Text, Flex, Grid, Card, Container, Separator } from '@/components/ui';
+import { AspectRatio, Heading, Text, Flex, Grid, Card, Container, Separator } from '@/components/ui';
 import { motion } from 'framer-motion';
-import { ExternalLink } from 'lucide-react';
-import { ProsCons } from '@/components/custom/pros-cons';
 import Image from 'next/image';
-import Link from 'next/link';
-import { Audience } from '@/components/custom/audience';
-import { PlatformFeatures } from '@/components/custom/platform-features';
-import { PlatformResources } from '@/components/custom/platform-resources';
-import { ProgressFeatures } from '@/components/custom/progress-features';
 import { Breadcrumb } from '@/components/compound/breadcrumb';
 import { ROUTES } from '@/constants/routes';
 import { META } from '@/constants/meta';
-import { SocialAccounts } from '@/components/custom/social-accounts';
 import {
-  getPlatformSlugs,
-  getPlatform,
-  getPlatformComparativeFeatures,
-  getPlatformFeatures,
-  getPlatformAccounts,
   getPostSlugs,
   getPost,
-  queryReferencedItems,
 } from '@/lib/wix/cms';
 import { RichContent } from '@/lib/wix/cms/components/rich-content';
 import { removeTrailing } from '@/lib/utils/remove-trailing-slash';
-import { PlatformMedia } from '@/components/custom/platform-media';
 import { createWixStaticUrl } from '@/lib/wix/utils/create-url';
 import { externalImageLoader } from '@/lib/utils/external-image-loader';
 import { generateArticle } from '@/lib/rich-data/article';
@@ -109,7 +94,7 @@ export default function BlogPostPage({ post }: Props) {
                 {post.description}
               </Text>
             </motion.div>
-            
+
             <Separator className="my-12" size="4" />
 
             {post.cover && (
