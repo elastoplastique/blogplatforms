@@ -124,14 +124,14 @@ export const FOOTER_BLOG_LINKS: NavLinkType[] = [
     description: 'We\'ll discuss the features you should look for when choosing a platform, the benefits of blogging, and the best blog sites for students.',
   },
   {
-    path: '/blog/best-portfolio-sites',
-    text: 'Blogging Platform Must-Haves',
-    description: 'Must have features to look for in a blogging platforms.',
-  },
-  {
     path: '/blog/features-to-look-for-in-a-blogging-platform',
     text: 'Must-Have Features for Blogging Platforms',
     description: 'Must have features to look for in a blogging platforms.',
+  },
+  {
+    path: '/blog/blogging-platform-features',
+    text: 'Blogging Platform Features',
+    description: 'The list of blogging platform features.',
   },
   {
     path: '/blog/optimize-images-for-web',
