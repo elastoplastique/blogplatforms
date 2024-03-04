@@ -34,7 +34,7 @@ export const ProgressFeature = ({ platformComparativeFeature }: { platformCompar
           <Icon width={36} height={36} color={`var(--violet-9)`} />
         </Flex>
 
-        <Flex direction="column" grow="1">
+        <Flex direction="column" grow="1" align="stretch">
           <Heading as="h3" size="5" mr="4" weight="bold" className="text-white">
             {platformComparativeFeature.feature.title}
           </Heading>

@@ -53,7 +53,7 @@ export const PostCard = ({ title, description, href, image, className, ...rest }
             <Strong>{title}</Strong>
           </Link>
         </Heading>
-        <Text as="p" size="2" mt="2" className="text-text-low-contrast">
+        <Text as="p" size="2" mt="2" className="text-text-low-contrast cms-rich-content">
           {description}
         </Text>
       </Flex>

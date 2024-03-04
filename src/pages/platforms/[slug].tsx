@@ -157,7 +157,12 @@ export default function PlatformPage({ platform, platformFeatures, platformCompa
 
           {/* CONTENT */}
           <Flex direction="column" justify="start" align="stretch">
-            <Text as="p" align="center" weight="medium" size="5">
+            <Text as="p" align="center" weight="medium" size={{
+            initial: '3',
+            sm: '4',
+            md: '5',
+            lg: '5',
+          }}>
               {platform.description}
             </Text>
 

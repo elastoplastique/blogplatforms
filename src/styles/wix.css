@@ -49,22 +49,7 @@ RICH CONTENT
 # ◀ ═ ═ ═ ═ ═ ═ ═ ═ ═ ═ ═ ═ ═ ═ ═ ═ ═ ═ ═ ═ ═ ═ ═ ═ ═ ═ ═ ═ ═ ═ ═ ═ ═ ═ ═
 */
 /* On screens that are 600px or less, set the background color to olive */
-@media screen and (max-width: var(--screen-sm)) {
 
-  #rich-content li,
-  #rich-content li > *,
-  #rich-content p,
-  #rich-content em,
-  #rich-content strong,
-  #rich-content div {
-    font-size: var(--fontSize-xs) !important;
-  }
-  h2.cms-rich-content {  line-height: 1.4; font-size: var(--fontSize-l)   !important; margin-top: 1rem; letter-spacing: -0.025em !important; }
-  h3.cms-rich-content {  line-height: 1.4; font-size: var(--fontSize-m)   !important; margin-top: 1rem; letter-spacing: -0.025em !important; }
-  h4.cms-rich-content {  line-height: 1.4; font-size: var(--fontSize-s)   !important; margin-top: 1rem; letter-spacing: -0.025em !important; }
-  h5.cms-rich-content {  line-height: 1.4; font-size: var(--fontSize-xs)  !important; margin-top: 1rem; letter-spacing: -0.025em !important; } 
-  h6.cms-rich-content {  line-height: 1.4; font-size: var(--fontSize-xs)  !important; margin-top: 1rem; letter-spacing: -0.025em !important; }
-}
 #rich-content ul,
 #rich-content ol {
   padding-left: 30px; /* adjust as needed */
@@ -91,59 +76,80 @@ RICH CONTENT
 
 #rich-content p {
   line-height: 1.7 !important;
-  word-spacing: 0.25em;
 }
 
-.cms-rich-content p,
-.cms-rich-content li,
-.cms-rich-content li p,
-.cms-rich-content li *,
-.cms-rich-content span,
-.cms-rich-content div {
+/* # ═ ═ ═ ═ ═ ═ ═ ═ ═ ═ ═ ═ ═ ═ ═ ═ ═ ═ ═ ═ ═ ═ ═ ═ ═ ═ ═ ═ ═ ═ ═ ═ ═ ═ ═ ▶
+SMALL SCREEN
+# ◀ ═ ═ ═ ═ ═ ═ ═ ═ ═ ═ ═ ═ ═ ═ ═ ═ ═ ═ ═ ═ ═ ═ ═ ═ ═ ═ ═ ═ ═ ═ ═ ═ ═ ═ ═*/
+@media screen and (max-width: 640px) {
+
+  #page-layout p,
+#page-layout p *,
+  #rich-content li,
+  #rich-content li > *,
+  #rich-content p,
+  #rich-content em,
+  #rich-content strong,
+  #rich-content div {
+    font-size: var(--fontSize-xs) !important;
+  }
+  h2.cms-rich-content {  line-height: 1.4; font-size: var(--fontSize-l)   !important; border-left: 2px solid var(--pink-8);padding-left: 4px; margin-top: 1rem; letter-spacing: -0.025em !important; }
+  h3.cms-rich-content {  line-height: 1.4; font-size: var(--fontSize-m)   !important; border-left: 2px solid var(--purple-8);padding-left: 4px; margin-top: 1rem; letter-spacing: -0.025em !important; }
+  h4.cms-rich-content {  line-height: 1.4; font-size: var(--fontSize-s)   !important; border-left: 2px solid var(--blue-8);padding-left: 4px; margin-top: 1rem; letter-spacing: -0.025em !important; }
+  h5.cms-rich-content {  line-height: 1.4; font-size: var(--fontSize-xs)  !important; border-left: 2px solid var(--teal-8);padding-left: 4px; margin-top: 1rem; letter-spacing: -0.025em !important; } 
+  h6.cms-rich-content {  line-height: 1.4; font-size: var(--fontSize-xs)  !important; border-left: 2px solid var(--teal-8);padding-left: 4px; margin-top: 1rem; letter-spacing: -0.025em !important; }
+}
+
+/* # ═ ═ ═ ═ ═ ═ ═ ═ ═ ═ ═ ═ ═ ═ ═ ═ ═ ═ ═ ═ ═ ═ ═ ═ ═ ═ ═ ═ ═ ═ ═ ═ ═ ═ ═ ▶
+LARGE SCREEN
+# ◀ ═ ═ ═ ═ ═ ═ ═ ═ ═ ═ ═ ═ ═ ═ ═ ═ ═ ═ ═ ═ ═ ═ ═ ═ ═ ═ ═ ═ ═ ═ ═ ═ ═ ═ ═*/
+@media screen and (min-width: 640px) {
+
+#page-layout p,
+#page-layout p *,
+#rich-content p,
+#rich-content li,
+#rich-content li p,
+#rich-content li *,
+#rich-content span,
+#rich-content div {
   font-family: 'GeneralSans', -apple-system, BlinkMacSystemFont, 'Segoe UI (Custom)', Roboto, 'Helvetica Neue', 'Open Sans (Custom)', system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', sans-serif !important;
   font-weight: 400;
   line-height: 1.7;
-  margin: 0;
-  padding: 0;
+  font-size: var(--fontSize-s) !important;
 }
 
-h2.cms-rich-content ,
-h3.cms-rich-content ,
-h4.cms-rich-content ,
-h5.cms-rich-content , 
+h2.cms-rich-content,
+h3.cms-rich-content,
+h4.cms-rich-content,
+h5.cms-rich-content, 
 h6.cms-rich-content  {
   font-family: 'GeneralSans', -apple-system, BlinkMacSystemFont, 'Segoe UI (Custom)', Roboto, 'Helvetica Neue', 'Open Sans (Custom)', system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', sans-serif !important;
-  margin: 0;
-  padding: 0;
   letter-spacing: -0.03em !important;
   line-height: 1.1 !important;
   margin-bottom: 16px
 }
 
-h2.cms-rich-content { font-weight: 600; font-size: var(--fontSize-xl) !important; margin-top: 1.5rem; border-left: 2px solid var(--pink-8);   padding-left: 4px !important;}
-h3.cms-rich-content { font-weight: 600; font-size: var(--fontSize-l)  !important; margin-top: 1.25rem; border-left: 2px solid var(--purple-8); padding-left: 4px !important;}
-h4.cms-rich-content { font-weight: 600; font-size: var(--fontSize-m)   !important; margin-top: 1.1rem; border-left: 2px solid var(--blue-8);   padding-left: 4px !important;}
-h5.cms-rich-content { font-weight: 600; font-size: var(--fontSize-s)   !important; margin-top: 1rem; border-left: 2px solid var(--teal-8);   padding-left: 4px !important;} 
-h6.cms-rich-content { font-weight: 600; font-size: var(--fontSize-s)   !important; margin-top: 1rem; border-left: 2px solid var(--teal-8);   padding-left: 4px !important;}
-
+h2.cms-rich-content { font-weight: 600; font-size: var(--fontSize-xl) !important;  margin-top: 1.5rem !important;  border-left: 2px solid var(--pink-8);   padding-left: 4px !important;}
+h3.cms-rich-content { font-weight: 600; font-size: var(--fontSize-l)  !important;  margin-top: 1.25rem !important; border-left: 2px solid var(--purple-8); padding-left: 4px !important;}
+h4.cms-rich-content { font-weight: 600; font-size: var(--fontSize-m)   !important; margin-top: 1.1rem !important;  border-left: 2px solid var(--blue-8);   padding-left: 4px !important;}
+h5.cms-rich-content { font-weight: 600; font-size: var(--fontSize-s)   !important; margin-top: 1rem !important;    border-left: 2px solid var(--teal-8);   padding-left: 4px !important;} 
+h6.cms-rich-content { font-weight: 600; font-size: var(--fontSize-s)   !important; margin-top: 1rem !important;    border-left: 2px solid var(--teal-8);   padding-left: 4px !important;}
+}
 
 
 .cms-rich-content a.cms-link {
   background-color: transparent;
-  border-bottom: 2px solid var(--solid-bg);
+  border-bottom: 2px solid #37fe90;
   box-sizing: inherit;
   cursor: pointer;
-  font-family: "Ivy Journal", serif;
-  letter-spacing: 0.1px;
-  line-height: inherit;
-  text-align: left;
   text-decoration: none;
   transition: all 0.3s ease;
 }
 
 .cms-rich-content a.cms-link:hover {
-  background-color: var(--hover-solid-bg);
-  color: white !important;
+  background-color: #37fe90;
+  color: black !important;
   outline-width: 0px;
   text-decoration: none;
 }

@@ -30,8 +30,11 @@
 }
 
 p, em, strong, span, div, li {
+  font-family: 'GeneralSans', -apple-system, BlinkMacSystemFont, 'Segoe UI (Custom)', Roboto, 'Helvetica Neue', 'Open Sans (Custom)', system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', sans-serif !important;
   line-height: 1.7 !important;
-  word-spacing: 0.25em;
+  letter-spacing: -0.015em !important;
+  font-weight: 400 !important;
+  word-spacing: 0.15em !important;
 }
 
 h1,
@@ -48,8 +51,12 @@ h5 span,
 h6 span {
   font-family: 'GeneralSans', -apple-system, BlinkMacSystemFont, 'Segoe UI (Custom)', Roboto, 'Helvetica Neue', 'Open Sans (Custom)', system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', sans-serif !important;
   font-weight: 600 !important;
-  line-height: 1.6;
-  letter-spacing: -0.02em !important;
-  margin: 0;
-  padding: 0;
+  line-height: 1.375;
+  letter-spacing: -0.03em !important;
+
+  margin-bottom: 16px !important;
+}
+
+.breadcrumb-link {
+  font-size: 12px;
 }

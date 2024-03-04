@@ -13,10 +13,10 @@ export function Breadcrumb(props: Props) {
           <div>
             <Link
               href="https://bloggingplatforms.app"
-              className="!text-gray-400 text-sm hover:text-gray-500 border-b-1 whitespace-nowrap"
+              className="!text-gray-400 text-sm hover:text-gray-500 border-b-1 whitespace-nowrap breadcrumb-link"
               title="Best Blogging Platforms"
             >
-              <strong title="Best Blogging Platforms">Blogging Platforms</strong>
+              <span title="Best Blogging Platforms">Blogging Platforms</span>
             </Link>
           </div>
         </motion.li>
@@ -24,7 +24,7 @@ export function Breadcrumb(props: Props) {
           <motion.li key={page.name} layoutId={`breadcrumb-link-${i}`}>
             <div className="flex items-center whitespace-nowrap my-2">
               <svg
-                className="flex-shrink-0 h-5 w-4 text-gray-300 mx-1"
+                className="flex-shrink-0 h-5 w-4 text-gray-300 mx-[0.2px]"
                 xmlns="http://www.w3.org/2000/svg"
                 fill="currentColor"
                 viewBox="0 0 20 20"
@@ -36,13 +36,13 @@ export function Breadcrumb(props: Props) {
                 href={page.href}
                 className={
                   page.current
-                    ? 'ml-1 !text-gray-400 hover:text-gray-500 text-sm'
-                    : 'ml-1 !text-gray-400 hover:text-gray-500 border-b-1 text-sm'
+                    ? 'breadcrumb-link ml-[0.5px] !text-gray-400 hover:text-gray-500 text-sm'
+                    : 'breadcrumb-link ml-[0.5px] !text-gray-400 hover:text-gray-500 border-b-1 text-sm'
                 }
                 aria-current={page.current ? 'page' : undefined}
                 title={page.title || page.name}
               >
-                {!page.truncate ? page.name : page.name.length > 20 ? `${page.name.slice(0, 20)}...` : page.name}
+                {!page.truncate ? page.name : page.name.length > 30 ? `${page.name.slice(0, 30)}...` : page.name}
               </Link>
             </div>
           </motion.li>

@@ -25,6 +25,7 @@
 :root {
   --fontSize-xs: 14px;
   --fontSize-s: 16px;
+  --fontSize-sm: 18px;
   --fontSize-m: 20px;
   --fontSize-l: 25px;
   --fontSize-xl: 31.25px;
