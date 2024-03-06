@@ -48,13 +48,13 @@ export default function BlogPostPage({ post }: Props) {
       richData={
         generateArticle({
           title: post.title!,
-
           description: post.description!,
           image: createWixStaticUrl(post.cover!),
           questions: post.questions,
           url: `${removeTrailing(META.CANONICAL)}${ROUTES.BLOG_POST_DIRECTORY.path}/${removeTrailing(post.slug)}`,
           ...(post.about && { about: post.about }),
           ...(mentions && mentions.length && { mentions }),
+          keywords: post?.keywords,
           datePublished: post._createdDate!.$date!,
           dateModified: post._updatedDate!.$date!,
         }) as unknown as ArticleRichDataInput

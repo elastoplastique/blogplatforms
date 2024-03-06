@@ -7,7 +7,7 @@ export type InputAuthorRichData = {
 export function generateAuthor(data: InputAuthorRichData) {
   return {
     '@context': 'https://schema.org',
-    '@type': 'Person',
+    '@type': 'Organization',
     name: data.name,
     url: data.url,
     ...(data.sameAs && { sameAs: data.sameAs }),

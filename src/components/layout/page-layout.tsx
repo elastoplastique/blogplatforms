@@ -16,7 +16,8 @@ type PageLayoutProps = {
 
 export function PageLayout({ children, ...props }: PageLayoutProps) {
   usePageTracking();
-  
+  const ogtype = props?.richData && props?.richData.hasOwnProperty("@type") === "Article" ? "article" : "website";
+
   function mergeRichData(richData: any) {
     /**
      * A bug in Safari requires a merge for multiple rich data types
@@ -49,11 +50,15 @@ export function PageLayout({ children, ...props }: PageLayoutProps) {
         />
 
         {/* <!-- Open Graph / Facebook --> */}
-        <meta property="og:type" content="website" />
+        <meta property="og:type" content={ogtype} />
         <meta property="og:url" content={props.canonical || META.CANONICAL} />
         <meta property="og:title" content={props.metaTitle} />
         <meta property="og:description" content={props.metaDescription} />
         {props.image && <meta property="og:image" content={props.image} />}
+        {props?.richData?.dateModified && <meta property="article:modified_time" content={props?.richData?.dateModified} />}
+        {props?.richData?.datePublished && <meta property="article:published_time" content={props?.richData?.datePublished} />}
+        {props?.richData?.keywords && <meta property="article:tag" content={props?.richData?.keywords} />}
+        {props?.richData?.publisher && <meta property="article:author" content={props?.richData?.publisher.name} />}
 
         {/* <!-- Twitter --> */}
         <meta property="twitter:card" content="summary_large_image" />
