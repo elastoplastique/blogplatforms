@@ -76,6 +76,7 @@ RICH CONTENT
 
 #rich-content p {
   line-height: 1.7 !important;
+  color: var(--text-low-contrast) !important;
 }
 
 /* # ═ ═ ═ ═ ═ ═ ═ ═ ═ ═ ═ ═ ═ ═ ═ ═ ═ ═ ═ ═ ═ ═ ═ ═ ═ ═ ═ ═ ═ ═ ═ ═ ═ ═ ═ ▶

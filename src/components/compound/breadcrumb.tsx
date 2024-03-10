@@ -1,11 +1,14 @@
 import Link from 'next/link';
 import { motion } from 'framer-motion';
+import {useWindowWidth} from '@/lib/hooks/use-window-width';
 
 export type Props = {
   links: BreadcrumbLink[];
 };
 
 export function Breadcrumb(props: Props) {
+  const vw = useWindowWidth();
+
   return (
     <motion.nav className="flex my-4" aria-label="Breadcrumb">
       <ol className="flex flex-row  items-center justify-start sm:justify-center">
@@ -42,7 +45,7 @@ export function Breadcrumb(props: Props) {
                 aria-current={page.current ? 'page' : undefined}
                 title={page.title || page.name}
               >
-                {!page.truncate ? page.name : page.name.length > 30 ? `${page.name.slice(0, 30)}...` : page.name}
+                {vw < 640 ? page.name : page.name.length > 30 ? `${page.name.slice(0, 30)}...` : page.name}
               </Link>
             </div>
           </motion.li>

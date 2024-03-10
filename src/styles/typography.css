@@ -32,9 +32,12 @@
 p, em, strong, span, div, li {
   font-family: 'GeneralSans', -apple-system, BlinkMacSystemFont, 'Segoe UI (Custom)', Roboto, 'Helvetica Neue', 'Open Sans (Custom)', system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', sans-serif !important;
   line-height: 1.7 !important;
-  letter-spacing: -0.015em !important;
+  letter-spacing: -0.01em !important;
   font-weight: 400 !important;
-  word-spacing: 0.15em !important;
+  word-spacing: 0.1em !important;
+}
+strong {
+  font-weight: 500 !important;
 }
 
 h1,
