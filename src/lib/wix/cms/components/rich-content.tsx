@@ -66,10 +66,10 @@ function WixHeading({ node }: { node: Wix.Heading }) {
   }
   const key = slugify(node.nodes.map((i: any) => i.textData.text).join('-')) + "-" + getLevel(node)
   return (
-    <Heading 
-      as={getLevel(node)} 
-      id={slugify(node.nodes.map((i: any) => i.textData.text).join('-'))} 
-      key={key} 
+    <Heading
+      as={getLevel(node)}
+      id={slugify(node.nodes.map((i: any) => i.textData.text).join('-'))}
+      key={key}
       className="cms-rich-content cms-img">
       <>
         {(node.nodes as BodyItemUnion[]).map((innerNode, ix) => (
@@ -96,12 +96,12 @@ function WixCodeBlock({ node }: { node: Wix.CodeBlock }) {
   return (
     <pre id={node._id} className="cms-rich-content cms-pre">
       <code className="cms-rich-content cms-code microlight">
-      <>
-        {(node.nodes as BodyItemUnion[]).map((innerNode: BodyItemUnion, ix: number) => (
-          <WixNode node={innerNode} key={`${ix}-${innerNode._id}`} />
-        ))}
-      </>
-        </code>
+        <>
+          {(node.nodes as BodyItemUnion[]).map((innerNode: BodyItemUnion, ix: number) => (
+            <WixNode node={innerNode} key={`${ix}-${innerNode._id}`} />
+          ))}
+        </>
+      </code>
     </pre>
   );
 }
@@ -197,13 +197,20 @@ function WixLinkPreview({ node }: { node: Wix.LinkPreview }) {
   return (
     <Card className="cms-rich-content cms-link-preview link-preview-card">
       <Flex direction={{ initial: 'column', sm: 'row' }} height="min-content">
-        <Flex width={{ initial: '100%', sm: '100%' }} className="link-preview-thumb">
-          <AspectRatio ratio={THUMB_WIDTH / THUMB_HEIGHT} className="aspect-ratio-box">
-            <Image
-              src={node.linkPreviewData.thumbnailUrl}
-              alt={node.linkPreviewData.title}
-              loader={externalImageLoader}
-              fill
+        <Flex width={{ initial: '100%', sm: '100%' }} className="link-preview-thumb z-10">
+          <AspectRatio ratio={THUMB_WIDTH / THUMB_HEIGHT} className="aspect-ratio-box z-10">
+            <a
+              href={domainTransformer(node.linkPreviewData.link.url)}
+              className="z-10"
+              target={isInternal ? '' : '_blank'}
+              rel={isInternal ? '' : 'noopener nofollow'}
+            >
+
+              <Image
+                src={node.linkPreviewData.thumbnailUrl}
+                alt={node.linkPreviewData.title}
+                loader={externalImageLoader}
+                fill
               // style={{
               //   display: 'block',
               //   objectFit: 'cover',
@@ -211,20 +218,31 @@ function WixLinkPreview({ node }: { node: Wix.LinkPreview }) {
               //   height: THUMB_HEIGHT,
               //   backgroundColor: 'var(--gray-5)',
               // }}
-            />
+              />
+            </a>
           </AspectRatio>
         </Flex>
-        <Flex direction="column" className="link-preview-content">
-          <Text as="p" size="3">
-            <Strong className="!text-overflow-ellipsis">{node.linkPreviewData.title}</Strong>
+        <Flex direction="column" className="link-preview-content z-10">
+          <Text as="div" size="3">
+            <Strong className="!text-overflow-ellipsis">
+              <a
+                href={domainTransformer(node.linkPreviewData.link.url)}
+                className="z-10"
+                target={isInternal ? '' : '_blank'}
+                rel={isInternal ? '' : 'noopener nofollow'}
+              >
+                {node.linkPreviewData.title.replace("| BlogPlatforms.app", "").replace("| BloggingPlatforms.app", "")}
+              </a>
+            </Strong>
           </Text>
-          <Text as="p" size="2" className="text-text-low-contrast">
+          <Text as="div" size="2" className="text-text-low-contrast">
             {node.linkPreviewData.description.slice(0, 150)} {node.linkPreviewData.description.length > 150 && '...'}
           </Text>
         </Flex>
         <a
           href={domainTransformer(node.linkPreviewData.link.url)}
-          className="cover-box"
+          className="cover-box z-0"
+          title={node.linkPreviewData.title}
           target={isInternal ? '' : '_blank'}
           rel={isInternal ? '' : 'noopener nofollow'}
         ></a>
@@ -296,7 +314,7 @@ function WixImage({ node }: { node: Wix.Image }) {
             fill
           />
         ))}
-      {}
+      { }
     </AspectRatio>
   );
 }
@@ -406,12 +424,12 @@ function textHasEmptyDecoration(node: Wix.Text) {
   return emptyList.length === decorations.length;
 }
 
-function convertBackticks(text: string){
-  if (text.includes("`")){
+function convertBackticks(text: string) {
+  if (text.includes("`")) {
     let result = "";
     let splitted = text.split("`");
-    for(let i = 0; i < splitted.length; i++){
-      if (i % 2 === 0){
+    for (let i = 0; i < splitted.length; i++) {
+      if (i % 2 === 0) {
         result += splitted[i];
       } else {
         result += `<code>${splitted[i]}</code>`

@@ -62,13 +62,13 @@ export default function PlatformPage({ platform, platformFeatures, platformCompa
   //console.log("platform", platform)
   return (
     <PageLayout
-      metaTitle={`${platform.title} | BloggingPlatforms.app`}
+      metaTitle={`${platform.title}`}
       metaDescription={platform.description}
       canonical={`${removeTrailing(META.CANONICAL)}${ROUTES.PLATFORMS_DIRECTORY.path}/${removeTrailing(platform.slug)}`}
       image={platform.cover}
       richData={generatePlatformPage({
         platform: {
-          name: platform.title,
+          name: platform.pageTitle || platform.title,
           url: platformAccounts.website || platform.url,
           description: platform.description,
           image: platform.cover,
@@ -84,7 +84,7 @@ export default function PlatformPage({ platform, platformFeatures, platformCompa
         rating: '5',
         breadcrumbsLinks: [
           { name: platform.title, href: `https://bloggingplatforms.app`, current: true },
-          { name: platform.title, href: `https://bloggingplatforms.app/platforms/${platform.slug}`, current: true },
+          { name: platform.pageTitle || platform.title, href: `https://bloggingplatforms.app/platforms/${platform.slug}`, current: true },
         ],
         about: generateAbout({
           name: 'blog software',
@@ -124,7 +124,7 @@ export default function PlatformPage({ platform, platformFeatures, platformCompa
 
           <motion.div className="relative min-w-full rounded-3xl flex flex-col justify-center items-center min-h-32 my-8">
             <Heading as="h1" size="4" className="tracking-tight text-center !font-semi-bold !mx-8 text-inherit pt-2 whitespace-nowrap">
-              <span className="text-5xl sm:text-6xl  block !tracking-tighter uppercase">{platform.title}</span>
+              <span className="text-5xl sm:text-6xl  block !tracking-tighter uppercase">{platform?.pageTitle || platform.title}</span>
             </Heading>
 
             {/* SOCIAL ACCOUNTS  */}

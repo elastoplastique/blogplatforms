@@ -81,6 +81,7 @@ export interface PlatformNode {
   comparativeFeatures?: PlatformComparativeFeatureNode[];
   posts: PostNode[];
   affiliation?: boolean;
+  pageTitle?: string;
 }
 export interface Platform extends DataItem {
   _id: string;
