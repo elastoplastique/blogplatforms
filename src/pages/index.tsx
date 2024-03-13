@@ -41,7 +41,6 @@ export default function HomePage(props: Props) {
   const routeSlug = router.asPath.split('/')[router.asPath.split('/').length - 1];
   const setPlatformsToRender = useGlobal((state) => state.setPlatformsToRender);
   const currentPlatforms = useMemo(() => {
-    console.log('routeSlug', routeSlug);
     const platforms = props.platformFeatures
       .filter((pf: PlatformFeatureNode) => {
         return pf.feature.slug === routeSlug;
