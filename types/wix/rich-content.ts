@@ -213,11 +213,11 @@ type BodyItemTableData = {
 type BodyItemHTMLData = {
   containerData: {
     textWrap: boolean;
+    spoiler: {};
+    alignment: string;
     height: {
       custom: string;
     };
-    spoiler: {};
-    alignment: string;
     width: {
       custom: string;
     };

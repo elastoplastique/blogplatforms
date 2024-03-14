@@ -62,7 +62,7 @@ export default function PlatformPage({ platform, platformFeatures, platformCompa
   //console.log("platform", platform)
   return (
     <PageLayout
-      metaTitle={`${platform.title}`}
+      metaTitle={`${platform.pageTitle}`}
       metaDescription={platform.description}
       canonical={`${removeTrailing(META.CANONICAL)}${ROUTES.PLATFORMS_DIRECTORY.path}/${removeTrailing(platform.slug)}`}
       image={platform.cover}

@@ -38,6 +38,7 @@ export default function BlogPostPage({ post }: Props) {
     }
     return m;
   }, [post.platforms]);
+  console.log(post)
   return (
     <PageLayout
       metaTitle={`${post.title} | BloggingPlatforms.app`}

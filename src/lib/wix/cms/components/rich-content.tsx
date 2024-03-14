@@ -367,9 +367,17 @@ function WixVideo({ node }: { node: Wix.Video }) {
   );
 }
 
+function WixHtmlData({ node }: { node: Wix.HTML }) {
+  return <div className="cms-rich-content cms-html" 
+    dangerouslySetInnerHTML={{ __html: node.htmlData.html }}
+  />;
+}
+
 function WixDivider({ node }: { node: Wix.Divider }) {
   return <hr className="cms-rich-content cms-hr" />;
 }
+
+
 
 function WixNode({ node }: { node: BodyItemUnion }) {
   if (node.type === 'HEADING') {
@@ -405,6 +413,9 @@ function WixNode({ node }: { node: BodyItemUnion }) {
   }
   if (node.type === 'VIDEO') {
     return <WixVideo node={node} />;
+  }
+  if (node.type === 'HTML') {
+    return <WixHtmlData node={node} />;
   }
   if (node.type === 'DIVIDER') {
     return <WixDivider node={node} />;
