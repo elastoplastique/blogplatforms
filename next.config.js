@@ -64,10 +64,10 @@ const nextConfig = {
             key: 'X-Content-Type-Options',
             value: 'nosniff'
           },
-          {
-            key: 'X-Frame-Options',
-            value: 'SAMEORIGIN'
-          }
+          // {
+          //   key: 'X-Frame-Options',
+          //   value: 'SAMEORIGIN'
+          // }
         ],
       },
 
@@ -75,6 +75,7 @@ const nextConfig = {
   },
   pageExtensions: ['ts', 'tsx', 'js', 'jsx', 'md', 'mdx', 'json'],
   reactStrictMode: true,
+
 };
 
 module.exports = withMDX(nextConfig);
