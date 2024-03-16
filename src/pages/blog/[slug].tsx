@@ -125,7 +125,6 @@ export default function BlogPostPage({ post }: Props) {
 
               <Flex direction="column" justify="start" align="stretch" my="4">
                 <main>
-
                   {post.body && <RichContent body={post.body} contentId={post.slug} />}
                 </main>
               </Flex>

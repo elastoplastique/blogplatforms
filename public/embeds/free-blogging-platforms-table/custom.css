@@ -89,7 +89,18 @@
    isolation: isolate;
   
   }
-
+#wrapper {
+  height: 100%;
+  overflow-x:scroll;
+  position: relative;
+}
+.gridjs, .gridjs-wrapper {
+  height: 100% !important;
+  position: relative;
+}
+table.gridjs-table {
+  width: auto !important;
+}
 
   /* TOOLTIP */
   .tooltip-wrapper {
