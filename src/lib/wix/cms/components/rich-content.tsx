@@ -368,7 +368,13 @@ function WixVideo({ node }: { node: Wix.Video }) {
 }
 
 function WixHtmlData({ node }: { node: Wix.HTML }) {
-  return <div className="cms-rich-content cms-html" 
+  if (node.htmlData?.url) {
+    return <iframe src={node.htmlData?.url}
+      width="100%"
+      height="800px"
+    />
+  }
+  return <div className="cms-rich-content cms-html"
     dangerouslySetInnerHTML={{ __html: node.htmlData.html }}
   />;
 }

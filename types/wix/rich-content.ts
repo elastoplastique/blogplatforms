@@ -223,6 +223,7 @@ type BodyItemHTMLData = {
     };
   };
   html: string;
+  url?: string;
   source: string;
 };
 
