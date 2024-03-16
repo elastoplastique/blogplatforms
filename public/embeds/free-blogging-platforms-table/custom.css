@@ -92,15 +92,36 @@
 
 
   /* TOOLTIP */
+  .tooltip-wrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    margin-top: 0px;
+    overflow: visible;
+    font-size: 12px;
+    width: 200px;
+    height: auto;
+    min-height: 60px;
+
+  }
   .tooltip {
    position: relative;
    display: inline-block;
-   border-bottom: 1px dotted black;
+   font-size:11px;
+   line-height: 1.1;
+   white-space: wrap;
+   font-weight: 300;
+   max-width: 180px;
+   padding: 2px 2px;
+   text-decoration: none;
+ }
+ .tooltip * {
+  text-decoration: none;
  }
  
  .tooltip .tooltiptext {
    visibility: hidden;
-   width: 120px;
    background-color: black;
    color: #fff;
    text-align: center;
@@ -108,18 +129,46 @@
    padding: 5px 0;
    position: absolute;
    z-index: 1;
-   bottom: 50%;
+   bottom: -50%;
    left: 50%;
    margin-left: -60px;
+   max-width: 160px;
    
    /* Fade in tooltip - takes 1 second to go from 0% to 100% opac: */
    opacity: 0;
    transition: opacity 1s;
-   font-size: 14px;
+   font-size: 12px;
    line-height: 1.2;
  }
  
  .tooltip:hover .tooltiptext {
    visibility: visible;
    opacity: 1;
+ }
+
+ /* CUSTOM DATA ATTRIBUTES */
+
+th {
+  z-index: 30;
+  border-bottom: 1px solid hsl(0, 0%, 70%) !important;
+  box-sizing: border-box;
+}
+ td[data-column-id="platform"] *{
+  font-weight: 600;
+  font-size: 14px;
+  color: black;
+  text-decoration: none;
+ }
+
+ td[data-free-plan="true"]{
+  background-color: hsl(146, 100%, 90%);
+ }
+ td[data-free-plan="false"][data-paid-plan="true"]{
+  background-color: hsl(65, 100%, 90%);
+ }
+ td[data-free-plan="false"][data-paid-plan="false"]{
+  background-color: hsl(16, 100%, 90%);
+ }
+ td[data-rating="1"],td[data-rating="2"],td[data-rating="3"],td[data-rating="4"],td[data-rating="5"] {
+  font-size: 14px !important;
  }
