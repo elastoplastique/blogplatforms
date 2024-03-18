@@ -1,12 +1,12 @@
 import { FOOTER_LINKS, FOOTER_CONTENT, FOOTER_FEATURE_LINKS, FOOTER_BLOG_LINKS } from '@/constants/navigation';
 import { SOCIAL_MEDIA } from '@/constants/social-media';
-import { LOGO } from '@/constants/image';
 import { keyifier } from '@/lib/utils/keyifier';
 import Link from 'next/link';
 import { Convertkit } from '@/components/compound/convertkit';
 import Image from 'next/image';
 import { externalImageLoader } from '@/lib/utils/external-image-loader';
 import { ROUTES } from '@/constants/routes';
+import { WhiteLogo } from '@/components/icons/logo';
 
 export const MainFooter = () => {
   return (
@@ -136,9 +136,9 @@ export const MainFooter = () => {
           </ul>
 
           <p className="w-full mt-8 text-sm text-center text-gray-100 md:mt-0 md:w-auto md:order-2">
-            © Copyright 2024, All Rights Reserved by{' '}
+          <WhiteLogo color="white" size={60} /> © Copyright 2024, All Rights Reserved by{' '}
             <a href="https://bloggingplatforms.app" title="Best Blogging Platforms">
-              Best Blogging Platforms
+               Best Blogging Platforms
             </a>
             .
           </p>

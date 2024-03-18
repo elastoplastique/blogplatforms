@@ -1,7 +1,6 @@
 import { Flex } from '../ui';
 import Head from 'next/head';
 import { META } from '@/constants/meta';
-import { Favicons } from '@/components/meta';
 import { usePageTracking } from '@/lib/hooks/use-page-tracking';
 
 type PageLayoutProps = {
@@ -41,7 +40,6 @@ export function PageLayout({ children, ...props }: PageLayoutProps) {
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <link rel="canonical" href={props.canonical || META.CANONICAL} />
 
-        <Favicons />
         <meta
           name="impact-site-verification"
           // @ts-ignore

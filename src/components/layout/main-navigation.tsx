@@ -5,6 +5,7 @@ import { Flex, Heading } from '../ui';
 import { ThemeToggle } from '@/components/theme-toggle';
 import { DropdownMenu, Button, Text } from '../ui';
 import { AuthButton } from '@/components/auth0/auth-button';
+import { Logo } from '@/components/icons/logo';
 
 type NavLink = {
   name: string;
@@ -93,8 +94,9 @@ export function MainNavigation() {
   return (
     <nav id="main-navigation" className="h-16 sm:px-16 w-full">
       <Link href="/" title="Best Blogging Platforms">
-        <Flex direction="row" align="end">
-          <Heading as="h1" size="5" className="!text-sm sm:!text-xl tracking-tightest !whitespace-nowrap !mr-4">
+        <Flex direction="row" align="center">
+          <Logo />
+          <Heading as="h1" size="5" className="!text-sm sm:!text-xl tracking-tightest !whitespace-nowrap !mr-4 !mb-0">
             {WEBSITE_NAME}
           </Heading>
         </Flex>
@@ -109,7 +111,7 @@ export function MainNavigation() {
               </Link>
             </li>
           ))} */}
-          <li key={'blog-platforms-features'} className="mx-1 md:mx-4">
+          <li key={'blog-platforms-features'} className="hidden xs:block mx-1 md:mx-4">
             <DropdownMenu.Root>
               <DropdownMenu.Trigger>
                 <Button variant="soft">Features</Button>

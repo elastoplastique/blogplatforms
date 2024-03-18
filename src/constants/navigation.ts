@@ -55,6 +55,11 @@ export const FOOTER_FEATURE_LINKS: NavLinkType[] = [
     description: 'Blog platforms supporting category & tag system',
   },
   {
+    path: '/features/code-inject',
+    text: 'Custom Code Injection',
+    description: 'Blog platforms supporting custom code injection',
+  },
+  {
     path: '/features/comment-system',
     text: 'Comment System',
     description: 'Blog platforms supporting commenting',
@@ -97,11 +102,7 @@ export const FOOTER_FEATURE_LINKS: NavLinkType[] = [
 ];
 
 export const FOOTER_BLOG_LINKS: NavLinkType[] = [
-  {
-    path: '/blog/beginners-guide-to-structure-blog-post-urls',
-    text: 'SEO-Friendly URL Structure',
-    description: 'Before sharing your first blog post, one of the things you should pay attention to is how your blog posts and their URLs should be organized.',
-  },
+
 
   {
     path: '/blog/best-free-platforms-for-blogging',
@@ -124,6 +125,11 @@ export const FOOTER_BLOG_LINKS: NavLinkType[] = [
     description: 'We\'ll discuss the features you should look for when choosing a platform, the benefits of blogging, and the best blog sites for students.',
   },
   {
+    path: '/blog/blogging-platforms-for-photographers',
+    text: 'Blogging Platforms for Photographers',
+    description: 'Before sharing your first blog post, one of the things you should pay attention to is how your blog posts and their URLs should be organized.',
+  },
+  {
     path: '/blog/features-to-look-for-in-a-blogging-platform',
     text: 'Must-Have Features for Blogging Platforms',
     description: 'Must have features to look for in a blogging platforms.',
@@ -137,5 +143,10 @@ export const FOOTER_BLOG_LINKS: NavLinkType[] = [
     path: '/blog/optimize-images-for-web',
     text: 'Optimize Images for the Web',
     description: 'A user guide to optimize images for the web.',
+  },
+  {
+    path: '/blog/free-wordpress-blog',
+    text: 'Free WordPress Blog with Custom Domain',
+    description: 'A step-by-step guide to get a free WordPress blog with custom domain support.',
   }
 ];
