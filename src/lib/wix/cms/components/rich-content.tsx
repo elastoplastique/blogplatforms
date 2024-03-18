@@ -323,9 +323,13 @@ function WixVideo({ node }: { node: Wix.Video }) {
   const { generateVideoStreamingUrl } = useWixModules(files);
   const videoId = useMemo(() => node.videoData.video.src._id || node.videoData.video.src.id!, [node.id]);
   const [videoUrl, setVideoUrl] = useState<string | undefined>();
+  const isYoutubeVideo = node.videoData.video.src.url?.includes('youtu');
 
   // console.log('videoUrl', videoUrl);
-
+  function generateEmbedUrl(original: string) {
+    const ytId = original.split("?v=").pop()
+    return `https://www.youtube.com/embed/${ytId.split("?")[0]}`
+  }
   async function getVideoStreamingUrl(videoId: string) {
     try {
       const vid = videoId.replace('video/', '');
@@ -344,6 +348,9 @@ function WixVideo({ node }: { node: Wix.Video }) {
   }
 
   useEffect(() => {
+    if (isYoutubeVideo) {
+      setVideoUrl(generateEmbedUrl(node.videoData.video.src.url!))
+    }
     if (videoId) {
       getVideoStreamingUrl(videoId);
       // console.log('videoId', videoId);
@@ -353,16 +360,25 @@ function WixVideo({ node }: { node: Wix.Video }) {
   }, [videoId]);
   if (!videoUrl) return <></>;
   return (
-    <AspectRatio ratio={16 / 9} className="cms-rich-content cms-video relative">
-      {videoUrl && (
-        <video
-          controls
+    <AspectRatio ratio={640/480} className="cms-rich-content cms-video relative">
+      {isYoutubeVideo ?
+        <iframe
+          src={videoUrl}
           width="100%"
-          src={createWixStaticVideoUrl(node.videoData.video.src._id)}
-          poster={createWixStaticUrl(node.videoData.thumbnail.src._id)}
-          className="absolute top-0 left-0 bottom-0 right-0 max-h-full"
+          height="100%"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+          className="absolute top-0 left-0 bottom-0 right-0"
         />
-      )}
+        :
+        videoUrl && (
+          <video
+            controls
+            width="100%"
+            src={createWixStaticVideoUrl(node.videoData.video.src._id)}
+            poster={createWixStaticUrl(node.videoData.thumbnail.src._id)}
+            className="absolute top-0 left-0 bottom-0 right-0 max-h-full"
+          />
+        )}
     </AspectRatio>
   );
 }

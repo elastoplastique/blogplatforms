@@ -116,6 +116,7 @@ type BodyItemVideoData = {
     src: {
       _id: string;
       id?: string;
+      url?: string;
     };
     duration: number;
   };
