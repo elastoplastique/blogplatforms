@@ -328,6 +328,7 @@ function WixVideo({ node }: { node: Wix.Video }) {
   // console.log('videoUrl', videoUrl);
   function generateEmbedUrl(original: string) {
     const ytId = original.split("?v=").pop()
+    if (!ytId) return original
     return `https://www.youtube.com/embed/${ytId.split("?")[0]}`
   }
   async function getVideoStreamingUrl(videoId: string) {
