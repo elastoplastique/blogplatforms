@@ -43,7 +43,6 @@ export default function BlogPostPage({ post }: Props) {
 
   useEffect(() => {
     if (foldRef.current) {
-      foldRef.current.insertAdjacentHTML("afterend", '<the-fold></the-fold>');
     }
   }, [foldRef]);
 
@@ -95,41 +94,35 @@ export default function BlogPostPage({ post }: Props) {
               ]}
             />
           </Flex>
+          <motion.div className="relative min-w-full rounded-3xl flex flex-col justify-center items-center min-h-32 !mt-10">
+            <h1 className="tracking-tight text-center !font-semi-bold sm:mx-8 text-6xl md:text-6xl lg:text-7xl pt-2 mb-8">
+              {post.title}
+            </h1>
+            <Text as="p" align="center" weight="medium" size="4" my="9">
+              {post.description}
+            </Text>
+          </motion.div>
+          {/** @ts-ignore */}
+          <the-fold></the-fold>
+
+          <Separator className="my-12" size="4" />
+          {post.cover && (
+            <AspectRatio ratio={16 / 9} style={{ width: '100%', height: '100%', minHeight: 200, position: 'relative', marginTop: 150 }}>
+              <Image
+                src={createWixStaticUrl(post.cover)}
+                alt={post.title}
+                className="rounded-lg"
+                loading="lazy"
+                loader={externalImageLoader}
+                fill
+              />
+            </AspectRatio>
+          )}
+          {/* MEDIA */}
+          {/* {platform.media && platform.media.length > 0 && <PlatformMedia media={platform.media} />} */}
+
+          {/* CONTENT */}
           <motion.article>
-            <motion.div className="relative min-w-full rounded-3xl flex flex-col justify-center items-center min-h-32 !mt-10">
-              <h1 className="tracking-tight text-center !font-semi-bold sm:mx-8 text-6xl md:text-6xl lg:text-7xl pt-2 mb-8">
-                {post.title}
-              </h1>
-              <Text as="p" align="center" weight="medium" size="4" my="9">
-                {post.description}
-              </Text>
-            </motion.div>
-
-            <div id="the-fold" ref={foldRef}></div>
-
-            <Separator className="my-12" size="4" />
-            {post.cover && (
-              <AspectRatio ratio={16 / 9} style={{ width: '100%', height: '100%', minHeight: 200, position: 'relative' }}>
-                <Image
-                  src={createWixStaticUrl(post.cover)}
-                  alt={post.title}
-                  className="rounded-lg"
-                  loading="lazy"
-                  loader={externalImageLoader}
-                  fill
-                />
-              </AspectRatio>
-            )}
-
-
-
-
-
-
-            {/* MEDIA */}
-            {/* {platform.media && platform.media.length > 0 && <PlatformMedia media={platform.media} />} */}
-
-            {/* CONTENT */}
             <Flex direction="column" justify="start" align="stretch">
 
 

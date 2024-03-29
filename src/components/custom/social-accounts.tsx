@@ -3,11 +3,18 @@ import Image from 'next/image';
 import { ACCOUNT_ICONS } from '@/constants/accounts';
 import { ASSETS_DIRECTORY } from '@/constants/assets-directory';
 import { motion } from 'framer-motion';
+import { getSocialIcon } from '@/components/icons/social-icons';
 
 type AccountProps = {
   accounts: AccountsNode;
   platformTitle: string;
 };
+
+
+
+
+
+
 
 export const SocialAccounts = (props: AccountProps) => {
   const socials = useMemo(() => {
@@ -30,7 +37,9 @@ export const SocialAccounts = (props: AccountProps) => {
           link={socials[key]!}
           title={`${props.platformTitle}'s ${key} account`}
           // @ts-ignore
-          icon={`${ASSETS_DIRECTORY.ICON_DIRECTORY}/${ACCOUNT_ICONS[key]}.svg`}
+          //icon={`${ASSETS_DIRECTORY.ICON_DIRECTORY}/${ACCOUNT_ICONS[key]}.svg`}
+          icon={getSocialIcon(ACCOUNT_ICONS[key])}
+
         />
       ))}
     </section>

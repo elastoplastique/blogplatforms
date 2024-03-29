@@ -112,7 +112,7 @@ export default function PlatformPage({ platform, platformFeatures, platformCompa
           }}
         >
           {platform.cover ? (
-            <AspectRatio ratio={16 / 9} style={{ width: '100%', height: '100%', minHeight: 200, position: 'relative' }}>
+            <AspectRatio ratio={16 / 9} style={{ width: '100%', height: '100%', minHeight: 200, position: 'relative', marginTop: 150  }}>
               <Image src={platform.cover} alt={platform.title} loader={externalImageLoader} fill priority />
             </AspectRatio>
           ) : (
