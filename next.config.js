@@ -9,8 +9,8 @@ const nextConfig = {
     // This is experimental but can
     // be enabled to allow parallel threads
     // with nextjs automatic static generation
-    workerThreads: false,
-    cpus: 1,
+    workerThreads: true,
+    cpus: 2,
   },
   transpilePackages: ['lodash', 'lodash-es'],
   options: {
@@ -77,5 +77,6 @@ const nextConfig = {
   reactStrictMode: true,
 
 };
+module.exports = { nextConfig };
 
-module.exports = withMDX(nextConfig);
+// module.exports = withMDX(nextConfig);

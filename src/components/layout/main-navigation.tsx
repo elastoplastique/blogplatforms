@@ -1,10 +1,10 @@
-import { useEffect } from 'react';
+// import { useEffect } from 'react';
 import Link from 'next/link';
 import { WEBSITE_NAME } from '@/constants/content';
 import { Flex, Heading } from '../ui';
 import { ThemeToggle } from '@/components/theme-toggle';
 import { DropdownMenu, Button, Text } from '../ui';
-import { AuthButton } from '@/components/auth0/auth-button';
+// import { AuthButton } from '@/components/auth0/auth-button';
 import { Logo } from '@/components/icons/logo';
 
 type NavLink = {

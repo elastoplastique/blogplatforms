@@ -11,11 +11,7 @@ import { ThemeProvider } from '@/components/theme-provider';
 import { MainLayout } from '@/components/layout/main-layout';
 import '@radix-ui/themes/styles.css';
 import { Theme } from '@radix-ui/themes';
-import Head from 'next/head';
-import Script from 'next/script';
 import { WixClientProvider } from '@/lib/wix';
-import { Auth0Provider } from '@auth0/auth0-react';
-import { META } from '@/constants/meta';
 import { UserProvider } from '@auth0/nextjs-auth0/client';
 
 const GA_MEASUREMENT_ID = process.env.NEXT_PUBLIC_MEASUREMENT_ID;

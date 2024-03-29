@@ -1,5 +1,5 @@
 /* eslint-disable @next/next/no-img-element */
-import React, { useMemo } from 'react';
+import React, { useMemo, useEffect, useRef } from 'react';
 import { PageLayout } from '@/components/layout/page-layout';
 import { AspectRatio, Heading, Text, Flex, Grid, Card, Container, Separator } from '@/components/ui';
 import { motion } from 'framer-motion';
@@ -24,6 +24,8 @@ type Props = {
 };
 
 export default function BlogPostPage({ post }: Props) {
+  const foldRef = useRef<HTMLDivElement>(null);
+
   const mentions = useMemo(() => {
     const m = post?.platforms!.map(
       (p) =>
@@ -38,6 +40,13 @@ export default function BlogPostPage({ post }: Props) {
     }
     return m;
   }, [post.platforms]);
+
+  useEffect(() => {
+    if (foldRef.current) {
+      foldRef.current.insertAdjacentHTML("afterend", '<the-fold></the-fold>');
+    }
+  }, [foldRef]);
+
   console.log(post)
   return (
     <PageLayout
@@ -96,8 +105,9 @@ export default function BlogPostPage({ post }: Props) {
               </Text>
             </motion.div>
 
-            <Separator className="my-12" size="4" />
+            <div id="the-fold" ref={foldRef}></div>
 
+            <Separator className="my-12" size="4" />
             {post.cover && (
               <AspectRatio ratio={16 / 9} style={{ width: '100%', height: '100%', minHeight: 200, position: 'relative' }}>
                 <Image

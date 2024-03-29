@@ -7,17 +7,17 @@ import { Container, Flex, Grid, Heading, Text, Separator } from '@/components/ui
 import { Hero } from '@/components/compound/hero';
 
 import { useRouter } from 'next/router';
-import Image from 'next/image';
-import { FilterMenu } from '@/components/compound/filter-menu';
-import { FilterDialogMenu } from '@/components/compound/filter-dialog-menu';
+// import Image from 'next/image';
+// import { FilterMenu } from '@/components/compound/filter-menu';
+// import { FilterDialogMenu } from '@/components/compound/filter-dialog-menu';
 import { useGlobal } from '@/lib/state/global';
-import { AUDIENCES } from '@/constants/audiences';
-import { FILTER_FEATURE_LABEL, FILTER_AUDIENCE_LABEL } from '@/constants/content';
-import decoreative from '/public/assets/decorative/blurry2.svg';
-import { motion, AnimatePresence } from 'framer-motion';
+// import { AUDIENCES } from '@/constants/audiences';
+// import { FILTER_FEATURE_LABEL, FILTER_AUDIENCE_LABEL } from '@/constants/content';
+// import decoreative from '/public/assets/decorative/blurry2.svg';
+// import { motion, AnimatePresence } from 'framer-motion';
 import { META } from '@/constants/meta';
-import { DEFAULT_PLATFORMS_LOADING_PARAMS } from '@/constants/settings';
-import { getPlatforms, getFeatures, getAudiences, getPlatformsFeatures } from '@/lib/wix/cms/cms';
+// import { DEFAULT_PLATFORMS_LOADING_PARAMS } from '@/constants/settings';
+import { getPlatforms, getFeatures,  getPlatformsFeatures } from '@/lib/wix/cms/cms';
 import { slugify } from '@/lib/utils/slugify';
 import { generatePage } from '@/lib/rich-data/page';
 import { generateProject } from '@/lib/rich-data/project';
@@ -27,7 +27,7 @@ import { Swiper } from '@/components/compound/swiper';
 import { PlatformsGridView } from '@/components/views/platforms-grid-view';
 import { FilterFeatureView } from '@/components/views/feature-filter-view';
 import { generateAbout } from '@/lib/rich-data/about';
-import { useUser } from '@auth0/nextjs-auth0/client';
+// import { useUser } from '@auth0/nextjs-auth0/client';
 
 type Props = {
   platforms: PlatformNode[];

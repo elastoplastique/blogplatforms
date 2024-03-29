@@ -2,9 +2,9 @@ import { FOOTER_LINKS, FOOTER_CONTENT, FOOTER_FEATURE_LINKS, FOOTER_BLOG_LINKS }
 import { SOCIAL_MEDIA } from '@/constants/social-media';
 import { keyifier } from '@/lib/utils/keyifier';
 import Link from 'next/link';
-import { Convertkit } from '@/components/compound/convertkit';
-import Image from 'next/image';
-import { externalImageLoader } from '@/lib/utils/external-image-loader';
+// import { Convertkit } from '@/components/compound/convertkit';
+// import Image from 'next/image';
+// import { externalImageLoader } from '@/lib/utils/external-image-loader';
 import { ROUTES } from '@/constants/routes';
 import { WhiteLogo } from '@/components/icons/logo';
 

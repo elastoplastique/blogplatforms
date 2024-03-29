@@ -8,6 +8,7 @@
     "ts": "tsc",
     "format": "prettier --config .prettierrc '**/*.{js,jsx,ts,tsx}' --write",
     "build": "next build",
+    "optimize": "jampack ./.next --cleancache",
     "postbuild": "next-sitemap",
     "start": "next start",
     "lint": "next lint"
@@ -104,6 +105,7 @@
     "zustand": "^4.4.1"
   },
   "devDependencies": {
+    "@divriots/jampack": "^0.23.4",
     "@tanstack/eslint-plugin-query": "^4.29.25",
     "@vanilla-extract/next-plugin": "^2.2.1",
     "@wix/data-items": "^1.0.4",
