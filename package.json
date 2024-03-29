@@ -7,8 +7,8 @@
     "codegen:supabase": "npx supabase gen types typescript --project-id 'tjtlpskzsejxounjnahu' --schema public > src/types/database.ts",
     "ts": "tsc",
     "format": "prettier --config .prettierrc '**/*.{js,jsx,ts,tsx}' --write",
-    "build": "next build",
-    "optimize": "jampack ./.next --cleancache",
+    "build": "next build && jampack ./.next",
+    "optimize": "jampack ./.next",
     "postbuild": "next-sitemap",
     "start": "next start",
     "lint": "next lint"

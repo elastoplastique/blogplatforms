@@ -15,10 +15,7 @@ const NavWrapper = ({ children }: { children: React.ReactNode }) => (
 export const MainLayout = ({ children }: { children: React.ReactNode }) => {
   return (
     <div>
-      <Flex position={'fixed'} width="100%" id="decoration">
-        <DecorationWaves />
-      </Flex>
-      <Flex position={'fixed'} width="100%" className="header-blur" />
+
 
       <NavWrapper>
         <MainNavigation />

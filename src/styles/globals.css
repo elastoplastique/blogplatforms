@@ -275,3 +275,10 @@ button.remove-selection:hover svg {
 .social-account-link > a {
     background-color: rgba(255,255,255,0.4) !important;
 }
+
+.content-auto {
+    content-visiblity: auto !important;
+    contain-intrinsic-size: 1000px !important;
+    /* Explained in the next section. */
+
+}

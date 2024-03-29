@@ -11,7 +11,7 @@ export function Breadcrumb(props: Props) {
 
   return (
     <motion.nav className="flex my-4" aria-label="Breadcrumb">
-      <ol className="flex flex-row  items-center justify-start sm:justify-center">
+      <ol className="flex flex-row flex-wrap  items-center justify-start sm:justify-center">
         <motion.li layoutId="breadcrumb-link-home">
           <div>
             <Link

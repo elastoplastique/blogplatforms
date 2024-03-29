@@ -1,9 +1,8 @@
 /* eslint-disable @next/next/no-img-element */
 import React, { useMemo, useEffect, useRef } from 'react';
 import { PageLayout } from '@/components/layout/page-layout';
-import { AspectRatio, Heading, Text, Flex, Grid, Card, Container, Separator } from '@/components/ui';
+import { Heading, Text, Flex, Grid, Card, Container, Separator } from '@/components/ui';
 import { motion } from 'framer-motion';
-import Image from 'next/image';
 import { Breadcrumb } from '@/components/compound/breadcrumb';
 import { ROUTES } from '@/constants/routes';
 import { META } from '@/constants/meta';
@@ -17,14 +16,24 @@ import { createWixStaticUrl } from '@/lib/wix/utils/create-url';
 import { externalImageLoader } from '@/lib/utils/external-image-loader';
 import { generateArticle } from '@/lib/rich-data/article';
 import type { ArticleRichDataInput } from '@/lib/rich-data/article';
-import { PostCardLessVerbose } from '@/components/custom/post-card';
+import dynamic from 'next/dynamic'
 
 type Props = {
   post: Wix.PostNode;
 };
 
+// @ts-ignore
+const RelatedPosts = dynamic(() =>
+  import('../../components/custom/related-posts').then((mod) => mod.RelatedPosts),
+  { ssr: false }
+)
+const PostCover = dynamic(() =>
+  import('../../components/custom/post-cover').then((mod) => mod.PostCover),
+  { ssr: false }
+)
 export default function BlogPostPage({ post }: Props) {
-  const foldRef = useRef<HTMLDivElement>(null);
+  const haveRelatedPosts = useMemo(() => post.relatedPosts && post.relatedPosts.length > 0, [post.relatedPosts]);
+  const haveCover = useMemo(() => post.cover, [post.cover]);
 
   const mentions = useMemo(() => {
     const m = post?.platforms!.map(
@@ -41,10 +50,6 @@ export default function BlogPostPage({ post }: Props) {
     return m;
   }, [post.platforms]);
 
-  useEffect(() => {
-    if (foldRef.current) {
-    }
-  }, [foldRef]);
 
   console.log(post)
   return (
@@ -90,7 +95,7 @@ export default function BlogPostPage({ post }: Props) {
             <Breadcrumb
               links={[
                 { name: 'Blog', href: `/blog`, current: false },
-                { name: post.title, href: `/blog/${post.slug}`, current: true, truncate: post.title.length > 30 },
+                { name: post.title, href: `/blog/${post.slug}`, current: true, truncate: post.title.length > 20 },
               ]}
             />
           </Flex>
@@ -105,24 +110,16 @@ export default function BlogPostPage({ post }: Props) {
           {/** @ts-ignore */}
           <the-fold></the-fold>
 
-          <Separator className="my-12" size="4" />
-          {post.cover && (
-            <AspectRatio ratio={16 / 9} style={{ width: '100%', height: '100%', minHeight: 200, position: 'relative', marginTop: 150 }}>
-              <Image
-                src={createWixStaticUrl(post.cover)}
-                alt={post.title}
-                className="rounded-lg"
-                loading="lazy"
-                loader={externalImageLoader}
-                fill
-              />
-            </AspectRatio>
+          <Separator className="my-12 mb-40" size="4" />
+
+          {haveCover && (
+            <PostCover title={post.title} src={createWixStaticUrl(post.cover!)} />
           )}
           {/* MEDIA */}
           {/* {platform.media && platform.media.length > 0 && <PlatformMedia media={platform.media} />} */}
 
           {/* CONTENT */}
-          <motion.article>
+          <article className="content-auto">
             <Flex direction="column" justify="start" align="stretch">
 
 
@@ -132,38 +129,10 @@ export default function BlogPostPage({ post }: Props) {
                 </main>
               </Flex>
             </Flex>
-          </motion.article>
+          </article>
 
 
-          {post.relatedPosts && post.relatedPosts.length > 0 && <aside>
-            <motion.div className="relative min-w-full rounded-3xl flex flex-col min-h-32 !mt-20">
-              <Heading as="h3" size="4" className="tracking-tight !font-semi-bold text-inherit pt-2">
-                <span className="text-4xl sm:text-2xl block !tracking-tighter">Related articles</span>
-              </Heading>
-            </motion.div>
-            <hr className="mb-8 opacity-60" />
-            <Flex direction="column" align="stretch" grow="1" id="list-box">
-              <Grid
-                width="100%"
-                columns={{
-                  initial: '1',
-                  sm: '2',
-                  md: '2',
-                  lg: '2',
-                }}
-                p="1"
-                asChild
-              >
-                <ul>
-                  {post.relatedPosts.map((p: Wix.PostNode, ix: number) => (
-                    <li key={`related-post-${p.slug}-${ix}`} id={`related-post-${p.slug}-${ix}`} className="p-2">
-                      <PostCardLessVerbose image={createWixStaticUrl(p.cover!)} title={p.title} description={p.description} href={`/blog/${p.slug}`} />
-                    </li>
-                  ))}
-                </ul>
-              </Grid>
-            </Flex>
-          </aside>}
+          { haveRelatedPosts && <RelatedPosts posts={post.relatedPosts!} />}
 
         </Card>
       </Container>
