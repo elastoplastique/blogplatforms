@@ -1,6 +1,7 @@
 /** @type {import('tailwindcss').Config} */
 
 import type { Config } from 'tailwindcss';
+// @ts-ignore
 import { radixThemePreset } from 'radix-themes-tw';
 const { blackA, violet, mauve } = require('@radix-ui/colors');
 
@@ -11,10 +12,9 @@ export default {
   darkMode: ['class'],
   content: [
     './node_modules/@nextui-org/theme/dist/**/*.{js,ts,jsx,tsx}',
-    './pages/**/*.{ts,tsx}',
-    './src/components/**/*.{ts,tsx}',
-    './app/**/*.{ts,tsx}',
-    './src/**/*.{ts,tsx}',
+    // './node_modules/@radix-ui/**/*.{js,ts,jsx,tsx}',
+    "./src/**/*.{js,ts,jsx,tsx,mdx}",
+
   ],
   theme: {
     minWidth: {

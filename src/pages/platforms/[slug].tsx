@@ -150,7 +150,7 @@ export default function PlatformPage({ platform, platformFeatures, platformCompa
             </motion.a>
           </motion.div>
 
-          <Separator className="my-8" size="4" />
+          <Separator className="my-8"  />
 
           {/* MEDIA */}
           {/* {platform.media && platform.media.length > 0 && <PlatformMedia media={platform.media} />} */}

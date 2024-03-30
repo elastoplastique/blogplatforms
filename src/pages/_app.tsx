@@ -1,4 +1,4 @@
-import '@/styles/globals.css';
+import '../styles/globals.css';
 // import 'swiper/css';
 // import 'swiper/css/a11y';
 // import 'swiper/css/autoplay';
@@ -12,7 +12,6 @@ import { MainLayout } from '@/components/layout/main-layout';
 import '@radix-ui/themes/styles.css';
 import { Theme } from '@radix-ui/themes';
 import { WixClientProvider } from '@/lib/wix';
-import { UserProvider } from '@auth0/nextjs-auth0/client';
 
 const GA_MEASUREMENT_ID = process.env.NEXT_PUBLIC_MEASUREMENT_ID;
 
@@ -32,19 +31,12 @@ export default function MyApp({ Component, pageProps }: AppProps) {
       <Theme accentColor="violet" radius="large" grayColor="mauve">
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
           
-            <UserProvider loginUrl="/api/auth/login">
-              {/* domain={process.env.NEXT_PUBLIC_AUTH0_CLIENT_DOMAIN!}
-              clientId={process.env.NEXT_PUBLIC_AUTH0_CLIENT_ID!}
-              authorizationParams={{
-                redirect_uri: process.env.NEXT_PUBLIC_AUTH0_REDIRECT_URI,
-              }}
-            > */}
+
               <WixClientProvider>
                 <MainLayout>
                   <Component {...pageProps} />
                 </MainLayout>
               </WixClientProvider>
-            </UserProvider>
         </ThemeProvider>
       </Theme>
     </>

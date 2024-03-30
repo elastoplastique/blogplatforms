@@ -319,18 +319,31 @@ function WixImage({ node }: { node: Wix.Image }) {
   );
 }
 
-function WixVideo({ node }: { node: Wix.Video }) {
-  const { generateVideoStreamingUrl } = useWixModules(files);
-  const videoId = useMemo(() => node.videoData.video.src._id || node.videoData.video.src.id!, [node.id]);
-  const [videoUrl, setVideoUrl] = useState<string | undefined>();
-  const isYoutubeVideo = node.videoData.video.src.url?.includes('youtu');
+function WixYoutubeVideo({ videoUrl }: { videoUrl: string }) {
 
-  // console.log('videoUrl', videoUrl);
   function generateEmbedUrl(original: string) {
     const ytId = original.split("?v=").pop()
     if (!ytId) return original
     return `https://www.youtube.com/embed/${ytId.split("?")[0]}`
   }
+
+  return (
+    <AspectRatio ratio={16 / 9} className="cms-rich-content cms-video">
+      <iframe
+        src={generateEmbedUrl(videoUrl)}
+        width="100%"
+        height="100%"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+        className="absolute top-0 left-0 bottom-0 right-0"
+      />
+    </AspectRatio>
+  );
+}
+function WixStaticVideo({ node }: { node: Wix.Video }) {
+  const { generateVideoStreamingUrl } = useWixModules(files);
+  const videoId = useMemo(() => node.videoData.video.src._id || node.videoData.video.src.id!, [node.id]);
+  const [videoUrl, setVideoUrl] = useState<string | undefined>();
+
   async function getVideoStreamingUrl(videoId: string) {
     try {
       const vid = videoId.replace('video/', '');
@@ -347,11 +360,7 @@ function WixVideo({ node }: { node: Wix.Video }) {
       // console.log('error', error);
     }
   }
-
   useEffect(() => {
-    if (isYoutubeVideo) {
-      setVideoUrl(generateEmbedUrl(node.videoData.video.src.url!))
-    }
     if (videoId) {
       getVideoStreamingUrl(videoId);
       // console.log('videoId', videoId);
@@ -359,18 +368,9 @@ function WixVideo({ node }: { node: Wix.Video }) {
       // console.log('createWixStaticVideoUrl(node.videoData.video.src._id)', createWixStaticVideoUrl(videoId));
     }
   }, [videoId]);
-  if (!videoUrl) return <></>;
   return (
-    <AspectRatio ratio={640/480} className="cms-rich-content cms-video relative">
-      {isYoutubeVideo ?
-        <iframe
-          src={videoUrl}
-          width="100%"
-          height="100%"
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-          className="absolute top-0 left-0 bottom-0 right-0"
-        />
-        :
+<AspectRatio ratio={640/480} className="cms-rich-content cms-video relative">
+      {
         videoUrl && (
           <video
             controls
@@ -382,6 +382,13 @@ function WixVideo({ node }: { node: Wix.Video }) {
         )}
     </AspectRatio>
   );
+}
+function WixVideo({ node }: { node: Wix.Video }) {
+  const isYoutubeVideo = node.videoData.video.src.url?.includes('youtu');
+  if (isYoutubeVideo) {
+    return <WixYoutubeVideo videoUrl={node.videoData.video.src.url!} />
+  }
+  return <WixStaticVideo node={node} />
 }
 
 function WixHtmlData({ node }: { node: Wix.HTML }) {

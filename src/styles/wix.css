@@ -99,6 +99,14 @@ SMALL SCREEN
   h4.cms-rich-content {  line-height: 1.4; font-size: var(--fontSize-s)   !important; border-left: 2px solid var(--blue-8);padding-left: 4px; margin-top: 1rem; letter-spacing: -0.025em !important; }
   h5.cms-rich-content {  line-height: 1.4; font-size: var(--fontSize-xs)  !important; border-left: 2px solid var(--teal-8);padding-left: 4px; margin-top: 1rem; letter-spacing: -0.025em !important; } 
   h6.cms-rich-content {  line-height: 1.4; font-size: var(--fontSize-xs)  !important; border-left: 2px solid var(--teal-8);padding-left: 4px; margin-top: 1rem; letter-spacing: -0.025em !important; }
+
+  p strong { font-size:  var(--fontSize-xs) !important;}
+  h2 strong { font-size:  var(--fontSize-l) !important;}
+  h3 strong { font-size:  var(--fontSize-m) !important;}
+  h4 strong { font-size:  var(--fontSize-s) !important;}
+  h5 strong { font-size:  var(--fontSize-xs) !important;}
+  h6 strong { font-size:  var(--fontSize-xs) !important;}
+
 }
 
 /* # ═ ═ ═ ═ ═ ═ ═ ═ ═ ═ ═ ═ ═ ═ ═ ═ ═ ═ ═ ═ ═ ═ ═ ═ ═ ═ ═ ═ ═ ═ ═ ═ ═ ═ ═ ▶
@@ -136,6 +144,13 @@ h3.cms-rich-content { font-weight: 600; font-size: var(--fontSize-l)  !important
 h4.cms-rich-content { font-weight: 600; font-size: var(--fontSize-m)   !important; margin-top: 1.1rem !important;  border-left: 2px solid var(--blue-8);   padding-left: 4px !important;}
 h5.cms-rich-content { font-weight: 600; font-size: var(--fontSize-s)   !important; margin-top: 1rem !important;    border-left: 2px solid var(--teal-8);   padding-left: 4px !important;} 
 h6.cms-rich-content { font-weight: 600; font-size: var(--fontSize-s)   !important; margin-top: 1rem !important;    border-left: 2px solid var(--teal-8);   padding-left: 4px !important;}
+
+p strong { font-size:  var(--fontSize-s) !important;}
+h2 strong { font-size:  var(--fontSize-xl) !important;}
+h3 strong { font-size:  var(--fontSize-l) !important;}
+h4 strong { font-size:  var(--fontSize-m) !important;}
+h5 strong { font-size:  var(--fontSize-s) !important;}
+h6 strong { font-size:  var(--fontSize-s) !important;}
 }
 
 

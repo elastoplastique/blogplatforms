@@ -1,27 +1,20 @@
+// @ts-check
 /** @type {import('next').NextConfig} */
 
-const withMDX = require('@next/mdx');
 
 const nextConfig = {
   staticPageGenerationTimeout: 300,
-  extension: /\.mdx$/,
   experimental: {
+    webVitalsAttribution: ['CLS', 'LCP'],
     // This is experimental but can
     // be enabled to allow parallel threads
     // with nextjs automatic static generation
-    workerThreads: true,
-    cpus: 2,
+    workerThreads: false,
+    cpus: 1,
   },
-  transpilePackages: ['lodash', 'lodash-es'],
-  options: {
-    // If you use remark-gfm, you'll need to use next.config.mjs
-    // as the package is ESM only
-    // https://github.com/remarkjs/remark-gfm#install
-    remarkPlugins: [],
-    rehypePlugins: [],
-    // If you use `MDXProvider`, uncomment the following line.
-    // providerImportSource: "@mdx-js/react",
-  },
+  transpilePackages: ['lodash', 'lodash-es', '@wix/sdk', '@wix/api-client'],
+  pageExtensions: ['ts', 'tsx', 'js', 'jsx', 'md', 'mdx', 'json'],
+  reactStrictMode: true,
   images: {
     minimumCacheTTL: 86400,
     deviceSizes: [640, 750, 828, 1080, 1200, 1920, 2048, 3840],
@@ -50,7 +43,7 @@ const nextConfig = {
   async headers() {
     return [
       {
-        source: '*',
+        source: '/(.*)',
         headers: [
           {
             key: 'X-DNS-Prefetch-Control',
@@ -72,11 +65,8 @@ const nextConfig = {
       },
 
     ]
-  },
-  pageExtensions: ['ts', 'tsx', 'js', 'jsx', 'md', 'mdx', 'json'],
-  reactStrictMode: true,
-
+  }
 };
-module.exports = { nextConfig };
 
+module.exports = nextConfig
 // module.exports = withMDX(nextConfig);

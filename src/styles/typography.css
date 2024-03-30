@@ -38,6 +38,7 @@ p, em, strong, span, div, li {
 }
 strong {
   font-weight: 500 !important;
+  font-size:  var(--fontSize-m) !important;
 }
 
 h1,
