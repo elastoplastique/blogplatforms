@@ -5,12 +5,11 @@
 const nextConfig = {
   staticPageGenerationTimeout: 300,
   experimental: {
-    webVitalsAttribution: ['CLS', 'LCP'],
     // This is experimental but can
     // be enabled to allow parallel threads
     // with nextjs automatic static generation
     workerThreads: false,
-    cpus: 1,
+    cpus: 4,
   },
   transpilePackages: ['lodash', 'lodash-es', '@wix/sdk', '@wix/api-client'],
   pageExtensions: ['ts', 'tsx', 'js', 'jsx', 'md', 'mdx', 'json'],

@@ -1,23 +1,23 @@
 module.exports = {
   plugins: [
     'postcss-import',
-    'postcss-combine-duplicated-selectors',
-    ['tailwindcss/nesting', 'postcss-nesting'],
-    'postcss-flexbugs-fixes',
-    [
-      "postcss-preset-env",
-      {
-        features: { 'nesting-rules': false },
-        "autoprefixer": {
-          "flexbox": "no-2009",
-          "grid": "autoplace"
-        },
-        "stage": 3,
-        "features": {
-          "custom-properties": false
-        }
-      }
-    ],
+    // 'postcss-combine-duplicated-selectors',
+    // ['tailwindcss/nesting', 'postcss-nesting'],
+    // // 'postcss-flexbugs-fixes',
+    // [
+    //   "postcss-preset-env",
+    //   {
+    //     features: { 'nesting-rules': false },
+    //     "autoprefixer": {
+    //       "flexbox": "no-2009",
+    //       "grid": "autoplace"
+    //     },
+    //     "stage": 3,
+    //     "features": {
+    //       "custom-properties": false
+    //     }
+    //   }
+    // ],
     "tailwindcss",
     "autoprefixer",
 ,
