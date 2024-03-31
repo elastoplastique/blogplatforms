@@ -13,12 +13,12 @@ const default_options = {
     compressor: 'esbuild',
   },
   image: {
-    embed_size: 1500,
-    srcset_min_width: 390 * 2, // HiDPI phone
+    embed_size: 784,
+    srcset_min_width: 364, // HiDPI phone
     srcset_max_width: 784, // 4K
     max_width: 784,
     external: {
-      process: 'download',
+      process: 'off',
       src_include: /^.*$/,
       src_exclude: null,
     },

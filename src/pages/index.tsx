@@ -22,7 +22,7 @@ import { slugify } from '@/lib/utils/slugify';
 import { generatePage } from '@/lib/rich-data/page';
 import { generateProject } from '@/lib/rich-data/project';
 
-import { Swiper } from '@/components/compound/swiper';
+// import { Swiper } from '@/components/compound/swiper';
 // import { CommandBar } from '@/components/compound/command-bar';
 import { PlatformsGridView } from '@/components/views/platforms-grid-view';
 import { FilterFeatureView } from '@/components/views/feature-filter-view';

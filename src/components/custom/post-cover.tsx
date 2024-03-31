@@ -9,8 +9,9 @@ export const PostCover = ({ title, src }: { title: string, src: string }) => (
          alt={title}
          className="rounded-lg content-auto"
          loading="lazy"
+         width={784}
+         height={784 * (9/16)}
          loader={externalImageLoader}
-         fill
       />
    </AspectRatio>
 )

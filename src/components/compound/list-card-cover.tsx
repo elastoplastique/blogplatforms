@@ -66,7 +66,7 @@ export const ListCardCover = memo(
                   style={{ borderRadius: '100%', marginRight: 16 }}
                 />
               </div>
-              <Strong>{platform.title}</Strong>
+              <h4 className="!m-0">{platform.title}</h4>
             </Link>
           </Heading>
           <Text as="p" size="2" mt="2" className="text-text-low-contrast">

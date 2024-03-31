@@ -1,8 +1,8 @@
 /* eslint-disable @next/next/no-img-element */
-import React, { useMemo, useEffect, useRef } from 'react';
+import React, { useMemo } from 'react';
 import { renderToStaticMarkup } from 'react-dom/server';
 import { PageLayout } from '@/components/layout/page-layout';
-import { Heading, Text, Flex, Grid, Card, Container, Separator } from '@/components/ui';
+import { Text, Flex, Card, Container, Separator } from '@/components/ui';
 import { motion } from 'framer-motion';
 import { Breadcrumb } from '@/components/compound/breadcrumb';
 import { ROUTES } from '@/constants/routes';
@@ -11,7 +11,7 @@ import {
   getPostSlugs,
   getPost,
 } from '@/lib/wix/cms';
-import { RichContent } from '@/lib/wix/cms/components/rich-content';
+//import { RichContent } from '@/lib/wix/cms/components/rich-content';
 import { removeTrailing } from '@/lib/utils/remove-trailing-slash';
 import { createWixStaticUrl } from '@/lib/wix/utils/create-url';
 import { externalImageLoader } from '@/lib/utils/external-image-loader';
@@ -26,49 +26,33 @@ type Props = {
   _createdDate: any;
   _updatedDate: any;
   cover: string;
-  keywords: string;
   body: string;
   relatedPosts: string;
-  mentions: RichData.SameAsType[];
-  questions: any;
-  about: any;
+  richData?: ArticleRichDataInput;
+  keywords?: string;
+  canonical?: string;
 };
 
 // @ts-ignore
 const RelatedPosts = dynamic(() =>
   import('../../components/custom/related-posts').then((mod) => mod.RelatedPosts),
-  { ssr: false }
+  { ssr: true }
 )
-const PostCover = dynamic(() =>
-  import('../../components/custom/post-cover').then((mod) => mod.PostCover),
-  { ssr: false }
+const RichContent = dynamic(() =>
+  import('../../lib/wix/cms/components/rich-content').then((mod) => mod.RichContent),
+  { ssr: true }
 )
-export default function BlogPostPage({ slug, title, description, cover, body, relatedPosts, keywords, _createdDate, _updatedDate, questions, about, mentions }: Props) {
-  const haveCover = useMemo(() => cover, [cover]);
-
+export default function BlogPostPage({ slug, title, description, cover, body, relatedPosts, richData, keywords, canonical }: Props) {
 
 
   return (
     <PageLayout
       metaTitle={`${title} | BloggingPlatforms.app`}
       metaDescription={description}
-      canonical={`${removeTrailing(META.CANONICAL)}${ROUTES.BLOG_POST_DIRECTORY.path}/${removeTrailing(slug)}`}
-      image={createWixStaticUrl(cover!)}
+      canonical={canonical}
+      image={cover}
       keywords={keywords}
-      richData={
-        generateArticle({
-          title: title!,
-          description: description!,
-          image: createWixStaticUrl(cover!),
-          questions: questions,
-          url: `${removeTrailing(META.CANONICAL)}${ROUTES.BLOG_POST_DIRECTORY.path}/${removeTrailing(slug)}`,
-          ...(about && { about: about }),
-          ...(mentions && mentions.length && { mentions }),
-          keywords: keywords,
-          datePublished: _createdDate!.$date!,
-          dateModified: _updatedDate!.$date!,
-        }) as unknown as ArticleRichDataInput
-      }
+      richData={richData}
     >
       <Container size={{
         initial: '2',
@@ -90,13 +74,13 @@ export default function BlogPostPage({ slug, title, description, cover, body, re
           <Flex width="100%" justify="center">
             <Breadcrumb
               links={[
-                { name: 'Blog', href: `/blog`, current: false },
+                // { name: 'Blog', href: `/blog`, current: false },
                 { name: title, href: `/blog/${slug}`, current: true, truncate: title.length > 20 },
               ]}
             />
           </Flex>
           <motion.div className="relative min-w-full rounded-3xl flex flex-col justify-center items-center min-h-32 !mt-10">
-            <h1 className="tracking-tight text-center !font-semi-bold sm:mx-8 text-6xl md:text-6xl lg:text-7xl pt-2 mb-8">
+            <h1 className="tracking-tight text-center !font-semi-bold sm:mx-8 text-5xl md:text-5xl lg:text-7xl pt-2 mb-8">
               {title}
             </h1>
             <Text as="p" align="center" weight="medium" size="4" my="9">
@@ -108,9 +92,7 @@ export default function BlogPostPage({ slug, title, description, cover, body, re
 
           <Separator className="my-12 mb-40"  />
 
-          {haveCover && (
-            <PostCover title={title} src={createWixStaticUrl(cover!)} />
-          )}
+            {/* <PostCover title={title} src={createWixStaticUrl(cover!)} /> */}
           {/* MEDIA */}
           {/* {platform.media && platform.media.length > 0 && <PlatformMedia media={platform.media} />} */}
 
@@ -149,21 +131,35 @@ export const getStaticProps = async ({ params: { slug } }: { params: { slug: str
   }
   const body = renderToStaticMarkup(<RichContent body={post.body!} contentId={slug} />);
   const relatedPosts = renderToStaticMarkup(<RelatedPosts posts={post?.relatedPosts!} />);
-
+  const richData = generateArticle({
+    title: post.title!,
+    description: post.description!,
+    image: createWixStaticUrl(post.cover!),
+    ...(post?.questions && { questions: post.questions }),
+    url: `${removeTrailing(META.CANONICAL)}${ROUTES.BLOG_POST_DIRECTORY.path}/${removeTrailing(slug)}`,
+    ...(post?.about && { about: post.about }),
+    ...(mentions && mentions.length && { mentions }),
+    keywords: post.keywords ? post.keywords : "",
+    datePublished: post._createdDate!.$date!,
+    dateModified:  post._updatedDate!.$date!,
+  })as unknown as ArticleRichDataInput
   return {
     props: {
       body,
-      cover: post.cover,
+
+      cover: createWixStaticUrl(post.cover!),
       description: post.description,
       slug: post.slug,
       title: post.title,
       keywords: post.keywords ? post.keywords : {},
+      richData,
+      canonical: `${removeTrailing(META.CANONICAL)}${ROUTES.BLOG_POST_DIRECTORY.path}/${removeTrailing(slug)}`,
       _createdDate: post._createdDate,
       _updatedDate: post._updatedDate,
       ...(relatedPosts && { relatedPosts }),
-      ...(post?.about && { about: post.about }),
-      ...(mentions && { mentions }),
-      ...(post?.questions && { questions: post.questions }),
+      // ...(post?.about && { about: post.about }),
+      // ...(mentions && { mentions }),
+      // ...(post?.questions && { questions: post.questions }),
     }
   };
 };

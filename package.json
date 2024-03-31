@@ -8,6 +8,7 @@
     "ts": "tsc",
     "format": "prettier --config .prettierrc '**/*.{js,jsx,ts,tsx}' --write",
     "build": "next build",
+    "export": "next build && next export",
     "optimize": "jampack ./.next",
     "postbuild": "next-sitemap",
     "start": "next start",

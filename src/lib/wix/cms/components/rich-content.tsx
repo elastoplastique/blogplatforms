@@ -20,6 +20,7 @@ import { slugify } from '@/lib/utils/slugify';
 import Image from 'next/image';
 import { useWixModules } from '@wix/sdk-react';
 import { files } from '@wix/media';
+import dynamic from 'next/dynamic'
 
 const THUMB_HEIGHT = IMAGE_HEIGHT * THUMBNAIL_FACTOR;
 const THUMB_WIDTH = IMAGE_WIDTH * THUMBNAIL_FACTOR;
@@ -391,7 +392,13 @@ function WixVideo({ node }: { node: Wix.Video }) {
   return <WixStaticVideo node={node} />
 }
 
-function WixHtmlData({ node }: { node: Wix.HTML }) {
+// @ts-ignore
+const WixHtmlData = dynamic(() =>
+  import('./lazy-html').then((mod) => mod.WixHtmlData),
+  { ssr: false }
+)
+
+function _WixHtmlData({ node }: { node: Wix.HTML }) {
   if (node.htmlData?.url) {
     return <iframe src={node.htmlData?.url}
       width="100%"
@@ -402,6 +409,7 @@ function WixHtmlData({ node }: { node: Wix.HTML }) {
     dangerouslySetInnerHTML={{ __html: node.htmlData.html }}
   />;
 }
+
 
 function WixDivider({ node }: { node: Wix.Divider }) {
   return <hr className="cms-rich-content cms-hr" />;

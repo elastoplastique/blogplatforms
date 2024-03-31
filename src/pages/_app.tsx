@@ -1,3 +1,10 @@
+import "../styles/colors.css";
+import "../styles/tailwind.css";
+import "../styles/typography.css";
+import "../styles/tables.css";
+import "../styles/wix.css";
+import "../styles/tokens.css";
+import "../styles/syntax.css";
 import '../styles/globals.css';
 // import 'swiper/css';
 // import 'swiper/css/a11y';

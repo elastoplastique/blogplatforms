@@ -337,8 +337,12 @@ export async function getPosts(): Promise<Wix.PostNode[]> {
   return await getItems(COLLECTIONS.POSTS, ['platforms', 'platforms.accounts', 'relatedPosts']);
 }
 export async function getPost(slug: string): Promise<Wix.PostNode> {
-  const posts = await getPosts();
-  return posts.find((post) => post.slug === slug) || ({} as Wix.PostNode);
+  let posts = await getPosts();
+  let _post = posts.find((post) => post.slug === slug) || ({} as Wix.PostNode);
+  let post = { ..._post };
+  posts = []
+  _post = {} as Wix.PostNode
+  return post
 }
 
 export async function getTags(): Promise<Wix.TagNode[]> {

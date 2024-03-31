@@ -1,5 +1,6 @@
 /* eslint-disable @next/next/no-img-element */
 import React, { useEffect, useState, useMemo } from 'react';
+import { renderToStaticMarkup } from 'react-dom/server';
 import { PageLayout } from '@/components/layout/page-layout';
 import { AspectRatio, Badge, Heading, Text, Flex, Card, Container, Separator, Grid } from '@/components/ui';
 import { motion } from 'framer-motion';
@@ -24,7 +25,7 @@ import {
   queryReferencedItems,
   getRichData,
 } from '@/lib/wix/cms';
-import { RichContent } from '@/lib/wix/cms/components/rich-content';
+// import { RichContent } from '@/lib/wix/cms/components/rich-content';
 import { removeTrailing } from '@/lib/utils/remove-trailing-slash';
 import { PlatformMedia } from '@/components/custom/platform-media';
 import { PostCard } from '@/components/custom/post-card';
@@ -34,6 +35,7 @@ import { generatePlatformPage } from '@/lib/rich-data';
 import { generateSameAsFromAccounts } from '@/lib/rich-data/same-as';
 import { useRouter } from 'next/router';
 import { generateAbout } from '@/lib/rich-data/about';
+import dynamic from 'next/dynamic'
 
 type Props = {
   platform: PlatformNode;
@@ -41,16 +43,20 @@ type Props = {
   platformComparativeFeatures: PlatformComparativeFeatureNode[];
   platformAccounts: AccountsNode;
   refItems: any[];
+  body: string;
 };
-
-export default function PlatformPage({ platform, platformFeatures, platformComparativeFeatures, platformAccounts }: Props) {
+const RichContent = dynamic(() =>
+  import('../../lib/wix/cms/components/rich-content').then((mod) => mod.RichContent),
+  { ssr: true }
+)
+export default function PlatformPage({ platform, platformFeatures, platformComparativeFeatures, platformAccounts, body }: Props) {
   const asPath = useRouter().asPath;
   const audienceText = (platform.audience || []).join(',') || ''
-  const features = useMemo(() => platformFeatures.filter((pf: Wix.PlatformFeatureNode) => pf.featureData?.title), [platform.slug]);
-  const comparativeFeatures = useMemo(
-    () => platformComparativeFeatures.filter((pcf: Wix.PlatformComparativeFeatureNode) => pcf.featureData?.title),
-    [platform.slug]
-  );
+  // const features = useMemo(() => platformFeatures.filter((pf: Wix.PlatformFeatureNode) => pf.featureData?.title), [platform.slug]);
+  // const comparativeFeatures = useMemo(
+  //   () => platformComparativeFeatures.filter((pcf: Wix.PlatformComparativeFeatureNode) => pcf.featureData?.title),
+  //   [platform.slug]
+  // );
 
 
   function matchSameAsUrl(platformAccounts: Wix.AccountsNode, fallback: string) {
@@ -167,9 +173,8 @@ export default function PlatformPage({ platform, platformFeatures, platformCompa
             </Text>
 
             <Flex direction="column" justify="start" align="stretch" my="8">
-              <main>
-                {platform.body && <RichContent body={platform.body} contentId={asPath} />}
-              </main>
+            <main dangerouslySetInnerHTML={{ __html: body }} />
+
             </Flex>
             {/* AUDIENCE */}
             <Audience title={platform.title} audience_text={audienceText} />
@@ -258,10 +263,12 @@ export const getStaticProps = async ({ params: { slug } }: { params: { slug: str
   const platformFeatures = await getPlatformFeatures(platform._id);
   const platformComparativeFeatures = await getPlatformComparativeFeatures(platform._id);
   const platformAccounts = await getPlatformAccounts(platform.slug);
+  const body = renderToStaticMarkup(<RichContent body={platform.body!} contentId={slug} />);
 
   return {
     props: {
       platform,
+      body,
       platformFeatures,
       platformComparativeFeatures,
       platformAccounts,
