@@ -302,7 +302,8 @@ function WixImage({ node }: { node: Wix.Image }) {
               src={createWixStaticUrl(imageId)}
               alt={node.imageData?.altText || ''}
               className="absolute top-0 left-0"
-              fill
+              width={784}
+              height={784 * (9/16)}
             />
           </a>
         ) : (
@@ -312,7 +313,8 @@ function WixImage({ node }: { node: Wix.Image }) {
             src={createWixStaticUrl(imageId)}
             alt={node.imageData?.altText || ''}
             className="absolute top-0 left-0"
-            fill
+            width={784}
+            height={784 * (9/16)}
           />
         ))}
       { }
