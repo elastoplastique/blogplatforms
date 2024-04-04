@@ -3,7 +3,7 @@ import Link from 'next/link';
 import { WEBSITE_NAME } from '@/constants/content';
 import { Flex, Heading } from '../ui';
 import { ThemeToggle } from '@/components/theme-toggle';
-import { DropdownMenu, Button, Text } from '../ui';
+import { DropdownMenu, Button, Text } from '@radix-ui/themes';
 // import { AuthButton } from '@/components/auth0/auth-button';
 import { Logo } from '@/components/icons/logo';
 

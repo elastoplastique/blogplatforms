@@ -59,6 +59,9 @@ dependencies:
   '@supabase/supabase-js':
     specifier: ^2.39.2
     version: 2.41.1
+  '@theme-toggles/react':
+    specifier: ^4.1.0
+    version: 4.1.0(react-dom@18.2.0)(react@18.2.0)
   '@types/js-cookie':
     specifier: ^3.0.4
     version: 3.0.6
@@ -6335,6 +6338,16 @@ packages:
     dependencies:
       eslint: 8.45.0
     dev: true
+
+  /@theme-toggles/react@4.1.0(react-dom@18.2.0)(react@18.2.0):
+    resolution: {integrity: sha512-h3SuJMsej8DfelHt5fjNIlaMfJOK52Vku4pPDVoHaTwjAcoTr4fn8hzeur2oiqWBYFYfKugvv1RdQaBFXaiPKg==}
+    peerDependencies:
+      react: ^16 || ^17 || ^18
+      react-dom: ^16 || ^17 || ^18
+    dependencies:
+      react: 18.2.0
+      react-dom: 18.2.0(react@18.2.0)
+    dev: false
 
   /@tokenizer/token@0.3.0:
     resolution: {integrity: sha512-OvjF+z51L3ov0OyAU0duzsYuvO01PH7x4t6DJx+guahgTnBHkhJdG7soQeTSFLWN3efnHyibZ4Z8l2EuWwJN3A==}

@@ -343,48 +343,49 @@ function WixYoutubeVideo({ videoUrl }: { videoUrl: string }) {
   );
 }
 function WixStaticVideo({ node }: { node: Wix.Video }) {
-  const { generateVideoStreamingUrl } = useWixModules(files);
-  const videoId = useMemo(() => node.videoData.video.src._id || node.videoData.video.src.id!, [node.id]);
-  const [videoUrl, setVideoUrl] = useState<string | undefined>();
+  return <></>
+  //   const { generateVideoStreamingUrl } = useWixModules(files);
+//   const videoId = useMemo(() => node.videoData.video.src._id || node.videoData.video.src.id!, [node.id]);
+//   const [videoUrl, setVideoUrl] = useState<string | undefined>();
 
-  async function getVideoStreamingUrl(videoId: string) {
-    try {
-      const vid = videoId.replace('video/', '');
-      // console.log('vid', vid);
-      const videoResponse = await generateVideoStreamingUrl(vid);
-      // console.log('VIDEO RESPONSE', videoResponse)
-      if (videoResponse?.downloadUrl && videoResponse?.downloadUrl.url) {
-        if (!videoUrl || videoUrl !== videoResponse.downloadUrl.url) {
-          setVideoUrl(videoResponse.downloadUrl.url);
-        }
-      }
-    } catch (error) {
-      console.log('error', error);
-      // console.log('error', error);
-    }
-  }
-  useEffect(() => {
-    if (videoId) {
-      getVideoStreamingUrl(videoId);
-      // console.log('videoId', videoId);
-      // console.log('node', node);
-      // console.log('createWixStaticVideoUrl(node.videoData.video.src._id)', createWixStaticVideoUrl(videoId));
-    }
-  }, [videoId]);
-  return (
-<AspectRatio ratio={640/480} className="cms-rich-content cms-video relative">
-      {
-        videoUrl && (
-          <video
-            controls
-            width="100%"
-            src={createWixStaticVideoUrl(node.videoData.video.src._id)}
-            poster={createWixStaticUrl(node.videoData.thumbnail.src._id)}
-            className="absolute top-0 left-0 bottom-0 right-0 max-h-full"
-          />
-        )}
-    </AspectRatio>
-  );
+//   async function getVideoStreamingUrl(videoId: string) {
+//     try {
+//       const vid = videoId.replace('video/', '');
+//       // console.log('vid', vid);
+//       const videoResponse = await generateVideoStreamingUrl(vid);
+//       // console.log('VIDEO RESPONSE', videoResponse)
+//       if (videoResponse?.downloadUrl && videoResponse?.downloadUrl.url) {
+//         if (!videoUrl || videoUrl !== videoResponse.downloadUrl.url) {
+//           setVideoUrl(videoResponse.downloadUrl.url);
+//         }
+//       }
+//     } catch (error) {
+//       console.log('error', error);
+//       // console.log('error', error);
+//     }
+//   }
+//   useEffect(() => {
+//     if (videoId) {
+//       getVideoStreamingUrl(videoId);
+//       // console.log('videoId', videoId);
+//       // console.log('node', node);
+//       // console.log('createWixStaticVideoUrl(node.videoData.video.src._id)', createWixStaticVideoUrl(videoId));
+//     }
+//   }, [videoId]);
+//   return (
+// <AspectRatio ratio={640/480} className="cms-rich-content cms-video relative">
+//       {
+//         videoUrl && (
+//           <video
+//             controls
+//             width="100%"
+//             src={createWixStaticVideoUrl(node.videoData.video.src._id)}
+//             poster={createWixStaticUrl(node.videoData.thumbnail.src._id)}
+//             className="absolute top-0 left-0 bottom-0 right-0 max-h-full"
+//           />
+//         )}
+//     </AspectRatio>
+//   );
 }
 function WixVideo({ node }: { node: Wix.Video }) {
   const isYoutubeVideo = node.videoData.video.src.url?.includes('youtu');

@@ -33,6 +33,7 @@
     "@radix-ui/react-slot": "^1.0.2",
     "@radix-ui/themes": "^1.0.0",
     "@supabase/supabase-js": "^2.39.2",
+    "@theme-toggles/react": "^4.1.0",
     "@types/js-cookie": "^3.0.4",
     "@types/lodash": "^4.14.198",
     "@types/node": "20.4.4",

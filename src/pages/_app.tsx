@@ -18,7 +18,7 @@ import { ThemeProvider } from '@/components/theme-provider';
 import { MainLayout } from '@/components/layout/main-layout';
 import '@radix-ui/themes/styles.css';
 import { Theme } from '@radix-ui/themes';
-import { WixClientProvider } from '@/lib/wix';
+// import { WixClientProvider } from '@/lib/wix';
 
 const GA_MEASUREMENT_ID = process.env.NEXT_PUBLIC_MEASUREMENT_ID;
 
@@ -37,13 +37,9 @@ export default function MyApp({ Component, pageProps }: AppProps) {
       </Script> */}
       <Theme accentColor="violet" radius="large" grayColor="mauve">
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
-          
-
-              <WixClientProvider>
-                <MainLayout>
-                  <Component {...pageProps} />
-                </MainLayout>
-              </WixClientProvider>
+          <MainLayout>
+            <Component {...pageProps} />
+          </MainLayout>
         </ThemeProvider>
       </Theme>
     </>
