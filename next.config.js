@@ -1,9 +1,16 @@
+const path = require('path');
+
 const nextConfig = {
+  output: "standalone",
   staticPageGenerationTimeout: 300,
-  experimental: { workerThreads: !1, cpus: 4 },
+  experimental: { 
+    workerThreads: 1, 
+    cpus: 4,
+    esmExternals: false,
+  },
   transpilePackages: ['@wix/sdk', '@wix/api-client'],
   pageExtensions: ['ts', 'tsx', 'js', 'jsx', 'md', 'mdx', 'json'],
-  reactStrictMode: !0,
+  reactStrictMode: true,
   images: {
     minimumCacheTTL: 86400,
     deviceSizes: [640, 750, 828, 1080, 1200, 1920, 2048, 3840],

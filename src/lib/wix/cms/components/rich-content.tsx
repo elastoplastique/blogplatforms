@@ -18,8 +18,8 @@ import { createWixStaticUrl, createWixStaticVideoUrl } from '@/lib/wix/utils/cre
 import { externalImageLoader } from '@/lib/utils/external-image-loader';
 import { slugify } from '@/lib/utils/slugify';
 import Image from 'next/image';
-import { useWixModules } from '@wix/sdk-react';
-import { files } from '@wix/media';
+// import { useWixModules } from '@wix/sdk-react';
+// import { files } from '@wix/media';
 import dynamic from 'next/dynamic'
 
 const THUMB_HEIGHT = IMAGE_HEIGHT * THUMBNAIL_FACTOR;
@@ -71,7 +71,7 @@ function WixHeading({ node }: { node: Wix.Heading }) {
       as={getLevel(node)}
       id={slugify(node.nodes.map((i: any) => i.textData.text).join('-'))}
       key={key}
-      className="cms-rich-content cms-img">
+      className="cms-rc cms-img">
       <>
         {(node.nodes as BodyItemUnion[]).map((innerNode, ix) => (
           <WixNode node={innerNode} key={innerNode._id || innerNode.id || key} />
@@ -83,7 +83,7 @@ function WixHeading({ node }: { node: Wix.Heading }) {
 
 function WixParagraph({ node }: { node: Wix.Paragraph }) {
   return (
-    <Text as="p" mb="2" id={node._id} className="cms-rich-content cms-p">
+    <Text as="p" mb="2" id={node._id} className="cms-rc cms-p">
       <>
         {(node.nodes as BodyItemUnion[]).map((innerNode: BodyItemUnion, ix: number) => (
           <WixNode node={innerNode} key={`${ix}-${innerNode._id}`} />
@@ -95,8 +95,8 @@ function WixParagraph({ node }: { node: Wix.Paragraph }) {
 
 function WixCodeBlock({ node }: { node: Wix.CodeBlock }) {
   return (
-    <pre id={node._id} className="cms-rich-content cms-pre">
-      <code className="cms-rich-content cms-code microlight">
+    <pre id={node._id} className="cms-rc cms-pre">
+      <code className="cms-rc cms-code microlight">
         <>
           {(node.nodes as BodyItemUnion[]).map((innerNode: BodyItemUnion, ix: number) => (
             <WixNode node={innerNode} key={`${ix}-${innerNode._id}`} />
@@ -122,7 +122,7 @@ function WixTextDecorated({ node }: { node: Wix.Text }) {
     <Link
       href={domainTransformer(decoration.linkData.link.url)}
       style={{ color: 'inherit' }}
-      className="cms-rich-content cms-link"
+      className="cms-rc cms-link"
       target={
         (decoration.linkData.link.target?.toLowerCase() === '_blank' || decoration.linkData.link.target?.toLowerCase() === 'blank') && !domainTransformer(decoration.linkData.link.url).includes("bloggingplatforms")
           ? '_blank'
@@ -135,17 +135,17 @@ function WixTextDecorated({ node }: { node: Wix.Text }) {
     </Link>
   );
   const BoldDecoration = ({ decoration, children }: { decoration: BoldDecoration; children: ReactNode | string }) => (
-    <Strong className="cms-rich-content cms-strong" id={id2}>
+    <Strong className="cms-rc cms-strong" id={id2}>
       {children}
     </Strong>
   );
   const ItalicDecoration = ({ decoration, children }: { decoration: ItalicDecoration; children: ReactNode | string }) => (
-    <em className="cms-rich-content cms-em" id={id3}>
+    <em className="cms-rc cms-em" id={id3}>
       {children}
     </em>
   );
   const ColorDecoration = ({ decoration, children }: { decoration: ColorDecoration; children: ReactNode | string }) => (
-    <span className="cms-rich-content cms-span" id={id4}>
+    <span className="cms-rc cms-span" id={id4}>
       {children}
     </span>
   );
@@ -196,7 +196,7 @@ function WixLinkPreview({ node }: { node: Wix.LinkPreview }) {
   const isInternal =
     node.linkPreviewData.link.url.includes('blogplatforms.app') || node.linkPreviewData.link.url.includes('bloggingplatforms.app');
   return (
-    <Card className="cms-rich-content cms-link-preview link-preview-card">
+    <Card className="cms-rc cms-link-preview link-preview-card">
       <Flex direction={{ initial: 'column', sm: 'row' }} height="min-content">
         <Flex width={{ initial: '100%', sm: '100%' }} className="link-preview-thumb z-10">
           <AspectRatio ratio={THUMB_WIDTH / THUMB_HEIGHT} className="aspect-ratio-box z-10">
@@ -254,7 +254,7 @@ function WixLinkPreview({ node }: { node: Wix.LinkPreview }) {
 
 function WixListItem({ node }: { node: Wix.ListItem }) {
   return (
-    <li className="cms-rich-content cms-li">
+    <li className="cms-rc cms-li">
       {(node.nodes as BodyItemUnion[]).map((innerNode, ix: number) => (
         <WixNode node={innerNode} key={`list-item-${ix}-${innerNode?._id ? innerNode?._id : innerNode?.id ? innerNode?.id : 'li'}`} />
       ))}
@@ -264,7 +264,7 @@ function WixListItem({ node }: { node: Wix.ListItem }) {
 
 function WixOrderedList({ node }: { node: Wix.OrderedList }) {
   return (
-    <ol className="cms-rich-content cms-ol">
+    <ol className="cms-rc cms-ol">
       {(node.nodes as ListItem[]).map((innerNode: ListItem, ix: number) => (
         <WixNode
           node={innerNode}
@@ -277,7 +277,7 @@ function WixOrderedList({ node }: { node: Wix.OrderedList }) {
 
 function WixBulletedList({ node }: { node: Wix.BulletedList }) {
   return (
-    <ul className="cms-rich-content cms-ul">
+    <ul className="cms-rc cms-ul">
       {(node.nodes as ListItem[]).map((innerNode: ListItem, ix: number) => (
         <WixNode
           node={innerNode}
@@ -292,7 +292,7 @@ function WixImage({ node }: { node: Wix.Image }) {
   const imageId = node.imageData.image.src._id || node.imageData.image.src.id!;
   const imageLink = node.imageData?.link?.url;
   return (
-    <AspectRatio ratio={node.imageData.image.width / node.imageData.image.height} className="cms-rich-content cms-img">
+    <AspectRatio ratio={node.imageData.image.width / node.imageData.image.height} className="cms-rc cms-img">
       {imageId &&
         (imageLink ? (
           <a href={imageLink} target="_blank" title={node.imageData?.altText}>
@@ -331,7 +331,7 @@ function WixYoutubeVideo({ videoUrl }: { videoUrl: string }) {
   }
 
   return (
-    <AspectRatio ratio={16 / 9} className="cms-rich-content cms-video">
+    <AspectRatio ratio={16 / 9} className="cms-rc cms-video">
       <iframe
         src={generateEmbedUrl(videoUrl)}
         width="100%"
@@ -373,7 +373,7 @@ function WixStaticVideo({ node }: { node: Wix.Video }) {
 //     }
 //   }, [videoId]);
 //   return (
-// <AspectRatio ratio={640/480} className="cms-rich-content cms-video relative">
+// <AspectRatio ratio={640/480} className="cms-rc cms-video relative">
 //       {
 //         videoUrl && (
 //           <video
@@ -408,14 +408,14 @@ function _WixHtmlData({ node }: { node: Wix.HTML }) {
       height="800px"
     />
   }
-  return <div className="cms-rich-content cms-html"
+  return <div className="cms-rc cms-html"
     dangerouslySetInnerHTML={{ __html: node.htmlData.html }}
   />;
 }
 
 
 function WixDivider({ node }: { node: Wix.Divider }) {
-  return <hr className="cms-rich-content cms-hr" />;
+  return <hr className="cms-rc cms-hr" />;
 }
 
 

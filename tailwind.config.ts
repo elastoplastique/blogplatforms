@@ -12,6 +12,8 @@ export default {
   darkMode: ['class'],
   content: [
     './node_modules/@nextui-org/theme/dist/**/*.{js,ts,jsx,tsx}',
+    './node_modules/@radix-ui/themes/dist/**/*.{js,ts,jsx,tsx}',
+
     "./src/**/*.{js,ts,jsx,tsx,mdx}",
 
   ],

@@ -14,15 +14,13 @@ const NavWrapper = ({ children }: { children: React.ReactNode }) => (
 
 export const MainLayout = ({ children }: { children: React.ReactNode }) => {
   return (
-    <div>
-
-
+    <>
       <NavWrapper>
         <MainNavigation />
       </NavWrapper>
       <div>{children}</div>
 
       <MainFooter />
-    </div>
+    </>
   );
 };

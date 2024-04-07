@@ -1,9 +1,7 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import React, { useEffect, useState, useMemo } from 'react';
-import { ListCard } from '@/components/compound/list-card';
-import { ListCardCover } from '@/components/compound/list-card-cover';
+import React, { useEffect, useMemo } from 'react';
 import { PageLayout } from '@/components/layout/page-layout';
-import { Container, Flex, Grid, Heading, Text, Separator } from '@/components/ui';
+import { Container } from '@radix-ui/themes';
 import { Hero } from '@/components/compound/hero';
 
 import { useRouter } from 'next/router';

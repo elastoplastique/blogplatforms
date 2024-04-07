@@ -2,7 +2,9 @@
 import React, { useMemo } from 'react';
 import { renderToStaticMarkup } from 'react-dom/server';
 import { PageLayout } from '@/components/layout/page-layout';
-import { Text, Flex, Card, Container, Separator } from '@/components/ui';
+import { Flex, Card, Container } from '@radix-ui/themes';
+import { Separator } from '@/components/ui/separator';
+import { Text } from '@/components/ui/typography';
 import { motion } from 'framer-motion';
 import { Breadcrumb } from '@/components/compound/breadcrumb';
 import { ROUTES } from '@/constants/routes';

@@ -5,7 +5,7 @@ export function WixHtmlData({ node }: { node: Wix.HTML }) {
          height="800px"
       />
    }
-   return <div className="cms-rich-content cms-html"
+   return <div className="cms-rc cms-html"
       dangerouslySetInnerHTML={{ __html: node.htmlData.html }}
    />;
 }
