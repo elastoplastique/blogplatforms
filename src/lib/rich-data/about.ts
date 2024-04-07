@@ -1,5 +1,5 @@
-import { generateImageObject } from './image';
-import { META } from '@/constants/meta';
+// import { generateImageObject } from './image';
+// import { META } from '@/constants/meta';
 
 export type RichDataAboutProps = {
   name: string;

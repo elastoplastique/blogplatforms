@@ -1,4 +1,6 @@
-import { Container, Flex, Grid, Heading, Text, Separator } from '@/components/ui';
+import { Flex } from '@radix-ui/themes';
+import { Text, Heading } from '@/components/ui/typography';
+import { Separator } from '@/components/ui/separator';
 
 export type HeroProps = {
   title: string;

@@ -1,16 +1,13 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import { useEffect, useCallback, useMemo } from 'react';
+import { useCallback, useMemo } from 'react';
 import { useFilters } from '@/lib/state/filters';
-import { FILTER_DEFAULT_VALUE, FILTER_FEATURE_LABEL } from '@/constants/content';
-import { Container, Box, Flex, Grid, Button, Text, Dialog, Separator, Card, Select, Badge, ScrollArea } from '@/components/ui';
-import { X, ListFilter } from 'lucide-react';
-import Link from 'next/link';
+import { Box, Flex, Grid, Button, Card, Badge } from '@radix-ui/themes';
+import { X } from 'lucide-react';
 import { InfoTooltip } from '@/components/compound/info-tooltip';
 import { motion } from 'framer-motion';
 import { ROUTES } from '@/constants/routes';
 import { FEATURE_CATEGORY_COLORS } from '@/constants/features';
 import { DEFAULT_COLOR } from '@/constants/colors';
-import { cn } from '@/lib/utils';
 import { useRouter } from 'next/router';
 
 type Props = { features: FeatureNode[] };

@@ -1,5 +1,5 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import React, { useEffect, useState, useMemo } from 'react';
+import React from 'react';
 import { ListCardCover } from '@/components/compound/list-card-cover';
 import { Flex, Grid, Section } from '@/components/ui';
 import { motion, AnimatePresence } from 'framer-motion';

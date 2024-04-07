@@ -16,7 +16,7 @@ import {
 //import { RichContent } from '@/lib/wix/cms/components/rich-content';
 import { removeTrailing } from '@/lib/utils/remove-trailing-slash';
 import { createWixStaticUrl } from '@/lib/wix/utils/create-url';
-import { externalImageLoader } from '@/lib/utils/external-image-loader';
+// import { externalImageLoader } from '@/lib/utils/external-image-loader';
 import { generateArticle } from '@/lib/rich-data/article';
 import type { ArticleRichDataInput } from '@/lib/rich-data/article';
 import dynamic from 'next/dynamic'

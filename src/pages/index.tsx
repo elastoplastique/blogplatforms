@@ -16,7 +16,7 @@ import { useGlobal } from '@/lib/state/global';
 import { META } from '@/constants/meta';
 // import { DEFAULT_PLATFORMS_LOADING_PARAMS } from '@/constants/settings';
 import { getPlatforms, getFeatures,  getPlatformsFeatures } from '@/lib/wix/cms/cms';
-import { slugify } from '@/lib/utils/slugify';
+// import { slugify } from '@/lib/utils/slugify';
 import { generatePage } from '@/lib/rich-data/page';
 import { generateProject } from '@/lib/rich-data/project';
 

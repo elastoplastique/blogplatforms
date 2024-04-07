@@ -3,6 +3,10 @@ const path = require('path');
 const nextConfig = {
   output: "standalone",
   staticPageGenerationTimeout: 300,
+  compiler: {
+    removeConsole:
+      process.env.NODE_ENV === "production" ? true : false,
+  },
   experimental: { 
     workerThreads: 1, 
     cpus: 4,
