@@ -57,9 +57,9 @@ const SocialAccountLink = ({ link, title, icon }: SocialLinkType) => (
       href={link}
       target="_blank"
       rel="noopener nofollow"
-      className="flex items-center justify-center w-12 h-12 rounded-full  transition-colors duration-300 ease-in-out"
+      className="flex items-center justify-center w-10 h-10 rounded-full  transition-colors duration-300 ease-in-out"
     >
-      <Image src={icon} alt={title} width={28} height={28} title={title} />
+      <Image src={icon} alt={title} width={24} height={24} title={title} />
     </a>
     <span className="sr-only">{title}</span>
   </motion.div>

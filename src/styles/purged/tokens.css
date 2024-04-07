@@ -1,0 +1,134 @@
+:root {
+  --image-width: 1920px;
+  --image-height: 1080px;
+  --thumbnail-factor: 0.15;
+  --thumbnail-width: calc(var(--image-width) * var(--thumbnail-factor));
+  --thumbnail-height: calc(var(--image-height) * var(--thumbnail-factor));
+}
+:root {
+  --screen-sm: 640px;
+  --screen-md: 768px;
+  --screen-lg: 1024px;
+  --screen-xl: 1280px;
+}
+
+:root {
+  --space-s: 6px;
+  --space-m: 12px;
+  --space-l: 18px;
+  --space-xl: 24px;
+  --space-2xl: 42px;
+  --space-3xl: 60px;
+  --space-4xl: 102px;
+  --space-5xl: 162px;
+}
+:root {
+  --fontSize-xs: 14px;
+  --fontSize-s: 16px;
+  --fontSize-sm: 18px;
+  --fontSize-m: 20px;
+  --fontSize-l: 25px;
+  --fontSize-xl: 31.25px;
+  --fontSize-2xl: 39.06px;
+  --fontSize-3xl: 48.83px;
+}
+:root {
+  --lineHeight-s: 22px;
+  --lineHeight-m: 25px;
+  --lineHeight-l: 29px;
+  --lineHeight-xl: 35px;
+  --lineHeight-2xl: 43px;
+  --lineHeight-3xl: 53px;
+}
+:root {
+  --letterSpacing-s: 0px;
+  --letterSpacing-m: 0.1px;
+  --letterSpacing-l: 0.2px;
+  --letterSpacing-xl: 0.3px;
+  --letterSpacing-2xl: 0.4px;
+  --letterSpacing-3xl: 0.5px;
+}
+:root {
+  --radius-s: 4px;
+  --radius-m: 12px;
+  --radius-l: 36px;
+  --radius-xl: 108px;
+  --radius-2xl: 324px;
+  --radius-3xl: 972px;
+}
+:root {
+  --color-hue1: #e7007b;
+  --color-hue1-5xDark: #160004;
+  --color-hue1-4xDark: #26000c;
+  --color-hue1-3xDark: #380017;
+  --color-hue1-2xDark: #510022;
+  --color-hue1-xDark: #720033;
+  --color-hue1-dark: #a2004f;
+  --color-hue1-light: #ff68ac;
+  --color-hue1-xLight: #ff92c7;
+  --color-hue1-2xLight: #ffabd4;
+  --color-hue1-3xLight: #ffbad9;
+  --color-hue1-4xLight: #ffc5db;
+  --color-hue1-5xLight: #ffcfde;
+}
+:root {
+  --color-hue2: #0093a4;
+  --color-hue2-5xDark: #000b0b;
+  --color-hue2-4xDark: #001617;
+  --color-hue2-3xDark: #002124;
+  --color-hue2-2xDark: #002c34;
+  --color-hue2-xDark: #00404c;
+  --color-hue2-dark: #00606f;
+  --color-hue2-light: #00c6d2;
+  --color-hue2-xLight: #00e0e8;
+  --color-hue2-2xLight: #00eaf0;
+  --color-hue2-3xLight: #64ecf0;
+  --color-hue2-4xLight: #8eeaec;
+  --color-hue2-5xLight: #aee8e9;
+}
+:root {
+  --color-hue3: #0083ff;
+  --color-hue3-5xDark: #000515;
+  --color-hue3-4xDark: #000f28;
+  --color-hue3-3xDark: #001a41;
+  --color-hue3-2xDark: #00255e;
+  --color-hue3-xDark: #003883;
+  --color-hue3-dark: #0055b7;
+  --color-hue3-light: #00b3ff;
+  --color-hue3-xLight: #54cdff;
+  --color-hue3-2xLight: #85d9ff;
+  --color-hue3-3xLight: #a1ddff;
+  --color-hue3-4xLight: #b5dfff;
+  --color-hue3-5xLight: #c6e0ff;
+}
+:root {
+  --color-hue4: #566bfa;
+  --color-hue4-5xDark: #040215;
+  --color-hue4-4xDark: #0a0727;
+  --color-hue4-3xDark: #07123f;
+  --color-hue4-2xDark: #021a5c;
+  --color-hue4-xDark: #0b2980;
+  --color-hue4-dark: #2742b2;
+  --color-hue4-light: #999dff;
+  --color-hue4-xLight: #babaff;
+  --color-hue4-2xLight: #ccc9ff;
+  --color-hue4-3xLight: #d4d0ff;
+  --color-hue4-4xLight: #d9d5ff;
+  --color-hue4-5xLight: #ddd9ff;
+}
+:root {
+  --color-grey: #7a71a5;
+  --color-grey-5xDark: #2d2966;
+  --color-grey-4xDark: #2e2964;
+  --color-grey-3xDark: #312c65;
+  --color-grey-2xDark: #363067;
+  --color-grey-xDark: #403a6e;
+  --color-grey-dark: #544c81;
+  --color-grey-light: #9f96c4;
+  --color-grey-xLight: #b9b2d7;
+  --color-grey-2xLight: #d2cbea;
+  --color-grey-3xLight: #e5e0f6;
+  --color-grey-4xLight: #f5f2fe;
+  --color-grey-5xLight: #ffffff;
+}
+

@@ -11,6 +11,7 @@
     "export": "next build && next export",
     "optimize": "jampack ./.next",
     "postbuild": "next-sitemap",
+    "purge": "purgecss --css src/styles/*.css  --content src/pages/**/*.tsx --output src/styles/purged",
     "start": "next start",
     "lint": "next lint"
   },

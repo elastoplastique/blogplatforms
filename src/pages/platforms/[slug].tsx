@@ -1,13 +1,12 @@
-/* eslint-disable @next/next/no-img-element */
-import React, { useEffect, useState, useMemo } from 'react';
+import React from 'react';
 import { renderToStaticMarkup } from 'react-dom/server';
 import { PageLayout } from '@/components/layout/page-layout';
-import { AspectRatio, Badge, Heading, Text, Flex, Card, Container, Separator, Grid } from '@/components/ui';
+import { AspectRatio, Badge, Heading, Text, Flex, Card, Container, Separator, Grid } from '@radix-ui/themes';
 import { motion } from 'framer-motion';
-import { ExternalLink } from 'lucide-react';
+// import { ExternalLink } from 'lucide-react';
 import { ProsCons } from '@/components/custom/pros-cons';
 import Image from 'next/image';
-import Link from 'next/link';
+// import Link from 'next/link';
 import { Audience } from '@/components/custom/audience';
 import { PlatformFeatures } from '@/components/custom/platform-features';
 import { PlatformResources } from '@/components/custom/platform-resources';
@@ -22,12 +21,12 @@ import {
   getPlatformComparativeFeatures,
   getPlatformFeatures,
   getPlatformAccounts,
-  queryReferencedItems,
-  getRichData,
+  // queryReferencedItems,
+  // getRichData,
 } from '@/lib/wix/cms';
 // import { RichContent } from '@/lib/wix/cms/components/rich-content';
 import { removeTrailing } from '@/lib/utils/remove-trailing-slash';
-import { PlatformMedia } from '@/components/custom/platform-media';
+// import { PlatformMedia } from '@/components/custom/platform-media';
 import { PostCard } from '@/components/custom/post-card';
 import { createWixStaticUrl } from '@/lib/wix/utils/create-url';
 import { externalImageLoader } from '@/lib/utils/external-image-loader';
@@ -50,7 +49,7 @@ const RichContent = dynamic(() =>
   { ssr: true }
 )
 export default function PlatformPage({ platform, platformFeatures, platformComparativeFeatures, platformAccounts, body }: Props) {
-  const asPath = useRouter().asPath;
+  // const asPath = useRouter().asPath;
   const audienceText = (platform.audience || []).join(',') || ''
   // const features = useMemo(() => platformFeatures.filter((pf: Wix.PlatformFeatureNode) => pf.featureData?.title), [platform.slug]);
   // const comparativeFeatures = useMemo(
@@ -117,13 +116,7 @@ export default function PlatformPage({ platform, platformFeatures, platformCompa
             lg: '5',
           }}
         >
-          {platform.cover ? (
-            <AspectRatio ratio={16 / 9} style={{ width: '100%', height: '100%', minHeight: 200, position: 'relative', marginTop: 150  }}>
-              <Image src={platform.cover} alt={platform.title} loader={externalImageLoader} fill priority />
-            </AspectRatio>
-          ) : (
-            <img src={platform.logo!} alt={platform.title} width={64} height={64} style={{ borderRadius: '100%', top: '26px' }} />
-          )}
+
           <Flex width="100%" justify="center">
             <Breadcrumb links={[{ name: platform.title, href: `/platforms/${platform.slug}`, current: true }]} />
           </Flex>
@@ -132,12 +125,19 @@ export default function PlatformPage({ platform, platformFeatures, platformCompa
             <Heading as="h1" size="4" className="tracking-tight text-center !font-semi-bold !mx-8 text-inherit pt-2 whitespace-wrap">
               <span className="text-5xl sm:text-6xl  block !tracking-tighter uppercase">{platform?.pageTitle || platform.title}</span>
             </Heading>
-
+            <Text as="p" align="center" weight="medium" mb="2" size={{
+              initial: '3',
+              sm: '4',
+              md: '5',
+              lg: '5',
+            }}>
+              {platform.description}
+            </Text>
             {/* SOCIAL ACCOUNTS  */}
             <SocialAccounts accounts={platformAccounts} platformTitle={platform.title} />
             <motion.a
               href={platform.url}
-              className={`intense-shadow mt-6 mb-12${platform.affiliate ? ' affiliate': ''}`}
+              className={`intense-shadow mt-6 mb-12${platform.affiliate ? ' affiliate' : ''}`}
               rel="noopener nofollow"
               transition={{ duration: 0.3, ease: 'easeInOut' }}
               style={{
@@ -156,24 +156,25 @@ export default function PlatformPage({ platform, platformFeatures, platformCompa
             </motion.a>
           </motion.div>
 
-          <Separator className="my-8"  />
+          <Separator className="my-8" />
+
+          {platform.cover ? (
+            <AspectRatio ratio={16 / 9} style={{ width: '100%', height: '100%', minHeight: 200, position: 'relative' }}>
+              <Image src={platform.cover} alt={platform.title} loader={externalImageLoader} fill priority />
+            </AspectRatio>
+          ) : (
+            <img src={platform.logo!} alt={platform.title} width={64} height={64} style={{ borderRadius: '100%', top: '26px' }} />
+          )}
 
           {/* MEDIA */}
           {/* {platform.media && platform.media.length > 0 && <PlatformMedia media={platform.media} />} */}
 
           {/* CONTENT */}
           <Flex direction="column" justify="start" align="stretch">
-            <Text as="p" align="center" weight="medium" size={{
-            initial: '3',
-            sm: '4',
-            md: '5',
-            lg: '5',
-          }}>
-              {platform.description}
-            </Text>
+
 
             <Flex direction="column" justify="start" align="stretch" my="8">
-            <main dangerouslySetInnerHTML={{ __html: body }} />
+              <main dangerouslySetInnerHTML={{ __html: body }} />
 
             </Flex>
             {/* AUDIENCE */}
@@ -212,7 +213,7 @@ export default function PlatformPage({ platform, platformFeatures, platformCompa
                   >
                     <ul>
                       {platform.posts.map((pp: Wix.PostNode, ix: number) => (
-                        <li key={`pf-${pp.slug}-${ix}`} className="py-4 h-120 mx-4">
+                        <li key={`pf-${pp.slug}-${ix}`} className="py-4 h-120 mx-0 sm:mx-4">
                           <PostCard
                             image={createWixStaticUrl(pp.cover!)}
                             title={pp.title}
@@ -234,7 +235,7 @@ export default function PlatformPage({ platform, platformFeatures, platformCompa
             }
             <motion.a
               href={platform.url}
-              className={`mt-4 mb-12${platform.affiliate ? ' affiliate': ''}`}
+              className={`mt-4 mb-12${platform.affiliate ? ' affiliate' : ''}`}
               rel="noopener nofollow"
               transition={{ duration: 0.3, ease: 'easeInOut' }}
               style={{

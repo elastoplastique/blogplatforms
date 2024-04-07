@@ -1,0 +1,9 @@
+/* 
+*/
+
+/** Swiper styles **/
+
+:root {
+  --swiper-pagination-color: rgba(255, 255, 255, 1);
+  --swiper-pagination-bullet-inactive-color: rgba(255, 255, 255, 1);
+}

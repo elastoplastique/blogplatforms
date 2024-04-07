@@ -1,3 +1,4 @@
+
 /* @import "./colors.css";
 @import "./tailwind.css";
 @import "./typography.css";
@@ -7,7 +8,8 @@
 @import "./tokens.css";
 @import "./cmdk.css";
 @import "./swiper.css";
-@import "./syntax.css"; */
+@import "./syntax.css";  */
+
 
 
 html,
@@ -255,7 +257,7 @@ button.remove-selection:hover svg {
     transition: all 0.8s ease;
 }
 
-.post-card:hover .post-card-body {}
+/* .post-card:hover .post-card-body {} */
 
 
 .horizontal-feature-card {
@@ -276,9 +278,8 @@ button.remove-selection:hover svg {
     background-color: rgba(255,255,255,0.4) !important;
 }
 
-.content-auto {
+/* .content-auto {
     content-visiblity: auto !important;
     contain-intrinsic-size: 1000px !important;
-    /* Explained in the next section. */
-
 }
+    /* Explained in the next section. */

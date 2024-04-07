@@ -1,7 +1,7 @@
 const nextConfig = {
   staticPageGenerationTimeout: 300,
   experimental: { workerThreads: !1, cpus: 4 },
-  transpilePackages: ['lodash', 'lodash-es', '@wix/sdk', '@wix/api-client'],
+  transpilePackages: ['@wix/sdk', '@wix/api-client'],
   pageExtensions: ['ts', 'tsx', 'js', 'jsx', 'md', 'mdx', 'json'],
   reactStrictMode: !0,
   images: {

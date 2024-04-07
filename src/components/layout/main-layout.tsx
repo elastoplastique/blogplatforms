@@ -1,7 +1,7 @@
 import { MainNavigation } from '@/components/layout/main-navigation';
 import { MainFooter } from './main-footer';
-import { DecorationWaves } from '@/components/decorative/waves';
-import { Flex } from '@/components/ui';
+// import { DecorationWaves } from '@/components/decorative/waves';
+// import { Flex } from '@/components/ui';
 
 const NavWrapper = ({ children }: { children: React.ReactNode }) => (
   <>
