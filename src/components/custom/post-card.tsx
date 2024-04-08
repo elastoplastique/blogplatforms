@@ -24,7 +24,7 @@ export const PostCard = ({ title, description, href, image, className, ...rest }
   return (
     <Card
       variant="surface"
-      style={{ width: '100%', borderRadius: 16, minHeight: 430 }}
+      style={{ width: '100%', borderRadius: 16, minHeight: 500 }}
       {...rest}
     >
       {/* @ts-ignore */}
@@ -47,13 +47,13 @@ export const PostCard = ({ title, description, href, image, className, ...rest }
           />
         </AspectRatio>
       </Link>
-      <Flex p="2" direction="column" className="min-h-[100px] post-card-body relative mt-4">
-        <Heading as="h3" size="3">
+      <Flex p="2" direction="column" className="min-h-[180px] post-card-body relative mt-2">
+        <h4>
           <Link href={href}>
             <Strong>{title}</Strong>
           </Link>
-        </Heading>
-        <Text as="p" size="2" mt="2" className="text-text-low-contrast cms-rc">
+        </h4>
+        <Text as="p" size="2" mt="1" className="text-text-low-contrast cms-rc">
           {description}
         </Text>
       </Flex>
@@ -67,7 +67,7 @@ export const PostCardLessVerbose = ({ title, description, href, image, className
     <Card
       variant="surface"
       size="1"
-      style={{ width: '100%', borderRadius: 16, minHeight: "auto", padding: 0}}
+      style={{ width: '100%', borderRadius: 16, minHeight: "150px", padding: 0}}
       {...rest}
     >
       {/* @ts-ignore */}
@@ -90,12 +90,12 @@ export const PostCardLessVerbose = ({ title, description, href, image, className
           />
         </AspectRatio>
       </Link>
-      <Flex p="2" direction="column" className="min-h-[80px] post-card-body relative mt-4">
-        <Heading as="h3" size="3">
+      <Flex p="2" direction="column" className="min-h-[140px] post-card-body relative mt-4">
+        <h4>
           <Link href={href}>
             <Strong>{title}</Strong>
           </Link>
-        </Heading>
+        </h4>
       </Flex>
     </Card>
   );

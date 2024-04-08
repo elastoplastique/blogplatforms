@@ -31,20 +31,26 @@ const listicles = [
     name: 'Blogging Platforms for Developers',
     href: '/blog/best-blogging-platforms-for-developers',
     current: false,
-    description: 'Best Blogging Platform for Developers',
+    description: 'Best Blogging Platforms for Developers',
   },
   {
     name: 'Blogging Platforms for Artists',
     href: '/blog/best-blog-platforms-for-artists',
     current: false,
-    description: 'Best Blogging Platform for Artists',
+    description: 'Best Blogging Platforms for Artists',
   },
 
   {
     name: 'Blogging Platforms for Students',
     href: '/blog/best-blog-sites-for-students',
     current: false,
-    description: 'Best Blogging Platform for Students',
+    description: 'Best Blogging Platforms for Students',
+  },
+  {
+    name: 'Blogging Platforms for Photographers',
+    href: '/blog/blogging-platforms-for-photographers',
+    current: false,
+    description: 'Best Blogging Platforms for Photographers',
   }
 ];
 

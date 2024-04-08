@@ -27,8 +27,8 @@ export const ListCardCover = memo(
       >
         {/* @ts-ignore */}
         <Link href={`/platforms/${platform.slug}`}>
-            <div className="relative">
-          <AspectRatio ratio={16 / 9} className="aspect-ratio-box !overflow-hidden rounded-md">
+          <div className="relative">
+            <AspectRatio ratio={16 / 9} className="aspect-ratio-box !overflow-hidden rounded-md">
 
               <Image
                 src={createWixStaticUrl(platform.cover!)}
@@ -45,30 +45,28 @@ export const ListCardCover = memo(
               //   backgroundColor: 'var(--gray-5)',
               // }}
               />
-          </AspectRatio>
-            </div>
+            </AspectRatio>
+          </div>
         </Link>
         <Flex p="1" direction="column" className="min-h-[140px] post-card-body relative mt-4">
-          <Heading as="h3" size="3">
-            <Link href={`/platforms/${platform.slug}`} className="flex flex-row items-center">
-              <div className="relative platform-mini-icon mr-2">
+          <Link href={`/platforms/${platform.slug}`} className="flex flex-row items-center">
+            <div className="relative platform-mini-icon mr-2">
 
 
-                <Image
-                  // src={createWixStaticUrl(platform.cover!)}
-                  src={`${ASSETS_DIRECTORY.LOGO_DIRECTORY}/${platform.slug}.png`}
-                  alt={`Blog platform: ${platform.title}`}
-                  loader={externalImageLoader}
-                  className="border-subtle-border border logo"
-                  loading="lazy"
-                  width={40}
-                  height={40}
-                  style={{ borderRadius: '100%', marginRight: 16 }}
-                />
-              </div>
-              <h4 className="!m-0">{platform.title}</h4>
-            </Link>
-          </Heading>
+              <Image
+                // src={createWixStaticUrl(platform.cover!)}
+                src={`${ASSETS_DIRECTORY.LOGO_DIRECTORY}/${platform.slug}.png`}
+                alt={`Blog platform: ${platform.title}`}
+                loader={externalImageLoader}
+                className="border-subtle-border border logo"
+                loading="lazy"
+                width={40}
+                height={40}
+                style={{ borderRadius: '100%', marginRight: 16 }}
+              />
+            </div>
+            <h4 className="!m-0">{platform.title}</h4>
+          </Link>
           <Text as="p" size="2" mt="2" className="text-text-low-contrast">
             {platform.description && platform?.description.length > 160
               ? platform.description?.slice(0, 160) + '...'
