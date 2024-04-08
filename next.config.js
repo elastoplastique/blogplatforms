@@ -3,13 +3,13 @@ const path = require('path');
 const nextConfig = {
   // output: "standalone",
   staticPageGenerationTimeout: 300,
-  // productionBrowserSourceMaps: true,
+  productionBrowserSourceMaps: true,
   compiler: {
     removeConsole:
       process.env.NODE_ENV === "development" ? true : false,
   },
   experimental: { 
-    // optimizeCss: true,
+    optimizeCss: true,
     workerThreads: 1, 
     cpus: 4,
     esmExternals: false,
