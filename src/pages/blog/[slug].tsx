@@ -99,15 +99,10 @@ export default function BlogPostPage({ slug, title, description, cover, body, re
           {/* {platform.media && platform.media.length > 0 && <PlatformMedia media={platform.media} />} */}
 
           {/* CONTENT */}
-          <article className="content-auto">
-            <Flex direction="column" justify="start" align="stretch">
-
-
-              <Flex direction="column" justify="start" align="stretch" my="4">
-                <main dangerouslySetInnerHTML={{ __html: body }} />
-              </Flex>
-            </Flex>
-          </article>
+          <article 
+            className="content-auto flex flex-col justify-start items-stretch"  
+            dangerouslySetInnerHTML={{ __html: body }} 
+          />
 
 
           {relatedPosts && <section dangerouslySetInnerHTML={{ __html: relatedPosts }} />}

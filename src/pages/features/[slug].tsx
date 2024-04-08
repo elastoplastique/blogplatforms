@@ -2,19 +2,19 @@
 import React, { useEffect, useState, useMemo } from 'react';
 import { PageLayout } from '@/components/layout/page-layout';
 import { AspectRatio, Badge, Heading, Text, Flex, Card, Container, Separator, Grid, Button } from '@/components/ui';
-import { motion } from 'framer-motion';
-import { ExternalLink } from 'lucide-react';
-import { ProsCons } from '@/components/custom/pros-cons';
-import Image from 'next/image';
-import Link from 'next/link';
-import { Audience } from '@/components/custom/audience';
-import { PlatformFeatures } from '@/components/custom/platform-features';
-import { PlatformResources } from '@/components/custom/platform-resources';
-import { ProgressFeatures } from '@/components/custom/progress-features';
-import { Breadcrumb } from '@/components/compound/breadcrumb';
+// import { motion } from 'framer-motion';
+// import { ExternalLink } from 'lucide-react';
+// import { ProsCons } from '@/components/custom/pros-cons';
+// import Image from 'next/image';
+// import Link from 'next/link';
+// import { Audience } from '@/components/custom/audience';
+// import { PlatformFeatures } from '@/components/custom/platform-features';
+// import { PlatformResources } from '@/components/custom/platform-resources';
+// import { ProgressFeatures } from '@/components/custom/progress-features';
+// import { Breadcrumb } from '@/components/compound/breadcrumb';
 import { ROUTES } from '@/constants/routes';
 import { META } from '@/constants/meta';
-import { SocialAccounts } from '@/components/custom/social-accounts';
+// import { SocialAccounts } from '@/components/custom/social-accounts';
 import {
   getPlatformFeaturesByFeatureId,
   getPlatforms,
@@ -22,22 +22,22 @@ import {
   getFeatureSlugs,
   getPlatformFeaturesByFeatureSlug,
 } from '@/lib/wix/cms';
-import { RichContent } from '@/lib/wix/cms/components/rich-content';
+// import { RichContent } from '@/lib/wix/cms/components/rich-content';
 import { removeTrailing } from '@/lib/utils/remove-trailing-slash';
-import { COLLECTIONS } from '@/lib/wix/cms/cms';
-import { createWixStaticUrl } from '@/lib/wix/utils/create-url';
-import { externalImageLoader } from '@/lib/utils/external-image-loader';
+// import { COLLECTIONS } from '@/lib/wix/cms/cms';
+// import { createWixStaticUrl } from '@/lib/wix/utils/create-url';
+// import { externalImageLoader } from '@/lib/utils/external-image-loader';
 import { PlatformsGridView } from '@/components/views/platforms-grid-view';
 import { FilterFeatureView } from '@/components/views/feature-filter-view';
 
 import { useRouter } from 'next/router';
-import { FilterMenu } from '@/components/compound/filter-menu';
-import { FilterDialogMenu } from '@/components/compound/filter-dialog-menu';
+// import { FilterMenu } from '@/components/compound/filter-menu';
+// import { FilterDialogMenu } from '@/components/compound/filter-dialog-menu';
 import { useGlobal } from '@/lib/state/global';
-import { AUDIENCES } from '@/constants/audiences';
-import { FILTER_FEATURE_LABEL, FILTER_AUDIENCE_LABEL } from '@/constants/content';
-import decoreative from '/public/assets/decorative/blurry2.svg';
-import { DEFAULT_PLATFORMS_LOADING_PARAMS } from '@/constants/settings';
+// import { AUDIENCES } from '@/constants/audiences';
+// import { FILTER_FEATURE_LABEL, FILTER_AUDIENCE_LABEL } from '@/constants/content';
+// import decoreative from '/public/assets/decorative/blurry2.svg';
+// import { DEFAULT_PLATFORMS_LOADING_PARAMS } from '@/constants/settings';
 import { FeatureInfoView } from '@/components/views/feature-info-view';
 type Props = {
   feature: Wix.FeatureNode;

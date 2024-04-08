@@ -278,6 +278,11 @@ button.remove-selection:hover svg {
     background-color: rgba(255,255,255,0.4) !important;
 }
 
+hr {
+    margin: 32px 0;
+    opacity: 0.6;
+}
+
 /* .content-auto {
     content-visiblity: auto !important;
     contain-intrinsic-size: 1000px !important;
