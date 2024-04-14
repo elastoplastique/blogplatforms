@@ -1,9 +1,6 @@
-# *
 User-agent: *
+Disallow: /api/
 Allow: /
-
-# Host
-Host: https://bloggingplatforms.app
 
 # Sitemaps
 Sitemap: https://bloggingplatforms.app/sitemap.xml
