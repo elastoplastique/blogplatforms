@@ -2,12 +2,6 @@ import React, { useEffect, useState, useMemo } from 'react';
 import { PageLayout } from '@/components/layout/page-layout';
 import { AspectRatio, Box, Badge, Heading, Text, Flex, Card, Grid, Container, Separator, Tooltip } from '@/components/ui';
 import { Section } from '@/components/layout/section';
-import { motion, useMotionValue } from 'framer-motion';
-import { ExternalLink } from 'lucide-react';
-import { ProsCons } from '@/components/custom/pros-cons';
-import Image from 'next/image';
-import Link from 'next/link';
-import Head from 'next/head';
 import { PLATFORM_PAGE } from '@/constants/content';
 import { CircuitBoard, Info } from 'lucide-react';
 import { InfoTooltip } from '@/components/compound/info-tooltip';
@@ -24,7 +18,7 @@ export const PlatformFeatures = ({ platformName, platformFeatures }: { platformN
         {platformName} {PLATFORM_PAGE.platformFeatures}
       </Heading>
       <Separator />
-      <Grid width="100%" columns={{ initial: '1', sm: '2' }} gap="1">
+      <Grid width="100%" columns={{ initial: '1', sm: '2' }} gap="3">
         {orderedPlatformFeatures.map((pf: PlatformFeatureNode, index) => (
           <HorizontalFeatureCard
             title={pf.feature.title}

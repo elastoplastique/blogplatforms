@@ -11,7 +11,7 @@ import {
   ColorDecoration,
   BoldDecoration,
   ItalicDecoration,
-  ListItem
+  ListItem,
 } from '@/types/wix/rich-content';
 import { IMAGE_WIDTH, IMAGE_HEIGHT, THUMBNAIL_FACTOR } from '@/constants/image';
 import { createWixStaticUrl, createWixStaticVideoUrl } from '@/lib/wix/utils/create-url';
@@ -20,7 +20,7 @@ import { slugify } from '@/lib/utils/slugify';
 import Image from 'next/image';
 // import { useWixModules } from '@wix/sdk-react';
 // import { files } from '@wix/media';
-import dynamic from 'next/dynamic'
+import dynamic from 'next/dynamic';
 
 const THUMB_HEIGHT = IMAGE_HEIGHT * THUMBNAIL_FACTOR;
 const THUMB_WIDTH = IMAGE_WIDTH * THUMBNAIL_FACTOR;
@@ -65,13 +65,9 @@ function WixHeading({ node }: { node: Wix.Heading }) {
         return 'h2';
     }
   }
-  const key = slugify(node.nodes.map((i: any) => i.textData.text).join('-')) + "-" + getLevel(node)
+  const key = slugify(node.nodes.map((i: any) => i.textData.text).join('-')) + '-' + getLevel(node);
   return (
-    <Heading
-      as={getLevel(node)}
-      id={slugify(node.nodes.map((i: any) => i.textData.text).join('-'))}
-      key={key}
-      className="cms-rc cms-img">
+    <Heading as={getLevel(node)} id={slugify(node.nodes.map((i: any) => i.textData.text).join('-'))} key={key} className="cms-rc cms-img">
       <>
         {(node.nodes as BodyItemUnion[]).map((innerNode, ix) => (
           <WixNode node={innerNode} key={innerNode._id || innerNode.id || key} />
@@ -124,7 +120,8 @@ function WixTextDecorated({ node }: { node: Wix.Text }) {
       style={{ color: 'inherit' }}
       className="cms-rc cms-link"
       target={
-        (decoration.linkData.link.target?.toLowerCase() === '_blank' || decoration.linkData.link.target?.toLowerCase() === 'blank') && !domainTransformer(decoration.linkData.link.url).includes("bloggingplatforms")
+        (decoration.linkData.link.target?.toLowerCase() === '_blank' || decoration.linkData.link.target?.toLowerCase() === 'blank') &&
+        !domainTransformer(decoration.linkData.link.url).includes('bloggingplatforms')
           ? '_blank'
           : undefined
       }
@@ -187,7 +184,7 @@ function WixText({ node }: { node: Wix.Text }) {
     node.nodes.forEach((innerNode: any) => {
       text += innerNode.textData.text;
     });
-    return text
+    return text;
   }
   return getText(node);
 }
@@ -206,19 +203,18 @@ function WixLinkPreview({ node }: { node: Wix.LinkPreview }) {
               target={isInternal ? '' : '_blank'}
               rel={isInternal ? '' : 'noopener nofollow'}
             >
-
               <Image
                 src={node.linkPreviewData.thumbnailUrl}
                 alt={node.linkPreviewData.title}
                 loader={externalImageLoader}
                 fill
-              // style={{
-              //   display: 'block',
-              //   objectFit: 'cover',
-              //   width: THUMB_WIDTH,
-              //   height: THUMB_HEIGHT,
-              //   backgroundColor: 'var(--gray-5)',
-              // }}
+                // style={{
+                //   display: 'block',
+                //   objectFit: 'cover',
+                //   width: THUMB_WIDTH,
+                //   height: THUMB_HEIGHT,
+                //   backgroundColor: 'var(--gray-5)',
+                // }}
               />
             </a>
           </AspectRatio>
@@ -232,7 +228,7 @@ function WixLinkPreview({ node }: { node: Wix.LinkPreview }) {
                 target={isInternal ? '' : '_blank'}
                 rel={isInternal ? '' : 'noopener nofollow'}
               >
-                {node.linkPreviewData.title.replace("| BlogPlatforms.app", "").replace("| BloggingPlatforms.app", "")}
+                {node.linkPreviewData.title.replace('| BlogPlatforms.app', '').replace('| BloggingPlatforms.app', '')}
               </a>
             </Strong>
           </Text>
@@ -303,7 +299,7 @@ function WixImage({ node }: { node: Wix.Image }) {
               alt={node.imageData?.altText || ''}
               className="absolute top-0 left-0"
               width={784}
-              height={784 * (9/16)}
+              height={784 * (9 / 16)}
             />
           </a>
         ) : (
@@ -314,20 +310,19 @@ function WixImage({ node }: { node: Wix.Image }) {
             alt={node.imageData?.altText || ''}
             className="absolute top-0 left-0"
             width={784}
-            height={784 * (9/16)}
+            height={784 * (9 / 16)}
           />
         ))}
-      { }
+      {}
     </AspectRatio>
   );
 }
 
 function WixYoutubeVideo({ videoUrl }: { videoUrl: string }) {
-
   function generateEmbedUrl(original: string) {
-    const ytId = original.split("?v=").pop()
-    if (!ytId) return original
-    return `https://www.youtube.com/embed/${ytId.split("?")[0]}`
+    const ytId = original.split('?v=').pop();
+    if (!ytId) return original;
+    return `https://www.youtube.com/embed/${ytId.split('?')[0]}`;
   }
 
   return (
@@ -343,82 +338,71 @@ function WixYoutubeVideo({ videoUrl }: { videoUrl: string }) {
   );
 }
 function WixStaticVideo({ node }: { node: Wix.Video }) {
-  return <></>
+  return <></>;
   //   const { generateVideoStreamingUrl } = useWixModules(files);
-//   const videoId = useMemo(() => node.videoData.video.src._id || node.videoData.video.src.id!, [node.id]);
-//   const [videoUrl, setVideoUrl] = useState<string | undefined>();
+  //   const videoId = useMemo(() => node.videoData.video.src._id || node.videoData.video.src.id!, [node.id]);
+  //   const [videoUrl, setVideoUrl] = useState<string | undefined>();
 
-//   async function getVideoStreamingUrl(videoId: string) {
-//     try {
-//       const vid = videoId.replace('video/', '');
-//       // console.log('vid', vid);
-//       const videoResponse = await generateVideoStreamingUrl(vid);
-//       // console.log('VIDEO RESPONSE', videoResponse)
-//       if (videoResponse?.downloadUrl && videoResponse?.downloadUrl.url) {
-//         if (!videoUrl || videoUrl !== videoResponse.downloadUrl.url) {
-//           setVideoUrl(videoResponse.downloadUrl.url);
-//         }
-//       }
-//     } catch (error) {
-//       console.log('error', error);
-//       // console.log('error', error);
-//     }
-//   }
-//   useEffect(() => {
-//     if (videoId) {
-//       getVideoStreamingUrl(videoId);
-//       // console.log('videoId', videoId);
-//       // console.log('node', node);
-//       // console.log('createWixStaticVideoUrl(node.videoData.video.src._id)', createWixStaticVideoUrl(videoId));
-//     }
-//   }, [videoId]);
-//   return (
-// <AspectRatio ratio={640/480} className="cms-rc cms-video relative">
-//       {
-//         videoUrl && (
-//           <video
-//             controls
-//             width="100%"
-//             src={createWixStaticVideoUrl(node.videoData.video.src._id)}
-//             poster={createWixStaticUrl(node.videoData.thumbnail.src._id)}
-//             className="absolute top-0 left-0 bottom-0 right-0 max-h-full"
-//           />
-//         )}
-//     </AspectRatio>
-//   );
+  //   async function getVideoStreamingUrl(videoId: string) {
+  //     try {
+  //       const vid = videoId.replace('video/', '');
+  //       // console.log('vid', vid);
+  //       const videoResponse = await generateVideoStreamingUrl(vid);
+  //       // console.log('VIDEO RESPONSE', videoResponse)
+  //       if (videoResponse?.downloadUrl && videoResponse?.downloadUrl.url) {
+  //         if (!videoUrl || videoUrl !== videoResponse.downloadUrl.url) {
+  //           setVideoUrl(videoResponse.downloadUrl.url);
+  //         }
+  //       }
+  //     } catch (error) {
+  //       console.log('error', error);
+  //       // console.log('error', error);
+  //     }
+  //   }
+  //   useEffect(() => {
+  //     if (videoId) {
+  //       getVideoStreamingUrl(videoId);
+  //       // console.log('videoId', videoId);
+  //       // console.log('node', node);
+  //       // console.log('createWixStaticVideoUrl(node.videoData.video.src._id)', createWixStaticVideoUrl(videoId));
+  //     }
+  //   }, [videoId]);
+  //   return (
+  // <AspectRatio ratio={640/480} className="cms-rc cms-video relative">
+  //       {
+  //         videoUrl && (
+  //           <video
+  //             controls
+  //             width="100%"
+  //             src={createWixStaticVideoUrl(node.videoData.video.src._id)}
+  //             poster={createWixStaticUrl(node.videoData.thumbnail.src._id)}
+  //             className="absolute top-0 left-0 bottom-0 right-0 max-h-full"
+  //           />
+  //         )}
+  //     </AspectRatio>
+  //   );
 }
 function WixVideo({ node }: { node: Wix.Video }) {
   const isYoutubeVideo = node.videoData.video.src.url?.includes('youtu');
   if (isYoutubeVideo) {
-    return <WixYoutubeVideo videoUrl={node.videoData.video.src.url!} />
+    return <WixYoutubeVideo videoUrl={node.videoData.video.src.url!} />;
   }
-  return <WixStaticVideo node={node} />
+  return <WixStaticVideo node={node} />;
 }
 
 // @ts-ignore
-const WixHtmlData = dynamic(() =>
-  import('./lazy-html').then((mod) => mod.WixHtmlData),
-  { ssr: false }
-)
+const WixHtmlData = dynamic(() => import('./lazy-html').then((mod) => mod.WixHtmlData), { ssr: false });
 
 function _WixHtmlData({ node }: { node: Wix.HTML }) {
   if (node.htmlData?.url) {
-    return <iframe src={node.htmlData?.url}
-      width="100%"
-      height="800px"
-    />
+    return <iframe src={node.htmlData?.url} width="100%" height="800px" />;
   }
-  return <div className="cms-rc cms-html"
-    dangerouslySetInnerHTML={{ __html: node.htmlData.html }}
-  />;
+  return <div className="cms-rc cms-html" dangerouslySetInnerHTML={{ __html: node.htmlData.html }} />;
 }
-
 
 function WixDivider({ node }: { node: Wix.Divider }) {
   return <hr className="cms-rc cms-hr" />;
 }
-
-
 
 function WixNode({ node }: { node: BodyItemUnion }) {
   if (node.type === 'HEADING') {
@@ -477,19 +461,19 @@ function textHasEmptyDecoration(node: Wix.Text) {
 }
 
 function convertBackticks(text: string) {
-  if (text.includes("`")) {
-    let result = "";
-    let splitted = text.split("`");
+  if (text.includes('`')) {
+    let result = '';
+    let splitted = text.split('`');
     for (let i = 0; i < splitted.length; i++) {
       if (i % 2 === 0) {
         result += splitted[i];
       } else {
-        result += `<code>${splitted[i]}</code>`
+        result += `<code>${splitted[i]}</code>`;
       }
     }
     return result;
   } else {
-    return text
+    return text;
   }
 }
 

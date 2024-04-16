@@ -29,7 +29,7 @@ export default function BlogPlatforms(props: Props) {
         </Flex>
         <Separator className="my-8" size="4" />
 
-        <Flex direction="column" align="stretch" grow="1" id="list-box">
+        <Flex direction="column" align="stretch" gap="1" id="list-box">
           <Grid
             width="100%"
             columns={{
@@ -42,11 +42,11 @@ export default function BlogPlatforms(props: Props) {
             p="1"
           >
             {props.features.map((f: Wix.FeatureNode, ix: number) => (
-              <HorizontalFeatureCard 
-                title={f.header} 
-                description={f.description} 
-                key={`pf-${f.slug}-${ix}`} 
-                link={`/features/${f.slug}`} 
+              <HorizontalFeatureCard
+                title={f.header}
+                description={f.description}
+                key={`pf-${f.slug}-${ix}`}
+                link={`/features/${f.slug}`}
                 header={f.header}
               />
             ))}

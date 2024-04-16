@@ -17,6 +17,7 @@ type OptionData = { [key: string]: any };
 export const FilterFeatureView = ({ features }: Props) => {
   const router = useRouter();
   const routeSlug = router.asPath.split('/')[router.asPath.split('/').length - 1];
+
   const selectHandler = (featureSlug: string) => {
     if (featureSlug === routeSlug) {
       router.push('/', undefined, { shallow: true });

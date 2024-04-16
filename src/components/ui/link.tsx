@@ -1,6 +1,5 @@
-import type { Responsive } from '@radix-ui/themes';
 import NextLink from 'next/link';
-import { Link as RadixLink, linkPropDefs } from '@radix-ui/themes';
+import { Link as RadixLink } from '@radix-ui/themes';
 
 type Mutable<T> = { -readonly [P in keyof T]: T[P] }; // Remove readonly and ?
 // type SizeType = [P in keyof linkPropDefs["weight"]["values"]]: linkPropDefs["weight"]["values"][P];

@@ -3,7 +3,7 @@
 import type { Config } from 'tailwindcss';
 // @ts-ignore
 import { radixThemePreset } from 'radix-themes-tw';
-const { blackA, violet, mauve } = require('@radix-ui/colors');
+const { blackA, violet, mauve, jade, indigo, pink, purple, crimson, slate, iris, tomato } = require('@radix-ui/colors');
 
 const { nextui } = require('@nextui-org/react');
 
@@ -14,8 +14,7 @@ export default {
     './node_modules/@nextui-org/theme/dist/**/*.{js,ts,jsx,tsx}',
     './node_modules/@radix-ui/themes/dist/**/*.{js,ts,jsx,tsx}',
 
-    "./src/**/*.{js,ts,jsx,tsx,mdx}",
-
+    './src/**/*.{js,ts,jsx,tsx,mdx}',
   ],
   theme: {
     minWidth: {
@@ -46,8 +45,16 @@ export default {
     },
     colors: {
       ...blackA,
+      ...slate,
       ...violet,
       ...mauve,
+      ...jade,
+      ...indigo,
+      ...pink,
+      ...purple,
+      ...crimson,
+      ...iris,
+      ...tomato,
       overlay: 'var(--overlay)',
       'app-bg': 'var(--app-bg)',
       'subtle-bg': 'var(--subtle-bg)',

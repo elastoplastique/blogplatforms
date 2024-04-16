@@ -31,7 +31,7 @@ export function generateArticle(data: ArticleRichDataInput) {
     description: data.description,
     abstract: data.description,
     url: data.url,
-    genre: "/Online Communities/Blogging Resources & Services",
+    genre: '/Online Communities/Blogging Resources & Services',
     image: data.image,
     author: data?.author || defaultAuthor,
     ...(data.about && { about: data?.about }),

@@ -1,4 +1,4 @@
-import { Separator as SeparatorComponent, separatorPropDefs } from '@radix-ui/themes';
+import { Separator as SeparatorComponent } from '@radix-ui/themes';
 import type { ComponentProps } from 'react';
 
 interface SeparatorProps extends ComponentProps<typeof SeparatorComponent> {

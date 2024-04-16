@@ -1,15 +1,24 @@
 import type { ComponentPropsWithoutRef, Mixin, ReactPropTypes, ComponentProps } from 'react';
 // Typography
-import { GetPropDefTypes, PropDef } from '@radix-ui/themes';
-import { Text as TextPrimitive, textPropDefs } from '@radix-ui/themes';
-import { Heading as HeadingPrimitive, headingPropDefs } from '@radix-ui/themes';
+import {
+  GetPropDefTypes,
+  PropDef,
+  textPropDefs,
+  headingPropDefs,
+  codePropDefs,
+  kbdPropDefs,
+  blockquotePropDefs,
+} from '@radix-ui/themes/dist/esm/props/index.d.ts';
 
-export { Code, codePropDefs } from '@radix-ui/themes';
-export { Em } from '@radix-ui/themes';
-export { Kbd, kbdPropDefs } from '@radix-ui/themes';
-export { Quote } from '@radix-ui/themes';
-export { Strong } from '@radix-ui/themes';
-export { Blockquote, blockquotePropDefs } from '@radix-ui/themes';
+import { Text as TextPrimitive } from './radix-primitives';
+import { Heading as HeadingPrimitive } from './radix-primitives';
+
+export { Code } from './radix-primitives';
+export { Em } from './radix-primitives';
+export { Kbd } from './radix-primitives';
+export { Quote } from './radix-primitives';
+export { Strong } from './radix-primitives';
+export { Blockquote } from './radix-primitives';
 
 interface ExtendedTextProps extends GetPropDefTypes<typeof textPropDefs> {
   children?: React.ReactNode;

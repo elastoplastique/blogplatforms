@@ -9,7 +9,7 @@ export default function BlogPlatforms(props: any) {
 
   useEffect(() => {
     router.push('/');
-  },[])
+  }, []);
   return (
     <PageLayout metaTitle={`Best Blogging Site | BloggingPlatforms.app`} canonical={'https://bloggingplatforms.app'}>
       {props.children}
@@ -22,8 +22,6 @@ export const getStaticProps = async () => {
   // console.log("blog-platforms/index.tsx frontmatter", allFrontMatters)
 
   return {
-    props: {
-
-    },
+    props: {},
   };
 };

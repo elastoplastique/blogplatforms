@@ -7,7 +7,6 @@ export default function Document() {
       <Head>
         <meta name="google-adsense-account" content="ca-pub-9259748524746137" />
         <Favicons />
-
       </Head>
       <body>
         <Main />

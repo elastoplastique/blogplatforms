@@ -14,11 +14,7 @@ export const MainFooter = () => {
       <div className="px-4 mx-auto sm:px-6 lg:px-8 max-w-7xl">
         <div className="grid grid-cols-1 gap-x-5 gap-y-12 md:grid-cols-4 md:gap-x-12">
           <nav>
-            <Link
-              href={ROUTES.HOME.path}
-              title={ROUTES.HOME.label}
-              className="text-base font-bold text-white"
-            >
+            <Link href={ROUTES.HOME.path} title={ROUTES.HOME.label} className="text-base font-bold text-white">
               {FOOTER_CONTENT.TITLE.text}
             </Link>
 
@@ -38,11 +34,7 @@ export const MainFooter = () => {
           </nav>
 
           <nav>
-            <Link
-              href={ROUTES.FEATURES_DIRECTORY.path}
-              title={ROUTES.FEATURES_DIRECTORY.label}
-              className="text-base font-bold text-white"
-            >
+            <Link href={ROUTES.FEATURES_DIRECTORY.path} title={ROUTES.FEATURES_DIRECTORY.label} className="text-base font-bold text-white">
               {ROUTES.FEATURES_DIRECTORY.label}
             </Link>
 
@@ -85,7 +77,6 @@ export const MainFooter = () => {
               ))}
             </ul>
           </nav>
-
         </div>
 
         <hr className="mt-16 mb-10 border-gray-800" />
@@ -136,9 +127,9 @@ export const MainFooter = () => {
           </ul>
 
           <p className="w-full mt-8 text-sm text-center text-gray-100 md:mt-0 md:w-auto md:order-2">
-          <WhiteLogo color="white" size={60} /> © Copyright 2024, All Rights Reserved by{' '}
+            <WhiteLogo color="white" size={60} /> © Copyright 2024, All Rights Reserved by{' '}
             <a href="https://bloggingplatforms.app" title="Best Blogging Platforms">
-               Best Blogging Platforms
+              Best Blogging Platforms
             </a>
             .
           </p>

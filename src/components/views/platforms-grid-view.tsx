@@ -28,8 +28,7 @@ export function PlatformsGridView() {
         {/* <Flex direction="row" align="stretch" grow="0" shrink="1" id="feature-box">
 
           </Flex> */}
-        <Flex direction="column" align="stretch" grow="1" id="list-box">
-
+        <Flex direction="column" align="stretch" gap="1" id="list-box">
           <Grid
             width="100%"
             asChild
@@ -46,19 +45,21 @@ export function PlatformsGridView() {
               <AnimatePresence>
                 {platformsToRender &&
                   platformsToRender.length > 0 &&
-                  platformsToRender.sort((a, b) => a.order - b.order).map((platform) => (
-                    <motion.li
-                      layout
-                      key={platform.slug}
-                      className="relative z-0 h-120 m-4 flex flex-col items-center"
-                      initial={{ opacity: 0 }}
-                      animate={{ opacity: 1 }}
-                      exit={{ opacity: 0 }}
-                      transition={{ easings: 'linear', duration: 0.3 }}
-                    >
-                      <ListCardCover platform={platform} />
-                    </motion.li>
-                  ))}
+                  platformsToRender
+                    .sort((a, b) => a.order - b.order)
+                    .map((platform) => (
+                      <motion.li
+                        layout
+                        key={platform.slug}
+                        className="relative z-0 h-120 m-4 flex flex-col items-center"
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        exit={{ opacity: 0 }}
+                        transition={{ easings: 'linear', duration: 0.3 }}
+                      >
+                        <ListCardCover platform={platform} />
+                      </motion.li>
+                    ))}
               </AnimatePresence>
             </motion.ul>
           </Grid>

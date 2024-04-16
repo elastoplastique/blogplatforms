@@ -10,12 +10,6 @@ type AccountProps = {
   platformTitle: string;
 };
 
-
-
-
-
-
-
 export const SocialAccounts = (props: AccountProps) => {
   const socials = useMemo(() => {
     const accounts: { [key: string]: string } = {};
@@ -39,7 +33,6 @@ export const SocialAccounts = (props: AccountProps) => {
           // @ts-ignore
           //icon={`${ASSETS_DIRECTORY.ICON_DIRECTORY}/${ACCOUNT_ICONS[key]}.svg`}
           icon={getSocialIcon(ACCOUNT_ICONS[key])}
-
         />
       ))}
     </section>

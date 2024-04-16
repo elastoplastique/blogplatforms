@@ -9,17 +9,14 @@ import { motion } from 'framer-motion';
 import { Breadcrumb } from '@/components/compound/breadcrumb';
 import { ROUTES } from '@/constants/routes';
 import { META } from '@/constants/meta';
-import {
-  getPostSlugs,
-  getPost,
-} from '@/lib/wix/cms';
+import { getPostSlugs, getPost } from '@/lib/wix/cms';
 //import { RichContent } from '@/lib/wix/cms/components/rich-content';
 import { removeTrailing } from '@/lib/utils/remove-trailing-slash';
 import { createWixStaticUrl } from '@/lib/wix/utils/create-url';
 // import { externalImageLoader } from '@/lib/utils/external-image-loader';
 import { generateArticle } from '@/lib/rich-data/article';
 import type { ArticleRichDataInput } from '@/lib/rich-data/article';
-import dynamic from 'next/dynamic'
+import dynamic from 'next/dynamic';
 
 type Props = {
   slug: string;
@@ -36,17 +33,9 @@ type Props = {
 };
 
 // @ts-ignore
-const RelatedPosts = dynamic(() =>
-  import('../../components/custom/related-posts').then((mod) => mod.RelatedPosts),
-  { ssr: true }
-)
-const RichContent = dynamic(() =>
-  import('../../lib/wix/cms/components/rich-content').then((mod) => mod.RichContent),
-  { ssr: true }
-)
+const RelatedPosts = dynamic(() => import('../../components/custom/related-posts').then((mod) => mod.RelatedPosts), { ssr: true });
+const RichContent = dynamic(() => import('../../lib/wix/cms/components/rich-content').then((mod) => mod.RichContent), { ssr: true });
 export default function BlogPostPage({ slug, title, description, cover, body, relatedPosts, richData, keywords, canonical }: Props) {
-
-
   return (
     <PageLayout
       metaTitle={`${title} | BloggingPlatforms.app`}
@@ -56,11 +45,14 @@ export default function BlogPostPage({ slug, title, description, cover, body, re
       keywords={keywords}
       richData={richData}
     >
-      <Container size={{
-        initial: '2',
-        md: '3',
-        lg: '3',
-      }} className="w-full !md:px-16">
+      <Container
+        size={{
+          initial: '2',
+          md: '3',
+          lg: '3',
+        }}
+        className="w-full !md:px-16"
+      >
         <Card
           id="page-card"
           className="w-full h-full relative flex flex-col justify-start min-w-full"
@@ -82,9 +74,7 @@ export default function BlogPostPage({ slug, title, description, cover, body, re
             />
           </Flex>
           <motion.div className="relative min-w-full rounded-3xl flex flex-col justify-center items-center min-h-32 !mt-10">
-            <h1 className="tracking-tight text-center !font-semi-bold sm:mx-8 text-5xl md:text-5xl lg:text-7xl pt-2 mb-8">
-              {title}
-            </h1>
+            <h1 className="tracking-tight text-center !font-semi-bold sm:mx-8 text-5xl md:text-5xl lg:text-7xl pt-2 mb-8">{title}</h1>
             <Text as="p" align="center" weight="medium" size="4" my="9">
               {description}
             </Text>
@@ -92,21 +82,16 @@ export default function BlogPostPage({ slug, title, description, cover, body, re
           {/** @ts-ignore */}
           <the-fold></the-fold>
 
-          <Separator className="my-12 mb-40"  />
+          <Separator className="my-12 mb-40" />
 
-            {/* <PostCover title={title} src={createWixStaticUrl(cover!)} /> */}
+          {/* <PostCover title={title} src={createWixStaticUrl(cover!)} /> */}
           {/* MEDIA */}
           {/* {platform.media && platform.media.length > 0 && <PlatformMedia media={platform.media} />} */}
 
           {/* CONTENT */}
-          <article 
-            className="content-auto flex flex-col justify-start items-stretch"  
-            dangerouslySetInnerHTML={{ __html: body }} 
-          />
-
+          <article className="content-auto flex flex-col justify-start items-stretch" dangerouslySetInnerHTML={{ __html: body }} />
 
           {relatedPosts && <section dangerouslySetInnerHTML={{ __html: relatedPosts }} />}
-
         </Card>
       </Container>
     </PageLayout>
@@ -115,14 +100,16 @@ export default function BlogPostPage({ slug, title, description, cover, body, re
 
 export const getStaticProps = async ({ params: { slug } }: { params: { slug: string } }) => {
   const post = await getPost(slug);
-  const mentions = post?.platforms ? post?.platforms.map(
-    (p) =>
-      ({
-        type: 'Thing',
-        name: p.title,
-        sameAs: p.url,
-      }) as unknown as RichData.SameAsType
-  ): [];
+  const mentions = post?.platforms
+    ? post?.platforms.map(
+        (p) =>
+          ({
+            type: 'Thing',
+            name: p.title,
+            sameAs: p.url,
+          }) as unknown as RichData.SameAsType
+      )
+    : [];
   if (post?.mentions && post?.mentions.length > 0) {
     mentions.concat(post?.mentions);
   }
@@ -136,10 +123,10 @@ export const getStaticProps = async ({ params: { slug } }: { params: { slug: str
     url: `${removeTrailing(META.CANONICAL)}${ROUTES.BLOG_POST_DIRECTORY.path}/${removeTrailing(slug)}`,
     ...(post?.about && { about: post.about }),
     ...(mentions && mentions.length && { mentions }),
-    keywords: post.keywords ? post.keywords : "",
+    keywords: post.keywords ? post.keywords : '',
     datePublished: post._createdDate!.$date!,
-    dateModified:  post._updatedDate!.$date!,
-  })as unknown as ArticleRichDataInput
+    dateModified: post._updatedDate!.$date!,
+  }) as unknown as ArticleRichDataInput;
   return {
     props: {
       body,
@@ -157,7 +144,7 @@ export const getStaticProps = async ({ params: { slug } }: { params: { slug: str
       // ...(post?.about && { about: post.about }),
       // ...(mentions && { mentions }),
       // ...(post?.questions && { questions: post.questions }),
-    }
+    },
   };
 };
 

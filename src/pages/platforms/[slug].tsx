@@ -34,7 +34,7 @@ import { generatePlatformPage } from '@/lib/rich-data';
 import { generateSameAsFromAccounts } from '@/lib/rich-data/same-as';
 import { useRouter } from 'next/router';
 import { generateAbout } from '@/lib/rich-data/about';
-import dynamic from 'next/dynamic'
+import dynamic from 'next/dynamic';
 
 type Props = {
   platform: PlatformNode;
@@ -44,19 +44,15 @@ type Props = {
   refItems: any[];
   body: string;
 };
-const RichContent = dynamic(() =>
-  import('../../lib/wix/cms/components/rich-content').then((mod) => mod.RichContent),
-  { ssr: true }
-)
+const RichContent = dynamic(() => import('../../lib/wix/cms/components/rich-content').then((mod) => mod.RichContent), { ssr: true });
 export default function PlatformPage({ platform, platformFeatures, platformComparativeFeatures, platformAccounts, body }: Props) {
   // const asPath = useRouter().asPath;
-  const audienceText = (platform.audience || []).join(',') || ''
+  const audienceText = (platform.audience || []).join(',') || '';
   // const features = useMemo(() => platformFeatures.filter((pf: Wix.PlatformFeatureNode) => pf.featureData?.title), [platform.slug]);
   // const comparativeFeatures = useMemo(
   //   () => platformComparativeFeatures.filter((pcf: Wix.PlatformComparativeFeatureNode) => pcf.featureData?.title),
   //   [platform.slug]
   // );
-
 
   function matchSameAsUrl(platformAccounts: Wix.AccountsNode, fallback: string) {
     if (platformAccounts.wikidata) return platformAccounts.wikidata;
@@ -83,7 +79,7 @@ export default function PlatformPage({ platform, platformFeatures, platformCompa
           ...(platformAccounts && { sameAs: generateSameAsFromAccounts(platformAccounts) }),
           about: generateAbout({
             name: platform.title,
-            url: matchSameAsUrl(platformAccounts, platform.url)
+            url: matchSameAsUrl(platformAccounts, platform.url),
           }),
         },
         rating: '5',
@@ -116,7 +112,6 @@ export default function PlatformPage({ platform, platformFeatures, platformCompa
             lg: '5',
           }}
         >
-
           <Flex width="100%" justify="center">
             <Breadcrumb links={[{ name: platform.title, href: `/platforms/${platform.slug}`, current: true }]} />
           </Flex>
@@ -125,12 +120,18 @@ export default function PlatformPage({ platform, platformFeatures, platformCompa
             <Heading as="h1" size="4" className="tracking-tight text-center !font-semi-bold !mx-8 text-inherit pt-2 whitespace-wrap">
               <span className="text-5xl sm:text-6xl  block !tracking-tighter uppercase">{platform?.pageTitle || platform.title}</span>
             </Heading>
-            <Text as="p" align="center" weight="medium" mb="2" size={{
-              initial: '3',
-              sm: '4',
-              md: '5',
-              lg: '5',
-            }}>
+            <Text
+              as="p"
+              align="center"
+              weight="medium"
+              mb="2"
+              size={{
+                initial: '3',
+                sm: '4',
+                md: '5',
+                lg: '5',
+              }}
+            >
               {platform.description}
             </Text>
             {/* SOCIAL ACCOUNTS  */}
@@ -171,11 +172,8 @@ export default function PlatformPage({ platform, platformFeatures, platformCompa
 
           {/* CONTENT */}
           <Flex direction="column" justify="start" align="stretch">
-
-
             <Flex direction="column" justify="start" align="stretch" my="8">
               <main dangerouslySetInnerHTML={{ __html: body }} />
-
             </Flex>
             {/* AUDIENCE */}
             <Audience title={platform.title} audience_text={audienceText} />
@@ -194,7 +192,6 @@ export default function PlatformPage({ platform, platformFeatures, platformCompa
             {/* APPEARED LISTS */}
             {platform.posts && platform.posts.length > 0 && (
               <aside>
-
                 <section id="list-box" className="flex flex-col flex-grow items-stretch">
                   <Heading as="h2" size="6" className="font-medium capitalize">
                     APPEARED ON
@@ -209,11 +206,12 @@ export default function PlatformPage({ platform, platformFeatures, platformCompa
                       lg: '2',
                     }}
                     p="1"
+                    gap="3"
                     asChild
                   >
                     <ul>
                       {platform.posts.map((pp: Wix.PostNode, ix: number) => (
-                        <li key={`pf-${pp.slug}-${ix}`} className="py-4 h-120 mx-0 sm:mx-4">
+                        <li key={`pf-${pp.slug}-${ix}`} className="py-4 h-120">
                           <PostCard
                             image={createWixStaticUrl(pp.cover!)}
                             title={pp.title}
@@ -229,10 +227,11 @@ export default function PlatformPage({ platform, platformFeatures, platformCompa
             )}
 
             {/* RESOURCES */}
-            {platform.resources && <aside>
-              <PlatformResources platformTitle={platform.title} body={platform.resources} slug={platform.slug} />
-            </aside>
-            }
+            {platform.resources && (
+              <aside>
+                <PlatformResources platformTitle={platform.title} body={platform.resources} slug={platform.slug} />
+              </aside>
+            )}
             <motion.a
               href={platform.url}
               className={`mt-4 mb-12${platform.affiliate ? ' affiliate' : ''}`}

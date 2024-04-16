@@ -22,11 +22,7 @@ export const PostCard = ({ title, description, href, image, className, ...rest }
   const cls = cx('post-card', className);
   // 329 100 96
   return (
-    <Card
-      variant="surface"
-      style={{ width: '100%', borderRadius: 16, minHeight: 500 }}
-      {...rest}
-    >
+    <Card variant="surface" style={{ width: '100%', borderRadius: 16, minHeight: 500 }} {...rest}>
       {/* @ts-ignore */}
       <Link href={href} title={title}>
         <AspectRatio ratio={16 / 9} className="aspect-ratio-box !overflow-hidden rounded-md relative">
@@ -64,12 +60,7 @@ export const PostCard = ({ title, description, href, image, className, ...rest }
 export const PostCardLessVerbose = ({ title, description, href, image, className, ...rest }: Props) => {
   // 329 100 96
   return (
-    <Card
-      variant="surface"
-      size="1"
-      style={{ width: '100%', borderRadius: 16, minHeight: "150px", padding: 0}}
-      {...rest}
-    >
+    <Card variant="surface" size="1" style={{ width: '100%', borderRadius: 16, minHeight: '150px', padding: 0 }} {...rest}>
       {/* @ts-ignore */}
       <Link href={href} title={title}>
         <AspectRatio ratio={16 / 9} className="aspect-ratio-box !overflow-hidden rounded-md relative">

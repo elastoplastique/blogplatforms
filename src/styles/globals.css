@@ -37,7 +37,7 @@ input:focus::placeholder {
 }
 
 footer {
-    background: linear-gradient(rgb(23, 27, 35), rgb(16, 23, 38), rgb(0, 0, 0)) !important;
+    background: linear-gradient(rgb(8, 9, 12), rgb(4, 6, 9), rgb(0, 0, 0)) !important;
 }
 
 footer * {
@@ -239,6 +239,7 @@ button.remove-selection:hover svg {
     transition: all 0.2s ease;
     background: var(--card-blur-bg) !important;
     transform: translate(0, 0);
+    box-shadow: var(--shadow-list-card);
 }
 
 .post-card:hover .cover-box {

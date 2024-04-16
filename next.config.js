@@ -5,12 +5,11 @@ const nextConfig = {
   staticPageGenerationTimeout: 300,
   productionBrowserSourceMaps: true,
   compiler: {
-    removeConsole:
-      process.env.NODE_ENV === "development" ? false : true,
+    removeConsole: process.env.NODE_ENV === 'development' ? false : true,
   },
-  experimental: { 
+  experimental: {
     optimizeCss: true,
-    workerThreads: 1, 
+    workerThreads: 1,
     cpus: 4,
     esmExternals: false,
   },

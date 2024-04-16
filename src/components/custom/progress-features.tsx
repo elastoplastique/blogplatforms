@@ -30,20 +30,18 @@ export const ProgressFeature = ({ platformComparativeFeature }: { platformCompar
   return (
     <Card style={{ backgroundColor: `var(--subtle-bg)` }} my="4">
       <Flex direction="row" className="flex w-full rounded-xl" p="2" align="center">
-        <Flex className="!rounded-full w-14 h-14 mr-6" direction="column" justify="center" align="center">
-          <Icon width={36} height={36} color={`var(--violet-9)`} />
+        <Flex className="!rounded-full w-9 h-14 mr-6" direction="column" justify="center" align="center">
+          <Icon width={36} height={36} color={`var(--iris-9)`} />
         </Flex>
 
-        <Flex direction="column" grow="1" align="stretch">
-          <Heading as="h3" size="5" mr="4" weight="bold" className="text-white">
+        <Flex direction="column" gap="1" align="stretch">
+          <Heading as="h3" size="5" mr="4" weight="bold" className="text-text-high-contrast">
             {platformComparativeFeature.feature.title}
           </Heading>
           {platformComparativeFeature?.note ? (
-            <div dangerouslySetInnerHTML={{ __html: platformComparativeFeature?.note }} />
+            <div className="text-text-low-contrast mb-2" dangerouslySetInnerHTML={{ __html: platformComparativeFeature?.note }} />
           ) : (
-            <p>
-              {platformComparativeFeature.feature.description}
-            </p>
+            <p className="text-text-low-contrast mb-2">{platformComparativeFeature.feature.description}</p>
           )}
 
           <Progress value={progressValue} max={PROGRESS_MAX} getValueLabel={getValueLabel} />

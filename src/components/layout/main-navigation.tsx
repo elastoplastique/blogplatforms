@@ -51,7 +51,7 @@ const listicles = [
     href: '/blog/blogging-platforms-for-photographers',
     current: false,
     description: 'Best Blogging Platforms for Photographers',
-  }
+  },
 ];
 
 const features = [
@@ -90,7 +90,6 @@ const features = [
 
 export function MainNavigation() {
   // const { memberClient } = useWixModule();
-
 
   // useEffect(() => {
   //  memberClient.getCurrentMember().then((member: any) => {

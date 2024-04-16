@@ -103,14 +103,13 @@ export default function FeaturePage(props: Props) {
       >
         <Card id="page-card" className="w-full h-full relative flex flex-col justify-start min-w-full" mt={'2'} size="4">
           <main>
+            <FeatureInfoView contentId={contentId} />
 
-          <FeatureInfoView contentId={contentId} />
+            <Separator className="my-8" size="4" />
 
-          <Separator className="my-8" size="4" />
+            <FilterFeatureView features={props.features} />
 
-          <FilterFeatureView features={props.features} />
-
-          <PlatformsGridView />
+            <PlatformsGridView />
           </main>
         </Card>
       </Container>

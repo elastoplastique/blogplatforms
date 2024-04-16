@@ -18,10 +18,10 @@ module.exports = {
     //     }
     //   }
     // ],
-    "tailwindcss",
-    "autoprefixer",
-  ]
-}
+    'tailwindcss',
+    'autoprefixer',
+  ],
+};
 // module.exports = {
 //   plugins: {
 //     'postcss-import': {},

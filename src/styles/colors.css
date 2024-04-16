@@ -65,7 +65,7 @@
 
     /* SHADOW */
     --shadow-color: 287deg 19% 72%;
-    --shadow-list-card:       0 2px 12px -8px rgba(17, 12, 34, 0.1);
+    --shadow-list-card:       0 2px 20px -5px rgba(17, 12, 34, 0.2);
     --shadow-list-card-hover: 0 32px 32px -12px rgba(17, 12, 34, 0.12);
     --shadow-elevation-low:
       0px 0.2px 0.2px hsl(var(--shadow-color) / 0.25),
@@ -119,7 +119,7 @@
     --ring: 217.2 32.6% 17.5%;
 
     /* CUSTOM */
-    --card-blur-bg: hsla(0, 0%, 10%, 1);
+    --card-blur-bg: hsla(0, 0%, 7%, 1);
 
     /* SHADOW */
     --shadow-color: 287deg 19% 12%;

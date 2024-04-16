@@ -4,7 +4,7 @@ export const useAuth = create<UseAuth>((set, get) => ({
   user: null,
 
   setUser: (user) => {
-    console.log("setting user:", user);
+    console.log('setting user:', user);
     return set({ user });
   },
 }));

@@ -19,21 +19,12 @@ export const HorizontalFeatureCard = ({ title, description, link, icon, header, 
   const featureColor = FEATURE_COLORS[title as keyof typeof FEATURE_COLORS] || 'teal';
   // 329 100 96
   return (
-    <Card
-      variant="surface"
-      my={'3'}
-      mx={{ initial: '0', md: '2' }}
-      style={{ backgroundColor: `var(--${featureColor}-a2)` }}
-      className="horizontal-feature-card"
-      {...rest}
-    >
+    <Card variant="surface" my={'3'} style={{ backgroundColor: `var(--${featureColor}-a2)` }} className="horizontal-feature-card" {...rest}>
       <Flex direction="column" className="flex w-full rounded-xl" p="2">
-        <Flex justify="center" align="center" p="1" className=" w-12 h-12 mb-4" style={{ borderRadius: '100%' }}>
+        <Flex direction="row" align="center" className="w-full flex flex-row items-center mb-4">
           <FeatureIcon color={`var(--${featureColor}-9)`} width={32} height={32} />
-        </Flex>
 
-        <Flex direction="row" className="w-full flex flex-row items-start mb-2">
-          <Heading as="h3" size="5" mr="4" weight="bold" className="text-white">
+          <Heading as="h3" size="4" ml="4" mb="0" weight="bold" className="text-white !mb-0">
             {link ? <Link href={link}>{title}</Link> : title}
           </Heading>
           {/* {description && <InfoTooltip size={20} text={description || ''} color={`var(--${featureColor}-12)`} />} */}
@@ -42,10 +33,10 @@ export const HorizontalFeatureCard = ({ title, description, link, icon, header, 
           {description && link ? (
             <>
               <Link href={link} className="absolute top-0 left-0 right-0 bottom-0 z-0" title={header}></Link>
-              <div className="text-text-low-contrast z-10" dangerouslySetInnerHTML={{ __html: description }} />
+              <div className="text-text-low-contrast z-10 !text-xs" dangerouslySetInnerHTML={{ __html: description }} />
             </>
           ) : (
-            <div className="text-text-low-contrast" dangerouslySetInnerHTML={{ __html: description! }} />
+            <div className="text-text-low-contrast !text-xs" dangerouslySetInnerHTML={{ __html: description! }} />
           )}
         </Flex>
         {/* <p className="ml-5 text-sm font-normal leading-4 tracking-wide text-gray-600">{platformFeature.feature.description}</p> */}

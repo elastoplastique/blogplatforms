@@ -15,7 +15,7 @@ type PageLayoutProps = {
 
 export function PageLayout({ children, ...props }: PageLayoutProps) {
   usePageTracking();
-  const ogtype = props?.richData && props?.richData.hasOwnProperty("@type") === "Article" ? "article" : "website";
+  const ogtype = props?.richData && props?.richData.hasOwnProperty('@type') === 'Article' ? 'article' : 'website';
 
   function mergeRichData(richData: any) {
     /**
@@ -69,9 +69,7 @@ export function PageLayout({ children, ...props }: PageLayoutProps) {
         {props.richData && <script type="application/ld+json">{`${JSON.stringify(mergeRichData(props.richData))}`}</script>}
       </Head>
       <Flex asChild className="!min-w-full py-20 min-h-[60vh] !mb-[100px]" direction="column" align="center" id="page-layout">
-        <main>
-          {children}
-        </main>
+        <main>{children}</main>
       </Flex>
     </>
   );

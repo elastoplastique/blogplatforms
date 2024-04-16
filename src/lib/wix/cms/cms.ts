@@ -93,13 +93,19 @@ type DataItemsQueryResult = {
 // CLIENT & GENERIC FUNCTION
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-export async function getItems(dataCollectionId: DataCollectionId, references: string[] = []): Promise<DataItemsQueryResult['items']> {
+export async function getItems(
+  dataCollectionId: DataCollectionId,
+  references: string[] = [],
+  page: number = 1
+): Promise<DataItemsQueryResult['items']> {
+  const skip = page ? (page - 1) * 50 : 0;
   const dataItemsList = await wixClient.items
     .queryDataItems({
       dataCollectionId: dataCollectionId,
       includeReferencedItems: references,
       // Please specify the dataCollectionId you require
     })
+    .skip(skip)
     .find();
   return (
     dataItemsList.items.map((item: any) => {
@@ -116,6 +122,7 @@ export async function queryItems(options: QueryDataItemsOptions): Promise<DataIt
       ...(options?.includeReferencedItems && { includeReferencedItems: options?.includeReferencedItems }),
     })
     .eq(options.eq[0], options.eq[1])
+    .skip(options.options?.offset || 0)
     .find();
   return (
     dataItemsList.items.map((item: any) => {
@@ -227,8 +234,8 @@ export async function getPlatformAccounts(slug: string): Promise<AccountsNode> {
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // PLATFORMS FFEATURES DATA
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////
-export async function getPlatformsFeatures(): Promise<PlatformFeatureNode[]> {
-  return await getItems(COLLECTIONS.PLATFORMS_FEATURES, ['feature', 'platform']);
+export async function getPlatformsFeatures(page: number = 1): Promise<PlatformFeatureNode[]> {
+  return await getItems(COLLECTIONS.PLATFORMS_FEATURES, ['feature', 'platform'], page);
 }
 
 // All PLATFORM FEATURES FOR A GIVEN PLATFORM
@@ -340,9 +347,9 @@ export async function getPost(slug: string): Promise<Wix.PostNode> {
   let posts = await getPosts();
   let _post = posts.find((post) => post.slug === slug) || ({} as Wix.PostNode);
   let post = { ..._post };
-  posts = []
-  _post = {} as Wix.PostNode
-  return post
+  posts = [];
+  _post = {} as Wix.PostNode;
+  return post;
 }
 
 export async function getTags(): Promise<Wix.TagNode[]> {
@@ -443,4 +450,3 @@ export async function getPage(slug: string): Promise<Wix.PageNode> {
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // USERS
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////
-

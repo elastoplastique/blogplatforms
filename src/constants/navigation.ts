@@ -102,8 +102,6 @@ export const FOOTER_FEATURE_LINKS: NavLinkType[] = [
 ];
 
 export const FOOTER_BLOG_LINKS: NavLinkType[] = [
-
-
   {
     path: '/blog/best-free-platforms-for-blogging',
     text: 'Free Blogging Platforms',
@@ -122,12 +120,14 @@ export const FOOTER_BLOG_LINKS: NavLinkType[] = [
   {
     path: '/blog/best-blog-sites-for-students',
     text: 'Blogging Sites for Students',
-    description: 'We\'ll discuss the features you should look for when choosing a platform, the benefits of blogging, and the best blog sites for students.',
+    description:
+      "We'll discuss the features you should look for when choosing a platform, the benefits of blogging, and the best blog sites for students.",
   },
   {
     path: '/blog/blogging-platforms-for-photographers',
     text: 'Blogging Platforms for Photographers',
-    description: 'Before sharing your first blog post, one of the things you should pay attention to is how your blog posts and their URLs should be organized.',
+    description:
+      'Before sharing your first blog post, one of the things you should pay attention to is how your blog posts and their URLs should be organized.',
   },
   {
     path: '/blog/features-to-look-for-in-a-blogging-platform',
@@ -148,5 +148,5 @@ export const FOOTER_BLOG_LINKS: NavLinkType[] = [
     path: '/blog/free-wordpress-blog',
     text: 'Free WordPress Blog with Custom Domain',
     description: 'A step-by-step guide to get a free WordPress blog with custom domain support.',
-  }
+  },
 ];

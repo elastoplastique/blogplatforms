@@ -1,10 +1,10 @@
-import "../styles/colors.css";
-import "../styles/tailwind.css";
-import "../styles/typography.css";
-import "../styles/tables.css";
-import "../styles/wix.css";
-import "../styles/tokens.css";
-import "../styles/syntax.css";
+import '../styles/colors.css';
+import '../styles/tailwind.css';
+import '../styles/typography.css';
+import '../styles/tables.css';
+import '../styles/wix.css';
+import '../styles/tokens.css';
+import '../styles/syntax.css';
 import '../styles/globals.css';
 // import 'swiper/css';
 // import 'swiper/css/a11y';
@@ -35,7 +35,7 @@ export default function MyApp({ Component, pageProps }: AppProps) {
             gtag('config', '${GA_MEASUREMENT_ID}');
           `}
       </Script> */}
-      <Theme accentColor="violet" radius="large" grayColor="mauve">
+      <Theme accentColor="iris" radius="large" grayColor="mauve">
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
           <MainLayout>
             <Component {...pageProps} />

@@ -1,6 +1,6 @@
 import Link from 'next/link';
 import { motion } from 'framer-motion';
-import {useWindowWidth} from '@/lib/hooks/use-window-width';
+import { useWindowWidth } from '@/lib/hooks/use-window-width';
 
 export type Props = {
   links: BreadcrumbLink[];

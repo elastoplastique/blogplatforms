@@ -14,7 +14,6 @@ export function ThemeToggle() {
         className="absolute h-[1.2rem] w-[1.2rem] rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100  m-1 text-xl flex items-center justify-center"
         fill="none"
         viewBox="0 0 24 24"
-       
       >
         <circle cx="12" cy="12" r="3.25" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5"></circle>
         <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="M12 2.75V4.25"></path>

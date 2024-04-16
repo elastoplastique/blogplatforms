@@ -15,7 +15,7 @@ import { useGlobal } from '@/lib/state/global';
 // import { motion, AnimatePresence } from 'framer-motion';
 import { META } from '@/constants/meta';
 // import { DEFAULT_PLATFORMS_LOADING_PARAMS } from '@/constants/settings';
-import { getPlatforms, getFeatures,  getPlatformsFeatures } from '@/lib/wix/cms/cms';
+import { getPlatforms, getFeatures, getPlatformsFeatures } from '@/lib/wix/cms/cms';
 // import { slugify } from '@/lib/utils/slugify';
 import { generatePage } from '@/lib/rich-data/page';
 import { generateProject } from '@/lib/rich-data/project';
@@ -26,6 +26,7 @@ import { PlatformsGridView } from '@/components/views/platforms-grid-view';
 import { FilterFeatureView } from '@/components/views/feature-filter-view';
 import { generateAbout } from '@/lib/rich-data/about';
 // import { useUser } from '@auth0/nextjs-auth0/client';
+import { SegmentedFeatures } from '@/components/views/segmented-features';
 
 type Props = {
   platforms: PlatformNode[];
@@ -38,13 +39,13 @@ export default function HomePage(props: Props) {
   const router = useRouter();
   const routeSlug = router.asPath.split('/')[router.asPath.split('/').length - 1];
   const setPlatformsToRender = useGlobal((state) => state.setPlatformsToRender);
+
   const currentPlatforms = useMemo(() => {
     const platforms = props.platformFeatures
       .filter((pf: PlatformFeatureNode) => {
         return pf.feature.slug === routeSlug;
       })
       .map((pf: PlatformFeatureNode) => pf.platform);
-
     return platforms.length > 0 ? platforms : props.platforms;
   }, [routeSlug]);
 
@@ -102,7 +103,9 @@ export default function HomePage(props: Props) {
       >
         <Hero title={META.HOME.TITLE} htmlSubtitle={META.HOME.HTML_DESCRIPTION} />
 
-        <FilterFeatureView features={features} />
+        <SegmentedFeatures platformFeatures={props.platformFeatures} />
+
+        {/* <FilterFeatureView features={features} /> */}
 
         <PlatformsGridView />
       </Container>
@@ -113,8 +116,10 @@ export default function HomePage(props: Props) {
 export async function getStaticProps() {
   const platforms = await getPlatforms();
   const features = await getFeatures();
-  const platformFeatures = await getPlatformsFeatures();
-  // const audiences = await getAudiences();
+  let platformFeatures: PlatformFeatureNode[] = [];
+  for await (const page of [1, 2, 3, 4]) {
+    platformFeatures = platformFeatures.concat(await getPlatformsFeatures(page));
+  }
   return {
     props: {
       platforms: platforms.sort((a: PlatformNode, b: PlatformNode) => a.order - b.order),

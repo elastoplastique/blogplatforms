@@ -14,7 +14,7 @@ export const ResourceLinkCard = ({ platformResourceLink }: Props) => (
           <Image src={platformResourceLink?.linkPreviewData.thumbnailUrl} alt="decorative" width={160} height={90} />
         </Flex>
       </Inset>
-      <Flex grow="1" direction="column" style={{ maxWidth: 500, minHeight: 72 }}>
+      <Flex gap="1" direction="column" style={{ maxWidth: 500, minHeight: 72 }}>
         <Text as="div" mb="1" size="4" weight="bold">
           {platformResourceLink.linkPreviewData.title}
         </Text>

@@ -1,4 +1,4 @@
-export type Route = { path: string, label: string };
+export type Route = { path: string; label: string };
 
 export const ROUTES: { [key: string]: Route } = {
   DOMAIN: { path: 'https://bloggingplatforms.app', label: 'Blogging Platforms' },

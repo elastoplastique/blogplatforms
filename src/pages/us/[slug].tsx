@@ -78,7 +78,7 @@ export async function getStaticProps({ params: { slug } }: { params: { slug: str
 }
 
 export const getStaticPaths = async () => {
-  const paths = STATIC_ROUTES.map((route: Route) => ({ params: { slug: route.path.split("/")[route.path.split("/").length - 1] } }));
+  const paths = STATIC_ROUTES.map((route: Route) => ({ params: { slug: route.path.split('/')[route.path.split('/').length - 1] } }));
   return {
     paths,
     fallback: false,
