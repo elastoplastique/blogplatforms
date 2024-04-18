@@ -94,9 +94,8 @@ export default function BlogPostPage({ slug, title, description, cover, toc, bod
           <article className="content-auto flex flex-col justify-start items-stretch" dangerouslySetInnerHTML={{ __html: body }} />
 
           {relatedPosts && <section dangerouslySetInnerHTML={{ __html: relatedPosts }} />}
-
         </Card>
-      <ScrollTop />
+        <ScrollTop />
       </Container>
     </PageLayout>
   );
@@ -106,13 +105,13 @@ export const getStaticProps = async ({ params: { slug } }: { params: { slug: str
   const post = await getPost(slug);
   const mentions = post?.platforms
     ? post?.platforms.map(
-      (p) =>
-        ({
-          type: 'Thing',
-          name: p.title,
-          sameAs: p.url,
-        }) as unknown as RichData.SameAsType
-    )
+        (p) =>
+          ({
+            type: 'Thing',
+            name: p.title,
+            sameAs: p.url,
+          }) as unknown as RichData.SameAsType
+      )
     : [];
   if (post?.mentions && post?.mentions.length > 0) {
     mentions.concat(post?.mentions);
