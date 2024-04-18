@@ -1,7 +1,8 @@
 /* eslint-disable react/display-name */
 /* eslint-disable @next/next/no-img-element */
-import { useState, useEffect, memo } from 'react';
-import type { ReactNode } from 'react';
+// @ts-nocheck
+import { useState, useEffect, memo, useRef, createElement } from 'react';
+import { renderToStaticMarkup } from 'react-dom/server';
 import { AspectRatio, Link, Heading, Text, Flex, Card, Inset, Strong, Em, Separator } from '@/components/ui';
 import {
   Heading as HeadingI,
@@ -34,14 +35,84 @@ import { ReactElement } from 'react';
 import { createWixStaticUrl, createWixStaticVideoUrl } from '@/lib/wix/utils/create-url';
 import { slugify } from '@/lib/utils/slugify';
 
-export const TOC = memo(
+export function TOC({ body: data, maxHeadingLevel = 4 }) {
+  const extractHeadings = (nodes) => {
+    const headingGroups = [];
+    let currentList = []; 
+    let currentLevel = 0; 
+
+    nodes.forEach((node) => {
+      if (node.type === 'HEADING') {
+        const headingLevel = node.headingData.level;
+
+        // Limit heading level 
+        if (headingLevel > maxHeadingLevel) return; 
+
+        // Create the list item 
+        const nodeId = slugify(node.nodes.map((i) => i.textData.text).join('-'));
+        const content = node.nodes.map((i) => i.textData.text);
+
+        currentList.push(
+          renderToStaticMarkup(
+            <li key={nodeId} data-heading-level={headingLevel}> 
+              <Link id={node.id}  href={`#${nodeId}`}>
+                {content}
+              </Link> 
+            </li>
+          )
+        );
+      }
+    });
+
+    headingGroups.push(currentList.join(' '));
+
+    return headingGroups;
+  }
+
+  const headingsMarkup = extractHeadings(data.nodes);
+
+  return (
+    <Card id="toc-box">
+      <div id="toc-title">Table of Contents</div>
+      <div id="toc-body">
+        {headingsMarkup.map((group, index) => (
+          // We'll render the group as a single <ul>
+          <ul key={index} dangerouslySetInnerHTML={{__html: group}} /> 
+        ))} 
+      </div>
+    </Card>
+  );
+}
+
+
+
+
+
+export const _TOC = memo(
   ({ body }: { body: { nodes: Wix.BodyItemUnion[]; metadata?: Wix.BodyMetadata } }) => {
+    console.log("body", JSON.stringify(body))
+    const tocRef = useRef<HTMLDivElement>(null);
+    const tocBodyRef = useRef<any>(null);
     return (
-      <Flex width="100%" direction="column" id="toc-content">
-        {body.nodes.map((node: BodyItemUnion) => (
-          <WixNode node={node} key={node._id} />
-        ))}
-      </Flex>
+      <Card id="toc-box" ref={tocRef}>
+        <Flex width="100%" direction="row" id="toc-title" className="text-center">
+          Table of Contents
+        </Flex>
+        <Flex width="100%" direction="column" align="stretch" id="toc-body" className="text-center">
+          <ul ref={tocBodyRef}>
+            {body.nodes.map((inode: BodyItemUnion) => {
+                if (inode.type === 'HEADING') {
+                  const headerLevel =  inode.headingData!.level
+                  return <WixHeading node={inode} />;
+                }
+                if (inode.type === 'TEXT') {
+                  return <WixText node={inode} />;
+                }
+            }
+            )}
+          </ul>
+        </Flex>
+      </Card>
     );
   },
   (prevProps, nextProps) => prevProps.body?.metadata?._id === nextProps.body?.metadata?._id
@@ -66,8 +137,21 @@ function WixHeading({ node }: { node: Wix.Heading }) {
         return 'h2';
     }
   }
-  console.log('heading', node);
-  return (node.nodes as BodyItemUnion[]).map((innerNode) => <WixNode node={innerNode} key={innerNode._id} />);
+  function getText(node: TextI) {
+    let text = node.textData.text;
+    node.nodes.forEach((innerNode: any) => {
+      text += innerNode.textData.text;
+    });
+    return text;
+  }
+  const key = slugify(node.nodes.map((i: any) => i.textData.text).join('-')) + '-' + getLevel(node);
+  return (
+    <li id={slugify(node.nodes.map((i: any) => i.textData.text).join('-'))} key={key} className="cms-toc-h" data-toc-level={node.headingData!.level}>
+        {(node.nodes as BodyItemUnion[]).map((innerNode, ix) => (
+          <WixNode node={innerNode} key={innerNode._id || innerNode.id || key} />
+        ))}
+    </li>
+  );
 }
 
 function WixText({ node }: { node: Wix.Text }) {
@@ -81,8 +165,9 @@ function WixText({ node }: { node: Wix.Text }) {
   return getText(node);
 }
 
-function WixNode({ node }: { node: BodyItemUnion }) {
+function WixNode({ node, level }: { node: BodyItemUnion, level?: number}) {
   if (node.type === 'HEADING') {
+    const headerLevel =  node.headingData!.level
     return <WixHeading node={node} />;
   }
   if (node.type === 'TEXT') {

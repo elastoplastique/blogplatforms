@@ -17,6 +17,8 @@ import { createWixStaticUrl } from '@/lib/wix/utils/create-url';
 import { generateArticle } from '@/lib/rich-data/article';
 import type { ArticleRichDataInput } from '@/lib/rich-data/article';
 import dynamic from 'next/dynamic';
+import { TOC } from '@/components/custom/toc';
+import { ScrollTop } from '@/components/custom/scroll-top';
 
 type Props = {
   slug: string;
@@ -26,6 +28,7 @@ type Props = {
   _updatedDate: any;
   cover: string;
   body: string;
+  toc: string;
   relatedPosts: string;
   richData?: ArticleRichDataInput;
   keywords?: string;
@@ -35,7 +38,7 @@ type Props = {
 // @ts-ignore
 const RelatedPosts = dynamic(() => import('../../components/custom/related-posts').then((mod) => mod.RelatedPosts), { ssr: true });
 const RichContent = dynamic(() => import('../../lib/wix/cms/components/rich-content').then((mod) => mod.RichContent), { ssr: true });
-export default function BlogPostPage({ slug, title, description, cover, body, relatedPosts, richData, keywords, canonical }: Props) {
+export default function BlogPostPage({ slug, title, description, cover, toc, body, relatedPosts, richData, keywords, canonical }: Props) {
   return (
     <PageLayout
       metaTitle={`${title} | BloggingPlatforms.app`}
@@ -79,20 +82,21 @@ export default function BlogPostPage({ slug, title, description, cover, body, re
               {description}
             </Text>
           </motion.div>
-          {/** @ts-ignore */}
-          <the-fold></the-fold>
-
-          <Separator className="my-12 mb-40" />
 
           {/* <PostCover title={title} src={createWixStaticUrl(cover!)} /> */}
           {/* MEDIA */}
           {/* {platform.media && platform.media.length > 0 && <PlatformMedia media={platform.media} />} */}
 
+          {/* TABLE OF CONTENTS */}
+          <div className="toc flex flex-col justify-start items-stretch" dangerouslySetInnerHTML={{ __html: toc }} />
+
           {/* CONTENT */}
           <article className="content-auto flex flex-col justify-start items-stretch" dangerouslySetInnerHTML={{ __html: body }} />
 
           {relatedPosts && <section dangerouslySetInnerHTML={{ __html: relatedPosts }} />}
+
         </Card>
+      <ScrollTop />
       </Container>
     </PageLayout>
   );
@@ -102,19 +106,20 @@ export const getStaticProps = async ({ params: { slug } }: { params: { slug: str
   const post = await getPost(slug);
   const mentions = post?.platforms
     ? post?.platforms.map(
-        (p) =>
-          ({
-            type: 'Thing',
-            name: p.title,
-            sameAs: p.url,
-          }) as unknown as RichData.SameAsType
-      )
+      (p) =>
+        ({
+          type: 'Thing',
+          name: p.title,
+          sameAs: p.url,
+        }) as unknown as RichData.SameAsType
+    )
     : [];
   if (post?.mentions && post?.mentions.length > 0) {
     mentions.concat(post?.mentions);
   }
   const body = renderToStaticMarkup(<RichContent body={post.body!} contentId={slug} />);
   const relatedPosts = renderToStaticMarkup(<RelatedPosts posts={post?.relatedPosts!} />);
+  const toc = renderToStaticMarkup(<TOC body={post.body!} />);
   const richData = generateArticle({
     title: post.title!,
     description: post.description!,
@@ -130,6 +135,7 @@ export const getStaticProps = async ({ params: { slug } }: { params: { slug: str
   return {
     props: {
       body,
+      toc,
 
       cover: createWixStaticUrl(post.cover!),
       description: post.description,

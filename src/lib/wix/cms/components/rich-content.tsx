@@ -67,12 +67,10 @@ function WixHeading({ node }: { node: Wix.Heading }) {
   }
   const key = slugify(node.nodes.map((i: any) => i.textData.text).join('-')) + '-' + getLevel(node);
   return (
-    <Heading as={getLevel(node)} id={slugify(node.nodes.map((i: any) => i.textData.text).join('-'))} key={key} className="cms-rc cms-img">
-      <>
+    <Heading as={getLevel(node)} id={slugify(node.nodes.map((i: any) => i.textData.text).join('-'))} key={key} className="cms-rc">
         {(node.nodes as BodyItemUnion[]).map((innerNode, ix) => (
           <WixNode node={innerNode} key={innerNode._id || innerNode.id || key} />
         ))}
-      </>
     </Heading>
   );
 }
