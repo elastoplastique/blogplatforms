@@ -56,6 +56,7 @@ export default function BlogPostPage({ slug, title, description, cover, toc, bod
         }}
         className="w-full !md:px-16"
       >
+        <div className="post-page header-blur rotating"></div>
         <Card
           id="page-card"
           className="w-full h-full relative flex flex-col justify-start min-w-full"

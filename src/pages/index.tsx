@@ -78,6 +78,8 @@ export default function HomePage(props: Props) {
         generateProject(),
       ]}
     >
+      <div className="home-page header-blur rotating"></div>
+
       <Container
         size={{
           initial: '1',
@@ -87,6 +89,7 @@ export default function HomePage(props: Props) {
         }}
         className="!w-[100%]"
       >
+
         <Hero title={META.HOME.TITLE} htmlSubtitle={META.HOME.HTML_DESCRIPTION} />
 
         <SegmentedFeatures platformFeatures={props.platformFeatures} />

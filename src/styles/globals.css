@@ -194,7 +194,6 @@ a.link-icon-link {
 
 .header-blur {
     position: absolute;
-    margin-top: 180px;
     left: calc(calc(100vw - 250px) / 2);
     right: calc(calc(100vw - 250px) / 2);
     z-index: -1;
@@ -232,6 +231,13 @@ a.link-icon-link {
     */
     opacity: 1;
 }
+
+.home-page.header-blur { margin-top: 80px; }
+.platform-page.header-blur { margin-top: 180px; }
+.feature-page.header-blur { margin-top: 180px; }
+.post-page.header-blur { margin-top: 180px; }
+
+
 
 button.remove-selection svg {
     opacity: 0.4 !important;

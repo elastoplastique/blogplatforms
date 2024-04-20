@@ -93,6 +93,7 @@ export default function PlatformPage({ platform, platformFeatures, platformCompa
         }),
       })}
     >
+      
       <Container
         size={{
           initial: '1',
@@ -101,6 +102,8 @@ export default function PlatformPage({ platform, platformFeatures, platformCompa
         id="platform-page"
         className="px-2 md:px-16 w-full"
       >
+        <div className="platform-page header-blur rotating"></div>
+
         <Card
           id="page-card"
           className="w-full h-full relative flex flex-col justify-start min-w-full"
@@ -112,6 +115,7 @@ export default function PlatformPage({ platform, platformFeatures, platformCompa
             lg: '5',
           }}
         >
+          
           <Flex width="100%" justify="center">
             <Breadcrumb links={[{ name: platform.title, href: `/platforms/${platform.slug}`, current: true }]} />
           </Flex>

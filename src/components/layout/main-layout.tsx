@@ -15,8 +15,6 @@ const NavWrapper = ({ children }: { children: React.ReactNode }) => (
 export const MainLayout = ({ children }: { children: React.ReactNode }) => {
   return (
     <>
-    <Flex className="header-blur rotating">
-    </Flex>
       <NavWrapper>
         <MainNavigation />
       </NavWrapper>
