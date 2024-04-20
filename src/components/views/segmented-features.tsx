@@ -1,4 +1,4 @@
-import { useState, useMemo, useEffect } from 'react';
+import { useState, useMemo, useEffect, memo } from 'react';
 import { Box, Flex, Grid, Button, IconButton, Text, RadioCards } from '@radix-ui/themes';
 import { MagnifyingGlassIcon } from '@radix-ui/react-icons';
 import { useGlobal } from '@/lib/state/global';
@@ -23,31 +23,52 @@ const getUniqueFeatures = (platformFeatures: PlatformFeatureNode[]) => {
   return uniqueFeatures;
 };
 
+const getUniquePlatforms = (platformFeatures: PlatformFeatureNode[]) => {
+  const platformSlugSet = new Set<string>();
+  const unqiuePlatforms: PlatformFeatureNode[] = [];
+  platformFeatures.forEach((pf: PlatformFeatureNode) => {
+    if (!platformSlugSet.has(pf.platform.slug)) {
+      platformSlugSet.add(pf.platform.slug);
+      unqiuePlatforms.push(pf.platform);
+    }
+  });
+  return unqiuePlatforms;
+}
+
+const getUniquePlatformsByFeatureSlug = (platformFeatures: PlatformFeatureNode[], featureSlug: string | null) => {
+  const uniquePlatforms = getUniquePlatforms(platformFeatures)
+  if (featureSlug === null) {
+    return uniquePlatforms;
+  }
+  const platformSlugs = platformFeatures
+    .filter((pf: PlatformFeatureNode) => {
+      return pf.feature.slug === featureSlug;
+    })
+    .map((pf: PlatformFeatureNode) => pf.platform.slug);
+  return uniquePlatforms.filter((p: PlatformNode) => platformSlugs.includes(p.slug));
+}
+
+
 export const SegmentedFeatures = ({ platformFeatures }: Props) => {
-  const [featureSlug, setFeatureSlug] = useState<string>('');
+  const [featureSlug, setFeatureSlug] = useState<string|null>(null);
+
   const uniqueFeatures = useMemo(() => getUniqueFeatures(platformFeatures), [platformFeatures]);
+  // const uniquePlatforms = useMemo(() => getUniquePlatforms(platformFeatures), [platformFeatures]);
   const setPlatformsToRender = useGlobal((state) => state.setPlatformsToRender);
 
-  const currentPlatforms = useMemo(() => {
-    const platforms = platformFeatures
-      .filter((pf: PlatformFeatureNode) => {
-        return pf.feature.slug === featureSlug;
-      })
-      .map((pf: PlatformFeatureNode) => pf.platform);
-
-    const result = platforms.length > 0 ? platforms : platforms;
-    return result;
-  }, [featureSlug]);
-
-  const selectHandler = (featureSlug: string) => {
-    setFeatureSlug(featureSlug);
+  const selectHandler = (value: string) => {
+    if (value === featureSlug) {
+      setFeatureSlug(null);
+    } else {
+      setFeatureSlug(value);
+    }
   };
 
   useEffect(() => {
-    setPlatformsToRender(currentPlatforms);
+    setPlatformsToRender(getUniquePlatformsByFeatureSlug(platformFeatures, featureSlug));
   }, [featureSlug]);
   return (
-    <Flex align="start">
+    <Flex align="start" className="!min-w-[100%]">
       <RadioCards.Root
         value={''}
         size="2"
@@ -67,7 +88,7 @@ export const SegmentedFeatures = ({ platformFeatures }: Props) => {
             </RadioCards.Item>
             <Link
               href={`${ROUTES.FEATURES_DIRECTORY.path}/${f.slug}`}
-              className="!absolute right-2 top-3 !z-20 !cursor-pointer rounded-md border border-white flex flex-row justify-center items-center p-[2px]"
+              className="!absolute right-2 top-3 !z-20 !cursor-pointer rounded-md border border-white flex flex-row justify-center items-center p-[2px] opacity-80 hover:opacity-100"
             >
               <MagnifyingGlassIcon width="18" height="18" />
             </Link>
@@ -77,3 +98,5 @@ export const SegmentedFeatures = ({ platformFeatures }: Props) => {
     </Flex>
   );
 };
+
+export const SegmentedFeaturesMemo = memo(SegmentedFeatures);

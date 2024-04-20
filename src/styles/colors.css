@@ -39,14 +39,15 @@
 
     --border-white: rgb(229, 231, 235);
 
-    --card-blur-bg: rgb(255, 255, 255);
+    --card-blur-bg: hsla(0, 0%, 93%, 0.6);
+    --card-blur-bg-hover: hsla(0, 0%, 90%, 1);
     --card-blur-radius: 140px;
     --card-blur-saturation: 200%;
 
 
     /* RADIX COLORS */
     --app-bg: var(--slate-1);
-    --subtle-bg: var(--slate-2);
+    --subtle-bg: var(--slate-3);
 
     --ui-bg: var(--slate-3);
     --hover-ui-bg: var(--slate-4);
@@ -119,7 +120,8 @@
     --ring: 217.2 32.6% 17.5%;
 
     /* CUSTOM */
-    --card-blur-bg: hsla(0, 0%, 7%, 1);
+    --card-blur-bg: hsla(0, 0%, 7%, 0.6);
+    --card-blur-bg-hover: hsla(0, 0%, 9%, 1);
 
     /* SHADOW */
     --shadow-color: 287deg 19% 12%;

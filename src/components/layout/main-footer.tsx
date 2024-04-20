@@ -126,13 +126,13 @@ export const MainFooter = () => {
             </li>
           </ul>
 
-          <p className="w-full mt-8 text-sm text-center text-gray-100 md:mt-0 md:w-auto md:order-2">
+          <div className="w-full mt-8 text-sm text-center text-gray-100 md:mt-0 md:w-auto md:order-2">
             <WhiteLogo color="white" size={60} /> © Copyright 2024, All Rights Reserved by{' '}
             <a href="https://bloggingplatforms.app" title="Best Blogging Platforms">
               Best Blogging Platforms
             </a>
             .
-          </p>
+          </div>
         </div>
       </div>
     </footer>

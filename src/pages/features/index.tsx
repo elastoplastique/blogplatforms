@@ -12,6 +12,7 @@ type Props = {
 };
 
 export default function BlogPlatforms(props: Props) {
+  console.log("features", props.features)
   return (
     <PageLayout metaTitle={`Best Blogging Site | BloggingPlatforms.app`} canonical={'https://bloggingplatforms.app/features'}>
       <Container size="4">
@@ -29,9 +30,10 @@ export default function BlogPlatforms(props: Props) {
         </Flex>
         <Separator className="my-8" size="4" />
 
-        <Flex direction="column" align="stretch" gap="1" id="list-box">
+        <Flex direction="column" align="stretch"  id="list-box">
           <Grid
             width="100%"
+            gap="4"
             columns={{
               initial: '1',
               sm: '2',

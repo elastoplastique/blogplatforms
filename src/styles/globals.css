@@ -13,8 +13,9 @@
 
 
 html,
-body {
-    background-color: var(--app-bg);
+body,
+#app-layout {
+    background-color: var(--app-bg) !important;
 }
 
 * {
@@ -37,7 +38,11 @@ input:focus::placeholder {
 }
 
 footer {
+    padding-top: 32px !important;
+    background-color: rgb(1, 1, 1) !important;
+    /* 
     background: linear-gradient(rgb(8, 9, 12), rgb(4, 6, 9), rgb(0, 0, 0)) !important;
+    */ 
 }
 
 footer * {
@@ -90,7 +95,16 @@ footer * {
 
 }
 
-
+.logo-box {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    margin-right: 16px;    
+}
 
 section.section>h2 {
     color: var(--slate-12);
@@ -180,16 +194,16 @@ a.link-icon-link {
 
 .header-blur {
     position: absolute;
-    margin-top: 20vh;
-    top: 10%;
-    right: 5%;
+    margin-top: 180px;
+    left: calc(calc(100vw - 250px) / 2);
+    right: calc(calc(100vw - 250px) / 2);
     z-index: -1;
     display: -webkit-box;
     display: -webkit-flex;
     display: -ms-flexbox;
     display: flex;
-    width: 27.5rem;
-    height: 27.5rem;
+    width: 250px;
+    height: 150px;
     -webkit-box-pack: center;
     -webkit-justify-content: center;
     -ms-flex-pack: center;
@@ -202,17 +216,21 @@ a.link-icon-link {
     -ms-flex-item-align: center;
     align-self: center;
     border-radius: 100%;
-    background-image: linear-gradient(308deg, #ff7448 25%, #ff4848 54%, #6248ff 78%);
-    opacity: 0.2;
-    -webkit-filter: blur(80px) blur(80px);
-    filter: blur(80px) blur(80px);
+    background-image: linear-gradient(90deg, #ff7448 25%, #ff4848 54%, #6248ff 80%);
+    /* 
+    background-image: linear-gradient(90deg, hsl(262, 100%, 15%) 25%, hsl(224, 77%, 14%) 54%, hsl(180, 98%, 13%) 100%);
+    */
+    opacity: 1;
+    -webkit-filter: blur(50px) blur(50px);
+    filter: blur(50px) blur(50px);
 }
 
 .dark .header-blur {
-    background-image: linear-gradient(308deg, hsl(262, 100%, 15%) 25%, hsl(224, 77%, 14%) 54%, hsl(180, 98%, 13%) 78%);
-    opacity: 0.6;
-    -webkit-filter: blur(80px);
-    filter: blur(80px);
+    background-image: linear-gradient(90deg, #ff7448 15%, #ff4848 44%, #6248ff 60%);
+    /* 
+    background-image: linear-gradient(90deg, hsl(262, 100%, 15%) 25%, hsl(224, 77%, 14%) 54%, hsl(180, 98%, 13%) 100%);
+    */
+    opacity: 1;
 }
 
 button.remove-selection svg {
@@ -264,6 +282,9 @@ button.remove-selection:hover svg {
 .horizontal-feature-card {
     background: var(--card-blur-bg) !important;
     backdrop-filter: blur(32px) saturate(40%);
+}
+.horizontal-feature-card:hover {
+    background: var(--card-blur-bg-hover) !important;
 }
 
 .scrollBody {

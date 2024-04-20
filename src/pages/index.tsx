@@ -36,21 +36,11 @@ type Props = {
 };
 
 export default function HomePage(props: Props) {
-  const router = useRouter();
-  const routeSlug = router.asPath.split('/')[router.asPath.split('/').length - 1];
-  const setPlatformsToRender = useGlobal((state) => state.setPlatformsToRender);
 
-  const currentPlatforms = useMemo(() => {
-    const platforms = props.platformFeatures
-      .filter((pf: PlatformFeatureNode) => {
-        return pf.feature.slug === routeSlug;
-      })
-      .map((pf: PlatformFeatureNode) => pf.platform);
-    return platforms.length > 0 ? platforms : props.platforms;
-  }, [routeSlug]);
 
   const mentions = useMemo(() => {
-    const m = currentPlatforms?.map(
+    const platforms = props.platformFeatures.map((pf: PlatformFeatureNode) => pf.platform);
+    const m = platforms?.map(
       (p) =>
         ({
           type: 'Thing',
@@ -59,13 +49,8 @@ export default function HomePage(props: Props) {
         }) as unknown as RichData.SameAsType
     );
     return m;
-  }, [currentPlatforms]);
-
-  useEffect(() => {
-    setPlatformsToRender(currentPlatforms);
   }, []);
 
-  const features = useMemo(() => props.features, [props.features]);
   return (
     <PageLayout
       metaTitle={META.TITLE}
@@ -100,6 +85,7 @@ export default function HomePage(props: Props) {
           md: '3',
           lg: '4',
         }}
+        className="!w-[100%]"
       >
         <Hero title={META.HOME.TITLE} htmlSubtitle={META.HOME.HTML_DESCRIPTION} />
 

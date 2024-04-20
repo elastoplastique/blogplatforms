@@ -20,7 +20,7 @@ export const ListCardCover = memo(
       <Card
         variant="classic"
         m={'3'}
-        style={{ width: '100%', margin: 0, height: '100%' }}
+        style={{ width: '100%', margin: 0, height: '100%', minHeight: 410 }}
         className="post-card"
         // variant="surface"
         // className={`list-card p-3 w-auto max-w-60 h-80 relative overflow-hidden rounded-4xl border border-subtle-border flex flex-col justify-center items-center`}
@@ -36,6 +36,8 @@ export const ListCardCover = memo(
                 loader={externalImageLoader}
                 loading="lazy"
                 fill
+                sizes="(max-width: 767px) 80vw, (max-width: 1279px) 30vw, 30vw"
+
                 // style={{
                 //   display: 'block',
                 //   objectFit: 'cover',

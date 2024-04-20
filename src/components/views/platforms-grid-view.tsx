@@ -14,57 +14,45 @@ export function PlatformsGridView() {
   const platformsToRender = useGlobal((state) => state.platformsToRender);
 
   return (
-    <Section className="!pt-0 !pb-0">
-      <Flex
-        direction={{
-          initial: 'column',
-          sm: 'row',
-          md: 'row',
+    <motion.section className="py-4">
+      <Grid
+        width="100%"
+        asChild
+        columns={{
+          initial: '1',
+          sm: '2',
+          md: '2',
+          lg: '3',
         }}
-        align="stretch"
-        className="min-w-full"
-        id="platforms-grid-view"
+        style={{ minHeight: '40vh' }}
+        gap="3"
+        p="0"
       >
-        {/* <Flex direction="row" align="stretch" grow="0" shrink="1" id="feature-box">
-
-          </Flex> */}
-        <Flex direction="column" align="stretch" gap="1" id="list-box">
-          <Grid
-            width="100%"
-            asChild
-            columns={{
-              initial: '1',
-              sm: '2',
-              md: '2',
-              lg: '3',
-            }}
-            style={{ minHeight: '40vh' }}
-            p="1"
-          >
-            <motion.ul layout>
-              <AnimatePresence>
-                {platformsToRender &&
-                  platformsToRender.length > 0 &&
-                  platformsToRender
-                    .sort((a, b) => a.order - b.order)
-                    .map((platform) => (
-                      <motion.li
-                        layout
-                        key={platform.slug}
-                        className="relative z-0 h-120 m-4 flex flex-col items-center"
-                        initial={{ opacity: 0 }}
-                        animate={{ opacity: 1 }}
-                        exit={{ opacity: 0 }}
-                        transition={{ easings: 'linear', duration: 0.3 }}
-                      >
-                        <ListCardCover platform={platform} />
-                      </motion.li>
-                    ))}
-              </AnimatePresence>
-            </motion.ul>
-          </Grid>
-        </Flex>
-      </Flex>
-    </Section>
+        <motion.ul layoutScroll>
+          <AnimatePresence>
+            {platformsToRender &&
+              platformsToRender.length > 0 &&
+              platformsToRender
+                .sort((a, b) => a.order - b.order)
+                .map((platform) => (
+                  <motion.li
+                    layout
+                    layoutId={`platform-${platform.slug}`}
+                    id={`platform-${platform.slug}`}
+                    key={`platform-${platform.slug}`}
+                    className="relative z-0 h-120 flex flex-col items-center"
+                    style={{ width: '100%', height: '100%', minHeight: 410 }}
+                    initial={{ y: 10, opacity: 0 }}
+                    animate={{ y: 0, opacity: 1 }}
+                    exit={{ y: -10, opacity: 0 }}
+                    transition={{ easings: 'linear', duration: 0.3 }}
+                  >
+                    <ListCardCover platform={platform} />
+                  </motion.li>
+                ))}
+          </AnimatePresence>
+        </motion.ul>
+      </Grid>
+    </motion.section>
   );
 }

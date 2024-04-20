@@ -1,7 +1,7 @@
 import { MainNavigation } from '@/components/layout/main-navigation';
 import { MainFooter } from './main-footer';
-// import { DecorationWaves } from '@/components/decorative/waves';
-// import { Flex } from '@/components/ui';
+import { DecorationWaves } from '@/components/decorative/waves';
+import { Flex } from '@/components/ui';
 
 const NavWrapper = ({ children }: { children: React.ReactNode }) => (
   <>
@@ -15,10 +15,12 @@ const NavWrapper = ({ children }: { children: React.ReactNode }) => (
 export const MainLayout = ({ children }: { children: React.ReactNode }) => {
   return (
     <>
+    <Flex className="header-blur rotating">
+    </Flex>
       <NavWrapper>
         <MainNavigation />
       </NavWrapper>
-      <div>{children}</div>
+      <div id="main-layout">{children}</div>
 
       <MainFooter />
     </>
