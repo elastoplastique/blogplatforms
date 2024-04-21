@@ -52,6 +52,13 @@ const listicles = [
     current: false,
     description: 'Best Blogging Platforms for Photographers',
   },
+  {
+    name: 'Blogging Platforms for Writers',
+    href: '/blog/blogging-platforms-for-writers',
+    current: false,
+    description:
+      'Discover the best blogging platforms for writers.',
+  },
 ];
 
 const features = [

@@ -130,6 +130,12 @@ export const FOOTER_BLOG_LINKS: NavLinkType[] = [
       'Before sharing your first blog post, one of the things you should pay attention to is how your blog posts and their URLs should be organized.',
   },
   {
+    path: '/blog/blogging-platforms-for-writers',
+    text: 'Blogging Platforms for Writers',
+    description:
+      'Discover the best blogging platforms for writers.',
+  },
+  {
     path: '/blog/features-to-look-for-in-a-blogging-platform',
     text: 'Must-Have Features for Blogging Platforms',
     description: 'Must have features to look for in a blogging platforms.',
