@@ -1,0 +1,178 @@
+[
+   {
+      "slug": "webflow",
+      "value": true
+   },
+   {
+      "slug": "wordpress",
+      "value": true
+   },
+   {
+      "slug": "ghost",
+      "value": true
+   },
+   {
+      "slug": "wix",
+      "value": false
+   },
+   {
+      "slug": "squarespace",
+      "value": false
+   },
+   {
+      "slug": "weebly",
+      "value": false
+   },
+   {
+      "slug": "joomla",
+      "value": false
+   },
+   {
+      "slug": "dorik",
+      "value": false
+   },
+   {
+      "slug": "webwave",
+      "value": false
+   },
+   {
+      "slug": "unicorn",
+      "value": false
+   },
+   {
+      "slug": "format",
+      "value": false
+   },
+   {
+      "slug": "ycode",
+      "value": false
+   },
+   {
+      "slug": "pixpa",
+      "value": false
+   },
+   {
+      "slug": "blogger",
+      "value": true
+   },
+   {
+      "slug": "tumblr",
+      "value": false
+   },
+   {
+      "slug": "medium",
+      "value": false
+   },
+   {
+      "slug": "pagecloud",
+      "value": false
+   },
+   {
+      "slug": "framer",
+      "value": false
+   },
+   {
+      "slug": "hashnode",
+      "value": false
+   },
+   {
+      "slug": "vev",
+      "value": false
+   },
+   {
+      "slug": "publii",
+      "value": false
+   },
+   {
+      "slug": "devdojo",
+      "value": false
+   },
+   {
+      "slug": "studio",
+      "value": false
+   },
+   {
+      "slug": "jimdo",
+      "value": false
+   },
+   {
+      "slug": "voog",
+      "value": false
+   },
+   {
+      "slug": "exposure",
+      "value": false
+   },
+   {
+      "slug": "typedream",
+      "value": false
+   },
+   {
+      "slug": "tilda",
+      "value": false
+   },
+   {
+      "slug": "krop",
+      "value": false
+   },
+   {
+      "slug": "semplice",
+      "value": false
+   },
+   {
+      "slug": "cargo",
+      "value": false
+   },
+   {
+      "slug": "carbonmade",
+      "value": false
+   },
+   {
+      "slug": "portfoliobox",
+      "value": false
+   },
+   {
+      "slug": "adobePortfolio",
+      "value": false
+   },
+   {
+      "slug": "odoo",
+      "value": false
+   },
+   {
+      "slug": "smugmug",
+      "value": false
+   },
+   {
+      "slug": "ucraft",
+      "value": false
+   },
+   {
+      "slug": "svbtle",
+      "value": false
+   },
+   {
+      "slug": "instapage",
+      "value": false
+   },
+   {
+      "slug": "readymag",
+      "value": false
+   },
+   {
+      "slug": "bokeh",
+      "value": false
+   },
+   {
+      "slug": "universe",
+      "value": false
+   },
+   {
+      "slug": "fabrik",
+      "value": false
+   },
+   {
+      "slug": "microblog",
+      "value": false
+   }
+]

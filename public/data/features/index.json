@@ -1,0 +1,22 @@
+[
+   {"slug": "markdown", "name": "Markdown Support", "description": "Support for Markdown in the editor.", "type": "boolean"},
+   {"slug": "syntax-highlighting", "name": "Syntax Highlighting", "description": "Syntax highlighting for code snippets.", "type": "boolean"},
+   {"slug": "comment-system", "name": "Commenting System", "description": "Enable a commenting system on your blog.", "type": "boolean"},
+   {"slug": "supersubscript", "name": "Superscript and Subscript Support", "description": "Support for superscript and subscript text.", "type": "boolean"},
+   {"slug": "code-inject", "name": "Custom Code Injection", "description":"Add custom code to the head and footer of your blog.", "type": "boolean"},
+   {"slug": "ecommerce", "name": "E-commerce Integration", "description": "Integrate an e-commerce platform with your blog.", "type": "boolean"},
+   {"slug": "freemium", "name": "Free Plan", "description": "A free plan is available.", "type": "boolean"},
+   {"slug": "free-plan-custom-domain", "name": "Free Plan with Custom Domain", "description": "Use a custom domain name for your blog in the free plan.", "type": "boolean"},
+   {"slug": "open-source", "name": "Open Source", "description": "The software is open source.", "type": "boolean"},
+   {"slug": "newsletter", "name": "Newsletter", "description": "Create a newsletter for your blog.", "type": "boolean"},
+   {"slug": "category-tag-system", "name": "Category and Tag System", "description": "Organize your blog posts with categories and tags.", "type": "boolean"},
+   {"slug": "co-author", "name": "Multi-Author Support", "description": "Allow multiple authors to contribute to your blog.", "type": "boolean"},
+   {"slug": "grammar-check", "name": "Grammar Check", "description": "Check grammar and spelling in your blog posts.", "type": "boolean"},
+   {"slug": "distraction-free", "name": "Distraction Free Mode", "description": "Enable a distraction-free writing mode in the editor.", "type": "boolean"},
+   {"slug": "font-color-customization", "name": "Font Color Customization", "description": "Customize the font color of your blog.", "type": "boolean"},
+   {"slug": "paywall", "name": "Paywall", "description": "Implement a paywall for premium content on your blog.", "type": "boolean"},
+   {"slug": "multi-lingual", "name": "Multi-lingual Support", "description": "Support for multiple languages on your blog.", "type": "boolean"},
+   {"slug": "headless", "name": "Headless CMS", "description": "Use the software as a headless CMS.", "type": "boolean"}
+]
+
+

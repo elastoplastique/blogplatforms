@@ -8,6 +8,7 @@ import '../styles/syntax.css';
 import '../styles/globals.css';
 import '../styles/toc.css';
 import '../styles/animations.css';
+import '../styles/tables.css';
 // import 'swiper/css';
 // import 'swiper/css/a11y';
 // import 'swiper/css/autoplay';

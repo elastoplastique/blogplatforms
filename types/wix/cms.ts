@@ -82,6 +82,8 @@ export interface PlatformNode {
   posts: PostNode[];
   affiliation?: boolean;
   pageTitle?: string;
+  freePlan?: boolean;
+  ecommerceIntegration?: boolean;
 }
 export interface Platform extends DataItem {
   _id: string;

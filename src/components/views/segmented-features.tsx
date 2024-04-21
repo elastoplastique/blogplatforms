@@ -11,7 +11,7 @@ import { FEATURE_CATEGORY_COLORS } from '@/constants/features';
 import { DEFAULT_COLOR } from '@/constants/colors';
 import { useRouter } from 'next/router';
 
-type Props = { platformFeatures: PlatformFeatureNode[] };
+type Props = { platforms: PlatformNode[], platformFeatures: PlatformFeatureNode[] };
 
 type OptionData = { [key: string]: any };
 
@@ -35,10 +35,10 @@ const getUniquePlatforms = (platformFeatures: PlatformFeatureNode[]) => {
   return unqiuePlatforms;
 }
 
-const getUniquePlatformsByFeatureSlug = (platformFeatures: PlatformFeatureNode[], featureSlug: string | null) => {
+const getUniquePlatformsByFeatureSlug = (platforms: PlatformNode[], platformFeatures: PlatformFeatureNode[], featureSlug: string | null) => {
   const uniquePlatforms = getUniquePlatforms(platformFeatures)
   if (featureSlug === null) {
-    return uniquePlatforms;
+    return platforms;
   }
   const platformSlugs = platformFeatures
     .filter((pf: PlatformFeatureNode) => {
@@ -49,7 +49,7 @@ const getUniquePlatformsByFeatureSlug = (platformFeatures: PlatformFeatureNode[]
 }
 
 
-export const SegmentedFeatures = ({ platformFeatures }: Props) => {
+export const SegmentedFeatures = ({ platforms, platformFeatures }: Props) => {
   const [featureSlug, setFeatureSlug] = useState<string|null>(null);
 
   const uniqueFeatures = useMemo(() => getUniqueFeatures(platformFeatures), [platformFeatures]);
@@ -65,7 +65,7 @@ export const SegmentedFeatures = ({ platformFeatures }: Props) => {
   };
 
   useEffect(() => {
-    setPlatformsToRender(getUniquePlatformsByFeatureSlug(platformFeatures, featureSlug));
+    setPlatformsToRender(getUniquePlatformsByFeatureSlug(platforms, platformFeatures, featureSlug));
   }, [featureSlug]);
   return (
     <Flex align="start" className="!min-w-[100%]">

@@ -5,12 +5,6 @@ export type BodyMetadata = {
   version: number;
 };
 
-export interface NodeType<T> {
-  type: T;
-  _id: string;
-  id?: string;
-}
-
 type TextAlignment = 'AUTO' | 'LEFT' | 'CENTER' | 'RIGHT' | 'JUSTIFY';
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -54,13 +48,13 @@ export type TextDecorationUnion = BoldDecoration | ItalicDecoration | LinkDecora
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // BODY ITEM CHILDREN
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////
-// export type BodyItemType = "TEXT" | "LIST_ITEM" | BodyItemType
+// export type Wix.BodyItemType = "TEXT" | "LIST_ITEM" | Wix.BodyItemType
 // type BodyItemDataType = "textData" | "headingData" | "linkPreviewData"
 
-// export interface BodyItem<BodyItemType> extends NodeType<BodyItemType> {
+// export interface BodyItem<Wix.BodyItemType> extends NodeType<Wix.BodyItemType> {
 //   _id: string;
-//   type: BodyItemType
-//   nodes?: BodyItem<BodyItemType>[];
+//   type: Wix.BodyItemType
+//   nodes?: BodyItem<Wix.BodyItemType>[];
 // }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -202,14 +196,6 @@ type BodyItemEmbedData = {
   src: string;
 };
 
-type BodyItemTableData = {
-  dimensions: {
-    colsWidthRatio: Array<number>;
-    rowsHeight: Array<number>;
-    colsMinWidth: Array<number>;
-  };
-  rowHeader: boolean;
-};
 
 type BodyItemHTMLData = {
   containerData: {
@@ -245,92 +231,70 @@ type BodyItemDataUnion =
   | BodyItemCodeBlockData
   | BodyItemEmbedData
   | BodyItemFileData
-  | BodyItemTableData
+  | Wix.BodyItemTableData
   | BodyItemHTMLData
   | BodyItemDividerData
   | BodyItemMediaData;
 
-///////////////////////////////////////////////////////////////////////////////////////////////////////////////
-// BODY ITEM
-///////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-export type BodyItemType =
-  | 'TEXT'
-  | 'LIST_ITEM'
-  | 'PARAGRAPH'
-  | 'HEADING'
-  | 'TABLE'
-  | 'LINK_PREVIEW'
-  | 'ORDERED_LIST'
-  | 'VIDEO'
-  | 'IMAGE'
-  | 'MEDIA'
-  | 'BLOCKQUOTE'
-  | 'BULLETED_LIST'
-  | 'CODE_BLOCK'
-  | 'EMBED'
-  | 'FILE'
-  | 'HTML'
-  | 'DIVIDER';
 // type BodyItemDataType = "headingData" | "paragraphData" | "linkPreviewData"
 
-export interface BodyItem<T> extends NodeType<T> {
+export interface BodyItem<T> extends Wix.NodeType<T> {
   _id: string;
   id?: string;
-  nodes: BodyItem<BodyItemType>[];
+  nodes: BodyItem<Wix.BodyItemType>[];
 }
 
-export interface Heading extends BodyItem<'HEADING'> {
+export interface Heading extends Wix.BodyItem<'HEADING'> {
   headingData?: BodyItemHeadingData;
 }
 
-export interface Paragraph extends BodyItem<'PARAGRAPH'> {
+export interface Paragraph extends Wix.BodyItem<'PARAGRAPH'> {
   paragraphData?: BodyItemParagraphData;
 }
 
-export interface Text extends BodyItem<'TEXT'> {
+export interface Text extends Wix.BodyItem<'TEXT'> {
   textData: BodyItemTextData;
 }
 
-export interface Blockquote extends BodyItem<'BLOCKQUOTE'> {
+export interface Blockquote extends Wix.BodyItem<'BLOCKQUOTE'> {
   blockquoteData: BlockquoteData;
 }
 
-export interface HTML extends BodyItem<'HTML'> {
+export interface HTML extends Wix.BodyItem<'HTML'> {
   htmlData: BodyItemHTMLData;
 }
 
-export interface ListItem extends BodyItem<'LIST_ITEM'> {
-  nodes: BodyItem<BodyItemType>[];
+export interface ListItem extends Wix.BodyItem<'LIST_ITEM'> {
+  nodes: BodyItem<Wix.BodyItemType>[];
 }
 
-export interface OrderedList extends BodyItem<'ORDERED_LIST'> {
+export interface OrderedList extends Wix.BodyItem<'ORDERED_LIST'> {
   orderedListData: BodyItemListData;
   nodes: ListItem[];
 }
 
-export interface BulletedList extends BodyItem<'BULLETED_LIST'> {
+export interface BulletedList extends Wix.BodyItem<'BULLETED_LIST'> {
   bulletedListData: BodyItemListData;
   nodes: ListItem[];
 }
 
-export interface CodeBlock extends BodyItem<'CODE_BLOCK'> {
+export interface CodeBlock extends Wix.BodyItem<'CODE_BLOCK'> {
   codeBlockData: BodyItemCodeBlockData;
 }
 
-export interface Video extends BodyItem<'VIDEO'> {
+export interface Video extends Wix.BodyItem<'VIDEO'> {
   videoData: BodyItemVideoData;
 }
 
-export interface Image extends BodyItem<'IMAGE'> {
+export interface Image extends Wix.BodyItem<'IMAGE'> {
   imageData: BodyItemImageData;
 }
 
-export interface File extends BodyItem<'FILE'> {
+export interface File extends Wix.BodyItem<'FILE'> {
   fileData: BodyItemFileData;
 }
 
-export interface LinkPreview extends BodyItem<'LINK_PREVIEW'> {
+export interface LinkPreview extends Wix.BodyItem<'LINK_PREVIEW'> {
   linkPreviewData: {
     description: string;
     link: {
@@ -349,15 +313,12 @@ export interface LinkPreview extends BodyItem<'LINK_PREVIEW'> {
   };
 }
 
-export interface Table extends BodyItem<'TABLE'> {
-  tableData: BodyItemTableData;
-}
 
-export interface Divider extends BodyItem<'DIVIDER'> {
+export interface Divider extends Wix.BodyItem<'DIVIDER'> {
   dividerData: BodyItemDividerData;
 }
 
-export interface Embed extends BodyItem<'EMBED'> {
+export interface Embed extends Wix.BodyItem<'EMBED'> {
   embedData: BodyItemEmbedData;
 }
 
@@ -369,7 +330,9 @@ export type BodyItemUnion =
   | OrderedList
   | BulletedList
   | ListItem
-  | Table
+  | Wix.Table
+  | Wix.TableCell
+  | Wix.TableRow
   | Image
   | Video
   | Blockquote

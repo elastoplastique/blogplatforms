@@ -18,8 +18,11 @@ import { createWixStaticUrl, createWixStaticVideoUrl } from '@/lib/wix/utils/cre
 import { externalImageLoader } from '@/lib/utils/external-image-loader';
 import { slugify } from '@/lib/utils/slugify';
 import Image from 'next/image';
+import { Logo } from '@/components/icons/logo';
+import { Table, TableHeader, TableBody, TableFooter, TableHead, TableRow, TableCell, TableCaption } from '@/components/ui/table';
 // import { useWixModules } from '@wix/sdk-react';
 // import { files } from '@wix/media';
+
 import dynamic from 'next/dynamic';
 
 const THUMB_HEIGHT = IMAGE_HEIGHT * THUMBNAIL_FACTOR;
@@ -388,6 +391,61 @@ function WixVideo({ node }: { node: Wix.Video }) {
   return <WixStaticVideo node={node} />;
 }
 
+function WixTableCell({ node }: { node: Wix.TableCell }) {
+  return (
+    <TableCell>
+      {(node.nodes as BodyItemUnion[]).map((innerNode, ix: number) => (
+        <WixNode node={innerNode} key={`table-cell-${ix}-${innerNode._id}`} />
+      ))}
+    </TableCell>
+  );
+}
+
+function WixTable({ node }: { node: Wix.Table }) {
+  console.log('table node: ');
+  const colsMinWidths = node.tableData.dimensions.colsMinWidth;
+  const rowsHeights = node.tableData.dimensions.rowsHeight;
+  const hasHeader = node.tableData.rowHeader;
+
+  const headerData = node.nodes[0] as Wix.TableRow;
+  const rowsData = node.nodes.slice(hasHeader ? 1 : 0) as Wix.TableRow[];
+
+  return (
+    <Table>
+      <TableCaption>Feature Table for Blogging Platforms</TableCaption>
+      {hasHeader && (
+        <TableHeader>
+          <TableRow>
+            {headerData.nodes.map((cell, hrix: number) => (
+              <WixNode node={cell} key={`table-header-cell-${hrix}-${cell.id}`} />
+            ))}
+          </TableRow>
+        </TableHeader>
+      )}
+      <TableBody>
+        {rowsData.map((rowData: Wix.TableRow, rix: number) => (
+          <TableRow key={`table-row-${rix}-${rowData.id}`}>
+            {rowData.nodes.map((cell, rcix) => (
+              <WixNode node={cell} key={`table-row-cell-${rix}-${rcix}-${cell.id}`} />
+            ))}
+          </TableRow>
+        ))}
+      </TableBody>
+      <TableFooter>
+        <TableRow>
+          <TableCell colSpan={3}>
+          <a href="https://bloggingplatforms.app"><Logo /></a>
+          </TableCell>
+          <TableCell className="text-right">
+            <a href="https://bloggingplatforms.app">Best Blogging Platforms</a>
+          </TableCell>
+        </TableRow>
+      </TableFooter>
+    </Table>
+  );
+}
+
+
 // @ts-ignore
 const WixHtmlData = dynamic(() => import('./lazy-html').then((mod) => mod.WixHtmlData), { ssr: false });
 
@@ -442,7 +500,14 @@ function WixNode({ node }: { node: BodyItemUnion }) {
   }
   if (node.type === 'DIVIDER') {
     return <WixDivider node={node} />;
-  } else {
+  }
+  if (node.type === 'TABLE') {
+    return <WixTable node={node} />;
+  }
+  if (node.type === 'TABLE_CELL') {
+    return <WixTableCell node={node} />;
+  } 
+  else {
     return <></>;
   }
 }

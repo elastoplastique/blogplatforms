@@ -1,19 +1,30 @@
-div.table {
+table {
   border: 1px solid var(--subtle-border);
   border-radius: var(--radius);
   overflow: hidden;
   padding: 8px;
 }
 
-.table table thead {
+table thead {
   text-align: left;
   height: 28px;
   border-bottom: 1px solid var(--subtle-border);
+  background-color: var(--ui-bg) !important;
 }
-
-.table table tbody tr td {
+table tfoot {
+  text-align: left;
+  height: 28px;
+  border-bottom: 1px solid var(--subtle-border);
+  color: var(--border-white);
+  background-color: var(--overlay) !important;
+}
+table tbody tr td {
   padding-top: 8px;
   padding-bottom: 8px;
   height: 26px;
   font-weight: 400;
+}
+table tbody tr td a {
+  border: none !important;
+  text-decoration: underline !important;
 }
