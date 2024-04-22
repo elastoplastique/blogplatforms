@@ -3,7 +3,7 @@ import '../styles/tailwind.css';
 import '../styles/typography.css';
 import '../styles/tables.css';
 import '../styles/wix.css';
-import '../styles/tokens.css';
+// import '../styles/tokens.css';
 import '../styles/syntax.css';
 import '../styles/globals.css';
 import '../styles/toc.css';
@@ -15,11 +15,11 @@ import '../styles/tables.css';
 // import 'swiper/css/keyboard';
 // import 'swiper/css/pagination';
 // import 'swiper/css/parallax';
+import '@radix-ui/themes/styles.css';
 
 import type { AppProps } from 'next/app';
 import { ThemeProvider } from '@/components/theme-provider';
 import { MainLayout } from '@/components/layout/main-layout';
-import '@radix-ui/themes/styles.css';
 import { Theme } from '@radix-ui/themes';
 // import { WixClientProvider } from '@/lib/wix';
 

@@ -9,7 +9,7 @@ const nextConfig = {
   },
   experimental: {
     optimizeCss: true,
-    workerThreads: 1,
+    workerThreads: false,
     cpus: 4,
     esmExternals: false,
   },
