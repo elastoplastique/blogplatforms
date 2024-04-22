@@ -83,7 +83,9 @@ RICH CONTENT
 SMALL SCREEN
 # ◀ ═ ═ ═ ═ ═ ═ ═ ═ ═ ═ ═ ═ ═ ═ ═ ═ ═ ═ ═ ═ ═ ═ ═ ═ ═ ═ ═ ═ ═ ═ ═ ═ ═ ═ ═*/
 @media screen and (max-width: 640px) {
-
+  #page-layout .post-description {
+    font-size: 20px !important;
+  }
   #page-layout p,
   #page-layout p *,
   #rich-content li,

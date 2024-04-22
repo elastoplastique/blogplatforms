@@ -251,8 +251,8 @@ a.link-icon-link {
 
 .post-page.header-blur {
     margin-top: 180px;
-    -webkit-filter: blur(40px) blur(40px);
-    filter: blur(40px) blur(40px);
+    -webkit-filter: blur(30px) blur(30px);
+    filter: blur(30px) blur(30px);
 }
 
 

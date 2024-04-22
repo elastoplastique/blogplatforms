@@ -56,7 +56,7 @@ export default function BlogPostPage({ slug, title, description, cover, toc, bod
         }}
         className="w-full !md:px-16"
       >
-        <div className="post-page header-blur rotating"></div>
+        <div className="post-page header-blur"></div>
         <Card
           id="page-card"
           className="w-full h-full relative flex flex-col justify-start min-w-full"
@@ -73,23 +73,26 @@ export default function BlogPostPage({ slug, title, description, cover, toc, bod
             <Breadcrumb
               links={[
                 // { name: 'Blog', href: `/blog`, current: false },
-                { name: title, href: `/blog/${slug}`, current: true, truncate: title.length > 20 },
+                { name: title, href: `/blog/${slug}`, current: true, truncate: title.length > 30 },
               ]}
             />
           </Flex>
           <motion.div className="relative min-w-full rounded-3xl flex flex-col justify-center items-center min-h-32 !mt-10">
-            <h1 className="tracking-tight text-center !font-semi-bold sm:mx-8 text-5xl md:text-5xl lg:text-7xl pt-2 mb-8">{title}</h1>
-            <Text as="p" align="center" weight="medium" size="4" my="9">
+            <h1 className="tracking-tight text-center !font-semi-bold sm:mx-8 text-5xl md:text-5xl lg:text-7xl pt-12 mb-8">{title}</h1>
+            
+            <Text as="p" align="center" weight="medium" size="5" my="9" className="post-description">
               {description}
             </Text>
           </motion.div>
+
+          <Separator />
 
           {/* <PostCover title={title} src={createWixStaticUrl(cover!)} /> */}
           {/* MEDIA */}
           {/* {platform.media && platform.media.length > 0 && <PlatformMedia media={platform.media} />} */}
 
           {/* TABLE OF CONTENTS */}
-          <div className="toc flex flex-col justify-start items-stretch" dangerouslySetInnerHTML={{ __html: toc }} />
+          <div className="mt-32 toc flex flex-col justify-start items-stretch" dangerouslySetInnerHTML={{ __html: toc }} />
 
           {/* CONTENT */}
           <article className="content-auto flex flex-col justify-start items-stretch" dangerouslySetInnerHTML={{ __html: body }} />

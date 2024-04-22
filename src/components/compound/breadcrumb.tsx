@@ -10,7 +10,7 @@ export function Breadcrumb(props: Props) {
   const vw = useWindowWidth();
 
   return (
-    <motion.nav className="flex my-4" aria-label="Breadcrumb">
+    <motion.nav className="flex my-4 hidden sm:block" aria-label="Breadcrumb">
       <ol className="flex flex-row flex-wrap  items-center justify-start sm:justify-center">
         <motion.li layoutId="breadcrumb-link-home">
           <div>
@@ -45,7 +45,7 @@ export function Breadcrumb(props: Props) {
                 aria-current={page.current ? 'page' : undefined}
                 title={page.title || page.name}
               >
-                {vw < 640 ? page.name : page.name.length > 30 ? `${page.name.slice(0, 30)}...` : page.name}
+                {vw < 640 ? page.name : page.name.length > 30 ? `${page.name.slice(0, 50)}` : page.name}
               </Link>
             </div>
           </motion.li>

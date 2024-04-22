@@ -27,6 +27,7 @@
    }
  }
  .rotating {
+    will-change: transform;
    -webkit-animation: rotating 6s linear infinite;
    -moz-animation: rotating 6s linear infinite;
    -ms-animation: rotating 6s linear infinite;
