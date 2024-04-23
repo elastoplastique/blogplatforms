@@ -1,45 +1,64 @@
-import { Text, Card, Flex, Heading } from '@/components/ui';
+import { Text, Card, Flex, AspectRatio } from '@/components/ui';
 import { InfoTooltip } from '@/components/compound/info-tooltip';
 import { StoryIcon } from '@/components/icons/bold-icons';
 import { FEATURE_ICONS, FEATURE_COLORS } from '@/constants/features';
 import Link from 'next/link';
+import Image from 'next/image';
+import { externalImageLoader } from '@/lib/utils/external-image-loader';
+import { createWixStaticUrl } from '@/lib/wix/utils/create-url';
+
 
 type Props = {
   platformFeature?: PlatformFeatureNode;
-  icon?: React.ReactNode;
+  href: string;
   title?: string;
   description?: string;
   header?: string;
   link?: string;
   rest?: any;
+  image?: string;
+  alt?: string;
+
 };
 
-export const HorizontalFeatureCard = ({ title, description, link, icon, header, ...rest }: Props) => {
-  const FeatureIcon = FEATURE_ICONS[title as keyof typeof FEATURE_ICONS] || icon || StoryIcon;
-  const featureColor = FEATURE_COLORS[title as keyof typeof FEATURE_COLORS] || 'teal';
-  // 329 100 96
+export const HorizontalFeatureCard = ({ title, description, link, href, header, image, alt, ...rest }: Props) => {
+  const cardDescription = description ? description.length > 160
+    ? description?.slice(0, 160) + '...'
+    : description
+    : '';
   return (
-    <Card variant="surface" my={'0'} style={{ backgroundColor: `var(--${featureColor}-a2)` }} className="horizontal-feature-card" {...rest}>
-      <Flex direction="column" className="flex w-full rounded-xl" p="2">
-        <Flex direction="row" align="center" className="w-full flex flex-row items-center mb-4">
-          <FeatureIcon color={`var(--${featureColor}-9)`} width={32} height={32} />
+    <Card
+      variant="classic"
+      m={'3'}
+      style={{ width: '100%', margin: 0, height: '100%', minHeight: 410 }}
+      className="post-card"
+    // variant="surface"
+    // className={`list-card p-3 w-auto max-w-60 h-80 relative overflow-hidden rounded-4xl border border-subtle-border flex flex-col justify-center items-center`}
+    >
+      {/* @ts-ignore */}
+      <Link href={href}>
+        <div className="relative">
+          <AspectRatio ratio={16 / 9} className="aspect-ratio-box !overflow-hidden rounded-md">
+            <Image
+              src={createWixStaticUrl(image!)}
+              // src={`${ASSETS_DIRECTORY.LOGO_DIRECTORY}/${platform.slug}.png`}
+              alt={`Blog platform: ${title}`}
+              loader={externalImageLoader}
+              loading="lazy"
+              fill
+              sizes="(max-width: 767px) 80vw, (max-width: 1279px) 30vw, 30vw"
+            />
+          </AspectRatio>
+        </div>
+      </Link>
+      <Flex p="1" direction="column" className="min-h-[140px] post-card-body relative mt-4">
+        <Link href={href} className="flex flex-row items-center">
 
-          <Heading as="h3" size="4" ml="4" mb="0" weight="bold" className="text-white !mb-0">
-            {link ? <Link href={link}>{title}</Link> : title}
-          </Heading>
-          {/* {description && <InfoTooltip size={20} text={description || ''} color={`var(--${featureColor}-12)`} />} */}
-        </Flex>
-        <Flex className="min-h-[80px] relative">
-          {description && link ? (
-            <>
-              <Link href={link} className="absolute top-0 left-0 right-0 bottom-0 z-0" title={header}></Link>
-              <div className="text-text-low-contrast z-10 !text-xs" dangerouslySetInnerHTML={{ __html: description }} />
-            </>
-          ) : (
-            <div className="text-text-low-contrast !text-xs" dangerouslySetInnerHTML={{ __html: description! }} />
-          )}
-        </Flex>
-        {/* <p className="ml-5 text-sm font-normal leading-4 tracking-wide text-gray-600">{platformFeature.feature.description}</p> */}
+          <h4 className="!m-0">{title}</h4>
+        </Link>
+        <Text as="p" size="2" mt="2" className="text-text-low-contrast">
+          {cardDescription}
+        </Text>
       </Flex>
     </Card>
   );

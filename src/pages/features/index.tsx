@@ -46,10 +46,12 @@ export default function BlogPlatforms(props: Props) {
             {props.features.map((f: Wix.FeatureNode, ix: number) => (
               <HorizontalFeatureCard
                 title={f.header}
+                href={`/features/${f.slug}`}
                 description={f.description}
                 key={`pf-${f.slug}-${ix}`}
                 link={`/features/${f.slug}`}
                 header={f.header}
+                image={f.image}
               />
             ))}
           </Grid>
