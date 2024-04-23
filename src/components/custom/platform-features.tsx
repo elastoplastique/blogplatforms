@@ -23,8 +23,10 @@ export const PlatformFeatures = ({ platformName, platformFeatures }: { platformN
           <HorizontalFeatureCard
             title={pf.feature.title}
             header={pf.feature.header}
+            href={`/features/${pf.feature.slug}`}
             description={pf.note || pf.feature.description}
             key={`pf-${pf.feature.slug}-${index}`}
+            image={pf.feature.image}
             link={`${ROUTES.FEATURES_DIRECTORY.path}/${pf.feature.slug}`}
           />
           // <Badge key={`pf-${pf.feature.slug}-${index}`} size="2" className="m-2 !min-h-[60px] flex space-between !items-center">

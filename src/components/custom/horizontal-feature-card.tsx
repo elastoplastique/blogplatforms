@@ -42,7 +42,7 @@ export const HorizontalFeatureCard = ({ title, description, link, href, header, 
             <Image
               src={createWixStaticUrl(image!)}
               // src={`${ASSETS_DIRECTORY.LOGO_DIRECTORY}/${platform.slug}.png`}
-              alt={`Blog platform: ${title}`}
+              alt={`${alt || title}`}
               loader={externalImageLoader}
               loading="lazy"
               fill
@@ -53,7 +53,6 @@ export const HorizontalFeatureCard = ({ title, description, link, href, header, 
       </Link>
       <Flex p="1" direction="column" className="min-h-[140px] post-card-body relative mt-4">
         <Link href={href} className="flex flex-row items-center">
-
           <h4 className="!m-0">{title}</h4>
         </Link>
         <Text as="p" size="2" mt="2" className="text-text-low-contrast">
