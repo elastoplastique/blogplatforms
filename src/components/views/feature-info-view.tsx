@@ -21,6 +21,14 @@ export const FeatureInfoView = memo(
           className="relative min-w-full rounded-3xl flex flex-col justify-center items-center min-h-32 my-8"
           id="feature-info-view"
         >
+          <Flex width="100%" justify="center">
+            <Breadcrumb
+              links={[
+                { name: 'Features', href: `/features`, current: false, title: 'Explore Blog Platforms by Features' },
+                { name: featureToRender?.title, href: `/features/${featureToRender.slug}`, current: true },
+              ]}
+            />
+          </Flex>
           <Heading
             as="h1"
             className="tracking-tight text-center !font-semi-bold text-inherit pt-2 !text-4xl md:!text-6xl"
@@ -42,14 +50,7 @@ export const FeatureInfoView = memo(
             The blog platforms that support {featureToRender.title} feature.
           </Heading>
         </motion.section>
-        <Flex width="100%" justify="center">
-          <Breadcrumb
-            links={[
-              { name: 'Features', href: `/features`, current: false, title: 'Explore Blog Platforms by Features' },
-              { name: featureToRender?.title, href: `/features/${featureToRender.slug}`, current: true },
-            ]}
-          />
-        </Flex>
+
 
         {/* DESCRIPTION  */}
         <Flex direction="column" justify="start" align="center" className="w-full">

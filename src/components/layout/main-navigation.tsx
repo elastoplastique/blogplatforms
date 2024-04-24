@@ -126,21 +126,21 @@ export function MainNavigation() {
           <li key={'blog-platforms-features'} className="hidden xs:block mx-1 md:mx-4">
             <DropdownMenu.Root>
               <DropdownMenu.Trigger>
-                <Button variant="soft">Features</Button>
+                <Button variant="outline">Features</Button>
               </DropdownMenu.Trigger>
-              <DropdownMenu.Content variant="soft">
+              <DropdownMenu.Content>
                 <DropdownMenu.Item>
                   <Link href="/features">All Features</Link>
                 </DropdownMenu.Item>
                 <DropdownMenu.Separator />
 
                 {features.map((pf: NavLink) => (
-                  <DropdownMenu.Item key={pf.href} className="mt-4 !py-1 !h-12">
-                    <Link href={pf.href} prefetch={true} title={pf.description!} className="flex flex-col justify-start">
-                      <Text size="3" weight={'regular'} className="py-0 my-0 leading-5">
+                  <DropdownMenu.Item key={pf.href} className="mt-4 !py-2 !h-14">
+                    <Link href={pf.href} title={pf.description!} className="flex flex-col justify-start">
+                      <Text size="3" weight={'regular'} className="py-0 !pt-2 my-0 leading-5">
                         {pf.name}
                       </Text>
-                      <Text size="2" weight={'regular'} className="py-0 my-0 leading-5">
+                      <Text size="2" weight={'regular'} className="py-0 !pb-2 my-0 leading-5">
                         {pf.description!}
                       </Text>
                     </Link>
@@ -152,7 +152,7 @@ export function MainNavigation() {
           <li key={'blog-platforms-listicles'} className="mx-1 md:mx-4">
             <DropdownMenu.Root>
               <DropdownMenu.Trigger>
-                <Button>Lists</Button>
+                <Button variant="outline">Lists</Button>
               </DropdownMenu.Trigger>
               <DropdownMenu.Content>
                 <DropdownMenu.Item>

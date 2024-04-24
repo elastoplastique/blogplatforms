@@ -72,7 +72,7 @@ export default function BlogPostPage({ slug, title, description, cover, toc, bod
           <Flex width="100%" justify="center">
             <Breadcrumb
               links={[
-                // { name: 'Blog', href: `/blog`, current: false },
+                { name: 'Blog', href: `/blog`, current: false },
                 { name: title, href: `/blog/${slug}`, current: true, truncate: title.length > 30 },
               ]}
             />
