@@ -13,6 +13,7 @@ type Props = {
   href: string;
   title?: string;
   description?: string;
+  htmlDescription?: string;
   header?: string;
   link?: string;
   rest?: any;
@@ -21,7 +22,7 @@ type Props = {
 
 };
 
-export const HorizontalFeatureCard = ({ title, description, link, href, header, image, alt, ...rest }: Props) => {
+export const HorizontalFeatureCard = ({ title, description, htmlDescription, link, href, header, image, alt, ...rest }: Props) => {
   const cardDescription = description ? description.length > 160
     ? description?.slice(0, 160) + '...'
     : description
@@ -30,7 +31,7 @@ export const HorizontalFeatureCard = ({ title, description, link, href, header, 
     <Card
       variant="classic"
       m={'3'}
-      style={{ width: '100%', margin: 0, height: '100%', minHeight: 410 }}
+      style={{ width: '100%', margin: 0, height: '100%', minHeight: 480 }}
       className="post-card"
     // variant="surface"
     // className={`list-card p-3 w-auto max-w-60 h-80 relative overflow-hidden rounded-4xl border border-subtle-border flex flex-col justify-center items-center`}
@@ -55,9 +56,11 @@ export const HorizontalFeatureCard = ({ title, description, link, href, header, 
         <Link href={href} className="flex flex-row items-center">
           <h4 className="!m-0">{title}</h4>
         </Link>
-        <Text as="p" size="2" mt="2" className="text-text-low-contrast">
-          {cardDescription}
-        </Text>
+        {!htmlDescription ?
+          <Text as="p" size="2" mt="2" className="text-text-low-contrast">
+            {cardDescription}
+          </Text> : <div className="text-text-low-contrast mt-1" dangerouslySetInnerHTML={{ __html: htmlDescription }} />
+        }
       </Flex>
     </Card>
   );

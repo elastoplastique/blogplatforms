@@ -25,6 +25,7 @@ export const PlatformFeatures = ({ platformName, platformFeatures }: { platformN
             header={pf.feature.header}
             href={`/features/${pf.feature.slug}`}
             description={pf.note || pf.feature.description}
+            htmlDescription={pf.feature.description}
             key={`pf-${pf.feature.slug}-${index}`}
             image={pf.feature.image}
             link={`${ROUTES.FEATURES_DIRECTORY.path}/${pf.feature.slug}`}

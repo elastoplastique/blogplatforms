@@ -48,6 +48,7 @@ export default function BlogPlatforms(props: Props) {
                 title={f.header}
                 href={`/features/${f.slug}`}
                 description={f.description}
+                htmlDescription={f.description}
                 key={`pf-${f.slug}-${ix}`}
                 link={`/features/${f.slug}`}
                 header={f.header}
