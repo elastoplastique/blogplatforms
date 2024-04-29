@@ -92,7 +92,7 @@ export default function FeaturePage(props: Props) {
       keywords={data.feature.keywords}
       canonical={`${removeTrailing(META.CANONICAL)}${ROUTES.FEATURES_DIRECTORY.path}/${removeTrailing(data.feature.slug)}`}
     >
-        <div className="feature-page header-blur rotating"></div>
+        <div className="feature-page header-blur"></div>
       <Container
         size={{
           initial: '2',

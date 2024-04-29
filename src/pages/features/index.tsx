@@ -38,7 +38,7 @@ export default function BlogPlatforms(props: Props) {
               initial: '1',
               sm: '2',
               md: '2',
-              lg: '2',
+              lg: '3',
             }}
             style={{ minHeight: '40vh' }}
             p="1"

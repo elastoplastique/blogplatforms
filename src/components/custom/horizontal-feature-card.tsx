@@ -31,7 +31,7 @@ export const HorizontalFeatureCard = ({ title, description, htmlDescription, lin
     <Card
       variant="classic"
       m={'3'}
-      style={{ width: '100%', margin: 0, height: '100%', minHeight: 480 }}
+      style={{ width: '100%', margin: 0, height: '100%', minHeight: 450, paddingBottom: 12 }}
       className="post-card"
     // variant="surface"
     // className={`list-card p-3 w-auto max-w-60 h-80 relative overflow-hidden rounded-4xl border border-subtle-border flex flex-col justify-center items-center`}
@@ -52,14 +52,14 @@ export const HorizontalFeatureCard = ({ title, description, htmlDescription, lin
           </AspectRatio>
         </div>
       </Link>
-      <Flex p="1" direction="column" className="min-h-[140px] post-card-body relative mt-4">
+      <Flex p="1" direction="column" className="min-h-[280px] post-card-body relative mt-4">
         <Link href={href} className="flex flex-row items-center">
           <h4 className="!m-0">{title}</h4>
         </Link>
         {!htmlDescription ?
           <Text as="p" size="2" mt="2" className="text-text-low-contrast">
             {cardDescription}
-          </Text> : <div className="text-text-low-contrast mt-1" dangerouslySetInnerHTML={{ __html: htmlDescription }} />
+          </Text> : <div className="text-text-low-contrast my-2" dangerouslySetInnerHTML={{ __html: htmlDescription }} />
         }
       </Flex>
     </Card>
