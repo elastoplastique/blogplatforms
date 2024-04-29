@@ -36,7 +36,7 @@ type Props = {
 };
 
 export default function HomePage(props: Props) {
-  console.log('props', props);
+  //console.log('props', props);
 
   const mentions = useMemo(() => {
     const platforms = props.platformFeatures.map((pf: PlatformFeatureNode) => pf.platform);

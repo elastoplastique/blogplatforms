@@ -9,9 +9,9 @@ const nextConfig = {
   },
   experimental: {
     optimizeCss: true,
-    workerThreads: false,
+    workerThreads: true,
     cpus: 4,
-    esmExternals: false,
+    esmExternals: true,
   },
   transpilePackages: ['@wix/sdk', '@wix/api-client'],
   pageExtensions: ['ts', 'tsx', 'js', 'jsx', 'md', 'mdx', 'json'],
