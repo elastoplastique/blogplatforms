@@ -1,8 +1,10 @@
 /* eslint-disable react/display-name */
 /* eslint-disable @next/next/no-img-element */
-import { useState, useEffect, useMemo, memo, useId } from 'react';
+import { memo, useId } from 'react';
 import type { ReactNode } from 'react';
-import { AspectRatio, Link, Heading, Text, Flex, Card, Strong } from '@/components/ui';
+import { AspectRatio, Link, Flex, Card, Strong } from '@radix-ui/themes';
+import { Text, Heading } from '@/components/ui/typography';
+
 import {
   Heading as HeadingI,
   BodyItemUnion,
@@ -402,7 +404,6 @@ function WixTableCell({ node }: { node: Wix.TableCell }) {
 }
 
 function WixTable({ node }: { node: Wix.Table }) {
-  console.log('table node: ');
   const colsMinWidths = node.tableData.dimensions.colsMinWidth;
   const rowsHeights = node.tableData.dimensions.rowsHeight;
   const hasHeader = node.tableData.rowHeader;

@@ -1,5 +1,6 @@
 import { useRef, useState, useMemo } from 'react';
-import { AspectRatio, Box, Badge, Heading, Text, Flex } from '@/components/ui';
+import { Text, Heading } from '@/components/ui/typography';
+
 import Image from 'next/image';
 import Link from 'next/link';
 import { motion, useMotionValue } from 'framer-motion';

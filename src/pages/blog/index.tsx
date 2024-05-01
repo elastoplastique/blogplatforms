@@ -1,7 +1,8 @@
-import React, { useEffect, useState } from 'react';
 // import { getPathsOfStaticPaths, getAllFrontMatters } from '@/lib/server/utils.server'
 import { ListCard } from '@/components/compound/list-card';
-import { Grid, Flex, Heading, Text, Container, Card, Button, Separator } from '@/components/ui';
+import { Grid, Flex, Container, Card, Button, Separator } from '@radix-ui/themes';
+import { Text, Heading } from '@/components/ui/typography';
+
 import { PageLayout } from '@/components/layout/page-layout';
 import { getFeatures, getPosts } from '@/lib/wix/cms/cms';
 import { PostCard } from '@/components/custom/post-card';

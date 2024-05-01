@@ -1,7 +1,7 @@
 /* eslint-disable @next/next/no-img-element */
 import React, { useEffect, useState, useMemo } from 'react';
 import { PageLayout } from '@/components/layout/page-layout';
-import { AspectRatio, Badge, Heading, Text, Flex, Card, Container, Separator, Grid, Button } from '@/components/ui';
+import { Card, Container, Separator } from '@radix-ui/themes';
 // import { motion } from 'framer-motion';
 // import { ExternalLink } from 'lucide-react';
 // import { ProsCons } from '@/components/custom/pros-cons';
@@ -22,7 +22,7 @@ import {
   getFeatureSlugs,
   getPlatformFeaturesByFeatureSlug,
 } from '@/lib/wix/cms';
-// import { RichContent } from '@/lib/wix/cms/components/rich-content';
+// import { RichContent } from '@//components/custom/rich-content';
 import { removeTrailing } from '@/lib/utils/remove-trailing-slash';
 // import { COLLECTIONS } from '@/lib/wix/cms/cms';
 // import { createWixStaticUrl } from '@/lib/wix/utils/create-url';

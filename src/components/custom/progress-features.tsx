@@ -1,4 +1,4 @@
-import { Flex, Heading, Text, Separator, Section, Card } from '@/components/ui';
+import { Flex, Heading, Separator, Section, Card } from '@radix-ui/themes';
 import { Progress } from '../ui/progress';
 import { PPROGRESS_FEATURE_VALUES, PROGRESS_MAX, PROGRESS_BEST, PROGRESS_FEATURE_ICONS } from '@/constants/progress-features';
 import { PLATFORM_PAGE } from '@/constants/content';

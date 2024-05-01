@@ -1,5 +1,7 @@
 import { motion } from 'framer-motion';
-import { Heading, Text, Flex, Grid, Card, Container, Separator } from '@/components/ui';
+import { Text, Heading } from '@/components/ui/typography';
+import { Flex, Grid } from '@radix-ui/themes';
+
 import { PostCardLessVerbose } from '@/components/custom/post-card';
 import { createWixStaticUrl } from '@/lib/wix/utils/create-url';
 

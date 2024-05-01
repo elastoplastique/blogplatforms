@@ -1,10 +1,10 @@
-import React, { useEffect, useState, useMemo } from 'react';
-import { PageLayout } from '@/components/layout/page-layout';
-import { AspectRatio, Box, Badge, Heading, Text, Flex, Card, Grid, Container, Separator, Tooltip } from '@/components/ui';
+import React, { useMemo } from 'react';
+import { Grid, Separator } from '@radix-ui/themes';
+import { Text, Heading } from '@/components/ui/typography';
 import { Section } from '@/components/layout/section';
 import { PLATFORM_PAGE } from '@/constants/content';
-import { CircuitBoard, Info } from 'lucide-react';
-import { InfoTooltip } from '@/components/compound/info-tooltip';
+// import { CircuitBoard, Info } from 'lucide-react';
+// import { InfoTooltip } from '@/components/compound/info-tooltip';
 import { HorizontalFeatureCard } from '@/components/custom/horizontal-feature-card';
 import { ROUTES } from '@/constants/routes';
 

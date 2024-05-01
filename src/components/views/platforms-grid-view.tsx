@@ -1,7 +1,7 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React from 'react';
 import { ListCardCover } from '@/components/compound/list-card-cover';
-import { Flex, Grid, Section } from '@/components/ui';
+import { Grid } from '@radix-ui/themes';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useGlobal } from '@/lib/state/global';
 

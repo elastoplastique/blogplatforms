@@ -1,4 +1,6 @@
-import { Badge, Box, Flex, Heading, Text, Separator } from '@/components/ui';
+import { Badge, Box, Flex, Separator } from '@radix-ui/themes';
+import { Text, Heading } from '@/components/ui/typography';
+
 import { Section } from '@/components/layout/section';
 import { COLORS } from '@/constants/colors';
 import type { Color } from '../../../types/colors';

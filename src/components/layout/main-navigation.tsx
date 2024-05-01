@@ -1,9 +1,10 @@
 // import { useEffect } from 'react';
 import Link from 'next/link';
 import { WEBSITE_NAME } from '@/constants/content';
-import { Flex, Heading } from '../ui';
+import { Flex } from '@radix-ui/themes';
+import { Text, Heading } from '@/components/ui/typography';
 import { ThemeToggle } from '@/components/theme-toggle';
-import { DropdownMenu, Button, Text } from '@radix-ui/themes';
+import { DropdownMenu, Button } from '@radix-ui/themes';
 // import { AuthButton } from '@/components/auth0/auth-button';
 import { Logo } from '@/components/icons/logo';
 
@@ -105,7 +106,7 @@ export function MainNavigation() {
   // },[])
   return (
     <nav id="main-navigation" className="h-16 sm:px-16 w-full">
-      <Link href="/" title="Best Blogging Platforms">
+      <Link href="/" title="Best Blogging Platforms" prefetch={false}>
         <Flex direction="row" align="center">
           <Logo />
           <Heading as="h1" size="5" className="!text-sm sm:!text-xl tracking-tightest !whitespace-nowrap !mr-4 !mb-0">
@@ -130,13 +131,13 @@ export function MainNavigation() {
               </DropdownMenu.Trigger>
               <DropdownMenu.Content>
                 <DropdownMenu.Item>
-                  <Link href="/features">All Features</Link>
+                  <Link href="/features" prefetch={false}>All Features</Link>
                 </DropdownMenu.Item>
                 <DropdownMenu.Separator />
 
                 {features.map((pf: NavLink) => (
                   <DropdownMenu.Item key={pf.href} className="mt-4 !py-2 !h-14">
-                    <Link href={pf.href} title={pf.description!} className="flex flex-col justify-start">
+                    <Link href={pf.href} title={pf.description!} prefetch={false} className="flex flex-col justify-start">
                       <Text size="3" weight={'regular'} className="py-0 !pt-2 my-0 leading-5">
                         {pf.name}
                       </Text>
@@ -156,13 +157,13 @@ export function MainNavigation() {
               </DropdownMenu.Trigger>
               <DropdownMenu.Content>
                 <DropdownMenu.Item>
-                  <Link href="/blog">All Posts</Link>
+                  <Link href="/blog" prefetch={false}>All Posts</Link>
                 </DropdownMenu.Item>
                 <DropdownMenu.Separator />
 
                 {listicles.map((platformList: NavLink) => (
                   <DropdownMenu.Item key={platformList.href}>
-                    <Link href={platformList.href} title={platformList.description!}>
+                    <Link href={platformList.href} title={platformList.description!} prefetch={false}>
                       {platformList.name}
                     </Link>
                   </DropdownMenu.Item>

@@ -1,8 +1,8 @@
 /* eslint-disable @next/next/no-img-element */
-import { Text, Card, Flex, Heading, Inset, Strong, AspectRatio } from '@/components/ui';
-import { InfoTooltip } from '@/components/compound/info-tooltip';
-import { StoryIcon } from '@/components/icons/bold-icons';
-import { FEATURE_ICONS, FEATURE_COLORS } from '@/constants/features';
+import { Text, Card, Flex, Strong, AspectRatio } from '@radix-ui/themes';
+// import { InfoTooltip } from '@/components/compound/info-tooltip';
+// import { StoryIcon } from '@/components/icons/bold-icons';
+// import { FEATURE_ICONS, FEATURE_COLORS } from '@/constants/features';
 import Link from 'next/link';
 import Image from 'next/image';
 import { externalImageLoader } from '@/lib/utils/external-image-loader';

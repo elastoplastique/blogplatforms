@@ -1,7 +1,9 @@
 import { Section } from '@/components/layout/section';
-import { Separator, Heading } from '@/components/ui';
+import { Separator } from '@radix-ui/themes';
+import { Text, Heading } from '@/components/ui/typography';
+
 import { PLATFORM_PAGE } from '@/constants/content';
-import { RichContent } from '@/lib/wix/cms/components/rich-content';
+import { RichContent } from '@//components/custom/rich-content';
 
 type Props = {
   platformResourceLinks: Wix.LinkPreview[];

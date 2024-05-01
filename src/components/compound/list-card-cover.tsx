@@ -1,7 +1,8 @@
 /* eslint-disable react/display-name */
 import { useRef, useState, useMemo, memo } from 'react';
 import type { ComponentProps } from 'react';
-import { AspectRatio, Box, Badge, Heading, Text, Flex } from '@/components/ui';
+import { AspectRatio, Box, Badge, Flex } from '@radix-ui/themes';
+import { Text, Heading } from '@/components/ui/typography';
 import { Card } from '@radix-ui/themes';
 import Image from 'next/image';
 import Link from 'next/link';

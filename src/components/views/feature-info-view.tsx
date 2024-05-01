@@ -1,9 +1,11 @@
 /* eslint-disable react/display-name */
 import { memo } from 'react';
 import { motion } from 'framer-motion';
-import { AspectRatio, Badge, Heading, Text, Flex, Card, Container, Separator, Grid, Button } from '@/components/ui';
+import { Flex} from '@radix-ui/themes';
+import { Text, Heading } from '@/components/ui/typography';
+
 import { Breadcrumb } from '@/components/compound/breadcrumb';
-import { RichContent } from '@/lib/wix/cms/components/rich-content';
+import { RichContent } from '@//components/custom/rich-content';
 import { useGlobal } from '@/lib/state/global';
 import { useRouter } from 'next/router';
 

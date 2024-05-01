@@ -1,7 +1,8 @@
 const path = require('path');
+const withBundleAnalyzer = require('@next/bundle-analyzer')()
 
 const nextConfig = {
-  // output: "standalone",
+  output: "standalone",
   staticPageGenerationTimeout: 300,
   productionBrowserSourceMaps: true,
   compiler: {
@@ -13,7 +14,12 @@ const nextConfig = {
     cpus: 4,
     esmExternals: true,
   },
-  transpilePackages: ['@wix/sdk', '@wix/api-client'],
+  transpilePackages: [
+    // '@wix/sdk', 
+    '@wix/api-client',
+    //'@nextui-org/react', 
+    //'@radix-ui/themes'
+  ],
   pageExtensions: ['ts', 'tsx', 'js', 'jsx', 'md', 'mdx', 'json'],
   reactStrictMode: true,
   images: {
@@ -42,4 +48,5 @@ const nextConfig = {
     ];
   },
 };
-module.exports = nextConfig;
+
+module.exports = process.env.ANALYZE === 'true' ? withBundleAnalyzer(nextConfig) : nextConfig

@@ -1,4 +1,4 @@
-import { Tooltip } from '@/components/ui';
+import { Tooltip } from '@radix-ui/themes';
 import { Info } from 'lucide-react';
 
 export const InfoTooltip = ({ text, size = 16, color = 'var(--hover-solid-bg)' }: { text: string; size?: number; color?: string }) => (

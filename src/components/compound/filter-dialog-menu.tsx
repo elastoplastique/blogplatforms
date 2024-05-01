@@ -2,7 +2,7 @@
 import { useEffect, useCallback, useMemo } from 'react';
 import { useFilters } from '@/lib/state/filters';
 import { FILTER_DEFAULT_VALUE, FILTER_FEATURE_LABEL } from '@/constants/content';
-import { Container, Box, Flex, Grid, Button, Text, Dialog, Separator, Card, Select, Badge, ScrollArea } from '@/components/ui';
+import { Container, Box, Flex, Grid, Button, Text, Dialog, Separator, Card, Select, Badge, ScrollArea } from '@radix-ui/themes';
 import { Color } from '../../../types/colors';
 import { X, ListFilter } from 'lucide-react';
 import { InfoTooltip } from '@/components/compound/info-tooltip';

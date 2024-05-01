@@ -1,5 +1,7 @@
 import { motion } from 'framer-motion';
-import { Heading, Flex, Separator } from '@/components/ui';
+import {  Flex, Separator } from '@radix-ui/themes';
+import { Text, Heading } from '@/components/ui/typography';
+
 import { Table } from '@/components/compound/table';
 import { Section } from '@/components/layout/section';
 

@@ -1,7 +1,9 @@
 import React, { useEffect, useState } from 'react';
 // import { getPathsOfStaticPaths, getAllFrontMatters } from '@/lib/server/utils.server'
-import { ListCard } from '@/components/compound/list-card';
-import { Grid, Flex, Heading, Text, Container, Card, Button, Separator } from '@/components/ui';
+// import { ListCard } from '@/components/compound/list-card';
+import { Grid, Flex, Container, Separator } from '@radix-ui/themes';
+import { Text, Heading } from '@/components/ui/typography';
+
 import { PageLayout } from '@/components/layout/page-layout';
 import { getFeatures } from '@/lib/wix/cms/cms';
 import { HorizontalFeatureCard } from '@/components/custom/horizontal-feature-card';

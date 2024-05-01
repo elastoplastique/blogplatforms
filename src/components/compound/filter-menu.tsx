@@ -2,7 +2,7 @@
 import { useEffect, useCallback, useMemo } from 'react';
 import { useFilters } from '@/lib/state/filters';
 import { FILTER_DEFAULT_VALUE } from '@/constants/content';
-import { Container, Flex, Grid, Button, Text, Separator, Card, Select, Badge } from '@/components/ui';
+import { Container, Flex, Grid, Button, Text, Separator, Card, Select, Badge } from '@radix-ui/themes';
 import { Color } from '../../../types/colors';
 import { X } from 'lucide-react';
 

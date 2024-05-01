@@ -1,38 +1,9 @@
 /* eslint-disable react/display-name */
 /* eslint-disable @next/next/no-img-element */
 // @ts-nocheck
-import { useState, useEffect, memo, useRef, createElement } from 'react';
 import { renderToStaticMarkup } from 'react-dom/server';
-import { AspectRatio, Link, Heading, Text, Flex, Card, Inset, Strong, Em, Separator } from '@/components/ui';
-import {
-  Heading as HeadingI,
-  Paragraph as ParagraphI,
-  Text as TextI,
-  Blockquote as BlockquoteI,
-  CodeBlock as CodeBlockI,
-  Video as VideoI,
-  Image as ImageI,
-  File as FileI,
-  LinkPreview as LinkPreviewI,
-  Embed as EmbedI,
-  BodyItem,
-  Decoration,
-  DecorationType,
-  BodyItemUnion,
-  BodyItemType,
-  TextDecorationUnion,
-  LinkDecoration,
-  ColorDecoration,
-  BoldDecoration,
-  ItalicDecoration,
-  BulletedList,
-  OrderedList,
-  ListItem,
-} from '@/types/wix/rich-content';
-import { IMAGE_WIDTH, IMAGE_HEIGHT, THUMBNAIL_FACTOR } from '@/constants/image';
-import { media } from '@wix/sdk';
-import { ReactElement } from 'react';
-import { createWixStaticUrl, createWixStaticVideoUrl } from '@/lib/wix/utils/create-url';
+import { Link, Card} from '@radix-ui/themes';
+
 import { slugify } from '@/lib/utils/slugify';
 
 export function TOC({ body: data, maxHeadingLevel = 4 }) {

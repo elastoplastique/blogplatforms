@@ -1,4 +1,4 @@
-import { Card, Flex, Inset, Box, Text } from '@/components/ui';
+import { Card, Flex, Inset, Box, Text } from '@radix-ui/themes';
 
 import Image from 'next/image';
 

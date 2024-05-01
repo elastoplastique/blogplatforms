@@ -3,10 +3,12 @@ import React, { useEffect, useState, useMemo } from 'react';
 import { Breadcrumb } from '@/components/compound/breadcrumb';
 import { ROUTES, STATIC_ROUTES, Route } from '@/constants/routes';
 import { PageLayout } from '@/components/layout/page-layout';
-import { Container, Flex, Heading, Text, Separator, Card, AspectRatio } from '@/components/ui';
+import { Container, Flex, Separator, Card, AspectRatio } from '@radix-ui/themes';
+import { Text, Heading } from '@/components/ui/typography';
+
 import { getPage } from '@/lib/wix/cms/cms';
 import { generatePage } from '@/lib/rich-data/page';
-import { RichContent } from '@/lib/wix/cms/components/rich-content';
+import { RichContent } from '@//components/custom/rich-content';
 import Image from 'next/image';
 import { externalImageLoader } from '@/lib/utils/external-image-loader';
 import { motion } from 'framer-motion';

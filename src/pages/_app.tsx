@@ -15,7 +15,7 @@ import '../styles/tables.css';
 // import 'swiper/css/keyboard';
 // import 'swiper/css/pagination';
 // import 'swiper/css/parallax';
-import '@radix-ui/themes/styles.css';
+//import '@radix-ui/themes/styles.css';
 
 import type { AppProps } from 'next/app';
 import { ThemeProvider } from '@/components/theme-provider';

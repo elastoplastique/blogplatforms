@@ -1,4 +1,4 @@
-import { AspectRatio } from '@/components/ui';
+import { AspectRatio } from '@radix-ui/themes';
 import Image from 'next/image';
 import { externalImageLoader } from '@/lib/utils/external-image-loader';
 

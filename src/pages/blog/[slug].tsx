@@ -4,13 +4,13 @@ import { renderToStaticMarkup } from 'react-dom/server';
 import { PageLayout } from '@/components/layout/page-layout';
 import { Flex, Card, Container } from '@radix-ui/themes';
 import { Separator } from '@/components/ui/separator';
-import { Text } from '@/components/ui/typography';
+import { Text, Heading } from '@/components/ui/typography';
 import { motion } from 'framer-motion';
 import { Breadcrumb } from '@/components/compound/breadcrumb';
 import { ROUTES } from '@/constants/routes';
 import { META } from '@/constants/meta';
 import { getPostSlugs, getPost } from '@/lib/wix/cms';
-//import { RichContent } from '@/lib/wix/cms/components/rich-content';
+//import { RichContent } from '@//components/custom/rich-content';
 import { removeTrailing } from '@/lib/utils/remove-trailing-slash';
 import { createWixStaticUrl } from '@/lib/wix/utils/create-url';
 // import { externalImageLoader } from '@/lib/utils/external-image-loader';
@@ -37,7 +37,7 @@ type Props = {
 
 // @ts-ignore
 const RelatedPosts = dynamic(() => import('../../components/custom/related-posts').then((mod) => mod.RelatedPosts), { ssr: true });
-const RichContent = dynamic(() => import('../../lib/wix/cms/components/rich-content').then((mod) => mod.RichContent), { ssr: true });
+const RichContent = dynamic(() => import('../../components/custom/rich-content').then((mod) => mod.RichContent), { ssr: true });
 export default function BlogPostPage({ slug, title, description, cover, toc, body, relatedPosts, richData, keywords, canonical }: Props) {
   return (
     <PageLayout
@@ -77,9 +77,15 @@ export default function BlogPostPage({ slug, title, description, cover, toc, bod
             />
           </Flex>
           <motion.div className="relative min-w-full rounded-3xl flex flex-col justify-center items-center min-h-32 !mt-10">
-            <h1 className="tracking-tight text-center !font-semi-bold sm:mx-8 text-5xl md:text-5xl lg:text-7xl pt-12 mb-8">{title}</h1>
+            <Heading as="h1" className="tracking-tight text-center !font-semi-bold sm:mx-8 !text-5xl md:text-5xl !lg:text-7xl pt-12 mb-8">{title}</Heading>
             
-            <Text as="p" align="center" weight="medium" size="5" my="9" className="post-description">
+            <Text as="p" align="center" weight="medium" size={{
+              initial: '3',
+              sm: '4',
+              md: '4',
+              lg: '4',
+            
+            }} my="9" className="post-description">
               {description}
             </Text>
           </motion.div>

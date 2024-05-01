@@ -1,4 +1,4 @@
-import { Flex } from '../ui';
+import { Flex } from '@radix-ui/themes';
 import Head from 'next/head';
 import { META } from '@/constants/meta';
 import { usePageTracking } from '@/lib/hooks/use-page-tracking';

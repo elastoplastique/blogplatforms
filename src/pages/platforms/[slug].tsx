@@ -1,7 +1,9 @@
 import React from 'react';
 import { renderToStaticMarkup } from 'react-dom/server';
 import { PageLayout } from '@/components/layout/page-layout';
-import { AspectRatio, Badge, Heading, Text, Flex, Card, Container, Separator, Grid } from '@radix-ui/themes';
+import { AspectRatio, Flex, Card, Container, Separator, Grid } from '@radix-ui/themes';
+import { Text, Heading } from '@/components/ui/typography';
+
 import { motion } from 'framer-motion';
 // import { ExternalLink } from 'lucide-react';
 import { ProsCons } from '@/components/custom/pros-cons';
@@ -24,7 +26,7 @@ import {
   // queryReferencedItems,
   // getRichData,
 } from '@/lib/wix/cms';
-// import { RichContent } from '@/lib/wix/cms/components/rich-content';
+// import { RichContent } from '@//components/custom/rich-content';
 import { removeTrailing } from '@/lib/utils/remove-trailing-slash';
 // import { PlatformMedia } from '@/components/custom/platform-media';
 import { PostCard } from '@/components/custom/post-card';
@@ -44,7 +46,7 @@ type Props = {
   refItems: any[];
   body: string;
 };
-const RichContent = dynamic(() => import('../../lib/wix/cms/components/rich-content').then((mod) => mod.RichContent), { ssr: true });
+const RichContent = dynamic(() => import('../../components/custom/rich-content').then((mod) => mod.RichContent), { ssr: true });
 export default function PlatformPage({ platform, platformFeatures, platformComparativeFeatures, platformAccounts, body }: Props) {
   // const asPath = useRouter().asPath;
   const audienceText = (platform.audience || []).join(',') || '';
@@ -60,7 +62,6 @@ export default function PlatformPage({ platform, platformFeatures, platformCompa
     if (platformAccounts.website) return platformAccounts.website;
     return fallback;
   }
-  //console.log("platform", platform)
   return (
     <PageLayout
       metaTitle={`${platform.pageTitle}`}

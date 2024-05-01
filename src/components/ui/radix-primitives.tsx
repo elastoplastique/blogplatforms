@@ -1,4 +1,4 @@
-export * from '@radix-ui/themes';
+// export * from '@radix-ui/themes';
 import { Text as TextPrimitive } from '@radix-ui/themes';
 import { Heading as HeadingPrimitive } from '@radix-ui/themes';
 

@@ -1,7 +1,4 @@
-import { Text, Card, Flex, AspectRatio } from '@/components/ui';
-import { InfoTooltip } from '@/components/compound/info-tooltip';
-import { StoryIcon } from '@/components/icons/bold-icons';
-import { FEATURE_ICONS, FEATURE_COLORS } from '@/constants/features';
+import { Text, Card, Flex, AspectRatio } from '@radix-ui/themes';
 import Link from 'next/link';
 import Image from 'next/image';
 import { externalImageLoader } from '@/lib/utils/external-image-loader';
