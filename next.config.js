@@ -2,7 +2,6 @@ const path = require('path');
 const withBundleAnalyzer = require('@next/bundle-analyzer')()
 
 const nextConfig = {
-  output: "standalone",
   staticPageGenerationTimeout: 300,
   productionBrowserSourceMaps: true,
   compiler: {
