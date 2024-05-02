@@ -77,6 +77,7 @@ RICH CONTENT
 #rich-content p {
   line-height: 1.7 !important;
   color: var(--text-low-contrast) !important;
+
 }
 
 /* # ═ ═ ═ ═ ═ ═ ═ ═ ═ ═ ═ ═ ═ ═ ═ ═ ═ ═ ═ ═ ═ ═ ═ ═ ═ ═ ═ ═ ═ ═ ═ ═ ═ ═ ═ ▶
@@ -95,12 +96,13 @@ SMALL SCREEN
   #rich-content p strong,
   #rich-content div {
     font-size: var(--fontSize-xs) !important;
+      margin-bottom: 12px;
   }
-  h2.cms-rc {  line-height: 1.4; font-size: var(--fontSize-l)   !important; border-left: 2px solid var(--pink-8);padding-left: 4px; margin-top: 1rem; letter-spacing: -0.025em !important; }
-  h3.cms-rc {  line-height: 1.4; font-size: var(--fontSize-m)   !important; border-left: 2px solid var(--purple-8);padding-left: 4px; margin-top: 1rem; letter-spacing: -0.025em !important; }
-  h4.cms-rc {  line-height: 1.4; font-size: var(--fontSize-s)   !important; border-left: 2px solid var(--blue-8);padding-left: 4px; margin-top: 1rem; letter-spacing: -0.025em !important; }
-  h5.cms-rc {  line-height: 1.4; font-size: var(--fontSize-xs)  !important; border-left: 2px solid var(--teal-8);padding-left: 4px; margin-top: 1rem; letter-spacing: -0.025em !important; } 
-  h6.cms-rc {  line-height: 1.4; font-size: var(--fontSize-xs)  !important; border-left: 2px solid var(--teal-8);padding-left: 4px; margin-top: 1rem; letter-spacing: -0.025em !important; }
+  h2.cms-rc {  line-height: 1.4; font-size: var(--fontSize-l)   !important; border-left: 2px solid var(--pink-8);padding-left: 4px; margin-top: 1.5rem; letter-spacing: -0.025em !important; }
+  h3.cms-rc {  line-height: 1.4; font-size: var(--fontSize-m)   !important; border-left: 2px solid var(--purple-8);padding-left: 4px; margin-top: 1.5rem; letter-spacing: -0.025em !important; }
+  h4.cms-rc {  line-height: 1.4; font-size: var(--fontSize-s)   !important; border-left: 2px solid var(--blue-8);padding-left: 4px; margin-top: 1.5rem; letter-spacing: -0.025em !important; }
+  h5.cms-rc {  line-height: 1.4; font-size: var(--fontSize-xs)  !important; border-left: 2px solid var(--teal-8);padding-left: 4px; margin-top: 1.5rem; letter-spacing: -0.025em !important; } 
+  h6.cms-rc {  line-height: 1.4; font-size: var(--fontSize-xs)  !important; border-left: 2px solid var(--teal-8);padding-left: 4px; margin-top: 1.5rem; letter-spacing: -0.025em !important; }
 
   #rich-content p strong { font-size:  var(--fontSize-xs) !important;}
   #rich-content h2 strong { font-size:  var(--fontSize-l) !important;}
@@ -128,6 +130,7 @@ LARGE SCREEN
   font-weight: 400;
   line-height: 1.7;
   font-size: var(--fontSize-s) !important;
+  margin-bottom: 16px;
 }
 
 h2.cms-rc,
@@ -142,10 +145,10 @@ h6.cms-rc  {
 }
 
 h2.cms-rc { font-weight: 600; font-size: var(--fontSize-xl) !important;  margin-top: 1.5rem !important;  border-left: 2px solid var(--pink-8);   padding-left: 4px !important;}
-h3.cms-rc { font-weight: 600; font-size: var(--fontSize-l)  !important;  margin-top: 1.25rem !important; border-left: 2px solid var(--purple-8); padding-left: 4px !important;}
-h4.cms-rc { font-weight: 600; font-size: var(--fontSize-m)   !important; margin-top: 1.1rem !important;  border-left: 2px solid var(--blue-8);   padding-left: 4px !important;}
-h5.cms-rc { font-weight: 600; font-size: var(--fontSize-s)   !important; margin-top: 1rem !important;    border-left: 2px solid var(--teal-8);   padding-left: 4px !important;} 
-h6.cms-rc { font-weight: 600; font-size: var(--fontSize-s)   !important; margin-top: 1rem !important;    border-left: 2px solid var(--teal-8);   padding-left: 4px !important;}
+h3.cms-rc { font-weight: 600; font-size: var(--fontSize-l)  !important;  margin-top: 1.5rem !important; border-left: 2px solid var(--purple-8); padding-left: 4px !important;}
+h4.cms-rc { font-weight: 600; font-size: var(--fontSize-m)   !important; margin-top: 1.5rem !important;  border-left: 2px solid var(--blue-8);   padding-left: 4px !important;}
+h5.cms-rc { font-weight: 600; font-size: var(--fontSize-s)   !important; margin-top: 1.5rem !important;    border-left: 2px solid var(--teal-8);   padding-left: 4px !important;} 
+h6.cms-rc { font-weight: 600; font-size: var(--fontSize-s)   !important; margin-top: 1.5rem !important;    border-left: 2px solid var(--teal-8);   padding-left: 4px !important;}
 
 p strong { font-size:  var(--fontSize-s) !important;}
 h2 strong { font-size:  var(--fontSize-xl) !important;}

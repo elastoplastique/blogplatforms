@@ -178,7 +178,7 @@ export default function PlatformPage({ platform, platformFeatures, platformCompa
           {/* CONTENT */}
           <Flex direction="column" justify="start" align="stretch">
             <Flex direction="column" justify="start" align="stretch" my="8">
-              <main dangerouslySetInnerHTML={{ __html: body }} />
+              <main dangerouslySetInnerHTML={{ __html: body }}  id="rich-content"/>
             </Flex>
             {/* AUDIENCE */}
             <Audience title={platform.title} audience_text={audienceText} />

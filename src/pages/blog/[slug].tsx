@@ -100,7 +100,7 @@ export default function BlogPostPage({ slug, title, description, cover, toc, bod
           <div className="mt-32 toc flex flex-col justify-start items-stretch" dangerouslySetInnerHTML={{ __html: toc }} />
 
           {/* CONTENT */}
-          <article className="content-auto flex flex-col justify-start items-stretch" dangerouslySetInnerHTML={{ __html: body }} />
+          <article className="content-auto flex flex-col justify-start items-stretch" dangerouslySetInnerHTML={{ __html: body }} id="rich-content" />
 
           {relatedPosts && <section dangerouslySetInnerHTML={{ __html: relatedPosts }} />}
         </Card>

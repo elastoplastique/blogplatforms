@@ -1,6 +1,6 @@
 /* eslint-disable react/display-name */
 /* eslint-disable @next/next/no-img-element */
-import { memo, useId } from 'react';
+import { memo, useId, Fragment } from 'react';
 import type { ReactNode } from 'react';
 import { AspectRatio, Link, Flex, Card, Strong } from '@radix-ui/themes';
 import { Text, Heading } from '@/components/ui/typography';
@@ -33,11 +33,11 @@ const THUMB_WIDTH = IMAGE_WIDTH * THUMBNAIL_FACTOR;
 export const RichContent = memo(
   ({ body, contentId }: { body: { nodes: Wix.BodyItemUnion[]; metadata?: Wix.BodyMetadata }; contentId: string }) => {
     return (
-      <Flex width="100%" direction="column" id="rich-content">
+      <Fragment>
         {body.nodes.map((node: BodyItemUnion) => (
           <WixNode node={node} key={node.id || node._id} />
         ))}
-      </Flex>
+      </Fragment>
     );
   },
   (prevProps, nextProps) => prevProps.contentId === nextProps.contentId
@@ -82,13 +82,13 @@ function WixHeading({ node }: { node: Wix.Heading }) {
 
 function WixParagraph({ node }: { node: Wix.Paragraph }) {
   return (
-    <Text as="p" mb="2" id={node._id} className="cms-rc cms-p">
+    <p id={node._id} className="cms-rc cms-p">
       <>
         {(node.nodes as BodyItemUnion[]).map((innerNode: BodyItemUnion, ix: number) => (
           <WixNode node={innerNode} key={`${ix}-${innerNode._id}`} />
         ))}
       </>
-    </Text>
+    </p>
   );
 }
 
@@ -465,7 +465,7 @@ function WixNode({ node }: { node: BodyItemUnion }) {
   if (node.type === 'HEADING') {
     return <WixHeading node={node} />;
   }
-  if (node.type === 'PARAGRAPH') {
+  if (node.type === 'PARAGRAPH' && node.nodes.length > 0) {
     return <WixParagraph node={node} />;
   }
   if (node.type === 'CODE_BLOCK') {

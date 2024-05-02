@@ -124,7 +124,7 @@ export function MainNavigation() {
               </Link>
             </li>
           ))} */}
-          <li key={'blog-platforms-features'} className="hidden xs:block mx-1 md:mx-4">
+          <li key={'blog-platforms-features'} className="hidden sm:block mx-1 md:mx-4">
             <DropdownMenu.Root>
               <DropdownMenu.Trigger>
                 <Button variant="outline">Features</Button>
