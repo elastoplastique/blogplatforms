@@ -18,7 +18,7 @@ export const MainLayout = ({ children }: { children: React.ReactNode }) => {
       <NavWrapper>
         <MainNavigation />
       </NavWrapper>
-      <div id="main-layout">{children}</div>
+      {children}
 
       <MainFooter />
     </>

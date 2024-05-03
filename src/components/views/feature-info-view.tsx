@@ -56,7 +56,7 @@ export const FeatureInfoView = memo(
 
         {/* DESCRIPTION  */}
         <Flex direction="column" justify="start" align="center" className="w-full">
-          <Flex direction="column" justify="start" align="center" className="max-w-[80ch]"  id="rich-content">
+          <Flex direction="column" justify="start" align="start" className="max-w-[80ch]"  id="rich-content">
             {featureToRender.body ? (
               <RichContent body={featureToRender.body} contentId={featureToRender.slug} />
             ) : (

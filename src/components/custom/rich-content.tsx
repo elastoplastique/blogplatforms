@@ -82,7 +82,7 @@ function WixHeading({ node }: { node: Wix.Heading }) {
 
 function WixParagraph({ node }: { node: Wix.Paragraph }) {
   return (
-    <p id={node._id} className="cms-rc cms-p">
+    <p id={node._id}>
       <>
         {(node.nodes as BodyItemUnion[]).map((innerNode: BodyItemUnion, ix: number) => (
           <WixNode node={innerNode} key={`${ix}-${innerNode._id}`} />
@@ -135,17 +135,17 @@ function WixTextDecorated({ node }: { node: Wix.Text }) {
     </Link>
   );
   const BoldDecoration = ({ decoration, children }: { decoration: BoldDecoration; children: ReactNode | string }) => (
-    <Strong className="cms-rc cms-strong" id={id2}>
+    <Strong id={id2}>
       {children}
     </Strong>
   );
   const ItalicDecoration = ({ decoration, children }: { decoration: ItalicDecoration; children: ReactNode | string }) => (
-    <em className="cms-rc cms-em" id={id3}>
+    <em id={id3}>
       {children}
     </em>
   );
   const ColorDecoration = ({ decoration, children }: { decoration: ColorDecoration; children: ReactNode | string }) => (
-    <span className="cms-rc cms-span" id={id4}>
+    <span id={id4}>
       {children}
     </span>
   );
@@ -253,7 +253,7 @@ function WixLinkPreview({ node }: { node: Wix.LinkPreview }) {
 
 function WixListItem({ node }: { node: Wix.ListItem }) {
   return (
-    <li className="cms-rc cms-li">
+    <li>
       {(node.nodes as BodyItemUnion[]).map((innerNode, ix: number) => (
         <WixNode node={innerNode} key={`list-item-${ix}-${innerNode?._id ? innerNode?._id : innerNode?.id ? innerNode?.id : 'li'}`} />
       ))}
@@ -263,7 +263,7 @@ function WixListItem({ node }: { node: Wix.ListItem }) {
 
 function WixOrderedList({ node }: { node: Wix.OrderedList }) {
   return (
-    <ol className="cms-rc cms-ol">
+    <ol>
       {(node.nodes as ListItem[]).map((innerNode: ListItem, ix: number) => (
         <WixNode
           node={innerNode}
@@ -276,7 +276,7 @@ function WixOrderedList({ node }: { node: Wix.OrderedList }) {
 
 function WixBulletedList({ node }: { node: Wix.BulletedList }) {
   return (
-    <ul className="cms-rc cms-ul">
+    <ul>
       {(node.nodes as ListItem[]).map((innerNode: ListItem, ix: number) => (
         <WixNode
           node={innerNode}
@@ -291,7 +291,7 @@ function WixImage({ node }: { node: Wix.Image }) {
   const imageId = node.imageData.image.src._id || node.imageData.image.src.id!;
   const imageLink = node.imageData?.link?.url;
   return (
-    <AspectRatio ratio={node.imageData.image.width / node.imageData.image.height} className="cms-rc cms-img">
+    <AspectRatio ratio={node.imageData.image.width / node.imageData.image.height} className="cms-rc cms-i">
       {imageId &&
         (imageLink ? (
           <a href={imageLink} target="_blank" title={node.imageData?.altText}>
@@ -301,8 +301,8 @@ function WixImage({ node }: { node: Wix.Image }) {
               src={createWixStaticUrl(imageId)}
               alt={node.imageData?.altText || ''}
               className="absolute top-0 left-0"
-              width={784}
-              height={784 * (9 / 16)}
+              width={880}
+              height={880 * (9 / 16)}
             />
           </a>
         ) : (
@@ -312,8 +312,8 @@ function WixImage({ node }: { node: Wix.Image }) {
             src={createWixStaticUrl(imageId)}
             alt={node.imageData?.altText || ''}
             className="absolute top-0 left-0"
-            width={784}
-            height={784 * (9 / 16)}
+            width={880}
+            height={880 * (9 / 16)}
           />
         ))}
       {}

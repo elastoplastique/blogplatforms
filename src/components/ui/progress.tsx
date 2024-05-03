@@ -10,7 +10,7 @@ type Props = {
 export const Progress = ({ value, max = 100, getValueLabel }: Props) => {
   return (
     <ProgressPrimitive.Root
-      className="!relative !overflow-hidden bg-gradient-to-r from-iris9 via-purple9 to-pink9 !rounded-4xl !min-w-full h-[10px]"
+      className="!relative !overflow-hidden bg-gradient-to-r from-iris9 via-purple9 to-pink9 !rounded-4xl !min-w-full h-[6px]"
       style={{
         // Fix overflow clipping in Safari
         // https://gist.github.com/domske/b66047671c780a238b51c51ffde8d3a0

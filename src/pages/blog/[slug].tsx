@@ -48,23 +48,16 @@ export default function BlogPostPage({ slug, title, description, cover, toc, bod
       keywords={keywords}
       richData={richData}
     >
-      <Container
-        size={{
-          initial: '2',
-          md: '3',
-          lg: '3',
-        }}
-        className="w-full !md:px-16"
-      >
+
         <Card
           id="page-card"
-          className="w-full h-full relative flex flex-col justify-start min-w-full"
+          className="h-full relative flex flex-col justify-start"
           mt={'2'}
           size={{
-            initial: '1',
+            initial: '2',
             sm: '3',
-            md: '5',
-            lg: '5',
+            md: '3',
+            lg: '3',
           }}
           variant="surface"
         >
@@ -105,7 +98,6 @@ export default function BlogPostPage({ slug, title, description, cover, toc, bod
           {relatedPosts && <section dangerouslySetInnerHTML={{ __html: relatedPosts }} />}
         </Card>
         <ScrollTop />
-      </Container>
     </PageLayout>
   );
 }
