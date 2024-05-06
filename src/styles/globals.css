@@ -126,11 +126,13 @@ section.section>h2 {
 }
 @media screen and (max-width: 448px) {
     #page-card { 
-        max-width: var(--container-1) !important;
+        width: 100% !important;
+        max-width: 100% !important;
     }
 }
 @media screen and (max-width: 688px) {
     #page-card { 
+        width: 100% !important;
         max-width: var(--container-2) !important;
     }
 }
@@ -360,6 +362,3 @@ hr {
 }
     /* Explained in the next section. */
 
- #page-card { 
-        max-width: 100% !important;
-    }
