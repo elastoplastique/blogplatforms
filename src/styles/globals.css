@@ -359,3 +359,7 @@ hr {
     contain-intrinsic-size: 1000px !important;
 }
     /* Explained in the next section. */
+
+ #page-card { 
+        max-width: 100% !important;
+    }
