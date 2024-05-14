@@ -82,12 +82,14 @@ export const SegmentedFeatures = ({ platforms, platformFeatures }: Props) => {
             <RadioCards.Item
               value={f.slug}
               className="z-0 relative !w-full flex flex-row !justify-start"
+              aria-label={`View blogging platforms with ${f.title}`}
               data-state={f.slug === featureSlug ? 'checked' : 'unchecked'}
             >
               <Text size="1">{f.title}</Text>
             </RadioCards.Item>
             <Link
               href={`${ROUTES.FEATURES_DIRECTORY.path}/${f.slug}`}
+              aria-label={`View blogging platforms with ${f.title}`}
               className="!absolute right-2 top-3 !z-20 !cursor-pointer rounded-md border border-white flex flex-row justify-center items-center p-[2px] opacity-80 hover:opacity-100"
             >
               <MagnifyingGlassIcon width="18" height="18" />
