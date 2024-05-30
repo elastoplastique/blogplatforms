@@ -9,6 +9,9 @@ LINK PREVIEW
   background-color: var(--slate-a2) !important;
   border-radius: 16px;
 }
+#rich-content .link-preview-card div {
+  margin-bottom: 0;
+}
 
 @media screen and (max-width: 640px) {
   .link-preview-card .link-preview-content {
@@ -169,7 +172,7 @@ h6 strong { font-size:  var(--fontSize-s) !important;}
 }
 
 .cms-rc a.cms-link:hover {
-  background-color: #37fe90;
+  background-color: #37fe90 !important;
   color: black !important;
   outline-width: 0px;
   text-decoration: none;

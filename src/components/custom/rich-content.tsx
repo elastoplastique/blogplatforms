@@ -120,7 +120,7 @@ function WixTextDecorated({ node }: { node: Wix.Text }) {
   const LinkDecoration = ({ decoration, children }: { decoration: LinkDecoration; children: ReactNode | string }) => (
     <Link
       href={domainTransformer(decoration.linkData.link.url)}
-      style={{ color: 'inherit' }}
+      style={{ color: 'inherit', textDecoration: 'underline'}}
       className="cms-rc cms-link"
       target={
         (decoration.linkData.link.target?.toLowerCase() === '_blank' || decoration.linkData.link.target?.toLowerCase() === 'blank') &&
@@ -197,7 +197,7 @@ function WixLinkPreview({ node }: { node: Wix.LinkPreview }) {
     node.linkPreviewData.link.url.includes('blogplatforms.app') || node.linkPreviewData.link.url.includes('bloggingplatforms.app');
   return (
     <Card className="cms-rc cms-link-preview link-preview-card">
-      <Flex direction={{ initial: 'column', sm: 'row' }} height="min-content">
+      <Flex direction={{ initial: 'column', sm: 'row' }} height="max-content">
         <Flex width={{ initial: '100%', sm: '100%' }} className="link-preview-thumb z-10">
           <AspectRatio ratio={THUMB_WIDTH / THUMB_HEIGHT} className="aspect-ratio-box z-10">
             <a
