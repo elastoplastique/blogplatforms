@@ -79,6 +79,7 @@ footer * {
 #main-navigation-wrapper.dark::before {
     -webkit-mask: linear-gradient(black 60px, transparent);
     backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
     content: "";
     inset: 0px 0px -200px;
     transform: translate3d(0px, 0px, 0px);

@@ -37,6 +37,7 @@ import { generateSameAsFromAccounts } from '@/lib/rich-data/same-as';
 import { useRouter } from 'next/router';
 import { generateAbout } from '@/lib/rich-data/about';
 import dynamic from 'next/dynamic';
+import ShineBorder from "@/components/magicui/shine-border";
 
 type Props = {
   platform: PlatformNode;
@@ -94,7 +95,7 @@ export default function PlatformPage({ platform, platformFeatures, platformCompa
         }),
       })}
     >
-      
+
       <Container
         size={{
           initial: '1',
@@ -116,7 +117,7 @@ export default function PlatformPage({ platform, platformFeatures, platformCompa
             lg: '5',
           }}
         >
-          
+
           <Flex width="100%" justify="center">
             <Breadcrumb links={[{ name: platform.title, href: `/platforms/${platform.slug}`, current: true }]} />
           </Flex>
@@ -143,14 +144,14 @@ export default function PlatformPage({ platform, platformFeatures, platformCompa
             <SocialAccounts accounts={platformAccounts} platformTitle={platform.title} />
             <motion.a
               href={platform.url}
-              className={`intense-shadow mt-6 mb-12${platform.affiliate ? ' affiliate' : ''}`}
+              className={`intense-shadow overflow-hidden mt-8 mb-12${platform.affiliate ? ' affiliate' : ''}`}
               rel="noopener nofollow"
               transition={{ duration: 0.3, ease: 'easeInOut' }}
               style={{
                 borderRadius: 16,
                 backgroundColor: 'black',
                 color: 'white',
-                padding: '12px 32px',
+                //padding: '12px 32px',
                 textAlign: 'center',
                 fontWeight: 'bold',
               }}
@@ -158,7 +159,14 @@ export default function PlatformPage({ platform, platformFeatures, platformCompa
               whileHover={{ scale: 1.02 }}
               whileTap={{ scale: 0.96 }}
             >
-              Visit {platform.title}
+              <ShineBorder
+                className="text-center text-xl font-bold capitalize"
+                color={["#A07CFE", "#FE8FB5", "#FFBE7B"]}
+                borderRadius={16}
+                borderWidth={2}
+              >
+                Visit {platform.title}
+              </ShineBorder>
             </motion.a>
           </motion.div>
 
@@ -178,7 +186,7 @@ export default function PlatformPage({ platform, platformFeatures, platformCompa
           {/* CONTENT */}
           <Flex direction="column" justify="start" align="stretch">
             <Flex direction="column" justify="start" align="stretch" my="8">
-              <main dangerouslySetInnerHTML={{ __html: body }}  id="rich-content"/>
+              <main dangerouslySetInnerHTML={{ __html: body }} id="rich-content" />
             </Flex>
             {/* AUDIENCE */}
             <Audience title={platform.title} audience_text={audienceText} />
@@ -244,9 +252,9 @@ export default function PlatformPage({ platform, platformFeatures, platformCompa
               transition={{ duration: 0.3, ease: 'easeInOut' }}
               style={{
                 borderRadius: 24,
-                backgroundColor: '#533BD6',
+                //backgroundColor: '#533BD6',
                 color: 'white',
-                padding: '16px 0',
+                //padding: '16px 0',
                 textAlign: 'center',
                 fontWeight: 'bold',
               }}
@@ -254,7 +262,14 @@ export default function PlatformPage({ platform, platformFeatures, platformCompa
               whileHover={{ scale: 1.02 }}
               whileTap={{ scale: 0.96 }}
             >
-              Visit {platform.title}
+              <ShineBorder
+                className="text-center text-xl font-bold capitalize w-full"
+                color={["#A07CFE", "#FE8FB5", "#FFBE7B"]}
+                borderRadius={24}
+                borderWidth={2}
+              >
+                Visit {platform.title}
+              </ShineBorder>
             </motion.a>
           </Flex>
         </Card>
