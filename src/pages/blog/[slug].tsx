@@ -1,4 +1,5 @@
 /* eslint-disable @next/next/no-img-element */
+// @ts-nocheck
 import React, { useMemo } from 'react';
 import { renderToStaticMarkup } from 'react-dom/server';
 import { PageLayout } from '@/components/layout/page-layout';
@@ -38,7 +39,7 @@ type Props = {
 // @ts-ignore
 const RelatedPosts = dynamic(() => import('../../components/custom/related-posts').then((mod) => mod.RelatedPosts), { ssr: true });
 const RichContent = dynamic(() => import('../../components/custom/rich-content').then((mod) => mod.RichContent), { ssr: true });
-export default function BlogPostPage({ slug, title, description, cover, toc, body, relatedPosts, richData, keywords, canonical }: Props) {
+export default function BlogPostPage({ slug, title, description, cover, toc, body, relatedPosts, richData, keywords, canonical, _createdDate, _updatedDate }: Props) {
   return (
     <PageLayout
       metaTitle={`${title} | BloggingPlatforms.app`}
@@ -81,6 +82,7 @@ export default function BlogPostPage({ slug, title, description, cover, toc, bod
             }} my="9" className="post-description">
               {description}
             </Text>
+            <Text className="text-xs">Last updated: {new Date(_updatedDate).toGMTString().slice(0,17)}</Text>
           </motion.div>
 
           <Separator />
@@ -144,8 +146,8 @@ export const getStaticProps = async ({ params: { slug } }: { params: { slug: str
       keywords: post.keywords ? post.keywords : {},
       richData,
       canonical: `${removeTrailing(META.CANONICAL)}${ROUTES.BLOG_POST_DIRECTORY.path}/${removeTrailing(slug)}`,
-      _createdDate: post._createdDate,
-      _updatedDate: post._updatedDate,
+      _createdDate: post._createdDate!.$date,
+      _updatedDate: post._updatedDate!.$date,
       ...(relatedPosts && { relatedPosts }),
       // ...(post?.about && { about: post.about }),
       // ...(mentions && { mentions }),
