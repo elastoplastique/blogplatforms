@@ -70,20 +70,18 @@ export default function BlogPostPage({ slug, title, description, cover, toc, bod
               ]}
             />
           </Flex>
-          <motion.div className="relative min-w-full rounded-3xl flex flex-col justify-center items-center min-h-32 !mt-10">
-            <Heading as="h1" className="tracking-tight text-center !font-semi-bold sm:mx-8 !text-5xl md:text-5xl !lg:text-7xl pt-12 mb-8">{title}</Heading>
-            
+            <Text as="div" className="text-xs" align="center">Last updated: {new Date(_updatedDate).toGMTString().slice(0,17)}</Text>
+          <header className="relative min-w-full rounded-3xl flex flex-col justify-center items-center min-h-32 !mt-6">
+            <Heading as="h1" className="tracking-tight text-center !font-semi-bold sm:mx-8 !text-5xl md:text-5xl !lg:text-7xl">{title}</Heading>
             <Text as="p" align="center" weight="medium" size={{
               initial: '3',
               sm: '4',
               md: '4',
               lg: '4',
-            
-            }} my="9" className="post-description">
+            }} my="4" className="post-description">
               {description}
             </Text>
-            <Text className="text-xs">Last updated: {new Date(_updatedDate).toGMTString().slice(0,17)}</Text>
-          </motion.div>
+          </header>
 
           <Separator />
 
