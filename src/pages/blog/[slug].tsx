@@ -39,7 +39,20 @@ type Props = {
 // @ts-ignore
 const RelatedPosts = dynamic(() => import('../../components/custom/related-posts').then((mod) => mod.RelatedPosts), { ssr: true });
 const RichContent = dynamic(() => import('../../components/custom/rich-content').then((mod) => mod.RichContent), { ssr: true });
-export default function BlogPostPage({ slug, title, description, cover, toc, body, relatedPosts, richData, keywords, canonical, _createdDate, _updatedDate }: Props) {
+export default function BlogPostPage({
+  slug,
+  title,
+  description,
+  cover,
+  toc,
+  body,
+  relatedPosts,
+  richData,
+  keywords,
+  canonical,
+  _createdDate,
+  _updatedDate,
+}: Props) {
   return (
     <PageLayout
       metaTitle={`${title} | BloggingPlatforms.app`}
@@ -49,71 +62,89 @@ export default function BlogPostPage({ slug, title, description, cover, toc, bod
       keywords={keywords}
       richData={richData}
     >
-
-        <Card
-          id="page-card"
-          className="h-full relative flex flex-col justify-start"
-          mt={'2'}
-          size={{
-            initial: '2',
-            sm: '3',
-            md: '3',
-            lg: '3',
-          }}
-          variant="surface"
-        >
-          <Flex width="100%" justify="center">
-            <Breadcrumb
-              links={[
-                { name: 'Blog', href: `/blog`, current: false },
-                { name: title, href: `/blog/${slug}`, current: true, truncate: title.length > 30 },
-              ]}
-            />
-          </Flex>
-            <Text as="div" className="text-xs" align="center">Last updated: {new Date(_updatedDate).toGMTString().slice(0,17)}</Text>
-          <header className="relative min-w-full rounded-3xl flex flex-col justify-center items-center min-h-32 !mt-6">
-            <Heading as="h1" className="tracking-tight text-center !font-semi-bold sm:mx-8 !text-5xl md:text-5xl !lg:text-7xl">{title}</Heading>
-            <Text as="p" align="center" weight="medium" size={{
+      <Card
+        id="page-card"
+        className="h-full relative flex flex-col justify-start"
+        mt={'2'}
+        size={{
+          initial: '2',
+          sm: '3',
+          md: '3',
+          lg: '3',
+        }}
+        variant="surface"
+      >
+        <Flex width="100%" justify="center">
+          <Breadcrumb
+            links={[
+              { name: 'Blog', href: `/blog`, current: false },
+              { name: title, href: `/blog/${slug}`, current: true, truncate: title.length > 30 },
+            ]}
+          />
+        </Flex>
+        <Text as="div" className="text-xs" align="center">
+          Last updated: {new Date(_updatedDate).toGMTString().slice(0, 17)}
+        </Text>
+        <header className="relative min-w-full rounded-3xl flex flex-col justify-center items-center min-h-32 !mt-6">
+          <Heading as="h1" className="tracking-tight text-center !font-semi-bold sm:mx-8 !text-5xl md:text-5xl !lg:text-7xl">
+            {title}
+          </Heading>
+          <Text
+            as="p"
+            align="center"
+            weight="medium"
+            size={{
               initial: '3',
               sm: '4',
               md: '4',
               lg: '4',
-            }} my="4" className="post-description">
-              {description}
-            </Text>
-          </header>
+            }}
+            my="4"
+            className="post-description"
+          >
+            {description}
+          </Text>
+        </header>
 
-          <Separator />
+        <Separator />
 
-          {/* <PostCover title={title} src={createWixStaticUrl(cover!)} /> */}
-          {/* MEDIA */}
-          {/* {platform.media && platform.media.length > 0 && <PlatformMedia media={platform.media} />} */}
+        {/* <PostCover title={title} src={createWixStaticUrl(cover!)} /> */}
+        {/* MEDIA */}
+        {/* {platform.media && platform.media.length > 0 && <PlatformMedia media={platform.media} />} */}
 
-          {/* TABLE OF CONTENTS */}
-          <div className="mt-32 toc flex flex-col justify-start items-stretch" dangerouslySetInnerHTML={{ __html: toc }} />
+        {/* TABLE OF CONTENTS */}
+        <div className="mt-32 toc flex flex-col justify-start items-stretch" dangerouslySetInnerHTML={{ __html: toc }} />
 
-          {/* CONTENT */}
-          <article className="content-auto flex flex-col justify-start items-stretch" dangerouslySetInnerHTML={{ __html: body }} id="rich-content" />
+        {/* CONTENT */}
+        <article
+          className="content-auto flex flex-col justify-start items-stretch"
+          dangerouslySetInnerHTML={{ __html: body }}
+          id="rich-content"
+        />
 
-          {relatedPosts && <section dangerouslySetInnerHTML={{ __html: relatedPosts }} />}
-        </Card>
-        <ScrollTop />
+        {relatedPosts && <section dangerouslySetInnerHTML={{ __html: relatedPosts }} />}
+      </Card>
+      <ScrollTop />
     </PageLayout>
   );
 }
 
 export const getStaticProps = async ({ params: { slug } }: { params: { slug: string } }) => {
   const post = await getPost(slug);
-  const mentions = post?.platforms
-    ? post?.platforms.map(
-        (p) =>
-          ({
-            type: 'Thing',
-            name: p.title,
-            sameAs: p.url,
-          }) as unknown as RichData.SameAsType
-      )
-    : [];
+  const mentionsSet = new Set();
+
+  const mentions = [];
+
+  post?.platforms.forEach((p) => {
+    if (!mentionsSet.has(p.url)) {
+      mentionsSet.add(p.url);
+      mentions.push({
+        type: 'Thing',
+        name: p.title,
+        sameAs: p.url,
+      }) as unknown as RichData.SameAsType;
+    }
+  });
   if (post?.mentions && post?.mentions.length > 0) {
     mentions.concat(post?.mentions);
   }

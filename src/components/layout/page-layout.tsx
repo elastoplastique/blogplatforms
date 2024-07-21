@@ -28,6 +28,7 @@ export function PageLayout({ children, ...props }: PageLayoutProps) {
         '@graph': richData,
       };
     }
+    console.log(richData);
     return richData;
   }
   return (
@@ -66,7 +67,7 @@ export function PageLayout({ children, ...props }: PageLayoutProps) {
         {props.image && <meta property="twitter:image" content={props.image} />}
         {props.keywords && <meta property="keywords" content={props.keywords} />}
 
-        {props.richData && <script type="application/ld+json">{`${JSON.stringify(mergeRichData(props.richData))}`}</script>}
+        {props.richData && <script type="application/ld+json">{`${JSON.stringify(mergeRichData(props.richData), null, 2)}`}</script>}
       </Head>
       <Flex asChild className="!min-w-full py-20 min-h-[60vh] !pb-[100px] flex flex-col items-center" direction="column" align="center" id="page-layout">
         <main>{children}</main>

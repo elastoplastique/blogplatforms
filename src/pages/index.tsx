@@ -40,15 +40,20 @@ export default function HomePage(props: Props) {
 
   const mentions = useMemo(() => {
     const platforms = props.platformFeatures.map((pf: PlatformFeatureNode) => pf.platform);
-    const m = platforms?.map(
-      (p) =>
-        ({
+    const ms: RichData.SameAsType | any[] = [];
+    const sameAsUrlSet = new Set<string>();
+
+    platforms?.forEach((p) => {
+      if (!sameAsUrlSet.has(p.url)) {
+        sameAsUrlSet.add(p.url);
+        ms.push({
           type: 'Thing',
           name: p.title,
           sameAs: p.url,
-        }) as unknown as RichData.SameAsType
-    );
-    return m;
+        } as unknown as RichData.SameAsType);
+      }
+    });
+    return ms;
   }, []);
 
   return (
@@ -89,7 +94,6 @@ export default function HomePage(props: Props) {
         }}
         className="!w-[100%]"
       >
-
         <Hero title={META.HOME.TITLE} htmlSubtitle={META.HOME.HTML_DESCRIPTION} />
 
         <SegmentedFeatures platformFeatures={props.platformFeatures} platforms={props.platforms} />

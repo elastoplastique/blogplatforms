@@ -1,7 +1,7 @@
 export const WEBSITE_NAME = 'Blogging Platforms';
 export const HOME_TITLE = 'Blogging Platforms';
 export const HOME_DESCRIPTION =
-  '<p>Discover and compare the <strong><em>best blogging platforms</em></strong> and sites. <br/> Our curated list provides in-depth reviews, helping you make an informed decision for your blogging journey.</p><p><strong>Search blogging platforms by features</strong></p>';
+  '<p>Discover and compare the <strong><em>best blogging platforms</em></strong>. <br/> Our curated list provides in-depth reviews, helping you make an informed decision for your blogging journey.</p><p>Search <strong>blogging platforms</strong> by features</p>';
 
 // PLATFORM PAGE CONSTANTS
 export const PLATFORM_PAGE = {
